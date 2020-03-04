@@ -1,0 +1,36 @@
+&tao_start
+	n_universes=1
+	startup_file='initmatch.tao'
+/
+
+&tao_design_lattice
+	design_lattice(1)%file= 'FACET2e.bmad'
+/
+
+&tao_d2_data
+        d2_data%name = 'BEGL1'
+        universe = 1
+        n_d1_data = 1
+	default_merit_type = "target"
+/
+
+&tao_d1_data
+        ix_d1_data = 1
+        default_weight = 1e4
+        d1_data%name = 'begtwiss'
+        datum( 1) =  'beta.a'     '' '' 'BEGL1F'   'target'  16.2883 
+        datum( 2) =  'alpha.a'    '' '' 'BEGL1F'   'target' 2.8331 
+        datum( 3) =  'beta.b'     '' '' 'BEGL1F'   'target' 3.3996 
+        datum( 4) =  'alpha.b'    '' '' 'BEGL1F'   'target' -1.4242
+/
+&tao_var
+        v1_var%name = 'begtwiss'
+        default_step = 1
+	default_weight = 1e-7
+        default_universe = '1'
+        ix_min_var = 1
+        ix_max_var = 6
+        var(1:6)%ele_name  = 'beginning', 'beginning', 'beginning', 'beginning', 'QA10361', 'QA10371'
+        var(1:6)%attribute = 'beta_a', 'alpha_a', 'beta_b', 'alpha_b', 'k1', 'k1'
+/
+

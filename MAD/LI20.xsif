@@ -1,0 +1,1049 @@
+
+! *** OPTICS=FACET2-21AUG19 ***
+
+! ==============================================================================
+! FACET e- optics, v35
+! ------------------------------------------------------------------------------
+! 30-JAN-2015, M. Woodley
+!  * move experimental area definitions to separate xsif-files
+!  * experimental area modified for hydrogen plasma chamber installation and
+!    spectrometer upgrade (QS0 installation)
+!  * device locations in experimental area and dump table area per S. Green
+!    spreadsheet
+! ------------------------------------------------------------------------------
+! 10-APR-2014, M. Woodley
+!  * add separate definitions of experimental area for long oven installation
+!    and short oven installation (comment blocks)
+!  * device locations in experimental area after long oven installation per
+!    C. Clarke, S. Li, and M. Hogan
+! 04-FEB-2013, M. Woodley
+!  * nominal optics: R56=-7mm, 10x100@MIP
+!  * M3167 (BPM) and d/s Be window locations per C. Clarke spreadsheet (version
+!    of 9/27/2013)
+! 07-NOV-2013, M. Woodley
+!  * E201 device locations per C. Clarke (1 cm, 10 cm, and 20 cm samples)
+!  * E213 IP location estimated by I. Tudosa
+!  * dump table devices and locations per E. Adli
+! 18-OCT-2013, M. Woodley
+!  * experimental area device locations per C. Clarke (9/27/2013)
+!  * E200 IP location per K. Marsh ("9_8-focus"-Layer_1.pdf)
+!  * dump table devices moved ~25 cm u/s (per E. Adli ... to be confirmed)
+!  * rematch with FF quads to nominal 0.5x5 optics at MIP
+! 15-MAY-2013, M. Woodley
+!    QFF*, and QS* Z-locations per G.Gassner list (QS12_and_QFF4_6_R1.xlsx)
+! 08-MAY-2013, M. Woodley
+!    E201 IP (sample holder) moved 10 cm d/s of Kraken chamber centerline, per
+!    C. Clarke
+! 05-APR-2013, M. Woodley
+!    Change "XTCAV" to "XTCAVF" per H. Loos; experimental device names and unit
+!    numbers per FACETExperimentalAreaDevicesLocation.xlsx (3/14/2013)
+! 18-MAR-2013, M. Woodley
+!    As-installed locations of XC1996, YC2181, YC2321, and XC2460
+!    per N. Lipkowitz
+! 15-MAR-2013, M. Woodley
+!    As-installed experimental device locations per C. Clarke ... rematch
+! 15-FEB-2013, M. Woodley
+!   * add as-installed yaw to B1L and B1R (per Y. Nosochkov)
+!   * low-beta optics is now nominal (Bx*/By* = 0.5/5.0 m @ MIP)
+! 10-FEB-2013, M. Woodley
+!   * locations of SQ1 and SQ2 per M. Sullivan tape-measurement
+!   * 2013 experimental area layout per C. Clarke email of January 24, 2013
+!     and H. Imfeld survey map of February 6, 2013
+! 02-DEC-2012, M. Woodley
+!    Add (optional/provisional) 2013 experimental area layout per C. Clarke
+! 17-AUG-2012, M. Woodley
+!    Optics version 31
+!   * consolidate common and electron files
+!   * add database MARKer points at experiment IPs
+!   * add measured multipole components
+! 30-JUN-2012, M. Woodley
+!    Add alternate E200 IPs (28 cm Rb oven and 21 cm Rb oven) per S. Li list
+!    of 6/28/2012
+! 28-JUN-2012, M. Woodley
+!    Verify Z-locations of experimental devices with S. Li list of 6/28/2012
+! 21-MAY-2012, M. Woodley
+!    Adjust locations of T203163T and IP201/P203208T per S. Li list
+! 03-MAY-2012, M. Woodley
+!    Adjust locations of devices d/s of M203340T per E. Adli, G. Gassner, S. Li,
+!    and drawing ID-257-500-27
+! 09-MAR-2012, M. Woodley
+!    Locations of notch and jaw collimators, XTCAV, sYAG, and THz cubes per
+!    G. Gassner
+! 16-FEB-2012, M. Woodley
+!   * replace DPC (DRIF) with PC200 (INST)
+!   * complement of experimental area devices and their locations per S. Li and
+!     C. Clarke
+!   * replace nonzero-length split-in-half correctors with zero-length HKICs
+!     and VKICs surrounded by half-corrector-length drifts
+! 05-AUG-2011, Y. Nosochkov
+!    Rematch FF quads for the IP position shifted by +0.2934 m (to Z=1993 m).
+!    Due to QFF2 strength limitation, change the IP x/y beta* to 0.018/0.18 m.
+!    Rematch QS1, QS2 quads in the dump line.
+! 04-AUG-2011, M. Woodley
+!    Device locations on THz and IP tables per S. Li
+! 17-JUN-2011, Y. Nosochkov
+!    Rematch sector 19 quads. In the nominal option, K-values in Li19
+!    do not fit within the booster PS range. Add option where K-values
+!    in Li18-19 are within the booster range at the expense of larger
+!    beta perturbation.
+! 01-JUN-2011, M. Woodley
+!    Add XCOR between QS1 and QS2.
+! 13-MAY-2011, M. Woodley
+!    Device locations per visual inspection.
+! 22-FEB-2011
+!    Change toroid name from T191988T to T201988T.
+! 16-FEB-2011
+!    Shift sector-20 elements downbeam by 50 mm starting from B1L.
+!    Make additional minor adjustment to positions of LAERO2PS, LPS2DUMP.
+! 23-Aug-2010
+!    Rematch quad strengths to make Q5E integral strength the same as in v.26.
+!    Set bending angle in B5D36 dipole to 6 mrad.
+! 05-Aug-2010
+!    Remove negative drifts by slight adjustment of adjacent BPM positions.
+! 03-May-2010
+!    Split dipole correctors in half and adjust their S-positions.
+! 23-APR-2010
+!    Adjust S-positions of some correctors and BPMs per engineering
+!    request.
+! 15-APR-2010
+!    Set strengths of QS1, QS2 dumpline quads for match without plasma.
+! 07-APR-2010
+!    Use 0.762 m long sextupole for S2E. Reverse wiggler polarity
+!    to make upward bending. Use 3D8.8 and 3D4.0 type magnets for
+!    orbit correctors. Use a shorter magnet for QFF6. Update magnet
+!    effective lengths and apertures (from C.Spencer's table).
+!    Remove M2E, M10E BPMs.
+!    Rematch geometry by keeping the IP position unchanged.
+!    Rematch linear optics and sextupoles.
+! 26-Jan-2010
+!    Change definition from MARKER to INSTRUMENT for some diagnostic
+!    devices.
+! 05-Nov-2009
+!    Update database names for BPMs, diagnostics and a few magnets.
+!    Move a profile monitor and beam stopper from upstream to downstream
+!    side of B1E bend.
+! 13-Oct-2009
+!    Include profile monitor and beam stopper in sector-19, two HCOLL and
+!    one VCOLL in sector-20 electron chicane, and toroid in the IP region.
+! 28-Sep-2009
+!    Update element names and remove unneeded markers in the dump line.
+! 18-Sep-2009
+!    Include 3 toroids in sector-20 e- chicane. Include 2 CTR pyro
+!    detectors in the final focus. Include OTR cube and Be window after
+!    the last FF quad. Move the last FF BPM inside the last FF quad.
+!    Include wire scanner at IP.
+! 10-Sep-2009
+!    Include notch collimator in sector-20 e- chicane. Relocate the
+!    e- wiggler to downstream end of the chicane just before Q1E.
+!    Include YAG screen 25 cm after the e- wiggler. Use L=0.25 m S3P
+!    sextupole of the same type as other sextupoles. Add HGAP and FINT
+!    parameters to chicane bend definitions and rematch quads.
+! 22-Jul-2009
+!    Use a different magnet type with L=0.285 m for S3P sextupole.
+!    Update magnet database names. Include BPMs.
+!    Use a shorter wiggler.
+! 04-Jun-2009
+!    Replace most of the L=15 cm correctors with existing L=22.4 cm magnets.
+! 23-Apr-2009
+!    Include optics for experimental dump line (M. Hogan).
+! 22-Apr-2009
+!    Rename magnets using FACET name convention.
+! 24-Mar-2009
+!    Replace the 1.739 m B2E bend magnet with 1.812 m magnet. B2E, B3E
+!    bending angles are slightly adjusted to correct the geometry.
+!    Quads are rematched.
+! 18-Mar-2009
+!    Include X,Y orbit correctors.
+! 11-Dec-2008
+!    Increase length of the "new" bends from 1 m to 1.04 m to decrease
+!    their field below 17 kG. Left edge of the 1st chicane bend is moved
+!    0.02 m upstream.
+! 04-Dec-2008
+!    Increase the path length difference between e+ and e- from 50 to 52.7 mm
+!    by raising the bend field by ~2.7%. Field in the "new" 1 m dipoles exceed
+!    17 kG at 23 GeV -- the dipole length needs to be increased.
+! 13-Nov-2008
+!    Add a 3rd sextupole family to e+ chicane for better chromaticity
+!    correction. Change all sextupole lengths in both chicanes to 0.25 m.
+!    Re-fit geometry (using ~2% higher bend field) and re-match optics.
+! 29-Oct-2008
+!    Include wigglers at the beginning of e- chicane and at the end of
+!    e+ chicane. The wiggler focusing breaks the chicane symmetry, but
+!    since the effect is rather small, the quads have not been rematched.
+!    The wiggler also slightly changes the X-Z projection which has
+!    been corrected by a slight adjustment of adjacent drift.
+! 28-Oct-2008
+!    Change Q4E doublet to a triplet to reduce its gradient below the
+!    existing magnet limit. Use doublet S1P sexupole and doublet S3E
+!    sextupole to reduce their K-values. Assume the new sextupoles are
+!    based on the existing sextupoles, but the aperture is reduced from
+!    20.6 mm to 18 mm for 31% higher K-value.
+! 27-Oct-2008
+!    Replace the magnets used for Q6E and QFF1 which are not currently
+!    available (used for LCLS) with other available existing magnets.
+! 23-Oct-2008
+!    The existing quad positions are optimized for lower strengths and
+!    stronger quad types are used where needed, but still one quad family
+!    (Q4E) is out of existing field range.
+! 03-Oct-2008
+!    Existing quad strengths are optimized, but 6 families remain
+!    out of range.
+! 24-Sep-2008
+!    Use existing SLAC magnets. The "aperture" is specified 2 mm smaller
+!    than the magnet bore aperture in order to leave space for pipe width.
+!    Bending angle is tuned to match the e- and e+ chicane Z-lengths for
+!    a given 50 mm path length difference. Quads are rematched, but some
+!    strengths are out of range. Sextupoles are not matched yet.
+! 31-Jul-2008
+!    Make all 4 e+ sextupoles independent and re-optimize their strength
+!    for minimal sigma-x at IP (using DIMAD tracking).
+! 17-Jul-2008
+!    Adjust magnet positions and lengths for lower initial T566 w/o
+!    sextupoles. Re-match the e- and e+ quad/bend optics.
+!    Optimize 6 e- sextupoles and 4 e+ sextupoles for low W-function,
+!    DDX and |T566|<0.1.
+! 11-Jul-2008
+!    Rearrange and re-optimize e- sextupoles for lower T566.
+!    Use 8 sextupoles (4 families).
+! 30-Jun-2008
+!    Re-optimize e- sextupoles for lower Txx6 2nd order chromatic terms.
+! 26-Jun-2008
+!    Match upstream linac optics and FACET.
+! 19-Jun-2008
+!    Add sextupoles to the chicanes to cancel the 2nd order dispersion.
+!    and reduce W-function at IP. The W-functions need a better correction.
+! 11-Jun-2008
+!    Chicane length is increased by 9.09 m. The bends are split in
+!    shorter magnets and placed at positions where there is no overlap
+!    with another existing beamline in the linac in the beginning of
+!    the chicanes.
+! 05-Jun-2008
+!    Quad K-values in chicanes are reduced to <0.75.
+!    Final focus is not yet re-matched.
+! ------------------------------------------------------------------------------
+
+! ------------------------------------------------------------------------------
+! global parameters
+! ------------------------------------------------------------------------------
+
+  Wscl := 1 !wiggler field scale (=1 for wiggler ON, =0 for wiggler OFF)
+! Initial parameters at BEGBC20
+  TW20: BETA0, BETX=12.2509, ALFX=0.6685, BETY=22.3869, ALFY=1.1657
+  BEAM20: BEAM, ENERGY=10,&
+                NPART=1.2483019e+10,EXN=5e-06,EYN=5e-06,&
+                SIGT=0.0001,SIGE=0.012
+
+
+! ==============================================================================
+! transverse deflecting structure
+! ------------------------------------------------------------------------------
+
+  LXTCAV := 40.687*IN2M
+
+  XTCAVF : LCAV, FREQ=11424, TYPE="TRANS_DEFL", L=LXTCAV/2
+
+! ==============================================================================
+! BENDs
+! ------------------------------------------------------------------------------
+
+! chicane bends
+
+  AB1  := 0.02258935           !full bend angle
+  AB1h := AB1/2                !half bend angle
+  ZB1  := 1.063                !full effective Z-length
+  LB1  := ZB1*(AB1h/SIN(AB1h)) !full path length
+  GB1  := 0.023                !full gap height
+
+  B1LE1 : SBEN, TYPE="0.906D40.945", L=LB1/2, HGAP=GB1/2, ANGLE=AB1h, &
+                E1=AB1h, FINT=0.5, FINTX=0
+  B1LE2 : SBEN, TYPE="0.906D40.945", L=LB1/2, HGAP=GB1/2, ANGLE=AB1h, &
+                FINT=0, E2=AB1h, FINTX=0.5
+  B1RE1 : SBEN, TYPE="0.906D40.945", L=LB1/2, HGAP=GB1/2, ANGLE=AB1h, &
+                E1=AB1h, FINT=0.5, FINTX=0
+  B1RE2 : SBEN, TYPE="0.906D40.945", L=LB1/2, HGAP=GB1/2, ANGLE=AB1h, &
+                FINT=0, E2=AB1h, FINTX=0.5
+
+  AB2 := -AB1*1.45245
+  LB2 := 1.8249
+  GB2 := 0.0127
+  AB3 := -(AB1+AB2)
+  LB3 := 0.5287
+  GB3 := 0.02065
+
+  B2LE1 : SBEN, TYPE="2D71.3", L=LB2/2, HGAP=GB2/2, ANGLE=AB2/2, &
+                E1=AB2/2, FINT=0.5, FINTX=0
+  B2LE2 : SBEN, TYPE="2D71.3", L=LB2/2, HGAP=GB2/2, ANGLE=AB2/2, &
+                FINT=0, E2=AB2/2, FINTX=0.5
+  B3LE1 : SBEN, TYPE="51BI", L=LB3/2, HGAP=GB3/2, ANGLE=AB3/2, &
+                E1=AB3/2, FINT=0.5, FINTX=0
+  B3LE2 : SBEN, TYPE="51BI", L=LB3/2, HGAP=GB3/2, ANGLE=AB3/2, &
+                FINT=0, E2=AB3/2, FINTX=0.5
+  B3RE1 : SBEN, TYPE="51BI", L=LB3/2, HGAP=GB3/2, ANGLE=AB3/2, &
+                E1=AB3/2, FINT=0.5, FINTX=0
+  B3RE2 : SBEN, TYPE="51BI", L=LB3/2, HGAP=GB3/2, ANGLE=AB3/2, &
+                FINT=0, E2=AB3/2, FINTX=0.5
+  B2RE1 : SBEN, TYPE="2D71.3", L=LB2/2, HGAP=GB2/2, ANGLE=AB2/2, &
+                E1=AB2/2, FINT=0.5, FINTX=0
+  B2RE2 : SBEN, TYPE="2D71.3", L=LB2/2, HGAP=GB2/2, ANGLE=AB2/2, &
+                FINT=0, E2=AB2/2, FINTX=0.5
+
+! define unsplit SBENs for BMAD ... not used by MAD
+
+  B1LE : SBEN, TYPE="0.906D40.945", HGAP=GB1/2, L=LB1, ANGLE=AB1, &
+               E1=AB1h, FINT=0.5, E2=AB1h, FINTX=0.5
+  B2LE : SBEN, TYPE="2D71.3", HGAP=GB2/2, L=LB2, ANGLE=AB2, &
+               E1=AB2/2, FINT=0.5, E2=AB2/2, FINTX=0.5
+  B3LE : SBEN, TYPE="51BI", HGAP=GB3/2, L=LB3, ANGLE=AB3, &
+               E1=AB3/2, FINT=0.5, E2=AB3/2, FINTX=0.5
+  B3RE : SBEN, TYPE="51BI", HGAP=GB3/2, L=LB3, ANGLE=AB3, &
+               E1=AB3/2, FINT=0.5, E2=AB3/2, FINTX=0.5
+  B2RE : SBEN, TYPE="2D71.3", HGAP=GB2/2, L=LB2, ANGLE=AB2, &
+               E1=AB2/2, FINT=0.5, E2=AB2/2, FINTX=0.
+  B1RE : SBEN, TYPE="0.906D40.945", HGAP=GB1/2, L=LB1, ANGLE=AB1, &
+               E1=AB1h, FINT=0.5, E2=AB1h, FINTX=0.5
+
+! SLC BSY vertical wiggler (described in SLAC-PUB-3945)
+! (use series approximation for sinc(x)=sin(x)/x, in case Wscl=0)
+
+  AWE   := -0.0025*Wscl !bend angle
+  ZWE   := 0.244        !half-pole Z length
+  GWE   := 0.02032      !gap height
+  ZDWE  := 0.126525     !pole-to-pole Z spacing (per G. Gassner)
+  ZWIG  := 4*ZWE+2*ZDWE !total wiggler Z length
+  AWE_2 := AWE*AWE
+  AWE_4 := AWE_2*AWE_2
+  AWE_6 := AWE_4*AWE_2
+  SINCA := 1-AWE_2/6+AWE_4/120-AWE_6/5040
+  LWE   := ZWE/SINCA    !half-pole path length
+
+  AWEs   := ASIN(SIN(AWE)/2) !"short half" half-pole bend angle
+  AWEs_2 := AWEs*AWEs
+  AWEs_4 := AWEs_2*AWEs_2
+  AWEs_6 := AWEs_4*AWEs_2
+  SINCAs := 1-AWEs_2/6+AWEs_4/120-AWEs_6/5040
+  LWEs   := (ZWE/2)/SINCAs   !"short half" half-pole path length
+  AWEl   := AWE-AWEs         !"long half" half-pole bend angle
+  LWEl   := LWE-LWEs         !"long half" half-pole path length
+
+  WIGE11 : SBEN, TYPE="SLC wiggler", L=LWEs, HGAP=GWE/2, ANGLE=AWEs, TILT, &
+                 E1=0, FINT=0.5, E2=0, FINTX=0
+  WIGE12 : SBEN, TYPE="SLC wiggler", L=LWEl, HGAP=GWE/2, ANGLE=AWEl, TILT, &
+                 E1=0, FINT=0, E2=AWE, FINTX=0.5
+  WIGE21 : SBEN, TYPE="SLC wiggler", L=LWE, HGAP=GWE/2, ANGLE=-AWE, TILT, &
+                 E1=-AWE, FINT=0.5, E2=0, FINTX=0
+  WIGE22 : SBEN, TYPE="SLC wiggler", L=LWE, HGAP=GWE/2, ANGLE=-AWE, TILT, &
+                 E1=0, FINT=0, E2=-AWE, FINTX=0.5
+  WIGE31 : SBEN, TYPE="SLC wiggler", L=LWEl, HGAP=GWE/2, ANGLE=AWEl, TILT, &
+                 E1=AWE, FINT=0.5, E2=0, FINTX=0
+  WIGE32 : SBEN, TYPE="SLC wiggler", L=LWEs, HGAP=GWE/2, ANGLE=AWEs, TILT, &
+                 E1=0, FINT=0, E2=0, FINTX=0.5
+
+! define unsplit SBENs for BMAD ... not used by MAD
+
+  WIGE1 : SBEN, TYPE="SLC wiggler", HGAP=GWE/2, L=LWE, ANGLE=AWE, &
+                E1=0, FINT=0.5, E2=AWE, FINTX=0.5, TILT
+  WIGE2 : SBEN, TYPE="SLC wiggler", HGAP=GWE/2, L=2*LWE, ANGLE=-2*AWE, &
+                E1=-AWE, FINT=0.5, E2=-AWE, FINTX=0.5, TILT
+  WIGE3 : SBEN, TYPE="SLC wiggler", HGAP=GWE/2, L=LWE, ANGLE=AWE, &
+                E1=AWE, FINT=0.5, E2=0, FINTX=0.5, TILT
+
+  LDWE := ZDWE/COS(AWE)
+
+! spectrometer / dump bend
+
+  ABD := 0.006
+  LBD := 0.9779
+  GBD := 0.0635
+
+  B5D361 : SBEN, TYPE="5D36", L=LBD/2, HGAP=GBD/2, ANGLE=ABD/2, TILT, &
+                 E1=ABD/2, FINT=0.5, FINTX=0
+  B5D362 : SBEN, TYPE="5D36", L=LBD/2, HGAP=GBD/2, ANGLE=ABD/2, TILT, &
+                 FINT=0, E2=ABD/2, FINTX=0.5
+
+! define unsplit SBENs for BMAD ... not used by MAD
+
+  B5D36 : SBEN, TYPE="5D36", HGAP=GBD/2, L=LBD, ANGLE=ABD, TILT, &
+                E1=ABD/2, FINT=0.5, E2=ABD/2, FINTX=0.5
+
+! ==============================================================================
+! QUADs
+! ------------------------------------------------------------------------------
+
+! chicane quadrupoles
+! NOTE: quad apertures are bore radius minus 2 mm
+
+  LQ1 := 0.5962
+  AQ1 := 8.325e-3
+  LQ2 := 1.0
+  AQ2 := 25.0e-3
+  LQ3 := 0.7142
+  AQ3 := 18.6375e-3
+  LQ4 := 0.7142
+  AQ4 := 18.6375e-3
+  LQ5 := 0.4284
+  AQ5 := 18.6375e-3
+  LQ6 := 0.31
+  AQ6 := 8.0e-3
+
+! low-beta, R56 = -7 mm (symmetric)
+
+  KQ1EL :=  0.811267045415
+  KQ2EL := -0.462440331546
+  KQ3EL :=  0.462720996981 !2 magnets
+  KQ4EL :=  0.55529780432  !3 magnets
+  KQ5EL := -0.163592075808
+  KQ6E  := -1.376084837022
+  KQ5ER := -0.163597934794 !KQ5EL
+  KQ4ER :=  KQ4EL          !3 magnets
+  KQ3ER :=  KQ3EL          !2 magnets
+  KQ2ER := -0.46243862549  !KQ2EL
+  KQ1ER :=  0.811228495466 !KQ1EL
+
+  Q1EL   : QUAD, TYPE="0.813Q23",   L=LQ1/2, APER=AQ1, K1=KQ1EL
+  Q2EL   : QUAD, TYPE="2.13Q38.31", L=LQ2/2, APER=AQ2, K1=KQ2EL
+  Q3EL_1 : QUAD, TYPE="1.625Q27.3", L=LQ3/2, APER=AQ3, K1=KQ3EL
+  Q3EL_2 : QUAD, TYPE="1.625Q27.3", L=LQ3/2, APER=AQ3, K1=KQ3EL
+  Q4EL_1 : QUAD, TYPE="1.625Q27.3", L=LQ4/2, APER=AQ4, K1=KQ4EL
+  Q4EL_2 : QUAD, TYPE="1.625Q27.3", L=LQ4/2, APER=AQ4, K1=KQ4EL
+  Q4EL_3 : QUAD, TYPE="1.625Q27.3", L=LQ4/2, APER=AQ4, K1=KQ4EL
+  Q5EL   : QUAD, TYPE="1.625Q16",   L=LQ5/2, APER=AQ5, K1=KQ5EL
+  Q6E    : QUAD, TYPE="0.79Q11.81", L=LQ6/2, APER=AQ6, K1=KQ6E
+  Q5ER   : QUAD, TYPE="1.625Q16",   L=LQ5/2, APER=AQ5, K1=KQ5ER
+  Q4ER_1 : QUAD, TYPE="1.625Q27.3", L=LQ4/2, APER=AQ4, K1=KQ4ER
+  Q4ER_2 : QUAD, TYPE="1.625Q27.3", L=LQ4/2, APER=AQ4, K1=KQ4ER
+  Q4ER_3 : QUAD, TYPE="1.625Q27.3", L=LQ4/2, APER=AQ4, K1=KQ4ER
+  Q3ER_1 : QUAD, TYPE="1.625Q27.3", L=LQ3/2, APER=AQ3, K1=KQ3ER
+  Q3ER_2 : QUAD, TYPE="1.625Q27.3", L=LQ3/2, APER=AQ3, K1=KQ3ER
+  Q2ER   : QUAD, TYPE="2.13Q38.31", L=LQ2/2, APER=AQ2, K1=KQ2ER
+  Q1ER   : QUAD, TYPE="0.813Q23",   L=LQ1/2, APER=AQ1, K1=KQ1ER
+
+! Final Focus and spectrometer quadrupoles
+
+  LQFF1 := 0.4609
+  AQFF1 := 8.325e-3
+  LQFF2 := 0.4609
+  AQFF2 := 8.325e-3
+  LQFF4 := 0.7142
+  AQFF4 := 18.6375e-3
+  LQFF5 := 2.0260
+  AQFF5 := 24.0e-3
+  LQFF6 := 0.7142
+  AQFF6 := 18.6375e-3
+  LQS0  := 0.46092
+  AQS0  := 11.5e-3
+  LQS   := 1.0
+  AQS   := 27.0e-3
+
+  KQFF1 :=  0.415520132864
+  KQFF2 := -0.320900222208 !3 magnets
+  KQFF4 :=  0.344582790778 !2 magnets
+  KQFF5 := -0.439926573681
+  KQFF6 :=  0.886316
+  KQS0  := -1.070719       !-335 kG @ 20.35 GeV
+  KQS1  :=  0.306155969542
+  KQS2  := -0.236008213549
+
+  QFF1   : QUAD, TYPE="0.813Q17.7", L=LQFF1/2, APER=AQFF1, K1=KQFF1
+  QFF2_1 : QUAD, TYPE="0.813Q17.7", L=LQFF2/2, APER=AQFF2, K1=KQFF2
+  QFF2_2 : QUAD, TYPE="0.813Q17.7", L=LQFF2/2, APER=AQFF2, K1=KQFF2
+  QFF2_3 : QUAD, TYPE="0.813Q17.7", L=LQFF2/2, APER=AQFF2, K1=KQFF2
+  QFF4_1 : QUAD, TYPE="1.625Q27.3", L=LQFF4/2, APER=AQFF4, K1=KQFF4
+  QFF4_2 : QUAD, TYPE="1.625Q27.3", L=LQFF4/2, APER=AQFF4, K1=KQFF4
+  QFF5   : QUAD, TYPE="2.05Q78.74", L=LQFF5/2, APER=AQFF5, K1=KQFF5
+  QFF6   : QUAD, TYPE="1.625Q27.3", L=LQFF6/2, APER=AQFF6, K1=KQFF6
+
+! spectrometer: image MIP to AEROGEL
+
+  QS1 : QUAD, TYPE="2.13Q38.31", L=LQS/2, APER=AQS, K1=KQS1
+  QS2 : QUAD, TYPE="2.13Q38.31", L=LQS/2, APER=AQS, K1=KQS2
+
+! skew quadrupoles
+
+  LSQ := 0.3813
+  ASQ := (2.026*IN2M)/2
+
+  KSQ1  := 0
+  KSQ2  := 0
+
+  SQ1 : QUAD, TYPE="2.026Q14", L=LSQ/2, APER=ASQ, TILT, K1=KSQ1
+  SQ2 : QUAD, TYPE="2.026Q14", L=LSQ/2, APER=ASQ, TILT, K1=KSQ2
+
+! ==============================================================================
+! SEXTs
+! ------------------------------------------------------------------------------
+
+! chicane sextupoles
+! NOTE: sext apertures are bore radius minus 2 mm
+
+  LS1 := 0.250
+  LS2 := 0.762
+  LS3 := 0.250 !x2 magnets
+  AS  := 18.6375e-3
+
+! from G. White's optics2013.xlsx
+
+  KS1E :=  15.0782
+  KS2E := -11.5893
+  KS3E := -13.793
+
+  S1EL   : SEXT, TYPE="1.625S9.06", L=LS1/2, APER=AS, K2=KS1E
+  S2EL   : SEXT, TYPE="1.625S29.2", L=LS2/2, APER=AS, K2=KS2E
+  S3EL_1 : SEXT, TYPE="1.625S9.06", L=LS3/2, APER=AS, K2=KS3E
+  S3EL_2 : SEXT, TYPE="1.625S9.06", L=LS3/2, APER=AS, K2=KS3E
+  S3ER_1 : SEXT, TYPE="1.625S9.06", L=LS3/2, APER=AS, K2=KS3E
+  S3ER_2 : SEXT, TYPE="1.625S9.06", L=LS3/2, APER=AS, K2=KS3E
+  S2ER   : SEXT, TYPE="1.625S29.2", L=LS2/2, APER=AS, K2=KS2E
+  S1ER   : SEXT, TYPE="1.625S9.06", L=LS1/2, APER=AS, K2=KS1E
+
+! ==============================================================================
+! MULTs
+! ------------------------------------------------------------------------------
+
+! see FACET_LI20_MULT.xsif
+
+! ==============================================================================
+! DRIFTs
+! ------------------------------------------------------------------------------
+
+! NOTE: there is a slight asymmetry in the locations of the S1E and S2E
+!       left and right side sextupoles with respect to chicane center,
+!       introduced in v27 at the request of the engineers
+
+  DSB1o    :=  0.158696902041E-7 !adjust z-position for rotated B1
+  DSB1i    := -0.433155152299E-8
+  DLB1     := (LB1-1.04)/2 !length reduction for drifts adjacent to B1
+  LD1E     := 4.98-DLB1-0.0051-DSB1i
+  LDMQ     := 0.1
+  LD1EM    := LD1E-LDMQ+0.0051
+  LDTM     := 1.0
+  LD1ET1   := LD1EM-LDTM-0.002515
+  LDTPM    := 0.169+0.002515
+  LDM1Q    := LDMQ+0.038489
+  LD2EA    := 0.917799 !1.144-0.0051
+  LDCNHC   := 0.417207 !0.25
+  LDHCYC1  := 1.554794 !0.35-0.160
+  LC260    := 0.260 !3D8.8 corrector effective length
+  LDCC     := 0.15
+  LDYC1XC1 := LDCC-0.036
+  LDCB     := 0.15
+  LDXC1B   := LDCB+0.11755
+  LD3E     := 0.25-0.05640
+  LD4EA    := 0.375-0.01345
+  LD4EA1   := LD4EA-0.167894
+  LD4EB    := 0.25-0.0103
+  LDM3Q    := LDMQ+0.085052
+  LD4EB1   := LD4EB-LDM3Q+0.167894
+  LDQ3E    := 0.25-0.0206
+  LD5EA    := 0.25-0.2663
+  LD5EA1   := LD5EA+0.257175
+  LD5EB    := 0.15-0.256
+  LD5EB1   := LD5EB+0.324886
+  LC22     := 0.224
+  LD5EC    := 2.46665-LD5EB-LC22-0.256
+  LD5EC1   := LD5EC-0.618061
+  LDS3E    := 0.25-0.0103
+  LDQ4E    := 0.25-0.0206
+  LD6EA    := 0.25-0.0103
+  LDM4Q    := LD6EA
+  LD6EA1   := LD6EA-LDM4Q
+  LTP      := 49.113411+2*DLB1-4e-6+DSB1o
+  DLTE     := -52.7e-3
+  LTE      := LTP+DLTE
+  AB2P     := 2*ASIN(SIN(AB1)/2)
+  LB2P     := LB1*AB2P/AB1
+  DLB2P    := (LB2P-1.04)/2
+  LD1P     := LD1E+LQ1+0.21-DLB2P-0.0051
+  LD2P     := 0.25-DLB2P
+  LQ1P     := 0.8394
+  DLB3P    := DLB2P
+  LD3P     := 0.25-DLB3P
+  LB3P     := LB2P
+  LD4PA    := LB2+0.21-0.0365-DLB3P-0.00645
+  LD2E     := LD1P-LD1E-LQ1+LB2P+LD2P+LQ1P+LD3P+LB3P+LD4PA-LB2
+  LD6EC    := 0.13317775-0.01035
+  LD7E     := 0.25-0.02070
+  LD8E     := 0.25715-0.015352
+  LD6EB    := LTE/2-LB1-LB2-LB3 &
+              -LQ1-LQ2-2*LQ3-3*LQ4-LQ5-LQ6/2 &
+              -LS1-LS2-2*LS3 &
+              -LD1E-LD2E-LD3E-LD4EA-LD4EB-LD5EA-LD5EB-LD5EC &
+              -LD6EA-LD6EC-LD7E-LD8E-LDQ3E-2*LDQ4E-LDS3E-2*LC22
+  LD6EB1   := LD6EB+0.0544
+  LC136    := 0.136 !3D4.0 corrector effective length
+  LD6EC1   := LD6EC+0.0336
+  LDM5Q    := 0
+  LD7E1    := LD7E-LDM5Q
+  LDM6Q    := LDMQ-0.005043
+  LD8EM    := LD8E-LDM6Q
+  LDM7Q    := 0
+  LD7E2    := LD7E-LDM7Q
+  LD6EC2   := LD6EC+0.063493
+  LD6EB2   := LD6EB+0.024507
+  LDM8Q    := LD6EA
+  LD6EA2   := LD6EA-LDM8Q
+  LD5EC2   := LD5EC-0.6172
+  LD5EB2   := LD5EB+0.3272
+  LD5EA2   := LD5EA+0.254
+  LDM9Q    := LDMQ+0.085895
+  LD4EB2   := LD4EB-LDM9Q+0.158750
+  LD4EA2   := LD4EA-LDMQ-0.158750
+  LB2XC4   := 0.264
+  LXC4TCa  := 0.029862
+  LXC4TCb  := 0.1915
+  LTCWIG   := 0.303373944002
+  LDYAGW   := 0.168162610455 !0.25
+  LDYAGQ   := 0.326737389545 !0.25-0.0051
+  LDM11Q   := LDMQ+0.055967
+  LDTM11   := LDTM-0.061067
+  LD1ET2   := LD1EM-LDTM
+  LDFF1    := 0.4-DLB1-0.00515-DSB1o
+  LDM1QF   := LDMQ-0.00515
+  LDFF2    := 1.87-0.01030
+  LDCQ     := 0.15
+  LDFF2CM  := LDFF2-2*LC22-LDCC-LDCQ-LDM1QF-0.07865
+  LYC1XC1F := LDCC-0.0360
+  LDXC1QF  := LDCQ+0.04265
+  LDQ2FF   := 0.25-0.01030
+  LDQ2FFM1 := LDQ2FF/2-0.026806
+  LDQ2FFM2 := LDQ2FF/2+0.026806
+  LDYC2QF  := LDCQ+0.08885
+  LYC2XC2F := LDCC-0.0915345
+  LDFF5    := 0.55-0.0233
+  LDFF6    := 0.45+0.11645
+  LDQ4FF   := 0.25-0.0206
+  LYC3XC3F := LDCC-0.1132905
+  LDXC3QF  := LDCQ+0.095402
+  LDQ4FFM1 := LDQ4FF/2+0.128072
+  LDQ4FFM2 := LDQ4FF/2+0.137876
+  LDFF5A   := 0.15075
+  LDFF5B   := LDFF5-LDFF5A-LC136
+  LDFF6A   := (0.45-LC136)/2+0.10535
+  LDFF6B   := LDFF6-LDFF6A-LC136
+  LDM5QF   := 0
+  LDM1QEX  := LDMQ+0.213360
+  LDM2QEX  := LDMQ+0.213430
+  LQ2BEND  := 0.5+0.274320-0.03145
+  LDMB     := 0.1
+  LDM3BEX  := LDMB-0.274320+0.629920-0.03145
+
+  D1ET1a   : DRIF, L=2.821013
+  D1ET1b   : DRIF, L=LD1ET1-D1ET1a[L]
+  DTPM     : DRIF, L=LDTPM+0.433425
+  DPMM1    : DRIF, L=0.339192
+  DM1Q     : DRIF, L=LDM1Q+0.014794
+  D2EA     : DRIF, L=LD2EA
+  DCNHC    : DRIF, L=LDCNHC
+  DHCYC1   : DRIF, L=LDHCYC1
+  DHCYC1a  : DRIF, L=0.615+2.0*IN2M
+  DHCYC1b  : DRIF, L=DHCYC1[L]-LSQ-DHCYC1a[L]
+  DYC1E    : DRIF, L=LC260/2
+  DYC1XC1  : DRIF, L=LDYC1XC1
+  DXC1E    : DRIF, L=LC260/2
+  DXC1B    : DRIF, L=LDXC1B
+  D3E      : DRIF, L=LD3E
+  D4EA1    : DRIF, L=LD4EA1
+  D4EB1    : DRIF, L=LD4EB1+0.02787
+  DM3Q     : DRIF, L=LDM3Q-0.02787
+  DQ3E     : DRIF, L=LDQ3E
+  D5EA1    : DRIF, L=LD5EA1
+  D5EB1    : DRIF, L=LD5EB1
+  DXC2E    : DRIF, L=LC260/2
+  D5EC1a   : DRIF, L=0.745056
+  D5EC1b   : DRIF, L=LD5EC1-D5EC1a[L]
+  DS3E     : DRIF, L=LDS3E
+  DQ4E     : DRIF, L=LDQ4E
+  DM4Q     : DRIF, L=LDM4Q
+  D6EA1    : DRIF, L=LD6EA1
+  D6EB1    : DRIF, L=LD6EB1
+  DYC2E    : DRIF, L=LC136/2
+  D6EC1    : DRIF, L=LD6EC1
+  DM5Q     : DRIF, L=LDM5Q
+  D7E1     : DRIF, L=LD7E1
+  D8EM     : DRIF, L=LD8EM+0.058314
+  DM6Q     : DRIF, L=LDM6Q-0.058314
+  D8E      : DRIF, L=LD8E
+  D7E2     : DRIF, L=LD7E2
+  DM7Q     : DRIF, L=LDM7Q
+  D6EC2    : DRIF, L=LD6EC2
+  DYC3E    : DRIF, L=LC136/2
+  D6EB2    : DRIF, L=LD6EB2
+  D6EA2    : DRIF, L=LD6EA2
+  DM8Q     : DRIF, L=LDM8Q
+  D5EC2a   : DRIF, L=0.890355
+  D5EC2b   : DRIF, L=LD5EC2-D5EC2a[L]
+  DXC3E    : DRIF, L=LC260/2
+  D5EB2    : DRIF, L=LD5EB2
+  D5EA2    : DRIF, L=LD5EA2
+  DM9Q     : DRIF, L=LDM9Q
+  D4EB2    : DRIF, L=LD4EB2
+  D4EA2    : DRIF, L=LD4EA2
+  DMQ      : DRIF, L=LDMQ
+  DB2XC4   : DRIF, L=LB2XC4
+  DXC4E    : DRIF, L=LC260/2
+  DXC4TCa  : DRIF, L=LXC4TCa
+  DXC4TCb  : DRIF, L=LXC4TCb
+  DTCWIG   : DRIF, L=LTCWIG
+  DWE      : DRIF, L=LDWE
+  DYAGW    : DRIF, L=LDYAGW+0.098819
+  DYAGQ    : DRIF, L=LDYAGQ-0.113604744002
+  DM11Q    : DRIF, L=LDM11Q+0.022716
+  DTM11    : DRIF, L=LDTM11-0.022716
+  D1ET2a   : DRIF, L=2.452948
+  D1ET2b   : DRIF, L=LD1ET2-D1ET2a[L]
+
+  dZQFF1   :=  0.4826e-3
+  dZQFF2_1 :=  0.254e-3
+  dZQFF2_2 :=  0
+  dZQFF2_3 := -0.1016e-3
+  dZQFF4_1 := -0.1016e-3
+  dZQFF4_2 :=  9.652e-3
+  dZQFF5   := -0.3302e-3
+  dZQFF6   := -0.4826e-3
+  dZQS1    := -0.072e-3
+  dZQS2    :=  0.044e-3
+
+  DFF1     : DRIF, L=LDFF1+dZQFF1
+  DM1QF    : DRIF, L=0.137748
+  DFF2CM   : DRIF, L=0.895302
+  DFF2CMa  : DRIF, L=0.304902-dZQFF1
+  DFF2CMb  : DRIF, L=0.095348
+  DFF2CMc  : DRIF, L=0.113752
+  DYC1FF   : DRIF, L=LC260/2
+  DYC1XC1F : DRIF, L=0.114
+  DXC1FF   : DRIF, L=LC260/2
+  DXC1QF   : DRIF, L=0.19265+dZQFF2_1
+  DQ2FFM1  : DRIF, L=0.115523
+  DQ2FFM2  : DRIF, L=0.124177-dZQFF2_1
+  DQ2FF    : DRIF, L=0.2397+dZQFF2_3
+  DYC2QF   : DRIF, L=0.23885-dZQFF2_3
+  DYC2FF   : DRIF, L=LC260/2
+  DYC2XC2F : DRIF, L=0.0584655
+  DXC2FF   : DRIF, L=LC260
+  DXC2PF   : DRIF, L=0.035534
+  DFF4P    : DRIF, L=0.817
+  DYC3PF   : DRIF, L=0.063941
+  DYC3FF   : DRIF, L=LC260
+  DYC3XC3F : DRIF, L=0.0367095
+  DXC3FF   : DRIF, L=LC260/2
+  DXC3QF   : DRIF, L=0.245402+dZQFF4_1
+  DQ4FFM1  : DRIF, L=0.329335
+  DQ4FFM2  : DRIF, L=0.166013-dZQFF4_1+dZQFF4_2
+  DFF5A    : DRIF, L=0.15075-dZQFF4_2
+  DXC4FF   : DRIF, L=LC136/2
+  DFF5B    : DRIF, L=0.23995+dZQFF5
+  DFF6A    : DRIF, L=0.26235-dZQFF5
+  DYC4FF   : DRIF, L=LC136/2
+  DFF6B    : DRIF, L=0.1681+dZQFF6
+
+  DM1QEX   : DRIF, L=LDM1QEX-0.026765
+  LQSEPMA  : DRIF, L=0.579-dZQS1
+  DXC1EX   : DRIF, L=0.35/2
+  LQSEPMB  : DRIF, L=2.784289+dZQS2
+  DM2QEX   : DRIF, L=LDM2QEX-0.023363
+  LQ2BENDM : DRIF, L=LQ2BEND-LDM2QEX+0.021007-dZQS2
+
+  DM3BEX   : DRIF, L=0.357498/COS(ABD)
+  LBPM2WIN : DRIF, L=8.375137/COS(ABD)
+  LAIRa    : DRIF, L=0.016/COS(ABD)
+  LAIRb    : DRIF, L=0.044/COS(ABD)
+  LAIRc    : DRIF, L=0.1/COS(ABD)
+  LAIRd    : DRIF, L=0.288/COS(ABD)
+  LAIRe    : DRIF, L=0.322/COS(ABD)
+  LAIRf    : DRIF, L=0.055/COS(ABD)
+  LAIRg    : DRIF, L=0.055/COS(ABD)
+  LAIRh    : DRIF, L=0.482/COS(ABD)
+  LAIRi    : DRIF, L=1.0106/COS(ABD)
+  LAIRj    : DRIF, L=1.67269/COS(ABD)
+
+! replace experimental area with a drift
+
+  LEXPT  := 8.132333
+  DEXPT  : DRIF, L=LEXPT
+  DEXPTa : DRIF, L=2.630332
+  DEXPTb : DRIF, L=LEXPT-DEXPTa[L]
+
+! ==============================================================================
+! XCORs
+! ------------------------------------------------------------------------------
+
+  XC1996 : HKIC, TYPE="3D8.8MK3"     !2.031" gap
+  XC1E   : HKIC, TYPE="3D8.8MK2"     !0.815" gap
+  XCB2LE : HKIC, TYPE="bend trim"
+  XC2E   : HKIC, TYPE="3D8.8MK2"     !0.815" gap
+  XCB3LE : HKIC, TYPE="bend trim"
+  XCB3RE : HKIC, TYPE="bend trim"
+  XC3E   : HKIC, TYPE="3D8.8MK2"     !0.815" gap
+  XCB2RE : HKIC, TYPE="bend trim"
+  XC4E   : HKIC, TYPE="3D8.8MK2"     !0.815" gap
+  XC2460 : HKIC, TYPE="3D8.8MK3"     !2.031" gap
+  XC1FF  : HKIC, TYPE="3D8.8MK2"     !0.815" gap
+  XC3FF  : HKIC, TYPE="3D8.8MK2"     !0.815" gap
+  XC4FF  : HKIC, TYPE="3D8.8MK2"     !0.815" gap
+  XC1EX  : HKIC, TYPE="3D4"          !1.181" gap
+
+! ==============================================================================
+! YCORs
+! ------------------------------------------------------------------------------
+
+  YC1E   : VKIC, TYPE="3D8.8MK2"     !0.815" gap
+  YC2181 : VKIC, TYPE="3D8.8MK3"     !2.031" gap
+  YC2E   : VKIC, TYPE="3D4"          !1.181" gap
+  YC3E   : VKIC, TYPE="3D4"          !1.181" gap
+  YC2321 : VKIC, TYPE="3D8.8MK3"     !2.031" gap
+  YCWIGE : VKIC, TYPE="wiggler trim"
+  YC1FF  : VKIC, TYPE="3D8.8MK2"     !0.815" gap
+  YC2FF  : VKIC, TYPE="3D8.8MK2"     !0.815" gap
+  YC4FF  : VKIC, TYPE="3D4"          !1.181" gap
+
+! ==============================================================================
+! BPMs
+! ------------------------------------------------------------------------------
+
+  M1E   : MONI, TYPE="R45"
+  M3E   : MONI, TYPE="R45"
+  MS2EL : MONI, TYPE="R0"
+  M4E   : MONI, TYPE="R45"
+  M5E   : MONI, TYPE="R0"
+  M6E   : MONI, TYPE="R24"
+  M7E   : MONI, TYPE="R0"
+  M8E   : MONI, TYPE="R0"
+  MS2ER : MONI, TYPE="R0"
+  M9E   : MONI, TYPE="R45"
+  M11E  : MONI, TYPE="R45"
+  M1FF  : MONI, TYPE="R45"
+  M2FF  : MONI, TYPE="R45"
+  M3FF  : MONI, TYPE="R45"
+  M4FF  : MONI, TYPE="R0"
+  M1EX  : MONI, TYPE="R45"
+  M2EX  : MONI, TYPE="R45"
+  M3EX  : MONI, TYPE="R45"
+
+! ==============================================================================
+! diagnostics, collimators, MARKERs, etc.
+! ------------------------------------------------------------------------------
+
+! profile monitors
+
+  PMON   : PROF, TYPE="phosphor"        !P202042T
+  sYAG   : PROF, TYPE="YAG"             !P202432T
+  USTHz  : PROF, TYPE="OTR foil/YAG"    !PD203070
+  DSTHz  : PROF, TYPE="OTR foil/YAG"    !PD203075
+  PRDMP  : PROF, TYPE="phosphor"        !P203475T
+  ELANEX : PROF, TYPE="unknown"         !P203500
+  BETAL  : PROF, TYPE="unknown"         !P203303
+  BETA1  : PROF, TYPE="unknown"         !P203501
+  CNEAR  : PROF, TYPE="cherenkov wafer" !P203490
+  CFAR   : PROF, TYPE="cherenkov wafer" !P203492
+  BETA2  : PROF, TYPE="unknown"         !P203488
+
+! toroids
+
+  IM2040 : IMON !T202040T
+  IM2452 : IMON !T202452T
+
+! collimators
+
+  CN2069 : RCOL, TYPE="notch"          !notch collimator
+  CX2085 : RCOL, TYPE="horizontal jaw" !horizontal jaw collimator
+  PCTCAV : ECOL                        !TCAV protection mask
+
+! bunch length monitors
+
+  BL20_4 : BLMO, TYPE="pyrometer" !FF bunch length monitor
+
+! sextupole movers
+
+  AS1EL : MARK
+  AS2EL : MARK
+  AS2ER : MARK
+  AS1ER : MARK
+
+! other points of interest (INSTs go into Oracle database)
+
+  BEGBC20    : MARK
+  CB1LE      : MARK
+  CB2LE      : MARK
+  MSEP1E     : MARK
+  CB3LE      : MARK
+  MCE        : MARK
+  CB3RE      : MARK
+  MSEP2E     : MARK
+  CB2RE      : MARK
+  CB1RE      : MARK
+  ENDBC20    : MARK
+  BEGFF20    : MARK
+  MFFF       : MARK !QFF1 entrance
+  DBMARK67   : MARK !USTHz
+  ENDFF20    : MARK !QFF6 exit
+  BEGEXPT20  : MARK
+  MIP        : MARK !E200 IP
+  ENDEXPT20  : MARK
+  BEGSPECT20 : MARK !QS1 entrance
+  SCATSSTL   : MARK
+  TABLE2     : MARK
+  AEROGEL    : MARK
+  PHOSPHOR   : MARK !phosphor paper taped to dump face
+  MAINDUMP   : INST !dump face
+  DBMARK30   : MARK
+  ENDSPECT20 : MARK
+
+! ==============================================================================
+! BEAMLINEs
+! ------------------------------------------------------------------------------
+
+  XTCAVF_full : LINE=(XTCAVF,XTCAVF)
+
+  B1LE_full : LINE=(B1LE1,B1LE2)
+  B2LE_full : LINE=(B2LE1,XCB2LE,B2LE2)
+  B3LE_full : LINE=(B3LE1,XCB3LE,B3LE2)
+  B3RE_full : LINE=(B3RE1,XCB3RE,B3RE2)
+  B2RE_full : LINE=(B2RE1,XCB2RE,B2RE2)
+  B1RE_full : LINE=(B1RE1,B1RE2)
+  WIGE_full : LINE=(WIGE11,WIGE12,DWE,WIGE21,YCWIGE,WIGE22,DWE,WIGE31,WIGE32)
+
+  Q1EL_full   : LINE=(Q1EL,Q1EL)
+  SQ1_full    : LINE=(SQ1,SQ1)
+  Q2EL_full   : LINE=(Q2EL,Q2EL)
+  Q3EL_1_full : LINE=(Q3EL_1,Q3EL_1)
+  Q3EL_2_full : LINE=(Q3EL_2,Q3EL_2)
+  Q4EL_1_full : LINE=(Q4EL_1,Q4EL_1)
+  Q4EL_2_full : LINE=(Q4EL_2,Q4EL_2)
+  Q4EL_3_full : LINE=(Q4EL_3,Q4EL_3)
+  Q5EL_full   : LINE=(Q5EL,Q5EL)
+  Q6E_full    : LINE=(Q6E,MCE,Q6E)
+  Q5ER_full   : LINE=(Q5ER,Q5ER)
+  Q4ER_1_full : LINE=(Q4ER_1,Q4ER_1)
+  Q4ER_2_full : LINE=(Q4ER_2,Q4ER_2)
+  Q4ER_3_full : LINE=(Q4ER_3,Q4ER_3)
+  Q3ER_1_full : LINE=(Q3ER_1,Q3ER_1)
+  Q3ER_2_full : LINE=(Q3ER_2,Q3ER_2)
+  Q2ER_full   : LINE=(Q2ER,Q2ER)
+  Q1ER_full   : LINE=(Q1ER,Q1ER)
+
+  S1EL_full   : LINE=(S1EL,AS1EL,S1EL)
+  S2EL_full   : LINE=(S2EL,AS2EL,S2EL)
+  S3EL_1_full : LINE=(S3EL_1,S3EL_1)
+  S3EL_2_full : LINE=(S3EL_2,S3EL_2)
+  S3ER_1_full : LINE=(S3ER_1,S3ER_1)
+  S3ER_2_full : LINE=(S3ER_2,S3ER_2)
+  S2ER_full   : LINE=(S2ER,AS2ER,S2ER)
+  S1ER_full   : LINE=(S1ER,AS1ER,S1ER)
+
+  CHICANE1 : LINE=(&
+    B1LE_full,CB1LE,D1ET1a,XC1996,D1ET1b,IM2040,DTPM,PMON,DPMM1,M1E,DM1Q,&
+    Q1EL_full,D2EA,CN2069,DCNHC,CX2085,DHCYC1a,&
+    SQ1_full,DHCYC1b,DYC1E,YC1E,DYC1E,DYC1XC1,DXC1E,XC1E,DXC1E,DXC1B,&
+    B2LE_full,CB2LE,MSEP1E,D3E,&
+    Q2EL_full,D4EA1,&
+    S1EL_full,D4EB1,M3E,DM3Q,&
+    Q3EL_1_full,DQ3E,&
+    Q3EL_2_full,D5EA1,MS2EL,&
+    S2EL_full,D5EB1,DXC2E,XC2E,DXC2E,D5EC1a,YC2181,D5EC1b,&
+    S3EL_1_full,DS3E,&
+    Q4EL_1_full,DQ4E,&
+    Q4EL_2_full,DQ4E,&
+    Q4EL_3_full,DM4Q,M4E,D6EA1,&
+    S3EL_2_full,D6EB1,DYC2E,YC2E,DYC2E,D6EC1,&
+    Q5EL_full,DM5Q,M5E,D7E1,&
+    B3LE_full,CB3LE,D8EM,M6E,DM6Q,&
+    Q6E)
+
+  CHICANE2 : LINE=(&
+    Q6E,D8E,&
+    B3RE_full,CB3RE,D7E2,M7E,DM7Q,&
+    Q5ER_full,D6EC2,DYC3E,YC3E,DYC3E,D6EB2,&
+    S3ER_1_full,D6EA2,M8E,DM8Q,&
+    Q4ER_1_full,DQ4E,&
+    Q4ER_2_full,DQ4E,&
+    Q4ER_3_full,DS3E,&
+    S3ER_2_full,D5EC2a,YC2321,D5EC2b,DXC3E,XC3E,DXC3E,D5EB2,MS2ER,&
+    S2ER_full,D5EA2,&
+    Q3ER_1_full,DQ3E,&
+    Q3ER_2_full,DM9Q,M9E,D4EB2,&
+    S1ER_full,D4EA2,DMQ,&
+    Q2ER_full,D3E,MSEP2E,&
+    B2RE_full,CB2RE,DB2XC4,DXC4E,XC4E,DXC4E,DXC4TCa,PCTCAV,DXC4TCb,&
+     XTCAVF_full,DTCWIG,WIGE_full,DYAGW,sYAG,DYAGQ,&
+    Q1ER_full,DM11Q,M11E,DTM11,IM2452,D1ET2a,XC2460,D1ET2b,&
+    B1RE_full,CB1RE)
+
+  CHICANE : LINE=(BEGBC20,&
+    B1LE_full,CB1LE,D1ET1a,XC1996,D1ET1b,IM2040,DTPM,PMON,DPMM1,M1E,DM1Q,&
+    Q1EL_full,D2EA,CN2069,DCNHC,CX2085,DHCYC1a,&
+    SQ1_full,DHCYC1b,DYC1E,YC1E,DYC1E,DYC1XC1,DXC1E,XC1E,DXC1E,DXC1B,&
+    B2LE_full,CB2LE,MSEP1E,D3E,&
+    Q2EL_full,D4EA1,&
+    S1EL_full,D4EB1,M3E,DM3Q,&
+    Q3EL_1_full,DQ3E,&
+    Q3EL_2_full,D5EA1,MS2EL,&
+    S2EL_full,D5EB1,DXC2E,XC2E,DXC2E,D5EC1a,YC2181,D5EC1b,&
+    S3EL_1_full,DS3E,&
+    Q4EL_1_full,DQ4E,&
+    Q4EL_2_full,DQ4E,&
+    Q4EL_3_full,DM4Q,M4E,D6EA1,&
+    S3EL_2_full,D6EB1,DYC2E,YC2E,DYC2E,D6EC1,&
+    Q5EL_full,DM5Q,M5E,D7E1,&
+    B3LE_full,CB3LE,D8EM,M6E,DM6Q,&
+    Q6E_full,D8E,&
+    B3RE_full,CB3RE,D7E2,M7E,DM7Q,&
+    Q5ER_full,D6EC2,DYC3E,YC3E,DYC3E,D6EB2,&
+    S3ER_1_full,D6EA2,M8E,DM8Q,&
+    Q4ER_1_full,DQ4E,&
+    Q4ER_2_full,DQ4E,&
+    Q4ER_3_full,DS3E,&
+    S3ER_2_full,D5EC2a,YC2321,D5EC2b,DXC3E,XC3E,DXC3E,D5EB2,MS2ER,&
+    S2ER_full,D5EA2,&
+    Q3ER_1_full,DQ3E,&
+    Q3ER_2_full,DM9Q,M9E,D4EB2,&
+    S1ER_full,D4EA2,DMQ,&
+    Q2ER_full,D3E,MSEP2E,&
+    B2RE_full,CB2RE,DB2XC4,DXC4E,XC4E,DXC4E,DXC4TCa,PCTCAV,DXC4TCb,&
+     XTCAVF_full,DTCWIG,WIGE_full,DYAGW,sYAG,DYAGQ,&
+    Q1ER_full,DM11Q,M11E,DTM11,IM2452,D1ET2a,XC2460,D1ET2b,&
+    B1RE_full,CB1RE,&
+    ENDBC20)
+
+  QFF1_full   : LINE=(QFF1,QFF1)
+  SQ2_full    : LINE=(SQ2,SQ2)
+  QFF2_1_full : LINE=(QFF2_1,QFF2_1)
+  QFF2_2_full : LINE=(QFF2_2,QFF2_2)
+  QFF2_3_full : LINE=(QFF2_3,QFF2_3)
+  QFF4_1_full : LINE=(QFF4_1,QFF4_1)
+  QFF4_2_full : LINE=(QFF4_2,QFF4_2)
+  QFF5_full   : LINE=(QFF5,M4FF,QFF5)
+  QFF6_full   : LINE=(QFF6,QFF6)
+
+  FF : LINE=(BEGFF20,DFF1,MFFF,&
+    QFF1_full,DM1QF,M1FF,DFF2CMa,BL20_4,DFF2CMb,&
+    SQ2_full,DFF2CMc,DYC1FF,YC1FF,DYC1FF,DYC1XC1F,DXC1FF,XC1FF,&
+     DXC1FF,DXC1QF,&
+    QFF2_1_full,DQ2FFM1,M2FF,DQ2FFM2,&
+    QFF2_2_full,DQ2FF,&
+    QFF2_3_full,DYC2QF,DYC2FF,YC2FF,DYC2FF,DYC2XC2F,DXC2FF,DXC2PF,USTHz,&
+     DBMARK67,DFF4P,DSTHz,DYC3PF,DYC3FF,DYC3XC3F,DXC3FF,XC3FF,DXC3FF,DXC3QF,&
+    QFF4_1_full,DQ4FFM1,M3FF,DQ4FFM2,&
+    QFF4_2_full,DFF5A,DXC4FF,XC4FF,DXC4FF,DFF5B,&
+    QFF5_full,DFF6A,DYC4FF,YC4FF,DYC4FF,DFF6B,&
+    QFF6_full,&
+    ENDFF20)
+
+  EXPT : LINE=(BEGEXPT20,DEXPTa,MIP,DEXPTb,ENDEXPT20)
+
+  B5D36_full : LINE=(B5D361,B5D362)
+
+  QS1_full : LINE=(QS1,QS1)
+  QS2_full : LINE=(QS2,QS2)
+
+  SPECT : LINE=(BEGSPECT20,&
+    QS1_full,DM1QEX,M1EX,LQSEPMA,DXC1EX,XC1EX,DXC1EX,LQSEPMB,&
+    QS2_full,DM2QEX,M2EX,LQ2BENDM,&
+    B5D36_full,DM3BEX,M3EX,LBPM2WIN,SCATSSTL,PRDMP,LAIRa,TABLE2,&
+     LAIRb,ELANEX,LAIRc,BETAL,LAIRd,BETA1,LAIRe,CNEAR,LAIRf,AEROGEL,&
+     LAIRg,CFAR,LAIRh,BETA2,LAIRi,PHOSPHOR,LAIRj,MAINDUMP,DBMARK30,&
+    ENDSPECT20)
+
+  S20E : LINE=(CHICANE,FF,EXPT,SPECT)
+
+! ------------------------------------------------------------------------------
+
+  RETURN

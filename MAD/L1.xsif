@@ -1,0 +1,182 @@
+
+! *** OPTICS=FACET2-21AUG19 ***
+
+! ==============================================================================
+! Modification History
+! ------------------------------------------------------------------------------
+! 23-AUG-2018, M. Woodley
+!  * gradL1 and phiL1 values from FACET2e_baseline.mat
+!  * quadrupole K1 values from FACET2e_baseline.mat
+! ------------------------------------------------------------------------------
+! 31-JAN-2017, M. Woodley
+!  * from FACET2e.xsif
+! ------------------------------------------------------------------------------
+
+! ==============================================================================
+! accelerating structures
+! ------------------------------------------------------------------------------
+! the L1 S-band linac consists of: 3 x  10' structure @ 25% power
+!                                  1 x  10' structure @ 50% power
+!                                  1 x 9.4' structure @ 25% power
+!                                  1 x 9.4' structure @ 50% power
+! ------------------------------------------------------------------------------
+
+  fL1     :=   0.986532023493
+  gradL1  :=  10.628316745522*fL1 !MeV/m
+  phiL1   := -20.5/360            !rad/2pi
+  KlossL1 :=   0                  !V/C/m
+
+  K11_1b1 : LCAV, FREQ=SbandF, TYPE="9.4ft", &
+                  L=0.453432, DELTAE=P50*gradL1*0.453432, PHI0=phiL1, &
+                  ELOSS=KlossL1*0.453432, &
+                  LFILE="sband_l.dat", TFILE="sband_t.dat"
+  K11_1b2 : LCAV, FREQ=SbandF, TYPE="9.4ft", &
+                  L=2.415768, DELTAE=P50*gradL1*2.415768, PHI0=phiL1, &
+                  ELOSS=KlossL1*2.415768, &
+                  LFILE="sband_l.dat", TFILE="sband_t.dat"
+  K11_1c1 : LCAV, FREQ=SbandF, TYPE="10ft", &
+                  L=0.6689, DELTAE=P25*gradL1*0.6689, PHI0=phiL1, &
+                  ELOSS=KlossL1*0.6689, &
+                  LFILE="sband_l.dat", TFILE="sband_t.dat"
+  K11_1c2 : LCAV, FREQ=SbandF, TYPE="10ft", &
+                  L=2.3752, DELTAE=P25*gradL1*2.3752, PHI0=phiL1, &
+                  ELOSS=KlossL1*2.3752, &
+                  LFILE="sband_l.dat", TFILE="sband_t.dat"
+  K11_1d  : LCAV, FREQ=SbandF, TYPE="10ft", &
+                  L=3.0441, DELTAE=P25*gradL1*3.0441, PHI0=phiL1, &
+                  ELOSS=KlossL1*3.0441, &
+                  LFILE="sband_l.dat", TFILE="sband_t.dat"
+
+  K11_2a1 : LCAV, FREQ=SbandF, TYPE="10ft", &
+                  L=0.3256, DELTAE=P25*gradL1*0.3256, PHI0=phiL1, &
+                  ELOSS=KlossL1*0.3256, &
+                  LFILE="sband_l.dat", TFILE="sband_t.dat"
+  K11_2a2 : LCAV, FREQ=SbandF, TYPE="10ft", &
+                  L=0.2870, DELTAE=P25*gradL1*0.2870, PHI0=phiL1, &
+                  ELOSS=KlossL1*0.2870, &
+                  LFILE="sband_l.dat", TFILE="sband_t.dat"
+  K11_2a3 : LCAV, FREQ=SbandF, TYPE="10ft", &
+                  L=2.4315, DELTAE=P25*gradL1*2.4315, PHI0=phiL1, &
+                  ELOSS=KlossL1*2.4315, &
+                  LFILE="sband_l.dat", TFILE="sband_t.dat"
+  K11_2b  : LCAV, FREQ=SbandF, TYPE="9.4ft", &
+                  L=2.8692, DELTAE=P25*gradL1*2.8692, PHI0=phiL1, &
+                  ELOSS=KlossL1*2.8692, &
+                  LFILE="sband_l.dat", TFILE="sband_t.dat"
+  K11_2c1 : LCAV, FREQ=SbandF, TYPE="10ft", &
+                  L=0.5000, DELTAE=P50*gradL1*0.5000, PHI0=phiL1, &
+                  ELOSS=KlossL1*0.5000, &
+                  LFILE="sband_l.dat", TFILE="sband_t.dat"
+  K11_2c2 : LCAV, FREQ=SbandF, TYPE="10ft", &
+                  L=2.5441, DELTAE=P50*gradL1*2.5441, PHI0=phiL1, &
+                  ELOSS=KlossL1*2.5441, &
+                  LFILE="sband_l.dat", TFILE="sband_t.dat"
+
+! ------------------------------------------------------------------------------
+! L1 X-band
+! ------------------------------------------------------------------------------
+
+  L1XF__1 : LCAV, FREQ=XbandF, TYPE="@0,linearizer", L=DLWLX/2, ELOSS=0
+  L1XF__2 : LCAV, FREQ=XbandF, TYPE="@0,linearizer", L=DLWLX/2, ELOSS=0
+
+! ==============================================================================
+! QUADs
+! ------------------------------------------------------------------------------
+
+  KQL1 := 3.789198342593
+
+  QDL1 : QUAD, TYPE="1.085Q4.31", L=LQE/2, APER=rQE, K1=-KQL1
+  QFL1 : QUAD, TYPE="1.085Q4.31", L=LQE/2, APER=rQE, K1=+KQL1
+
+  KQA11132 := -3.031820754245
+  KQ11201  :=  1.772655565069
+  KQA11265 :=  0.0
+  KQ11301  := -3.164932554748
+
+  QA11132 : QUAD, TYPE="1.085Q4.31", L=LQE/2, APER=rQE, K1=KQA11132
+  Q11201  : QUAD, TYPE="1.085Q4.31", L=LQE/2, APER=rQE, K1=KQ11201
+  QA11265 : QUAD, TYPE="1.085Q4.31", L=LQE/2, APER=rQE, K1=KQA11265
+  Q11301  : QUAD, TYPE="1.085Q4.31", L=LQE/2, APER=rQE, K1=KQ11301
+
+! ==============================================================================
+! drifts
+! ------------------------------------------------------------------------------
+
+  D9   : DRIF, L=DLWL9
+  DAQA : DRIF, L=0.03345
+
+  DAQA1  : DRIF, L=0.03747
+  DAQA2  : DRIF, L=0.03063
+  DAQA3  : DRIF, L=0.03405
+  DAQA4  : DRIF, L=0.03405
+  DAQA5  : DRIF, L=0.055970350578 !0.0559696203
+  DAQA6  : DRIF, L=0.15733138
+  DL1X   : DRIF, L=0.14146862
+  DM10a  : DRIF, L=0.26360938
+
+! ==============================================================================
+! XCORs and YCORs
+! ------------------------------------------------------------------------------
+
+  XC11104 : HKIC, TYPE="type-4"          
+  XC11140 : HKIC, TYPE="type-4"         
+  XC11202 : HKIC, TYPE="type-4"         
+  XC11272 : HKIC, TYPE="type-4"         
+  XC11304 : HKIC, TYPE="type-4"         
+
+  YC11105 : VKIC, TYPE="type-4"          
+  YC11141 : VKIC, TYPE="type-4"          
+  YC11203 : VKIC, TYPE="type-4"          
+  YC11273 : VKIC, TYPE="type-4"          
+  YC11305 : VKIC, TYPE="type-4"          
+
+! ==============================================================================
+! diagnostics
+! ------------------------------------------------------------------------------
+
+! BPMs (LCLS-II type designations)
+
+  BPM11132 : MONI, TYPE="Stripline-2"
+  BPM11201 : MONI, TYPE="Stripline-2"
+  BPM11265 : MONI, TYPE="Stripline-2"
+  BPM11301 : MONI, TYPE="Stripline-2"
+
+! ==============================================================================
+! MARK
+! ------------------------------------------------------------------------------
+
+  BEGL1F  : MARK                          
+  VV11302 : INST !vacuum valve                          
+  L1XFBEG : MARK                           
+  L1XFEND : MARK                         
+  VV11308 : INST !vacuum valve                           
+  ENDL1F  : MARK                          
+
+! ==============================================================================
+! BEAMLINEs
+! ------------------------------------------------------------------------------
+
+  L1c : LINE=(D9,DAQA,QFL1,QFL1,DAQA,D9,DAQA,QDL1,QDL1,DAQA)
+
+  K11_1b : LINE=(K11_1b1,XC11104,YC11105,K11_1b2)
+  K11_1c : LINE=(K11_1c1,XC11140,YC11141,K11_1c2)
+  K11_2a : LINE=(K11_2a1,XC11202,K11_2a2,YC11203,K11_2a3)
+  K11_2c : LINE=(K11_2c1,XC11272,YC11273,K11_2c2)
+  K1XF   : LINE=(L1XFBEG,L1XF__1,XC11304,YC11305,L1XF__2,L1XFEND)
+
+  QA11132_full : LINE=(QA11132,BPM11132,QA11132)
+  Q11201_full  : LINE=(Q11201,BPM11201,Q11201)
+  QA11265_full : LINE=(QA11265,BPM11265,QA11265)
+  Q11301_full  : LINE=(Q11301,BPM11301,Q11301)
+
+  L1F : LINE=(BEGL1F,&
+    K11_1b,DAQA1,QA11132_full,DAQA2,K11_1c,K11_1d,DAQ1,&
+    Q11201_full,DAQ2,&
+    K11_2a,K11_2b,DAQA3,QA11265_full,DAQA4,K11_2c,DAQA5,&
+    Q11301_full,DAQA6,VV11302,DL1X,&
+    K1XF,DM10A,VV11308,&
+    ENDL1F)
+
+! ==============================================================================
+
+  RETURN

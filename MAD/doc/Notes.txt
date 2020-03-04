@@ -1,0 +1,23 @@
+FACET-II Notes
+================================================================================
+- BPM11357 should be at QM11358 center (rename to BPM11358)
+- BPM11363 should be at QM11362 center (rename to BPM11362)
+- BPM11374 was associated with wire scanner WS12B in LCLS2 Phase 1 (for jitter
+  correction) ... there is no wire scanner here in FACET2 ... should I defer it?
+- PR11375 is in the BC11 PRD, but not in the MAD deck
+- 11-4b is a 7' structure; K11_4B appears twice, each with half the length of a
+  7 footer and with half the ELOSS; however, each half has the full 7' EGAIN
+- 12-2a is a 7' structure; K12_2A appears twice, each with half the length of a
+  7 footer and with half the ELOSS; however, each half has the full 7' EGAIN
+- Q14701 is in L2 Section, but in BC14 deck
+- CQ14738 and CQ14866 have TYPE="2.1Q5.87" in the deck, but "2.362Q3.5" in
+  magnet master list
+- YC14820 not in magnet master list ... deferred?
+================================================================================
+- no BPM in "QA01B" (361) as shown in Figure 5.15
+- no BPM in "QE10452" (441) as shown in Figure 5.15
+- only one OTR in Diagnostics section, rather than two as shown in Figure 5.15
+- one BPM (581) in Diagnostics section not shown in Figure 5.15
+- order of devices in Diagnostics section d/s wall in Figure 5.15: RST,WS,OTR,BPM,toroid
+- "wakefield radiation bunch length monitor" missing from Diagnostic section
+- no toroid u/stream of L0A/B ... first toroid is d/s of L0A/B

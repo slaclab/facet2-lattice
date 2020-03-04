@@ -1,0 +1,378 @@
+
+! *** OPTICS=FACET2-21AUG19 ***
+
+! ==============================================================================
+! Modification History
+! ------------------------------------------------------------------------------
+! 25-JUL-2019, M. Woodley
+!  * laser heater chicane, undulator, and OTR's won't be installed for startup
+!    per N. Lipkowitz ... defer (level 0)
+! ------------------------------------------------------------------------------
+! 05-MAR-2019, M. Woodley
+!  * add WALLBEG, WALLEND (INSTs), IM10607, IM10618 (IMONs) per N. Lipkowitz
+! ------------------------------------------------------------------------------
+! 23-AUG-2018, M. Woodley
+!  * correct TYPE designation of dogleg bends
+!  * quadrupole K1 values from FACET2e_baseline.mat
+! ------------------------------------------------------------------------------
+! 16-MAY-2017, M. Woodley
+!  * add bunch length monitor (ceramic gap) BZ10596
+! 06-APR-2017, M. Woodley
+!  * use LCLS unit numbers in element names
+!  * undefer TCY10490
+!  * remove OTR1B
+!  * change keyword for vacuum valves (VV*) to INST
+! 31-JAN-2017, M. Woodley
+!  * from FACET2e.xsif
+! ------------------------------------------------------------------------------
+
+! ==============================================================================
+! LCAV
+! ------------------------------------------------------------------------------
+
+! vertically deflecting transverse cavity
+
+  TCY10490 : LCAV, FREQ=SbandF, TYPE="short TCAV", L=0.6680236/2
+
+! ==============================================================================
+! SBEN
+! ------------------------------------------------------------------------------
+
+! laser heater chicane
+! - use series approximation for sinc(x)=sin(x)/x to allow BBh=0
+
+! GBH   : 5D3.9 gap height (m)
+! ZBH   : 5D3.9 "Z" length (m)
+! ABH   : chicane bend angle (rad)
+! LBH   : chicane bend path length (m)
+! ABHs  : "short" half chicane bend angle (rad)
+! LBHs  : "short" half chicane bend path length (m)
+! ABHl  : "long" half chicane bend angle (rad)
+! LBHl  : "long" half chicane bend path length (m)
+
+  GBH      := 0.03
+  ZBH      := 0.1244
+  ABH      := 0 !0.1316410831
+  ABH_2    := ABH*ABH
+  ABH_4    := ABH_2*ABH_2
+  ABH_6    := ABH_4*ABH_2
+  SINCABH  := 1-ABH_2/6+ABH_4/120-ABH_6/5040 !~sinc(ABH)=sin(ABH)/ABH
+  LBH      := ZBH/SINCABH
+  ABHs     := ASIN(SIN(ABH)/2)
+  ABHs_2   := ABHs*ABHs
+  ABHs_4   := ABHs_2*ABHs_2
+  ABHs_6   := ABHs_4*ABHs_2
+  SINCABHs := 1-ABHs_2/6+ABHs_4/120-ABHs_6/5040 !~sinc(ABHs)=sin(ABHs)/ABHs
+  LBHs     := (ZBH/2)/SINCABHs
+  ABHl     := ABH-ABHs
+  LBHl     := LBH-LBHs
+
+  BCX10451a : SBEN, TYPE="@0,5D3.9", L=LBHs, ANGLE=-ABHs, HGAP=GBH/2, &
+                    E1=0, FINT=0.400, FINTX=0
+  BCX10451b : SBEN, TYPE="@0,5D3.9", L=LBHl, ANGLE=-ABHl, HGAP=GBH/2, &
+                    FINT=0, E2=-ABH, FINTX=0.400
+  BCX10461a : SBEN, TYPE="@0,5D3.9", L=LBHl, ANGLE=+ABHl, HGAP=GBH/2, &
+                    E1=+ABH, FINT=0.400, FINTX=0
+  BCX10461b : SBEN, TYPE="@0,5D3.9", L=LBHs, ANGLE=+ABHs, HGAP=GBH/2, &
+                    FINT=0, E2=0, FINTX=0.400
+  BCX10475a : SBEN, TYPE="@0,5D3.9", L=LBHs, ANGLE=+ABHs, HGAP=GBH/2, &
+                    E1=0, FINT=0.400, FINTX=0
+  BCX10475b : SBEN, TYPE="@0,5D3.9", L=LBHl, ANGLE=+ABHl, HGAP=GBH/2, &
+                    FINT=0, E2=+ABH, FINTX=0.400
+  BCX10481a : SBEN, TYPE="@0,5D3.9", L=LBHl, ANGLE=-ABHl, HGAP=GBH/2, &
+                    E1=-ABH, FINT=0.400, FINTX=0
+  BCX10481b : SBEN, TYPE="@0,5D3.9", L=LBHs, ANGLE=-ABHs, HGAP=GBH/2, &
+                    FINT=0, E2=0, FINTX=0.400
+
+! define unsplit SBENs for BMAD ... not used by MAD
+
+
+  BCX10451 : SBEN, TYPE="@0,5D3.9", L=LBH, HGAP=GBH/2, ANGLE=-ABH, &
+                   E1=0, FINT=0.400, E2=-ABH, FINTX=0.400
+  BCX10461 : SBEN, TYPE="@0,5D3.9", L=LBH, HGAP=GBH/2, ANGLE=+ABH, &
+                   E1=+ABH, FINT=0.400, E2=0, FINTX=0.400
+  BCX10475 : SBEN, TYPE="@0,5D3.9", L=LBH, HGAP=GBH/2, ANGLE=+ABH, &
+                   E1=0, FINT=0.400, E2=+ABH, FINTX=0.400
+  BCX10481 : SBEN, TYPE="@0,5D3.9", L=LBH, HGAP=GBH/2, ANGLE=-ABH, &
+                   E1=-ABH, FINT=0.400, E2=0, FINTX=0.400
+
+! dogleg
+
+  GB0 := 0.03                   !gap height (m)
+  ZB0 := 0.2032                 !full "Z" length (m)
+  AB0 := ADL1/2                 !full bend angle (rad)
+  LB0 := ZB0*AB0/(2*SIN(AB0/2)) !full bend path length (m)
+
+  BX10661a : SBEN, TYPE="1.182D6.82T", L=LB0/2, HGAP=GB0/2, ANGLE=AB0/2, &
+                   E1=AB0/2, FINT=0.45, FINTX=0
+  BX10661b : SBEN, TYPE="1.182D6.82T", L=LB0/2, HGAP=GB0/2, ANGLE=AB0/2, &
+                   E2=AB0/2, FINT=0, FINTX=0.45
+  BX10751a : SBEN, TYPE="1.182D6.82T", L=LB0/2, HGAP=GB0/2, ANGLE=AB0/2, &
+                   E1=AB0/2, FINT=0.45, FINTX=0
+  BX10751b : SBEN, TYPE="1.182D6.82T", L=LB0/2, HGAP=GB0/2, ANGLE=AB0/2, &
+                   E2=AB0/2, FINT=0, FINTX=0.45
+
+! define unsplit SBENs for BMAD ... not used by MAD
+
+  BX10661 : SBEN, TYPE="1.182D6.82T", HGAP=GB0/2, L=LB0, ANGLE=AB0, &
+                  E1=AB0/2, FINT=0.45, E2=AB0/2, FINTX=0.45
+  BX10751 : SBEN, TYPE="1.182D6.82T", HGAP=GB0/2, L=LB0, ANGLE=AB0, &
+                  E1=AB0/2, FINT=0.45, E2=AB0/2, FINTX=0.45
+
+! ==============================================================================
+! MATR
+! ------------------------------------------------------------------------------
+
+! laser heater undulator
+! - half-undulator modeled as R-matrix to include vertical natural focusing
+
+! lam   : laser-heater undulator period [m]
+! lamr  : heater laser wavelength [m]
+! gami  : Lorentz energy factor in laser-heater undulator [1]
+! K_und : undulator K for laser heater undulator
+! Lhun  : half-length of laser-heater undulator (5 periods) [m]
+! kqlh  : natural undulator focusing "k" in y-plane [1/m2]
+
+  lam   := 0.054
+  lamr  := 758E-9
+  gami  := Ei/EMASS
+  K_und := 0 !sqrt(2*(lamr*2*gami^2/lam-1))
+  Lhun  := 0.506263/2
+  kqlh  := (K_und*2*pi/lam/sqrt(2)/gami)^2
+
+! handle K_und->0 by expressing R34 as an approximate SINC function
+
+  ARGu     := Lhun*sqrt(kqlh)
+  ARGu2    := ARGu*ARGu
+  ARGu4    := ARGu2*ARGu2
+  ARGu6    := ARGu4*ARGu2
+  SINCARGu := 1-ARGu2/6+ARGu4/120-ARGu6/5040 !~sinc(ARGu)=sin(ARGu)/ARGu
+  R34u     := Lhun*SINCARGu
+
+  UM10466 : MATRIX, TYPE="@0,LHund", L=Lhun,  &
+    RM(1,1)=1.0,                              &
+    RM(1,2)=Lhun,                             &
+    RM(2,1)=0.0,                              &
+    RM(2,2)=1.0,                              &
+    RM(3,3)=cos(Lhun*sqrt(kqlh)),             &
+    RM(3,4)=R34u,                             &
+    RM(4,3)=-sin(Lhun*sqrt(kqlh))*sqrt(kqlh), &
+    RM(4,4)=cos(Lhun*sqrt(kqlh)),             &
+    RM(5,5)=1.0,                              &
+    RM(6,6)=1.0 !,                            &
+   !RM(5,6)=Lhun/(gami^2)*(1+(K_und^2)/2)
+
+! ==============================================================================
+! QUAD
+! ------------------------------------------------------------------------------
+
+! match around laser heater (not installed)
+
+  KQE10425 := -15.201903779328
+  KQE10441 :=  14.620018144249
+  KQE10511 :=  10.3685858706
+  KQE10525 := -10.475280419976
+
+! match to BC11CEND (X-band not installed)
+
+  KQM10631 :=  11.990887883552
+  KQM10651 := -11.233494237683
+  KQB10731 :=  22.169701529671
+  KQM10771 :=  -7.123593114848
+  KQM10781 :=  11.698487496707
+
+  QE10425 : QUAD, TYPE="1.26Q3.5",   L=LQx/2, APER=rQx, K1=KQE10425
+  QE10441 : QUAD, TYPE="1.26Q3.5",   L=LQx/2, APER=rQx, K1=KQE10441
+  QE10511 : QUAD, TYPE="1.26Q3.5",   L=LQx/2, APER=rQx, K1=KQE10511
+  QE10525 : QUAD, TYPE="1.26Q3.5",   L=LQx/2, APER=rQx, K1=KQE10525
+  QM10631 : QUAD, TYPE="1.26Q3.5",   L=LQx/2, APER=rQx, K1=KQM10631
+  QM10651 : QUAD, TYPE="1.26Q3.5",   L=LQx/2, APER=rQx, K1=KQM10651
+  QB10731 : QUAD, TYPE="1.085Q4.31", L=LQE/2, APER=rQE, K1=KQB10731
+  QM10771 : QUAD, TYPE="1.26Q3.5",   L=LQx/2, APER=rQx, K1=KQM10771
+  QM10781 : QUAD, TYPE="1.26Q3.5",   L=LQx/2, APER=rQx, K1=KQM10781
+
+! ==============================================================================
+! DRIF
+! ------------------------------------------------------------------------------
+
+  DE00     : DRIF, L=0.041607
+  DE01     : DRIF, L=0.293513
+  DH00     : DRIF, L=0.12733045
+  DH01     : DRIF, L=0.1406/COS(ABH)
+  DH02     : DRIF, L=0.165597479262
+  DH03     : DRIF, L=0.159129470738
+  DH04     : DRIF, L=0.1406/COS(ABH)
+  DH05     : DRIF, L=0.8430976
+  DE03     : DRIF, L=0.2819662
+  DE04     : DRIF, L=0.411914814698
+  IN10WALL : DRIF, L=1.4224
+  DE05     : DRIF, L=2.439604885302
+  DE06     : DRIF, L=0.4478221
+  DE07     : DRIF, L=0.22345
+  DB00     : DRIF, L=0.7264
+  DB01     : DRIF, L=0.7264
+  DM00     : DRIF, L=0.361983
+  DM01     : DRIF, L=0.297167
+  DM02     : DRIF, L=0.297648
+
+  DE01a : DRIF, L=0.076373
+  DE01b : DRIF, L=0.122359
+  DE01c : DRIF, L=0.094781
+  DH02a : DRIF, L=0.0809678529
+  DH02b : DRIF, L=0.0846296264
+  DH03a : DRIF, L=0.0845477112
+  DH03b : DRIF, L=0.0745817596
+  DH05a : DRIF, L=0.1229007
+  DH05b : DRIF, L=0.0521733
+  DE03a : DRIF, L=0.1454672
+  DE03b : DRIF, L=0.136499
+  DE04a : DRIF, L=0.290414154052
+  DE04b : DRIF, L=0.121500660646
+  DE05a : DRIF, L=0.280100320492
+  DE05b : DRIF, L=0.317702877106
+  DE05c : DRIF, L=0.215468253984
+  DE05d : DRIF, L=0.16498649439
+  DE05e : DRIF, L=0.391744624197
+  DE05f : DRIF, L=0.15
+  DE05g : DRIF, L=1.069602315133-DE05f[L]
+
+  DE06a : DRIF, L=0.1478721
+  DE06b : DRIF, L=0.29995
+  DB00a : DRIF, L=0.3997
+  DB00b : DRIF, L=0.161
+  DB00c : DRIF, L=0.1657
+  DM00a : DRIF, L=0.2213
+  DM00b : DRIF, L=0.140683
+  DM02a : DRIF, L=0.1402
+  DM02b : DRIF, L=0.057448
+  DM02c : DRIF, L=0.1
+
+  DE05c1 : DRIF, L=DE05c[L]/2
+  DE05c2 : DRIF, L=DE05c[L]/2
+  DE05g1 : DRIF, L=0.3
+  DE05g2 : DRIF, L=0.3
+  DE05g3 : DRIF, L=DE05g[L]-DE05g1[L]-DE05g2[L]
+
+! ==============================================================================
+! XCORs and YCORs
+! ------------------------------------------------------------------------------
+
+  XC10491 : HKIC, TYPE="Class_1t"
+  XC10521 : HKIC, TYPE="Class_1a"
+  XC10641 : HKIC, TYPE="Class_1a"
+  XC10721 : HKIC, TYPE="Class_1a"
+  XC10761 : HKIC, TYPE="Class_1a"
+
+  YC10492 : VKIC, TYPE="Class_1t"
+  YC10522 : VKIC, TYPE="Class_1a"
+  YC10642 : VKIC, TYPE="Class_1a"
+  YC10722 : VKIC, TYPE="Class_1a"
+  YC10762 : VKIC, TYPE="Class_1a"
+
+! ==============================================================================
+! diagnostics
+! ------------------------------------------------------------------------------
+
+! BPMs (LCLS-II type designations)
+
+  BPM10425 : MONI, TYPE="Stripline-1"
+  BPM10511 : MONI, TYPE="Stripline-1"
+  BPM10525 : MONI, TYPE="Stripline-1"
+  BPM10581 : MONI, TYPE="Stripline-1"
+  BPM10631 : MONI, TYPE="Stripline-1"
+  BPM10651 : MONI, TYPE="Stripline-1"
+  BPM10731 : MONI, TYPE="Stripline-2"
+  BPM10771 : MONI, TYPE="Stripline-1"
+  BPM10781 : MONI, TYPE="Stripline-1"
+
+! misc
+
+  IM10431  : IMON, TYPE="toroid"
+  VV10435  : INST
+  PR10465  : PROF, TYPE="@0,OTR"
+  PR10471  : PROF, TYPE="@0,OTR"
+  VV10545  : INST
+  WALLBEG  : INST
+  WALLEND  : INST
+  RST10551 : INST, TYPE="rad stop"
+  WS10561  : WIRE
+  PR10571  : PROF, TYPE="OTR"
+  IM10591  : IMON, TYPE="toroid"
+  BZ10596  : BLMO, TYPE="ceramic gap"
+  IM10607  : IMON, TYPE="ACM"
+  IM10618  : IMON, TYPE="ACM"
+  PR10711  : PROF, TYPE="OTR"
+  IM10791  : IMON, TYPE="toroid"
+  VV10795  : INST
+
+! ==============================================================================
+! MARK
+! ------------------------------------------------------------------------------
+
+  BEGDL10 : MARK
+  LH10BEG : MARK
+  HTRUNDF : MARK
+  LH10END : MARK
+  MRK0F   : MARK !beam waist location
+  BX0FBEG : MARK
+  BX0FEND : MARK
+  CNT0F   : MARK
+  ENDDL10 : MARK
+
+! ==============================================================================
+! BEAMLINEs
+! ------------------------------------------------------------------------------
+
+  BCX10451_full : LINE=(BCX10451a,BCX10451b)
+  BCX10461_full : LINE=(BCX10461a,BCX10461b)
+  UM10466_full  : LINE=(UM10466,HTRUNDF,UM10466)
+  BCX10475_full : LINE=(BCX10475a,BCX10475b)
+  BCX10481_full : LINE=(BCX10481a,BCX10481b)
+
+  LH10 : LINE=(LH10BEG,&
+    BCX10451_full,DH01,&
+    BCX10461_full,DH02a,PR10465,DH02b,&
+    UM10466_full,DH03a,PR10471,DH03b,&
+    BCX10475_full,DH04,&
+    BCX10481_full,&
+    LH10END)
+
+  BX10661_full : LINE=(BX10661a,BX10661b)
+  QB10731_full : LINE=(QB10731,BPM10731,QB10731)
+  BX10751_full : LINE=(BX10751a,BX10751b)
+
+  BX0F : LINE=(BX0FBEG,&
+    BX10661_full,DB00a,PR10711,DB00b,XC10721,YC10722,DB00c,&
+    QB10731_full,DB01,&
+    BX10751_full,CNT0F,BX0FEND)
+
+  TCY10490_full : LINE=(TCY10490,XC10491,YC10492,TCY10490)
+
+  QE10425_full : LINE=(QE10425,BPM10425,QE10425)
+  QE10441_full : LINE=(QE10441,QE10441)
+  QE10511_full : LINE=(QE10511,BPM10511,QE10511)
+  QE10525_full : LINE=(QE10525,BPM10525,QE10525)
+  QM10631_full : LINE=(QM10631,BPM10631,QM10631)
+  QM10651_full : LINE=(QM10651,BPM10651,QM10651)
+  QM10771_full : LINE=(QM10771,BPM10771,QM10771)
+  QM10781_full : LINE=(QM10781,BPM10781,QM10781)
+
+  DL10 : LINE=(BEGDL10,DE00,&
+    QE10425_full,DE01a,IM10431,DE01b,VV10435,DE01c,&
+    QE10441_full,DH00,&
+    LH10,DH05a,TCY10490_full,DH05b,&
+    QE10511_full,DE03a,XC10521,YC10522,DE03b,&
+    QE10525_full,DE04a,VV10545,DE04b,WALLBEG,IN10WALL,WALLEND,&
+      DE05a,RST10551,DE05b,WS10561,DE05c1,MRK0F,DE05c2,PR10571,DE05d,&
+      BPM10581,DE05e,IM10591,DE05f,BZ10596,&
+      DE05g1,IM10607,DE05g2,IM10618,DE05g3,&
+    QM10631_full,DE06a,XC10641,YC10642,DE06b,&
+    QM10651_full,DE07,&
+    BX0F,DM00a,XC10761,YC10762,DM00b,&
+    QM10771_full,DM01,&
+    QM10781_full,DM02a,IM10791,DM02b,VV10795,DM02c,&
+    ENDDL10)
+
+! ==============================================================================
+
+  RETURN

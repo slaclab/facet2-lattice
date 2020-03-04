@@ -1,0 +1,176 @@
+! ========================================
+! FACET-II Positron Damping Ring v1.4.4
+! ========================================
+! Version 1.4.4
+! - Add correctors at locations of field clamps in arcs and at desired locations in straights
+! - Add BPMs at centers of all quadrupoles and combined-function magnets
+! - Moved Kicker 0.1m further from MMM to get better vertical separation at septum
+! Version 1.4.3
+! - QDDSQ effective length increased 60 -> 80 mm
+! - Implemented sliced Opera 3D models for QDDSQ, QF2Q and QFCQ
+! Version 1.4.2
+! - QFCQ/QF2Q quads effective length increased to 120 mm
+! - BMEBMH combination of dispersion supressor bend magnets named to single "BD"
+! - Slice model (1cm slices) of BD bend implemented
+! Version 1.4.1
+! - QFCQ/QF2Q quads effective length increased to 110 mm
+! - Updated BEBCBE field model
+! - Changed BEBCBE set of magnet names to single "BA"
+! - harmonic # = 51, C=21.4137m, widened distance between QDI/QFI pairs to allow placement of septum
+! - 2 714 MHz RF cavities, max 1.1 MV
+! Version 1.3.4
+! - 5BA cell per arc
+! - Remove permanent sextupoles
+! - Sliced BC-BE magnet, no edge focus but BC is lengthened while BE is reduced
+
+! ========================================
+! Ring parameters @ MMM (injection/extraction point in septa)
+! ========================================
+BX0 := 1.4579
+AX0 := 0.
+BY0 := 4.3684
+AY0 := 0.
+TWSS0 : BETA0, &
+    BETX=BX0, ALFX=AX0, DX=0, DPX=0, &
+    BETY=BY0, ALFY=AY0, DY=0, DPY=0, &
+    WX=0, PHIX=0, WY=0, PHIY=0, ENERGY=0.335
+
+! Injected beam
+BEAM_INJ: BEAM, ENERGY=0.335,&
+NPART=6.2415e+9,EX=3.051e-06,EY=3.051e-06,&
+SIGT=0.003,SIGE=0.01
+
+! Extracted beam - parameters include IBS effects
+BEAM_EXT: BEAM, ENERGY=0.335,&
+NPART=6.2415e+9,EXN=7.6e-06,EYN=7.6e-06,&
+SIGT=0.003547,SIGE=0.00076
+
+! ========================================
+! Beamline Definition
+! ========================================
+! - Northern Straight section from ring center to West Arc
+STRN1: LINE = (MMM, DSEP2, DI1B, QDI, MQDI, QDI, DI2, SC134, DI2, QFI, &
+MQFI, QFI, DI3SL, DCAV, BK, BK, DI3C, DI3SS, QDI1, MQDI1, QDI1, LQII, &
+QII1, LQII, QFI1, MQFI1, QFI1, DII3)
+! - West Arc
+ARCW: LINE = (MAW, SC201, BD, SC216, QDDS, QF2Q, SC223, BA, SC239, &
+QFCQ, SC242, BA, SC258, QFCQR, SC261, BAR, SC277, QF2QR, QDDSR, SC284, &
+BDR, SC299, MAW)
+! - Southern Straight Section
+STRS : LINE =(DII3, QFI1, MQFI1, QFI1, LQII, QII1, LQII, QDI1, MQDI1, QDI1, &
+DI3SS, DI3C, BK, BK, DCAV, DI3SL, QFI, MQFI, QFI, DI2, SC366, DI2, QDI, MQDI, &
+QDI, DI1B, DSEP2, MMM, DSEP1, DI1A, QDI, MQDI, QDI, DI2, SC434, DI2, QFI, &
+MQFI, QFI, DRF3L, CAV, DRF3S, QDI1, MQDI1, QDI1, LQII, QII1, LQII, QFI1, &
+MQFI1, QFI1, DII3 )
+! - East Arc
+ARCE: LINE = (MAE, SC501, BD, SC516, QDDS, QF2Q, SC523, BA, SC539, QFCQ, &
+SC542, BA, SC558, QFCQR, SC561, BAR, SC577, QF2QR, QDDSR, SC584, BDR, &
+SC599, MAE)
+! - Northern Straight section from East Arc exit to ring center
+STRN2: LINE=(DII3, QFI1, MQFI1, QFI1, LQII, QII1, LQII, QDI1, MQDI1, QDI1, &
+DRF3S, CAV, DRF3L, QFI, MQFI, QFI, DI2, SC666, DI2, QDI, MQDI, QDI, DI1A, &
+DSEP1)
+! - Complete Positron Damping Ring
+RING: LINE = (STRN1, ARCW, STRS, ARCE, STRN2, MMM)
+
+! ========================================
+! Main Bend Magnets
+! ========================================
+CALL, FILENAME="BA_BMAD.xsif" ! sliced main arc bend model
+CALL, FILENAME="BD_BMAD.xsif" ! sliced dispersion supressor bend model (BD=Bend+GradBend, BDR=GradBend+Bend)
+
+! ========================================
+! Quad Match Values
+! ========================================
+KQFI1 := 25.1598
+KQDI1 := -15.8871
+KQFI := 18.111240
+KQDI := -14.81104
+
+! ========================================
+! Arc Quadrupoles
+! ========================================
+CALL, FILENAME="QDDSQ.xsif"
+QDDS : line=(DSF, QDDSQ, DS1SF)
+QDDSR : line=(DS1SF, QDDSQR, DSF)
+CALL, FILENAME="QFCQ.xsif"
+CALL, FILENAME="QF2Q.xsif"
+
+! ========================================
+! Straight-Section Quadrupoles
+! ========================================
+QFI: QUADRUPOLE, L=0.07, K1=KQFI
+QDI: QUADRUPOLE, L=0.07, K1=KQDI
+QFI1: QUADRUPOLE, L=0.07, K1=KQFI1
+QDI1: QUADRUPOLE, L=0.07, K1=KQDI1
+QII1: QUADRUPOLE, L=0.1094, K1=0.3, TILT=0.78540 ! Skew quad for achieving coupled beams
+MQDI: MONI
+MQFI: MONI
+MQDI1: MONI
+MQFI1: MONI
+
+! ========================================
+! RF Cavity
+! ========================================
+TOTVOLT := 1.1 ! total RF voltage [MV]
+!CAV : RFCAVITY, L=0.51, VOLT=TOTVOLT/2, HARMON=51, LAG=0.5
+CAV: LCAV, L=0.51 ! use this for matching and reading in deck with Lucretia
+
+! ========================================
+! Steering Coils
+! ========================================
+SC134: KICKER
+SC201: KICKER
+SC216: KICKER
+SC223: KICKER
+SC239: KICKER
+SC242: KICKER
+SC258: KICKER
+SC261: KICKER
+SC277: KICKER
+SC284: KICKER
+SC299: KICKER
+SC366: KICKER
+SC434: KICKER
+SC501: KICKER
+SC516: KICKER
+SC523: KICKER
+SC539: KICKER
+SC542: KICKER
+SC558: KICKER
+SC561: KICKER
+SC577: KICKER
+SC584: KICKER
+SC599: KICKER
+SC666: KICKER
+
+! ========================================
+! Drifts and Markers
+! ========================================
+DS: DRIFT, L=0.031
+DSF: DRIFT, L=0.5e-6
+DS1SF: DRIFT, L=0.042832887
+BK: DRIFT, L=0.295
+DSEP1: DRIFT, L=0.552
+DSEP2: DRIFT, L=0.828
+BS100_2: DRIFT, L=0.828
+DI1A: DRIFT, L=0.338
+DI1B: DRIFT, L=0.062
+DI2: DRIFT, L=0.05
+DI3: DRIFT, L=1.23774
+DI3S: DRIFT, L=0.64774
+DI3SS: DRIFT, L=0.05759255
+DI3SL: DRIFT, L=0.05
+DI3C: DRIFT, L=0.1-0.1
+LQII: DRIFT, L=0.02498
+DII3: DRIFT, L=0.153638
+DCAV: DRIFT, L=0.51+0.1
+DRF3S: DRIFT, L=0.09991255
+DRF3L: DRIFT, L=0.69768
+MMM: MARKER ! Center of ring
+MAE: MARKER ! Boundary markers for East Arc
+MAW: MARKER ! Boundary markers for West Arc
+
+USE, RING
+
+RETURN

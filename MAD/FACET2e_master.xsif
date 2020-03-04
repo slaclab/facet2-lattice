@@ -1,0 +1,202 @@
+
+! *** OPTICS=FACET2-21AUG19 ***
+
+! ------------------------------------------------------------------------------
+! constants and global parameters (from FACET2e_baseline.mat)
+! ------------------------------------------------------------------------------
+
+! constants
+
+  Cb     : CONSTANT=1.0E10/CLIGHT   !energy (GeV) to magnetic rigidity (kG-m)
+  in2m   : CONSTANT=0.0254          !inches to meters
+  QELEC  : CONSTANT=1.602176462E-19 !electron charge (C)
+  SbandF : CONSTANT=2856            !S-band rf frequency (MHz)
+  XbandF : CONSTANT=11424           !X-band rf frequency (MHz)
+  DLWL10 : CONSTANT=3.0441          !"10 ft" structure length (m)
+  DLWL9  : CONSTANT=2.8692          !"9.4 ft" structure length (m)
+  DLWL7  : CONSTANT=2.1694          !"7 ft" structure length (m)
+  DLWLX  : CONSTANT=0.5948          !Xband structure length (m)
+  P25    : CONSTANT=1               !25% power factor
+  P50    : CONSTANT=SQRT(2)         !50% power factor
+
+! global parameters
+
+  Q0 := 2.0E-9 !C
+
+  R56_HTR  :=  0.007892 !m
+  R56_DL10 := -0.006286 !m
+  R56_BC11 :=  0.045898 !m
+  R56_BC14 :=  0.036021 !m
+  R56_BC20 :=  0
+
+  Qsign := +1 !electron=+1; positron=-1
+
+! energy profile (treaty values except for E19)
+
+  E0  :=  0.006
+  E0a :=  0.064
+  Ei  :=  0.135
+  E11 :=  0.335
+  E14 :=  4.5
+  E19 :=  9.781010844799 !at MSCAVEXT
+  E20 := 10.0
+
+! BC14 parameters
+
+  R11E :=  0.932028241295
+  R12E := 14.0
+  R21E := -0.01
+  R33E :=  0.932028241295
+  R34E := 14.0
+  R43E := -0.01
+
+  R11P := R33E
+  R12P := R34E
+  R21P := R43E
+  R33P := R11E
+  R34P := R12E
+  R43P := R21E
+
+! ------------------------------------------------------------------------------
+! Twiss
+! ------------------------------------------------------------------------------
+
+! at BEGDL10 (matched to MRK0F without laser heater chicane or undulator)
+
+  BXi :=  0.236614127043
+  AXi := -1.250649355877
+  BYi := 16.692771188262
+  AYi := -9.828485442506
+
+! at CATHODEF (matched to BXi/AXi/BYi/AYi)
+
+  BX0 := 11.916867305095
+  AX0 :=  7.509605493741
+  BY0 :=  3.135655821534
+  AY0 := -7.047857298284
+
+! at MRK0F (treaty values)
+
+  BX10 := 1.1
+  AX10 := 0.0
+  BY10 := 1.1
+  AY10 := 0.0
+
+! at BC11CEND (treaty values)
+
+  BX11 := 3.0
+  AX11 := 0.0
+  BY11 := 3.0
+  AY11 := 0.0
+
+! at ENDBC14E (treaty values)
+
+  BX14 := 10.0
+  AX14 :=  0.0
+  BY14 := 10.0
+  AY14 :=  0.0
+
+! at BEGBC14E (matched to ENDBC14E)
+
+  BX14i := 61.708537004857
+  AX14i :=  2.092975812122
+  BY14i := 58.069608228684
+  AY14i :=  2.016097891765
+
+! at MSCAVEXT (not matched)
+
+  BX19 := 13.83816884323
+  AX19 :=  0.728326391783
+  BY19 := 31.332109322064
+  AY19 := -1.578833231189
+
+! at MIP (treaty values)
+
+  BXip := 0.5
+  AXip := 0.0
+  BYip := 5.0
+  AYip := 0.0
+
+! at BEGBC20 (matched to BXip/AXip/BYip/AYip)
+
+  BX20 := 12.250937647116
+  AX20 :=  0.668477303563
+  BY20 := 22.386928496206
+  AY20 :=  1.165718758102
+
+! ------------------------------------------------------------------------------
+! misc
+! ------------------------------------------------------------------------------
+
+  BmaxL2 := 48.250          !45 degree cells
+  BmaxL3 := 41.845226568382 !65 degree cells
+  Bmax19 := 70
+
+! ------------------------------------------------------------------------------
+! load lattice definitions
+! ------------------------------------------------------------------------------
+
+  CALL, FILENAME="common.xsif"
+  CALL, FILENAME="INJ.xsif"
+  CALL, FILENAME="DL10.xsif"
+  CALL, FILENAME="L1.xsif"
+  CALL, FILENAME="BC11.xsif"
+  CALL, FILENAME="L2.xsif"
+  CALL, FILENAME="BC14.xsif"
+  CALL, FILENAME="L3.xsif"
+  CALL, FILENAME="LI20.xsif" !FACET v35
+  CALL, FILENAME="SCAV.xsif"
+
+  BC14    : LINE=(BC14_1,BC14E,BC14_2) !electron side
+  FACET2e : LINE=(DL10,L1F,BC11,L2F,BC14,L3F,S20E)
+  FACET2s : LINE=(DL10,L1F,BC11,L2F,BC14,L3F_1,SCAV)
+
+! beam path definitions
+
+ !F2_ELEC   : e- gun to LI20 dump
+ !F2_SCAV   : e- gun to e+ production target
+ !F2_PRTN   : e+ target to PDR injection
+ !F2_PDR    : e+ PDR
+ !F2_POSI   : e+ PDR extraction to LI20 dump
+ !F2_S10AIP : e- gun line for AIP injector tests/comissioning
+
+  F2_ELEC   : LINE=(INJ,FACET2e)
+  F2_SCAV   : LINE=(INJ,FACET2s)
+  F2_S10AIP : LINE=(INJS10AIP)
+
+! ------------------------------------------------------------------------------
+! SURVEY coordinates
+! ------------------------------------------------------------------------------
+
+! at CATHODEF (Gun moved 50.47 cm closer to gun c.f. LCLS-I)
+
+  LLL := 7.51*0.3048-1.42  !loadlock length [m]
+  XLL :=   10.693567344496 !X at loadlock start [m]
+  ZLL := 1001.562110341    !Z at loadlock start [m]
+
+  Xc     := XLL+LLL*SIN(ADL1) !X at cathode [m] ! 10.12329735 (LCLS-I = 10.448934873335)
+  Yc     := 0                 !Y at cathode [m]
+  Zc     := ZLL+LLL*COS(ADL1) !Z at cathode [m] ! 1002.376541 (LCLS-I = 1001.911433068)
+  THETAc := ADL1                                !-35*RADDEG
+  PHIc   := 0
+  PSIc   := 0
+
+! at BEGDL10
+
+  LINJ := 7.955897298 !was 8.398441604
+
+  Xi     := Xc+LINJ*SIN(ADL1)
+  Yi     := Yc
+  Zi     := Zc+LINJ*COS(ADL1)
+  THETAi := THETAc
+  PHIi   := PHIc
+  PSIi   := PSIc
+
+! at MSCAVEXT
+
+  Z19 := 1877.228
+
+! ------------------------------------------------------------------------------
+
+  RETURN
+

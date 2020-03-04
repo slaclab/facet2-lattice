@@ -1,0 +1,129 @@
+
+! *** OPTICS=FACET2-21AUG19 ***
+
+! ------------------------------------------------------------------------------
+! constants and global parameters
+! ------------------------------------------------------------------------------
+
+! constants
+
+  Cb     : CONSTANT=1.0E10/CLIGHT   !energy (GeV) to magnetic rigidity (kG-m)
+  in2m   : CONSTANT=0.0254          !inches to meters
+  QELEC  : CONSTANT=1.602176462E-19 !electron charge (C)
+  SbandF : CONSTANT=2856            !S-band rf frequency (MHz)
+  XbandF : CONSTANT=11424           !X-band rf frequency (MHz)
+  DLWL10 : CONSTANT=3.0441          !"10 ft" structure length (m)
+  DLWL9  : CONSTANT=2.8692          !"9.4 ft" structure length (m)
+  DLWL7  : CONSTANT=2.1694          !"7 ft" structure length (m)
+  DLWLX  : CONSTANT=0.5948          !Xband structure length (m)
+  P25    : CONSTANT=1               !25% power factor
+  P50    : CONSTANT=SQRT(2)         !50% power factor
+
+! global parameters
+
+  Q0p :=  2.0E-9 !C
+
+! energy profile (treaty values)
+
+  E11 :=   0.335 !GeV
+  E14 :=   4.5   !GeV
+  E20 :=  10.0   !GeV
+
+  R56_BC14 :=  0.036021 !m
+  R56_BC20 :=  0
+
+  Qsign := -1 !electron=+1; positron=-1
+
+! BC14 parameters
+
+  R11E :=  0.932028241295
+  R12E := 14.0
+  R21E := -0.01
+  R33E :=  0.932028241295
+  R34E := 14.0
+  R43E := -0.01
+
+  R11P := R33E
+  R12P := R34E
+  R21P := R43E
+  R33P := R11E
+  R34P := R12E
+  R43P := R21E
+
+! ------------------------------------------------------------------------------
+! Twiss
+! ------------------------------------------------------------------------------
+
+! at BC11CEND (treaty values)
+
+  BX11 := 3.0
+  AX11 := 0.0
+  BY11 := 3.0
+  AY11 := 0.0
+
+! at ENDBC14P (treaty values)
+
+  BX14 := 10.0
+  AX14 :=  0.0
+  BY14 := 10.0
+  AY14 :=  0.0
+
+! at BEGBC14P (matched to ENDBC14P)
+
+  BX14i := 61.708537004857
+  AX14i :=  2.092975812122
+  BY14i := 58.069608228684
+  AY14i :=  2.016097891765
+
+! at MIP (treaty values)
+
+  BXip := 0.5
+  AXip := 0.0
+  BYip := 5.0
+  AYip := 0.0
+
+! at BEGBC20 (matched to MIP)
+
+  BX20 := 3.177187837459
+  AX20 := 0.756131989204
+  BY20 := 4.00034745322
+  AY20 := 0.7699709686
+
+! ------------------------------------------------------------------------------
+! load lattice definitions
+! ------------------------------------------------------------------------------
+
+  CALL, FILENAME="common.xsif"
+  CALL, FILENAME="BC11.xsif"
+  CALL, FILENAME="L2.xsif"
+  CALL, FILENAME="BC14.xsif"
+  CALL, FILENAME="L3.xsif"
+  CALL, FILENAME="LI20.xsif" !FACET v35
+
+  BC14    : LINE=(BC14_1,BC14P,BC14_2)      !positron side
+  FACET2p : LINE=(BC11_2,L2F,BC14,L3F,S20E) !BC11 exit to LI20 dump
+
+! beam paths
+
+ !F2_PRTN : e+ target to PDR injection
+ !F2_PDR  : e+ PDR
+ !F2_POSI : e+ PDR extraction to LI20 dump
+
+  F2_POSI : LINE=(FACET2p)
+
+! ------------------------------------------------------------------------------
+! SURVEY coordinates
+! ------------------------------------------------------------------------------
+
+! at exit of BC11
+
+  Xi     :=    0
+  Yi     :=    0
+  Zi     := 1046.069599496
+  THETAi :=    0
+  PHIi   :=    0
+  PSIi   :=    0
+
+! ------------------------------------------------------------------------------
+
+  RETURN

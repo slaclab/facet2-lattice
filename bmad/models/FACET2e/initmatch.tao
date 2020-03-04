@@ -1,0 +1,9 @@
+veto var *
+veto data *
+
+use data BEGL1
+use var begtwiss[1:6]
+show const
+set global optimizer = lm
+run
+show const

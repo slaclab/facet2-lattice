@@ -1,0 +1,110 @@
+
+! *** OPTICS=FACET2-21AUG19 ***
+
+! ==============================================================================
+! Modification History
+! ------------------------------------------------------------------------------
+! 18-APR-2017, M. Woodley
+!  * file created
+! ------------------------------------------------------------------------------
+
+  TWm : BETA0
+
+  BmaxL3 := 48.250
+
+! ------------------------------------------------------------------------------
+! subroutines
+! ------------------------------------------------------------------------------
+
+  MGEO : SUBROUTINE
+    BEAM, ENERGY=E11
+    VALUE, Zi
+    USE, FACET2p
+    MATCH, SURVEY, ZS=Zi
+      VARY, Zi, STEP=1.E-6
+      WEIGHT, ZS=1
+      CONSTR, LI12BEG, ZS=11*101.6
+     !LMDIF, TOL=1.E-20
+     !MIGRAD, TOL=1.E-20
+    ENDMATCH
+    VALUE, Zi
+  ENDSUBROUTINE
+
+! ------------------------------------------------------------------------------
+
+  MBC14 : SUBROUTINE !find matched BC14 input Twiss
+    BEAM, ENERGY=E14
+    USE, BC14P
+    VALUE, BX14i,AX14i,BY14i,AY14i
+    MATCH, BETX=BX14i, ALFX=AX14i, BETY=BY14i, ALFY=AY14i
+      VARY, BX14i, STEP=1.E-6
+      VARY, AX14i, STEP=1.E-6
+      VARY, BY14i, STEP=1.E-6
+      VARY, AY14i, STEP=1.E-6
+      CONSTR, #E, BETX=BX14, ALFX=AX14, BETY=BY14, ALFY=AY14
+     !LMDIF, TOL=1.E-20, CALLS=10000
+     !MIGRAD, TOL=1.E-20, CALLS=10000
+    ENDMATCH
+    VALUE, BX14i,AX14i,BY14i,AY14i
+    PRINT, FULL
+    TWISS, SAVE, &
+      BETX=BX14i, ALFX=AX14i, BETY=BY14i, ALFY=AY14i
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS1=BETX,BETY, VAXIS2=DX, &
+      STYLE=100, SPLINE, FILE="match"
+  ENDSUBROUTINE
+
+! ------------------------------------------------------------------------------
+
+  MLI20 : SUBROUTINE
+    BEAM, ENERGY=E11
+    USE, FACET2p
+    FACET2p_patch
+    VALUE, KQ19201,KQ19301,KQ19401,KQ19501,KQ19601,KQ19701,KQ19801,&
+           KQ19851,KQ19871
+    MATCH, BETA0=TW11 !LI19: Ibulk=47.696A, Iboost<14A
+      VARY, KQ19201, STEP=1.E-6, LOWER= 0.791615, UPPER= 1.059135
+      VARY, KQ19301, STEP=1.E-6, LOWER=-1.047154, UPPER=-0.782661
+      VARY, KQ19401, STEP=1.E-6, LOWER= 0.773906, UPPER= 1.035441
+      VARY, KQ19501, STEP=1.E-6, LOWER=-1.024648, UPPER=-0.765839
+      VARY, KQ19601, STEP=1.E-6, LOWER= 0.757334, UPPER= 1.013269
+      VARY, KQ19701, STEP=1.E-6, LOWER=-1.002140, UPPER=-0.749016
+      VARY, KQ19801, STEP=1.E-6, LOWER= 0.749016, UPPER= 1.002140
+      VARY, KQ19851, STEP=1.E-6, LOWER=-2.5, UPPER= 0
+      VARY, KQ19871, STEP=1.E-6, LOWER= 0  , UPPER=+2.5
+      CONSTR, MIP, BETX=BXip, ALFX=AXip, BETY=BYip, ALFY=AYip
+      CONSTR, #E, X=0, PX=0, Y=0, PY=0
+      WEIGHT, BETX=1.E-3, BETY=1.E-3
+      CONSTR, Q19301[1], BETY<45
+      CONSTR, Q19401[1], BETX<45
+      CONSTR, Q19501[1], BETY<45
+      CONSTR, Q19601[1], BETX<50
+      CONSTR, Q19701[1], BETY<50
+      CONSTR, Q19801[1], BETX<55
+      WEIGHT, BETY=1.E-6
+      CONSTR, Q19851[1], BETY<70
+     !LMDIF, TOL=1.E-20, CALLS=10000
+     !MIGRAD, TOL=1.E-20, CALLS=10000
+    ENDMATCH
+    VALUE, KQ19201,KQ19301,KQ19401,KQ19501,KQ19601,KQ19701,KQ19801,&
+           KQ19851,KQ19871
+    BEAM, ENERGY=E11
+    USE, FACET2p
+    PRINT, FULL
+    TWISS, BETA0=TW11, SAVE, TAPE="twiss.tape"
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=BETX,BETY, &
+      STYLE=100, SPLINE, RANGE=LI18beg/LI19term, FILE="match"
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=BETX,BETY, &
+      STYLE=100, SPLINE, RANGE=#S/LI19term, FILE="match"
+  ENDSUBROUTINE
+
+! ------------------------------------------------------------------------------
+
+! match
+
+ !MGEO
+ !MBC14
+ !MLI20
+  
+! ------------------------------------------------------------------------------
+  
+  RETURN

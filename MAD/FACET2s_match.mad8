@@ -1,0 +1,124 @@
+
+! *** OPTICS=FACET2-21AUG19 ***
+
+! ==============================================================================
+! Modification History
+! ------------------------------------------------------------------------------
+! 01-FEB-2019, M. Woodley
+!  * file created
+! ------------------------------------------------------------------------------
+
+  TMm : BETA0
+
+! ------------------------------------------------------------------------------
+
+  MGEO1 : SUBROUTINE
+    BEAM, ENERGY=E19
+    USE, LI19x
+    VALUE, KKY170[KICK],KQ701[KICK]
+    MATCH, BETX=BX19, ALFX=AX19, BETY=BY19, ALFY=AY19
+      VARY, KKY170[KICK], STEP=1.E-6
+      VARY, KQ701[KICK],  STEP=1.E-6
+      CONSTR, MSCAV, Y=-0.0073, PY=0.01639*RADDEG
+     !LMDIF, TOL=1.E-20
+     !MIGRAD, TOL=1.E-20
+    ENDMATCH
+    VALUE, KKY170[KICK],KQ701[KICK]
+    BEAM, ENERGY=E19
+    USE, LI19x
+    PRINT, FULL
+    SAVEBETA, TWm, MSCAV
+    TWISS, BETA0=TW19, SAVE, TAPE="extraction_twiss.tape"
+    SHOW, TWm
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=X,Y, &
+      STYLE=100, SPLINE, FILE="match"
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS1=BETX,BETY, VAXIS2=DX,DY, &
+      STYLE=100, FILE="match"
+  ENDSUBROUTINE
+
+! ------------------------------------------------------------------------------
+
+  MGEO2 : SUBROUTINE
+    BEAM, ENERGY=E19
+    USE, SCAV19X
+    VALUE, AKs,AKQ701
+    MATCH, SURVEY
+      VARY, AKs,    STEP=1.E-6
+      VARY, AKQ701, STEP=1.E-6
+      WEIGHT, YS=1, PHIS=1
+      CONSTR, MSCAV, YS=-0.0073, PHIS=0.01639*RADDEG
+     !LMDIF, TOL=1.E-20
+     !MIGRAD, TOL=1.E-20
+    ENDMATCH
+    VALUE, AKs,AKQ701
+    BEAM, ENERGY=E19
+    USE, SCAV
+    PRINT, FULL
+    SURVEY
+    SAVEBETA, TWm, MSCAV
+    TWISS, BETA0=TW19, SAVE
+    SHOW, TWm
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=BETX,BETY, &
+      STYLE=100, SPLINE, FILE="match"
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=DX,DY, &
+      STYLE=100, -SPLINE, FILE="match"
+  ENDSUBROUTINE
+
+! ------------------------------------------------------------------------------
+
+  MTWs : SUBROUTINE !match scavenger extraction line Twiss
+    BEAM0s
+    USE, SCAV
+    VALUE, KQ57186,KQ57190,KQ57204,KQ57210,KQ57220,KQ57280
+    MATCH, BETA0=TWs
+      VARY, KQ57186, STEP=1.E-3, LOWER=0
+      VARY, KQ57190, STEP=1.E-3, UPPER=0
+      VARY, KQ57204, STEP=1.E-3, LOWER=0
+      VARY, KQ57210, STEP=1.E-3, UPPER=0
+      VARY, KQ57220, STEP=1.E-3, LOWER=0
+      VARY, KQ57280, STEP=1.E-3, LOWER=0
+      CONSTR, ENDSCAV, DX=0, DY=0
+      WEIGHT, BETX=1.E-4, BETY=1.E-4
+      CONSTR, ENDSCAV, BETX<2, BETY<10
+      CONSTR, ENDSCAV, ALFX>-1, ALFX<1, ALFY>-1, ALFY<1
+     !WEIGHT, ALFX=3.E-5, ALFY=3.E-5
+     !CONSTR, ENDSCAV, ALFX=0, ALFY=0
+      WEIGHT, BETX=0, ALFX=0, DPX=0, BETY=0, ALFY=0, DY=0, DPY=0, T=0, PT=0
+      COUPLE, Q57220[1]/Q57240[1]
+      COUPLE, Q57220[1]/Q57260[1]
+      WEIGHT, BETX=1.E-7, BETY=1.E-7, DX=1.E-3, DY=1.e-3
+      CONSTR, Q57204[1], BETX<200, BETY<200, DX>-0.52, DX<0, DY>-0.15, DY<0.15
+      CONSTR, Q57210[1], BETX<200, BETY<200, DX>-0.52, DX<0, DY>-0.15, DY<0.15
+      CONSTR, Q57220[1], BETX<200, BETY<200, DX>-0.52, DX<0, DY>-0.15, DY<0.15
+      CONSTR, Q57230[1], BETX<200, BETY<200, DX>-0.52, DX<0, DY>-0.15, DY<0.15
+      CONSTR, Q57240[1], BETX<200, BETY<200, DX>-0.52, DX<0, DY>-0.15, DY<0.15
+      CONSTR, Q57250[1], BETX<200, BETY<200, DX>-0.52, DX<0, DY>-0.15, DY<0.15
+      CONSTR, Q57260[1], BETX<200, BETY<200, DX>-0.52, DX<0, DY>-0.15, DY<0.15
+      CONSTR, Q57270[1], BETX<200, BETY<200, DX>-0.52, DX<0, DY>-0.15, DY<0.15
+      CONSTR, Q57280[1], BETX<200, BETY<200, DX>-0.52, DX<0, DY>-0.15, DY<0.15
+     !LMDIF, TOL=1.E-20, CALLS=10000
+     !MIGRAD, TOL=1.E-20, CALLS=10000
+    ENDMATCH
+    VALUE, KQ57186,KQ57190,KQ57204,KQ57210,KQ57220,KQ57280
+    BEAM0s
+    USE, SCAV
+    PRINT, FULL
+    TWISS, BETA0=TWs, SAVE
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=BETX,BETY, &
+      STYLE=100, SPLINE, FILE="match"
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=DX,DY, &
+      STYLE=100, -SPLINE, FILE="match"
+  ENDSUBROUTINE
+
+! ------------------------------------------------------------------------------
+
+! match
+
+ !MGEO1
+ !MGEO2
+ !MTWs
+
+! ------------------------------------------------------------------------------
+
+  RETURN
+

@@ -1,0 +1,252 @@
+
+! *** OPTICS=FACET2-21AUG19 ***
+
+! ==============================================================================
+! Modification History
+! ------------------------------------------------------------------------------
+! 23-AUG-2018, M. Woodley
+!  * gradL0A, gradL0B, and L0phase from FACET2e_baseline.mat
+!  * remove old LCLS-derived common names
+! ------------------------------------------------------------------------------
+! 08-NOV-2017, M. Woodley
+!  * move CATHODE 442.5443 mm closer to L0 than LCLS-II Phase I per G. Bouchard
+!  * remove BPM3F (BPM10235)
+! ------------------------------------------------------------------------------
+! 07-APR-2017, M. Woodley
+!  * from LCLS2 Phase 1 (03MAR2013)
+!  * remove nonexistent components
+!  * rename components (use LISTs until we're sure ... )
+!  * switch from appending "B" to LCLS element names to appending "F"
+! ------------------------------------------------------------------------------
+
+! ==============================================================================
+! L0AF/L0BF (analytic gradients)
+! ------------------------------------------------------------------------------
+
+  dEL0A  := E0a-E0
+  dEL0B  := Ei-E0a
+  LL0acc := 3.095244 !length of L0A and L0B accelerating structures (m)
+
+! L0phase := L0A/L0B S-band rf phase (deg)
+! PhiL0   := L0A/L0B S-band rf phase (radians/2pi)
+! gradL0A := L0A accelerating gradient (MeV/m)
+! gradL0B := L0B accelerating gradient (MeV/m)
+
+  L0phase := -2.5
+  PhiL0   := L0phase/360
+  gradL0A := 1.0E3*dEL0A/(LL0acc*COS(PhiL0*TWOPI)) !MeV/m
+  gradL0B := 1.0E3*dEL0B/(LL0acc*COS(PhiL0*TWOPI)) !MeV/m
+
+  L0AF__1 : LCAV, FREQ=SbandF, TYPE="DUALFEED",  &
+                  L=0.0586460, DELTAE=gradL0A*0.0586460, PHI0=PhiL0
+  L0AF__2 : LCAV, FREQ=SbandF, TYPE="DUALFEED",  &
+                  L=0.1993540, DELTAE=gradL0A*0.1993540, PHI0=PhiL0
+  L0AF__3 : LCAV, FREQ=SbandF, TYPE="DUALFEED",  &
+                  L=0.6493198, DELTAE=gradL0A*0.6493198, PHI0=PhiL0
+  L0AF__4 : LCAV, FREQ=SbandF, TYPE="DUALFEED",  &
+                  L=0.6403022, DELTAE=gradL0A*0.6403022, PHI0=PhiL0
+  L0AF__5 : LCAV, FREQ=SbandF, TYPE="DUALFEED",  &
+                  L=1.1518464, DELTAE=gradL0A*1.1518464, PHI0=PhiL0
+  L0AF__6 : LCAV, FREQ=SbandF, TYPE="DUALFEED",  &
+                  L=0.3348566, DELTAE=gradL0A*0.3348566, PHI0=PhiL0
+  L0AF__7 : LCAV, FREQ=SbandF, TYPE="DUALFEED",  &
+                  L=0.0609190, DELTAE=gradL0A*0.0609190, PHI0=PhiL0
+
+  L0BF__1 : LCAV, FREQ=SbandF, TYPE="DUALFEED",  &
+                  L=0.0586460, DELTAE=gradL0B*0.0586460, PHI0=PhiL0
+  L0BF__2 : LCAV, FREQ=SbandF, TYPE="DUALFEED",  &
+                  L=0.3371281, DELTAE=gradL0B*0.3371281, PHI0=PhiL0
+  L0BF__3 : LCAV, FREQ=SbandF, TYPE="DUALFEED",  &
+                  L=1.1518479, DELTAE=gradL0B*1.1518479, PHI0=PhiL0
+  L0BF__4 : LCAV, FREQ=SbandF, TYPE="DUALFEED",  &
+                  L=1.1515630, DELTAE=gradL0B*1.1515630, PHI0=PhiL0
+  L0BF__5 : LCAV, FREQ=SbandF, TYPE="DUALFEED",  &
+                  L=0.3351400, DELTAE=gradL0B*0.3351400, PHI0=PhiL0
+  L0BF__6 : LCAV, FREQ=SbandF, TYPE="DUALFEED",  &
+                  L=0.0609190, DELTAE=gradL0B*0.0609190, PHI0=PhiL0
+
+! ==============================================================================
+! QUAD
+! ------------------------------------------------------------------------------
+! CQ10121 = correction quad in 1st solenoid at gun (nominally set to 0)
+! SQ10122 = correction skew-quad in 1st solenoid at gun (nominally set to 0)
+! ------------------------------------------------------------------------------
+
+  CQ10121 : MULT, TYPE="2.90SO8.209", APER=0.0475/2, K1L=0     !solenoid trim
+  SQ10122 : MULT, TYPE="2.90SO8.209", APER=0.0475/2, K1L=0, T1 !solenoid trim
+
+  KQA10361 := -10.3565
+  KQA10371 :=  12.2142
+
+  QA10361 : QUAD, TYPE="1.26Q3.5", L=LQx/2, APER=rQx, K1=KQA10361
+  QA10371 : QUAD, TYPE="1.26Q3.5", L=LQx/2, APER=rQx, K1=KQA10371
+
+! ==============================================================================
+! SOLE
+! ------------------------------------------------------------------------------
+! - SOL10111 = gun bucking-solenoid (set to ~zero length and strength, with
+!              longitudinal unknown for now)
+! - SOL10121 = gun solenoid
+! ------------------------------------------------------------------------------
+
+  LSOL1 := 0.2
+
+  SOL10111 : SOLE, TYPE="bucking coil", L=0,       KS=0
+  SOL10121 : SOLE, TYPE="2.90SO8.209",  L=LSOL1/2, KS=0 !design= 0.38 kG-m
+
+! ==============================================================================
+! DRIF
+! ------------------------------------------------------------------------------
+
+  LGGUN := 7.51*0.3048
+
+  LOADLOCKF : DRIF, L=LGGUN-1.42+1.E-9
+  DL00      : DRIF, L=-(LOADLOCKF[L]+SOL10111[L]) !from cathode back to u/s end of loadlock
+  DL01      : DRIF, L=1.0322037 !1.474748003 (dS= -442.544303 mm)
+  DL02      : DRIF, L=0.2309416
+  DL03      : DRIF, L=0.220376
+  DL04      : DRIF, L=0.065888
+
+  DL01a  : DRIF, L=0.097294699+1.E-9
+  DL01b  : DRIF, L=0.078510099+1.E-9
+  DL01c  : DRIF, L=0.1160862
+  DL01d  : DRIF, L=0.0811358
+  DL01e  : DRIF, L=0.1263224
+  DL01f  : DRIF, L=0.8509E-2
+  DL01g  : DRIF, L=0.2342261
+  DL01h  : DRIF, L=0.0901194
+  DL03a  : DRIF, L=0.094484
+  DL03b  : DRIF, L=0.125892
+
+ !VALUE, DL01a[L]+LSOL1+2*CQ10121[L]+2*SQ10122[L]+DL01b[L]+DL01c[L]+DL01d[L]+ &
+ !       DL01e[L]+DL01f[L]+DL01g[L]+DL01h[L]
+
+! Injector AIP
+
+  DL01d2 : DRIF, L=0.219
+  DL01e2 : DRIF, L=0.15
+  DL01f2 : DRIF, L=0.11
+
+! ==============================================================================
+! XCORs and YCORs
+! ------------------------------------------------------------------------------
+
+  XC10121 : HKIC, TYPE="class-S"  !solenoid dipole trim
+  XC10221 : HKIC, TYPE="class-G"
+  XC10311 : HKIC, TYPE="c-1s-L0A"
+  XC10381 : HKIC, TYPE="class-1s" !fast-feedback (loop-1)
+  XC10411 : HKIC, TYPE="class-1s" !calibrated to <1%
+
+  YC10122 : VKIC, TYPE="class-S"  !solenoid dipole trim
+  YC10222 : VKIC, TYPE="class-G"
+  YC10312 : VKIC, TYPE="c-1s-L0A"
+  YC10382 : VKIC, TYPE="class-1s" !fast-feedback (loop-1)
+  YC10412 : VKIC, TYPE="class-1s" !calibrated to <1%
+
+! ==============================================================================
+! diagnostics
+! ------------------------------------------------------------------------------
+
+! BPMs
+
+  BPM10221 : MONI, TYPE="SA-388-014-10"
+  BPM10371 : MONI, TYPE="Stripline-1"
+
+! misc
+
+  CATHODEF : INST
+  VV10155  : INST             !vacuum valve near gun
+  MIR10181 : INST             !gun laser normal incidence mirror
+  VV10215  : INST             !vacuum valve near gun
+  PR10241  : PROF, TYPE="YAG" !gun
+  PH10365  : INST             !phase measurement cavity between L0a and L0b
+
+! Injector AIP
+
+  FCUP : INST !Faraday cup used as injector AIP test beam dump
+
+! ==============================================================================
+! MARK
+! ------------------------------------------------------------------------------
+
+  BEGINJ   : MARK
+  L0AFbeg  : MARK
+  FLNGAF1  : MARK !upstream face of L0a entrance flange
+  DLFDAF   : MARK !dual-feed input coupler location for L0a structure
+  L0AFmid  : MARK
+  OUTCPAF  : MARK !output coupler location for L0a structure
+  FLNGAF2  : MARK !downstream face of L0a exit flange
+  L0AFwake : MARK
+  L0AFend  : MARK
+  L0BFbeg  : MARK
+  FLNGBF1  : MARK !upstream face of L0b entrance flange
+  DLFDBF   : MARK !dual-feed input coupler location for L0b structure
+  L0BFmid  : MARK
+  OUTCPBF  : MARK !output coupler location for L0b structure
+  FLNGBF2  : MARK !downstream face of L0b exit flange
+  L0BFwake : MARK
+  L0BFend  : MARK
+  ENDINJ   : MARK
+
+! ==============================================================================
+! BEAMLINEs
+! ------------------------------------------------------------------------------
+
+  SC1F : LINE=(XC10221,YC10222)
+  SC2F : LINE=(XC10311,YC10312)
+  SC4F : LINE=(XC10381,YC10382)
+  SC5F : LINE=(XC10411,YC10412)
+
+  L0AF : LINE=(L0AFbeg,FLNGAF1,&
+    L0AF__1,DLFDAF,L0AF__2,L0AF__3,SC2F,L0AF__4,L0AFmid,&
+    L0AF__5,L0AF__6,OUTCPAF,L0AF__7,FLNGAF2,L0AFwake,&
+    L0AFend)
+
+  L0BF : LINE=(L0BFbeg,FLNGBF1,&
+    L0BF__1,DLFDBF,L0BF__2,SC4F,L0BF__3,L0BFmid,&
+    L0BF__4,SC5F,L0BF__5,OUTCPBF,L0BF__6,FLNGBF2,L0BFwake,&
+    L0BFend)
+
+! FACET-II configuration with L0A 0.97m from the cathode
+
+  QA10361_full : LINE=(QA10361,QA10361)
+  QA10371_full : LINE=(QA10371,BPM10371,QA10371)
+
+  SOL10121_full : LINE=(SOL10121,CQ10121,XC10121,YC10122,SQ10122,SOL10121)
+
+  INJ : LINE=(DL00,LOADLOCKF,BEGINJ,&
+    SOL10111,CATHODEF,DL01a,&
+    SOL10121_full,DL01b,VV10155,DL01c,MIR10181,DL01d,VV10215,DL01e,BPM10221,&
+      DL01f,SC1F,DL01g,PR10241,DL01h,&
+    L0AF,DL02,&
+    QA10361_full,DL03a,PH10365,DL03b,&
+    QA10371_full,DL04,&
+    L0BF,&
+    ENDINJ)
+
+  INJS10AIP : LINE=(DL00,LOADLOCKF,BEGINJ,&
+    SOL10111,CATHODEF,DL01a,&
+    SOL10121_full,DL01b,VV10155,DL01c,MIR10181,DL01d2,SC1F,DL01e2,PR10241,&
+    DL01f2,FCUP,&
+    ENDINJ)
+
+  RETURN
+
+! ==============================================================================
+
+  LL0A := L0AF__1[L]+L0AF__2[L]+L0AF__3[L]+XC10311[L]+YC10312[L]+L0AF__4[L]+ &
+    L0AF__5[L]+L0AF__6[L]+L0AF__7[L]
+
+  LL0B := L0BF__1[L]+L0BF__2[L]+XC10381[L]+YC10382[L]+L0BF__3[L]+L0BF__4[L]+ &
+    XC10411[L]+YC10412[L]+L0BF__5[L]+L0BF__6[L]
+
+  VALUE, CATHODEF[L]+DL01a[L]+2*SOL10121[L]+DL01b[L]+VV10155[L]+DL01c[L]+ &
+    MIR10181[L]+DL01d[L]+VV10215[L]+DL01e[L]+BPM10221[L]+DL01f[L]+XC10221[L]+ &
+    YC10222[L]+DL01g[L]+PR10241[L]+DL01h[L]+&
+    LL0A+ &
+    DL02[L]+2*QA10361[L]+DL03a[L]+PH10365[L]+DL03b[L]+2*QA10371[L]+DL04[L]+ &
+    LL0B
+
+! ------------------------------------------------------------------------------
+
+  RETURN

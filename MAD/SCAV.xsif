@@ -1,0 +1,431 @@
+
+! *** OPTICS=FACET2-21AUG19 ***
+
+! ==============================================================================
+! Modification History
+! ------------------------------------------------------------------------------
+! 31-DEC-2018, M. Woodley
+!  * use original SCAVX19 kicker strength
+!  * off-axis quadrupole strengths from FACET2e_patch.mad8 ... geometry not
+!    rematched (assume we can steer onto target)
+! ------------------------------------------------------------------------------
+! 31-JAN-2017, M. Woodley
+!  * from facet_v28E_posi_target.mad8
+!  * change "skeleton deck" element names to LCLS-II/FACET-II format
+!  * include extraction from LI19
+! ------------------------------------------------------------------------------
+! 16-FEB-2011, Y. Nosochkov
+!    Rematch quad strengths for FACET v.28
+! 24-AUG-2010, Y. Nosochkov
+!    Rematch quad strengths for updated FACET v.27
+! 03-MAY-2010, Y. Nosochkov
+!    Rematch quad strengths for FACET v.27.
+! 08-NOV-1989, M. Woodley [MDW]
+!    From SCAV20A TRANS on IBM/VM disk RHH 193; surveyed positions for
+!    BPMS EP01 170, PROF EP01 171, XCOR EP01 175, YCOR EP01 184,
+!    XCOR EP01 185, and YCOR EP01 187; turn off ROB, RO8, -RO8, and
+!    0ROL rolls
+! 08-MAY-1990, MDW
+!    Remove YCOR EP01 187, XCOR EP01 380, and YCOR EP01 380; add
+!    YCOR EP01 183 and BPMS EP01 185; move XCOR EP01 175,
+!    YCOR EP01 184, and XCOR EP01 185 ... locations of new and moved
+!    diagnostic and correction devices per A. Kulikov; turn rolls back
+!    on; set roll values and field for BNDS EP01 275 as per
+!    current version of SCAV20A TRANS on IBM/VM-XA disk RHH 193
+! 18-JAN-1991, MDW
+!    New lattice for increased energy acceptance from RHH deck
+!    EXTR02 TRANS; locations of devices between VLAM-174 and QF-186,
+!    and COLL-186, STOP-193, and STOP-194 taken from drawings
+!    ID-234-108-15 and SA-234-101-35; TORO-199 and pre-target
+!    diagnostic device locations from visual survey
+! 05-FEB-1991, MDW
+!    Add PROF EP02 390 at location specified by A. Kulikov
+! ------------------------------------------------------------------------------
+
+! ==============================================================================
+! accelerating structures
+! ------------------------------------------------------------------------------
+
+  LK19_5x := 4*DLWL10
+  LK19_6x := 4*DLWL10+1.0E-6 !kicked beam
+
+  K19_5x : LCAV, FREQ=SbandF, TYPE="40ft", &
+                 L=LK19_5x, DELTAE=P25*g19_5*LK19_5x, PHI0=+phiFB3, &
+                 ELOSS=KlossL3*LK19_5x, &
+                 LFILE="sband_l.dat", TFILE="sband_t.dat"
+  K19_6x : LCAV, FREQ=SbandF, TYPE="40ft", &
+                 L=LK19_6x, DELTAE=P25*g19_6*LK19_6x, PHI0=+phiFB3, &
+                 ELOSS=KlossL3*LK19_6x, &
+                 LFILE="sband_l.dat", TFILE="sband_t.dat"
+
+! ==============================================================================
+! SBEN
+! ------------------------------------------------------------------------------
+
+! LI19 scavenger kicker
+
+  GKs      := 0.0254
+  AKs      := 0.204084364491E-3 !0.1969E-3
+  AKs_2    := AKs*AKs
+  AKs_4    := AKs_2*AKs_2
+  AKs_6    := AKs_4*AKs_2
+  SINCAKs  := 1-AKs_2/6+AKs_4/120-AKs_6/5040 !~sinc(AKs)=sin(AKs)/AKs
+  LKs      := ZKs/SINCAKs
+  AKsS     := ASIN(SIN(AKs)/2)
+  AKsS_2   := AKsS*AKsS
+  AKsS_4   := AKsS_2*AKsS_2
+  AKsS_6   := AKsS_4*AKsS_2
+  SINCAKsS := 1-AKsS_2/6+AKsS_4/120-AKsS_6/5040 !~sinc(AKsS)=sin(AKsS)/AKsS
+  LKsS     := ZKs/(2*SINCAKsS)
+  AKsL     := AKs-AKsS
+  LKsL     := LKs-LKsS
+
+  BKY170a : SBEN, TYPE="FNAL kicker", HGAP=GKs/2, L=LKsS, ANGLE=AKsS, &
+                  E1=0, FINT=0.5, FINTX=0, TILT
+  BKY170b : SBEN, TYPE="FNAL kicker", HGAP=GKs/2, L=LKsL, ANGLE=AKsL, &
+                  E2=AKs, FINT=0, FINTX=0.5, TILT
+
+! define unsplit SBENs for BMAD ... not used by MAD
+
+  BKY170 : SBEN, TYPE="FNAL kicker", HGAP=GKs/2, L=LKs, ANGLE=AKs, &
+                 E1=0, FINT=0.5, E2=AKs, FINTX=0.5, TILT
+
+! EP01 (bitid 57) bends
+
+  BLX57172a : SBEN, TYPE="0.26SD85", L=1.0,    HGAP=0.00334, &
+                    ANGLE=-0.91770196E-02, E1= 0.0
+  BLX57172b : SBEN, TYPE="0.26SD85", L=1.0,    HGAP=0.00334, &
+                    ANGLE=-0.91770196E-02, E2=-0.18360864E-01
+  BLY57174a : SBEN, TYPE="0.26SD85", L=1.0,    HGAP=0.00334, &
+                    ANGLE= 0.37402743E-02, E1= 0.0,            TILT
+  BLY57174b : SBEN, TYPE="0.26SD85", L=1.0,    HGAP=0.00334, &
+                    ANGLE= 0.37402743E-02, E2= 0.74874625E-02, TILT
+  BY57202a  : SBEN, TYPE="1D60.75",  L=0.7798, HGAP=0.0129,  &
+                    ANGLE= 0.11953120E-01, E1= 0.11955505E-01, TILT
+  BY57202b  : SBEN, TYPE="1D60.75",  L=0.7798, HGAP=0.0129,  &
+                    ANGLE= 0.11953120E-01, E2= 0.11955505E-01, TILT
+  BX57205a  : SBEN, TYPE="1D128T",   L=1.6383, HGAP=0.0129,  &
+                    ANGLE=-0.25112588E-01, E1=-0.25115288E-01
+  BX57205b  : SBEN, TYPE="1D128T",   L=1.6383, HGAP=0.0129,  &
+                    ANGLE=-0.25112588E-01, E2=-0.25115288E-01
+  BX57215a  : SBEN, TYPE="1D128T",   L=1.6383, HGAP=0.0129,  &
+                    ANGLE=-0.25112588E-01, E1=-0.25115288E-01
+  BX57215b  : SBEN, TYPE="1D128T",   L=1.6383, HGAP=0.0129,  &
+                    ANGLE=-0.25112588E-01, E2=-0.25115288E-01                
+  BX57225a  : SBEN, TYPE="1D128T",   L=1.6383, HGAP=0.0129,  &
+                    ANGLE=-0.25112588E-01, E1=-0.25115288E-01
+  BX57225b  : SBEN, TYPE="1D128T",   L=1.6383, HGAP=0.0129,  &
+                    ANGLE=-0.25112588E-01, E2=-0.25115288E-01                
+  BX57235a  : SBEN, TYPE="1D128T",   L=1.6383, HGAP=0.0129,  &
+                    ANGLE=-0.25112588E-01, E1=-0.25115288E-01
+  BX57235b  : SBEN, TYPE="1D128T",   L=1.6383, HGAP=0.0129,  &
+                    ANGLE=-0.25112588E-01, E2=-0.25115288E-01                
+  BX57245a  : SBEN, TYPE="1D128T",   L=1.6383, HGAP=0.0129,  &
+                    ANGLE=-0.25112588E-01, E1=-0.25115288E-01
+  BX57245b  : SBEN, TYPE="1D128T",   L=1.6383, HGAP=0.0129,  &
+                    ANGLE=-0.25112588E-01, E2=-0.25115288E-01                
+  BX57255a  : SBEN, TYPE="1D128T",   L=1.6383, HGAP=0.0129,  &
+                    ANGLE=-0.25112588E-01, E1=-0.25115288E-01
+  BX57255b  : SBEN, TYPE="1D128T",   L=1.6383, HGAP=0.0129,  &
+                    ANGLE=-0.25112588E-01, E2=-0.25115288E-01                
+  BX57265a  : SBEN, TYPE="1D128T",   L=1.6383, HGAP=0.0129,  &
+                    ANGLE=-0.25112588E-01, E1=-0.25115288E-01
+  BX57265b  : SBEN, TYPE="1D128T",   L=1.6383, HGAP=0.0129,  &
+                    ANGLE=-0.25112588E-01, E2=-0.25115288E-01                
+  BX57275a  : SBEN, TYPE="1D128T",   L=1.6383, HGAP=0.0129,  &
+                    ANGLE=-0.25125566E-01, E1=-0.25115288E-01
+  BX57275b  : SBEN, TYPE="1D128T",   L=1.6383, HGAP=0.0129,  &
+                    ANGLE=-0.25125566E-01, E2=-0.25115288E-01                
+
+! define unsplit SBENs for BMAD ... not used by MAD
+
+  LBLX57 := 2*BLX57172a[L] ; ABLX57 := 2*BLX57172a[ANGLE]
+  LBLY57 := 2*BLY57174a[L] ; ABLY57 := 2*BLY57174a[ANGLE]
+  LBY57  := 2*BY57202a[L]  ; ABY57  := 2*BY57202a[ANGLE]
+  LBX57  := 2*BX57205a[L]  ; ABX57  := 2*BX57205a[ANGLE]
+                             ABX57e := 2*BX57275a[ANGLE]
+
+  BLX57172 : SBEN, TYPE="0.26SD85", HGAP=0.00334, L=LBLX57, ANGLE=ABLX57, &
+                   E1=0.0, E2=-0.18360864E-01
+  BLY57174 : SBEN, TYPE="0.26SD85", HGAP=0.00334, L=LBLY57, ANGLE=ABLY57, &
+                   E1=0.0, E2=+0.74874625E-02, TILT
+  BY57202  : SBEN, TYPE="1D60.75", HGAP=0.0129, L=LBY57, ANGLE=ABY57, &
+                   E1=+0.11955505E-01, E2=+0.11955505E-01, TILT
+  BX57205  : SBEN, TYPE="1D128T", HGAP=0.0129, L=LBLX57, ANGLE=ABX57, &
+                   E1=-0.25115288E-01, E2=-0.25115288E-01
+  BX57215  : SBEN, TYPE="1D128T", HGAP=0.0129, L=LBLX57, ANGLE=ABX57, &
+                   E1=-0.25115288E-01, E2=-0.25115288E-01
+  BX57225  : SBEN, TYPE="1D128T", HGAP=0.0129, L=LBLX57, ANGLE=ABX57, &
+                   E1=-0.25115288E-01, E2=-0.25115288E-01
+  BX57235  : SBEN, TYPE="1D128T", HGAP=0.0129, L=LBLX57, ANGLE=ABX57, &
+                   E1=-0.25115288E-01, E2=-0.25115288E-01
+  BX57245  : SBEN, TYPE="1D128T", HGAP=0.0129, L=LBLX57, ANGLE=ABX57, &
+                   E1=-0.25115288E-01, E2=-0.25115288E-01
+  BX57255  : SBEN, TYPE="1D128T", HGAP=0.0129, L=LBLX57, ANGLE=ABX57, &
+                   E1=-0.25115288E-01, E2=-0.25115288E-01
+  BX57265  : SBEN, TYPE="1D128T", HGAP=0.0129, L=LBLX57, ANGLE=ABX57, &
+                   E1=-0.25115288E-01, E2=-0.25115288E-01
+  BX57275  : SBEN, TYPE="1D128T", HGAP=0.0129, L=LBLX57, ANGLE=ABX57e, &
+                   E1=-0.25115288E-01, E2=-0.25115288E-01
+
+! ==============================================================================
+! QUAD (off-axis)
+! ------------------------------------------------------------------------------
+
+! run MGEO1 match; then use offAxisQuad.m to compute initial angles;
+! then use MGEO2 match to fine-tune the kicker angle and Q19701 bend angle
+
+  AKQ501 := -0.697627545E-5
+  AKQ601 := +0.1010490572E-3
+  AKQ701 := -0.339144696197E-3 !-0.3388633894E-3
+
+  Q19501x : SBEN, TYPE="1.085Q4.31", L=Q19501[L], K1=-Q19501[K1], &
+                  ANGLE=AKQ501, TILT
+
+  Q19601x : SBEN, TYPE="1.085Q4.31", L=Q19601[L], K1=-Q19601[K1], &
+                  ANGLE=AKQ601, TILT
+
+  Q19701x : SBEN, TYPE="1.085Q4.31", L=Q19701[L], K1=-Q19701[K1], &
+                  ANGLE=AKQ701, TILT
+
+! ==============================================================================
+! QUAD
+! ------------------------------------------------------------------------------
+
+  KQ57186 :=  0.434861284035             
+  KQ57190 := -0.573614963712              
+  KQ57204 :=  0.453180832142               
+  KQ57210 := -0.508482870713               
+  KQ57220 :=  0.738426550257              
+  KQ57280 :=  0.686348881151               
+
+  Q57186 : QUAD, TYPE="1Q19", L=0.2486, K1=KQ57186             
+  Q57190 : QUAD, TYPE="1Q22", L=0.2799, K1=KQ57190              
+  Q57204 : QUAD, TYPE="1Q24", L=0.3077, K1=KQ57204               
+  Q57210 : QUAD, TYPE="1Q24", L=0.3077, K1=KQ57210               
+  Q57220 : QUAD, TYPE="1Q24", L=0.3077, K1=KQ57220              
+  Q57230 : QUAD, TYPE="1Q24", L=0.3077, K1=KQ57210               
+  Q57240 : QUAD, TYPE="1Q24", L=0.3077, K1=KQ57220               
+  Q57250 : QUAD, TYPE="1Q24", L=0.3077, K1=KQ57210               
+  Q57260 : QUAD, TYPE="1Q24", L=0.3077, K1=KQ57220               
+  Q57270 : QUAD, TYPE="1Q24", L=0.3077, K1=KQ57210               
+  Q57280 : QUAD, TYPE="1Q24", L=0.3077, K1=KQ57280               
+
+! ==============================================================================
+! DRIF
+! ------------------------------------------------------------------------------
+
+  DRI34001 : DRIF, L=0.2506
+  DRI34002 : DRIF, L=0.2413
+  DRI34003 : DRIF, L=0.4547
+  DRI34004 : DRIF, L=0.3556
+  DRI34005 : DRIF, L=0.99
+  DRI34006 : DRIF, L=1.475
+  DRI34007 : DRIF, L=0.1651
+  DRI34008 : DRIF, L=0.2093
+  DRI34009 : DRIF, L=1.7501
+  DRI34010 : DRIF, L=3.6591
+  DRI34011 : DRIF, L=0.4008
+  DRI34012 : DRIF, L=0.3073
+  DRI34013 : DRIF, L=0.3907
+  DRI34014 : DRIF, L=0.3747
+  DRI34015 : DRIF, L=0.2248
+  DRI34016 : DRIF, L=0.1476
+  DRI34017 : DRIF, L=0.1518
+  DRI34018 : DRIF, L=0.0875
+  DRI34019 : DRIF, L=0.3868
+  DRI34020 : DRIF, L=2.8567
+  DRI34021 : DRIF, L=1.8288
+  DRI34022 : DRIF, L=1.2081
+  DRI34023 : DRIF, L=0.2838
+  DRI34024 : DRIF, L=0.2765
+  DRI34025 : DRIF, L=0.5051
+  DRI34026 : DRIF, L=0.2921
+  DRI34027 : DRIF, L=0.2159
+  DRI34028 : DRIF, L=1.2637
+  DRI34029 : DRIF, L=0.1969
+  DRI34030 : DRIF, L=0.1524
+  DRI34031 : DRIF, L=0.7366
+  DRI34032 : DRIF, L=0.254
+  DRI34033 : DRIF, L=0.6486
+  DRI34034 : DRIF, L=0.6
+
+! ==============================================================================
+! SROT
+! ------------------------------------------------------------------------------
+
+  ROB     : SROT,ANGLE= 0.77600829E-01
+  RO8     : SROT,ANGLE= 0.38221140E-01
+  NEG_RO8 : SROT,ANGLE=-0.38221140E-01
+  ZERO_ROL: SROT,ANGLE=-0.85532653E-01
+
+! ==============================================================================
+! XCORs and YCORs
+! ------------------------------------------------------------------------------
+
+  XC57175 : HKIC, TYPE="0.687D13.5"
+  XC57185 : HKIC, TYPE="1.625D12"
+  XC57205 : HKIC, TYPE="bend trim"
+  XC57215 : HKIC, TYPE="bend trim"
+  XC57225 : HKIC, TYPE="bend trim"
+  XC57235 : HKIC, TYPE="bend trim"
+  XC57245 : HKIC, TYPE="bend trim"
+  XC57255 : HKIC, TYPE="bend trim"
+  XC57265 : HKIC, TYPE="bend trim"
+  XC57275 : HKIC, TYPE="bend trim"
+  XC57282 : HKIC
+
+  YC57183 : VKIC
+  YC57184 : VKIC
+  YC57210 : VKIC, TYPE="quad trim"
+  YC57220 : VKIC, TYPE="quad trim"
+  YC57230 : VKIC, TYPE="quad trim"
+  YC57240 : VKIC, TYPE="quad trim"
+  YC57250 : VKIC, TYPE="quad trim"
+  YC57260 : VKIC, TYPE="quad trim"
+  YC57270 : VKIC, TYPE="quad trim"
+  YC57280 : VKIC, TYPE="quad trim"
+  YC57282 : VKIC
+
+! ==============================================================================
+! diagnostics
+! ------------------------------------------------------------------------------
+
+! BPMs (LCLS-II type designations)
+
+  BPM57170 : MONI
+  BPM57175 : MONI
+  BPM57185 : MONI
+  BPM57186 : MONI
+  BPM57190 : MONI
+  BPM57204 : MONI
+  BPM57210 : MONI
+  BPM57220 : MONI
+  BPM57230 : MONI
+  BPM57240 : MONI
+  BPM57250 : MONI
+  BPM57260 : MONI
+  BPM57270 : MONI
+  BPM57280 : MONI
+  BPM57383 : MONI
+  BPM57400 : MONI
+
+! misc
+
+  PR57171  : PROF,           TYPE="phosphor"
+  PC57175  : ECOL
+  IM57175  : IMON,           TYPE="toroid"
+  PC57178  : ECOL, L=0.9525
+  WS57184  : WIRE
+  PR57185  : PROF,           TYPE="phosphor"
+  PC57186A : ECOL, L=0.9563, TYPE="aluminum"
+  PC57186C : ECOL, L=0.4176, TYPE="copper"
+  ST57193  : INST,           TYPE="stopper"
+  ST57194  : INST,           TYPE="stopper"
+  IM57199  : IMON,           TYPE="toroid"
+  SP57281  : INST,           TYPE="spoiler"
+  BZ57372  : INST,           TYPE="ceramic gap"
+  IM57375  : IMON,           TYPE="toroid"
+  IM57376  : IMON,           TYPE="toroid"
+  PR57385  : PROF,           TYPE="wire array"
+  PC57388  : ECOL
+  PR58390  : PROF,           TYPE="phosphor"
+
+! ==============================================================================
+! MARK
+! ------------------------------------------------------------------------------
+
+  BEGSCAV  : MARK
+  DBMARK32 : MARK !e+ production target
+  ENDSCAV  : MARK
+
+! ==============================================================================
+! BEAMLINEs
+! ------------------------------------------------------------------------------
+
+  BKY170_full  : LINE=(BKY170a,BKY170b)
+  Q19501x_full : LINE=(Q19501x,BPM19501,Q19501x)
+  Q19601x_full : LINE=(Q19601x,BPM19601,Q19601x)
+  Q19701x_full : LINE=(Q19701x,BPM19701,Q19701x)
+
+  SCAV19X : LINE=(BEGSCAV,&
+    BKY170_full,DAA7m,DAQ1,&
+    Q19501x_full,DAQ2,K19_5x,DAQ1,&
+    Q19601x_full,DAQ2,K19_6x,DAQ1,&
+    Q19701x_full,MSCAV)
+
+  BLX57172_full : LINE=(BLX57172a,BLX57172b)
+  BLY57174_full : LINE=(BLY57174a,BLY57174b)
+  BY57202_full  : LINE=(BY57202a,BY57202b)
+  BX57205_full  : LINE=(BX57205a,XC57205,BX57205b)
+  BX57215_full  : LINE=(BX57215a,XC57215,BX57215b)
+  BX57225_full  : LINE=(BX57225a,XC57225,BX57225b)
+  BX57235_full  : LINE=(BX57235a,XC57235,BX57235b)
+  BX57245_full  : LINE=(BX57245a,XC57245,BX57245b)
+  BX57255_full  : LINE=(BX57255a,XC57255,BX57255b)
+  BX57265_full  : LINE=(BX57265a,XC57265,BX57265b)
+  BX57275_full  : LINE=(BX57275a,XC57275,BX57275b)
+
+  Q57186_full  : LINE=(Q57186,Q57186)
+  Q57190_full  : LINE=(Q57190,Q57190)
+  Q57204_full  : LINE=(Q57204,Q57204)
+  Q57210_full  : LINE=(Q57210,YC57210,Q57210)
+  Q57220_full  : LINE=(Q57220,YC57220,Q57220)
+  Q57230_full  : LINE=(Q57230,YC57230,Q57230)
+  Q57240_full  : LINE=(Q57240,YC57240,Q57240)
+  Q57250_full  : LINE=(Q57250,YC57250,Q57250)
+  Q57260_full  : LINE=(Q57260,YC57260,Q57260)
+  Q57270_full  : LINE=(Q57270,YC57270,Q57270)
+  Q57280_full  : LINE=(Q57280,YC57280,Q57280)
+
+  SCAV20A : LINE=(DRI34001,BPM57170,DRI34002,PR57171,DRI34003,&
+    BLX57172_full,DRI34004,&
+    BLY57174_full,DRI34005,XC57175,DRI34006,PC57175,DRI34007,BPM57175,&
+      DRI34008,IM57175,DRI34009,PC57178,DRI34010,YC57183,DRI34011,YC57184,&
+      DRI34012,WS57184,DRI34013,XC57185,DRI34014,PR57185,DRI34015,BPM57185,&
+      DRI34016,BPM57186,&
+    Q57186_full,DRI34017,PC57186A,DRI34018,PC57186C,DRI34019,BPM57190,&
+    Q57190_full,DRI34020,ST57193,DRI34021,ST57194,DRI34022,IM57199,&
+      DRI34023,&
+    BY57202_full,DRI34024,ROB,BPM57204,&
+    Q57204_full,DRI34024,&
+    BX57205_full,DRI34024,BPM57210,&
+    Q57210_full,DRI34024,&
+    BX57215_full,DRI34024,BPM57220,&
+    Q57220_full,DRI34024,&
+    BX57225_full,DRI34024,BPM57230,&
+    Q57230_full,DRI34024,&
+    BX57235_full,DRI34024,BPM57240,&
+    Q57240_full,DRI34024,&
+    BX57245_full,DRI34024,BPM57250,&
+    Q57250_full,DRI34024,&
+    BX57255_full,DRI34024,BPM57260,&
+    Q57260_full,DRI34024,&
+    BX57265_full,DRI34024,BPM57270,&
+    Q57270_full,DRI34024,RO8,&
+    BX57275_full,NEG_RO8,DRI34024,BPM57280,&
+    Q57280_full,ZERO_ROL,DRI34025,SP57281,DRI34026,YC57282,&
+      DRI34027,XC57282,DRI34028,BZ57372,DRI34029,IM57375,DRI34030,IM57376 ,&
+      DRI34031,BPM57383,DRI34030,PR57385,DRI34032,PC57388,DRI34033,PR58390,&
+      DRI34034,BPM57400,DBMARK32,&
+    ENDSCAV)
+
+  SCAV : LINE=(SCAV19X,SCAV20A)
+
+! ------------------------------------------------------------------------------
+! extraction
+! ------------------------------------------------------------------------------
+
+! use MGEO1 to compute
+
+  KKY170 : VKIC, L=Zks, KICK=-0.206697149403E-3 !-0.19169E-3
+  KQ701  : VKIC,        KICK= 0.931675695179E-4 ! 0
+
+  LI19x : LINE=(BEGSCAV,&
+    KKY170,DAA7m,DAQ1,Q19501,Q19501,DAQ2,&
+    K19_5,DAQ1,Q19601,Q19601,DAQ2,&
+    K19_6,DAQ1,Q19701,KQ701,Q19701,MSCAV)
+
+! ==============================================================================
+
+  RETURN

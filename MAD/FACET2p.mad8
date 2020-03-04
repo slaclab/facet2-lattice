@@ -1,0 +1,109 @@
+  TITLE, "FACET2 e+ (August 21, 2019)"
+
+! *** OPTICS=FACET2-21AUG19 ***
+
+  ASSIGN, PRINT="FACET2p.print"
+  ASSIGN, ECHO="FACET2p.echo"
+  OPTION, -ECHO, INFO, WARN, VERIFY
+
+! ------------------------------------------------------------------------------
+! element and line definitions
+! ------------------------------------------------------------------------------
+
+  CALL, FILENAME="FACET2p_master.xsif"
+ !CALL, FILENAME="FACET2p_patch.mad8" !resets everything to Lucretia values
+
+! ------------------------------------------------------------------------------
+! BETA0 block definitions
+! ------------------------------------------------------------------------------
+
+  TW11: BETA0, BETX=BX11, ALFX=AX11, BETY=BY11, ALFY=AY11
+
+! ------------------------------------------------------------------------------
+! patch & match
+! ------------------------------------------------------------------------------
+
+  MFACET2p : SUBROUTINE
+
+  ! LI19 bulk (201-801) I = 47.011 A, max boost < 14 A
+
+    SET, KQ19201,  0.837673958863
+    SET, KQ19301, -0.954917712534
+    SET, KQ19401,  0.879651425756
+    SET, KQ19501, -1.00297703404
+    SET, KQ19601,  0.757627220184
+    SET, KQ19701, -0.833848070176
+    SET, KQ19801,  0.96996169183
+    SET, KQ19851, -1.760128528634
+    SET, KQ19871,  1.152051963034
+  ENDSUBROUTINE
+
+ !CALL, FILENAME="FACET2p_match.mad8"
+ !CALL, FILENAME="RDB/FACET2p_makeSymbols.mad8"
+ !STOP
+
+! ------------------------------------------------------------------------------
+! BEAM definition
+! ------------------------------------------------------------------------------
+
+! NOTE: use electron bunch charge to keep e+ and e- energy profiles equal
+
+  BEAM, ENERGY=E11, NPART=Q0p/QELEC, &
+        EXN=6.7e-6, EYN=6.7e-6, &
+        SIGT=0.0039, SIGE=0.00028
+
+! ------------------------------------------------------------------------------
+! commands
+! ------------------------------------------------------------------------------
+
+  SETPLOT, XSIZE=25.4, YSIZE=20.32
+  SETPLOT, LWIDTH=5, LSCALE=1.5, SSCALE=1.5, RSCALE=1.5, ASCALE=1.5
+  OPTION, ECHO
+
+! ------------------------------------------------------------------------------
+
+ !COMMENT
+    BEAM, ENERGY=E11
+    USE, F2_POSI
+    MFACET2p
+    PRINT, FULL
+    SURVEY, TAPE="FACET2p_survey.tape", &
+      X0=Xi, Y0=Yi, Z0=Zi, THETA0=THETAi, PHI0=PHIi, PSI0=PSIi
+    BEAM, ENERGY=E11
+    USE, FACET2p
+    PRINT, FULL
+    comment
+      SAVEBETA, TW14, ENDBC14P !end of BC14 chicane
+      SAVEBETA, TW20, ENDL3    !start of BC20 chicane
+    endcomment
+    TWISS, BETA0=TW11, SAVE, TAPE="FACET2p_twiss.tape"
+    comment
+      SHOW, TW14
+      SHOW, TW20
+    endcomment
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=ENERGY, &
+      STYLE=100, -SPLINE, RANGE=#S/BEGBC20, FILE="FACET2p", &
+      TITLE="Linac"
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=BETX,BETY, &
+      STYLE=100, SPLINE, RANGE=#S/BEGBC20, FILE="FACET2p", &
+      TITLE="Linac"
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=DX,DY, &
+      STYLE=100, -SPLINE, RANGE=#S/BEGBC20, FILE="FACET2p", &
+      TITLE="Linac"
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=BETX,BETY, &
+      STYLE=100, SPLINE, RANGE=BEGBC20/ENDBC20, FILE="FACET2p", &
+      TITLE="BC20"
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=DX,DY, &
+      STYLE=100, -SPLINE, RANGE=BEGBC20/ENDBC20, FILE="FACET2p", &
+      TITLE="BC20"
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=RBETX,RBETY, &
+      STYLE=100, SPLINE, RANGE=ENDBC20/MAINDUMP, FILE="FACET2p", &
+      TITLE="Final Focus + Spectrometer"
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=DX,DY, &
+      STYLE=100, -SPLINE, RANGE=ENDBC20/MAINDUMP, FILE="FACET2p", &
+      TITLE="Final Focus + Spectrometer"
+ !ENDCOMMENT
+
+! ------------------------------------------------------------------------------
+
+  STOP
