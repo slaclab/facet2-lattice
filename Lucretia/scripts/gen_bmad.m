@@ -5,4 +5,4 @@ for iele=findcells(BEAMLINE,'Freq',2856)
 end
 % Write out bmad lattice, un-splitting all magnetic elements
 DT=DeckTool('BMAD',-1);
-DT.WriteDeck(Initial,'lats/FACET2e.bmad','facet2e',true);
+DT.WriteDeck(Initial,'FACET2e.bmad','facet2e',true);

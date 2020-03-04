@@ -1,4 +1,4 @@
-! Beam lines generated from Lucretia: (03-Mar-2020 16:50:33)
+! Beam lines generated from Lucretia: (04-Mar-2020 08:53:29)
 
 ! ===============================================
 parameter[e_tot] = 0.006 * 1e9
@@ -6,15 +6,15 @@ parameter[geometry] = Open
 parameter[lattice] = facet2e
 parameter[n_part] = 12483018788
 parameter[particle] = electron
-beam_start[x] = 0
-beam_start[px] = 0
-beam_start[y] = 0
-beam_start[py] = 0
-beam_start[z] = 0
-beam_start[emittance_a] = 3.40666e-07
-beam_start[emittance_b] = 3.40666e-07
-beam_start[sig_z] = 0
-beam_start[sig_e] = 0.0225
+particle_start[x] = 0
+particle_start[px] = 0
+particle_start[y] = 0
+particle_start[py] = 0
+particle_start[z] = 0
+particle_start[emittance_a] = 3.40666e-07
+particle_start[emittance_b] = 3.40666e-07
+particle_start[sig_z] = 0
+particle_start[sig_e] = 0.0225
 beginning[beta_a] = 11.916867305095
 beginning[beta_b] = 3.135655821534
 beginning[alpha_a] = 7.509605493741
