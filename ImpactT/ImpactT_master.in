@@ -1,0 +1,86 @@
+! col row
+  1  1 
+! step-size, number of steps, and number of bunches/bins (??) !
+! dt      Ntstep  Nbunch
+  1e-12   2000000   1
+!
+! phase-space dimension, number of particles, a series of flags ! that set the type of integrator, error study,
+! diagnostics, and ! image charge, and the cutoff distance for the image charge !
+! PSdim  Nptcl   integF  errF  diagF  imchgF  imgCutOff (m)
+     6   200000      1      0      1       1        0.02
+!
+! information about mesh: number of points in x, y, and z, type ! of boundary conditions, transverse aperture size (m),
+! and longitudinal domain size (m), which should be larger than the total ! beamline element length !
+!  Nx  Ny  Nz  bcF   Rx    Ry    Lz
+   32  32  32  1   0.015  0.015  6.01
+!
+! distribution type number, restart flag, space-charge substep ! flag, number of emission steps, and max emission time !
+! distType  restartF  substepF  Nemission  Temission
+  16        0        0         100        20e-12
+! 16        0        0         100        15e-12
+! following three lines contain a total of 21 parameters (seven per degree of freedom) particular to the particle distribution !
+! in most cases, the columns are given by - 3.2ps FWHM laser pulse (1.9um for 1eV)
+!  sigu         sigpu  muupu  uscale  puscale  xmuu      xpmuu
+   0. 0. 0. 1. 1. 0. 0.
+   0. 0. 0. 1. 1. 0. 0.
+   2.9e-6 0. 0. 1. 1. -3.26428e-06 0.
+!  0.0017        0.0012  0.0     1.      1.      0.0       0. (2.9e-6 0. 0. 1. 1. -3.26428e-06 0.)
+!  0.0017        0.0012  0.0     1.      1.      0.0       0.
+!  2.9e-6   0.0    0.0     5.93506e-07 2.18e-06 -3.26428e-06 0.001978
+!
+! information about the beam: 
+! charge = KE * current / scaleFreq
+! current, kinetic energy, particle rest energy, particle charge, scale frequency, initial  cavity phase !
+  5.712       1.0             0.511005e+06          -1.0              2856.0e6         0.0
+!
+! ======= machine description starts here ======= ! the following lines, which must each be terminated with a '/', 
+!
+!Blen Bnseg Bmp Btype zedge scale_of_field  RF_freq. theta    file_ID radi xer yer xrer y  z  scale_Sol_field
+!
+!==========================================================================================================
+!===========                          LCLS Injector + Linac-1  beam line                     ==============
+!==========================================================================================================
+!
+!**************************1.5 cell gun ************************ 49e6=120 MV/m 36.7e6=90MV/m
+0.150   10 20 105 0.0   36.7e6 2856.0e6 283.0 201.0 0.15 0.0 0.0 0.0 0.0 0.0 0.0 /
+0.49308 10 20 105 0.0   0.0    0.0      0.0   102.0 0.15 0.0 0.0 0.0 0.0 0.0 0.2433 /  
+0.89392 10 20 0   0.49308 0.15 /
+0.654   10 20 105 1.387 0.0    0.       0.0   203.0 0.15 0.0 0.0 0.0 0.0 0.0 0.0 /
+! line 13 ^
+!++++++ BPM after gun ++++++
+!0.0      1  60 -4  0.02   1.0   0.02 1.0e-12 /
+!0.0      1  1  -1  0.02   1.0   0.02 0.0 0.0 0.0 0.0 /
+!0.0      1  61 -2  0.152  1.0   0.152 /
+!
+!**************************** linac0a **************************
+! wakefield analytical function 
+0.0      0  1  -6  1.0 1.0        1.5 4.542856 11.6e-3 29.2e-3 35e-3 /
+0.052464 10 20 105 1.500000 26.395167e6 2856.0e6 206.5 4.0 0.15 0.0 0.0 0.0 0.0 0.0 0.0 /
+2.937928 10 20 105 1.552464 30.478514e6 2856.0e6 236.5 5.0 0.15 0.0 0.0 0.0 0.0 0.0 0.0 /
+2.937928 10 20 105 1.552464 30.478514e6 2856.0e6 296.5 6.0 0.15 0.0 0.0 0.0 0.0 0.0 0.0 /
+0.052464 10 20 105 4.490392 26.395167e6 2856.0e6 206.5 7.0 0.15 0.0 0.0 0.0 0.0 0.0 0.0 /
+0.0      1  1  -5  4.5429   1.0   -1000.0 /
+!
+!0.210144 10 20 0   4.542856 0.15 / 
+!
+!++++++ BPM after L0-a ++++++
+!0.0      1  62 -2  4.55   1.0   4.55 /
+!0.0      1  1  -1  4.55   1.0   4.55 0.0 0.0 0.0 0.0 /
+!0.0      1 100 -3  4.60   1.0   4.60 /
+!0.0      1  1  -99 4.65   1.0   4.65 /   
+! -----------QA01-----------------
+!0.204    10 20 1   4.753    1.8524   0.108 0.016 0.0 0.0 0.0 0.0 0.0 /  
+!0.124    10 20 0   4.957    0.15 /
+! -----------QA02-----------------
+!0.204    10 20 1   5.081    -1.8267  0.108 0.016 0.0 0.0 0.0 0.0 0.0 / 
+!0.06     10 20 0   5.285    0.15 /
+!
+!***************************** linac0b ***************************
+!
+!0.0      0  1  -6  1.0  1.0      5.345 8.387856 11.6e-3 29.2e-3 35e-3 /
+!0.052464 10 20 105 5.345000 31.995848e6 2856.0e6 342.5 4.0 0.15 0.0 0.0 0.0 0.0 0.0 0.0 /
+!2.937928 10 20 105 5.397464 36.945623e6 2856.0e6 372.5 5.0 0.15 0.0 0.0 0.0 0.0 0.0 0.0 /
+!2.937928 10 20 105 5.397464 36.945623e6 2856.0e6 432.5 6.0 0.15 0.0 0.0 0.0 0.0 0.0 0.0 /
+!0.052464 10 20 105 8.335392 31.995848e6 2856.0e6 342.5 7.0 0.15 0.0 0.0 0.0 0.0 0.0 0.0 /
+!
+!======================= end of Linac-0, energy =135MeV ===================================================
