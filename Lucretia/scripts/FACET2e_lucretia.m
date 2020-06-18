@@ -5,6 +5,7 @@ global BEAMLINE
 if ~isempty(BEAMLINE)
   BEAMLINE={};
 end
+close all
 
 % Read in deck from mad8 definitions
 DT=DeckTool('XSIF');
@@ -56,5 +57,9 @@ SetSPositions(1,length(BEAMLINE),0);
 SetElementSlices(1,length(BEAMLINE));
 SetElementBlocks(1,length(BEAMLINE));
 
-% Save lattice
+% Save lattices
+% - Luctretia
 save FACET2e.mat BEAMLINE Initial
+% - BMAD
+DT=DeckTool('XSIF');
+DT.WriteDeck(Initial,'FACET2e.bmad','FACET2e',true) ;

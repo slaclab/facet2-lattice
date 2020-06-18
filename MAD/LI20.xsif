@@ -755,12 +755,23 @@
   LAIRi    : DRIF, L=1.0106/COS(ABD)
   LAIRj    : DRIF, L=1.67269/COS(ABD)
 
-! replace experimental area with a drift
-
-  LEXPT  := 8.132333
-  DEXPT  : DRIF, L=LEXPT
-  DEXPTa : DRIF, L=2.630332
-  DEXPTb : DRIF, L=LEXPT-DEXPTa[L]
+! Experiment table drifts
+  DEX20_1  : DRIF, L=0.3443808
+  DEX20_2  : DRIF, L=0.123
+  DEX20_3  : DRIF, L=1.067
+  DEX20_4  : DRIF, L=0.703
+  DEX20_5  : DRIF, L=0.895
+  DEX20_6  : DRIF, L=0.078
+  DEX20_7  : DRIF, L=0.088
+  DEX20_8  : DRIF, L=0.137
+  DEX20_9  : DRIF, L=0.4
+  DEX20_10 : DRIF, L=0.537
+  DEX20_11 : DRIF, L=0.088
+  DEX20_12 : DRIF, L=0.625
+  DEX20_13 : DRIF, L=0.438
+  DEX20_14 : DRIF, L=0.172
+  DEX20_15 : DRIF, L=1.917
+  DEX20_16 : DRIF, L=0.519952
 
 ! ==============================================================================
 ! XCORs
@@ -835,11 +846,20 @@
   CNEAR  : PROF, TYPE="cherenkov wafer" !P203490
   CFAR   : PROF, TYPE="cherenkov wafer" !P203492
   BETA2  : PROF, TYPE="unknown"         !P203488
+  USOTR  : PROF, TYPE="OTR foil/YAG"
+  IPOTR1 : PROF, TYPE="OTR foil/YAG"
+  IPOTR2 : PROF, TYPE="OTR foil/YAG"
+  IPWS1  : PROF, TYPE="WIRE"
+  IPWS2  : PROF, TYPE="WIRE"
+  IPOTR3 : PROF, TYPE="OTR foil/YAG"
+  DSOTR1 : PROF, TYPE="OTR foil/YAG" ! "DSOTR" on IP AREA BEAMLINE drawning
+  DSOTR2 : PROF, TYPE="OTR foil/YAG" ! "OTR" on IP AREA BEAMLINE drawning
 
 ! toroids
 
-  IM2040 : IMON !T202040T
-  IM2452 : IMON !T202452T
+  IM2040  : IMON !T202040T
+  IM2452  : IMON !T202452T
+  IQMON20 : IMON ! "Resonant charge monitor" in S20 experimental region
 
 ! collimators
 
@@ -876,7 +896,14 @@
   DBMARK67   : MARK !USTHz
   ENDFF20    : MARK !QFF6 exit
   BEGEXPT20  : MARK
-  MIP        : MARK !E200 IP
+  MIP        : MARK ! Default IP location (for optics reference)
+  LCUBE      : MARK ! Laser Injection Cube
+  PIC_CENT   : MARK ! Center location of "picnic basket"
+  PENT       : MARK ! E300 plasma entrance definition
+  PCENT      : MARK ! Plasma oven center location
+  ECUBE      : MARK ! "CUBE"
+  DWIN       : MARK ! Valve Diamond Window
+  
   ENDEXPT20  : MARK
   BEGSPECT20 : MARK !QS1 entrance
   SCATSSTL   : MARK
@@ -1027,13 +1054,17 @@
     QFF6_full,&
     ENDFF20)
 
-  EXPT : LINE=(BEGEXPT20,DEXPTa,MIP,DEXPTb,ENDEXPT20)
+  EXPT : LINE=(BEGEXPT20,DEX20_1,USOTR,DEX20_2,IQMON20,DEX20_3,LCUBE,DEX20_4,PIC_CENT,&
+    DEX20_5,IPOTR1,DEX20_6,IPOTR2,DEX20_7,IPWS1,DEX20_8,PENT,MIP,DEX20_9,PCENT,DEX20_10,&
+    IPWS2,DEX20_11,IPOTR3,DEX20_12,ECUBE,DEX20_13,DWIN,DEX20_14,DSOTR1,DEX20_15,DSOTR2,&
+    DEX20_16,ENDEXPT20)
 
   B5D36_full : LINE=(B5D361,B5D362)
 
   QS1_full : LINE=(QS1,QS1)
   QS2_full : LINE=(QS2,QS2)
-
+ 
+  ! z= 1998.708952
   SPECT : LINE=(BEGSPECT20,&
     QS1_full,DM1QEX,M1EX,LQSEPMA,DXC1EX,XC1EX,DXC1EX,LQSEPMB,&
     QS2_full,DM2QEX,M2EX,LQ2BENDM,&
