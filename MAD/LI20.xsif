@@ -4,6 +4,9 @@
 ! ==============================================================================
 ! FACET e- optics, v35
 ! ------------------------------------------------------------------------------
+! 17-JUN-2020, G. White
+!  * Added new beamline components to IP area as per engineering drawing from
+!    D. Storey
 ! 30-JAN-2015, M. Woodley
 !  * move experimental area definitions to separate xsif-files
 !  * experimental area modified for hydrogen plasma chamber installation and
