@@ -61,5 +61,5 @@ SetElementBlocks(1,length(BEAMLINE));
 % - Luctretia
 save FACET2e.mat BEAMLINE Initial
 % - BMAD
-DT=DeckTool('XSIF');
+DT=DeckTool('BMAD');
 DT.WriteDeck(Initial,'FACET2e.bmad','FACET2e',true) ;
