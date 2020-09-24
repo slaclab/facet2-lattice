@@ -58,8 +58,18 @@ SetElementSlices(1,length(BEAMLINE));
 SetElementBlocks(1,length(BEAMLINE));
 
 % Save lattices
-% - Luctretia
-save FACET2e.mat BEAMLINE Initial
 % - BMAD
 DT=DeckTool('BMAD');
 DT.WriteDeck(Initial,'FACET2e.bmad','FACET2e',true) ;
+% - Luctretia
+% convert 0 angle bends into drifts- breaks Lucretia tracking
+for iele=1:length(BEAMLINE)
+  if strcmp(BEAMLINE{iele}.Class,'SBEN') && BEAMLINE{iele}.Angle==0
+    BLe=BEAMLINE{iele};
+    BEAMLINE{iele}=DrifStruc(BEAMLINE{iele}.L,BEAMLINE{iele}.Name);
+    cf={'P' 'Coordi' 'Anglei' 'Coordf' 'Anglef' 'S'};
+    for icf=1:length(cf); BEAMLINE{iele}.(cf{icf}) = BLe.(cf{icf}) ; end
+  end
+end
+save FACET2e.mat BEAMLINE Initial
+

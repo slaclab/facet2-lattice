@@ -1,4 +1,4 @@
-! Beam lines generated from Lucretia: (22-Sep-2020 18:21:46)
+! Beam lines generated from Lucretia: (24-Sep-2020 10:36:07)
 
 ! ===============================================
 parameter[e_tot] = 0.006 * 1e9
@@ -27,6 +27,9 @@ beginning[phi_a] = 0
 beginning[phi_b] = 0
 beginning[p0c] = 0.006 * 1e9
 beginning[s] = 0
+beginning[theta_position] = -0.610865238198015
+beginning[x_position] = 10.1951018890928
+beginning[z_position] = 1002.27394413849
 
 
 FACET2e: line=(DL00,LOADLOCKF,BEGINJ,SOL10111,CATHODEF,DL01A,SOL10121,CQ10121,&
