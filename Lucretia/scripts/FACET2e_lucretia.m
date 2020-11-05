@@ -1,4 +1,5 @@
 % FACET2E_LUCRETIA Parse FACET2 MAD electron deck into Lucretia
+% Run from MAD folder
 
 global BEAMLINE
 % Clear existing beamline database if exists
