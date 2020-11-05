@@ -3,7 +3,7 @@ Lattice files for the FACET-II accelerator
 
 
 CHANGELOG:
-
+* 05/18/2020, G. White: Imported (older) ImpactT files for FACET-II injector (warning, doesn't exactly match GPT files)
 * 03/03/2020, G. White: Files imported into slac lab / facet2-lattice github repo
 * 07/21/2017, G. White: Re-formatted decks by MDW and re-configured injector for FACET-II requirements
 * 05/02/2017, G. White: Updated to v1.4.4 DR optics (added steering correctors and BPMs to lattice)
@@ -20,7 +20,7 @@ This archive file contains lattice files in MAD8 (or XSIF) and Lucretia format f
 Also electron beam line and positron damping ring in bmad format.
 Also positron damping ring in AT format.
 
-See doc directory for some documentation.
+See MAD/doc directory for some documentation.
 
 CONTENTS:
 * MAD/doc/ : Documentation directory
@@ -39,4 +39,4 @@ CONTENTS:
 * AT/FACET2p_DR.mat : AT positron damping ring model
 * QDDSQ*.[xsif|bmad] : Sliced quad-sextupole arc models for DR
 * BA/BD.[xsif|bmad] : Sliced models for bend-quad-sextupole arc magnets for DR
-
+* ImpactT: Matlab scripts and supporting ImpactT data files to generate FACET-II electron injector lattice up to exit of L0a
