@@ -1,0 +1,12 @@
+# Beam Stay Clear definitions
+excel and matlab data stored for FACET2e, various Sector 20 configurations as labeled, 'master' file is max stay clear from all configuration files
+
+Where required, energy spread and bunch length are taken from most demanding case studied (corresponding to 2-bunch PWFA config)
+
+Data columns are:
+* Beamline index and S coordinate from model. These data refer to the UPSTREAM face of each Beamline element
+* Beam stay clear definitions are half-apertures in x (horizontal), y (vertical) and r (radius)
+* "all" refers to overall stay clear- this is sum in quadrature of below
+* "beta" refers to betatron aperture (10 * sqrt(emit*beta))
+* "eta" refers to dispersive aperture (eta*de/E_max) + 10% safety margin
+* "tcav" refers to streaked tcav image (R_(12 or 34) * upstream tcav kick * sigma_z)
