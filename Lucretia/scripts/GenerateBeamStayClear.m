@@ -1,8 +1,9 @@
+function StayClearTable = GenerateBeamStayClear(Initial,tablename)
 % Generate beam stay clear definitions for FACET2 lattice
 % Based on : FACET-II Technical Note #007: "Aperture Restrictions in Sector 20"
 
 % Script operates on Twiss lattice using Lucretia deck loaded from facet2-lattice/Lucretia/models/
-% cell array "BEAMLINE" and Lucretia "Initial" structure variables are assumed to be memory resident
+% cell array "BEAMLINE" must be in global memory and Lucretia "Initial" structure variable supplied
 
 % Beam stay clear x, and y half-widths and radii are calculated corresponding to the start of the Beamline element in question and quoted in meters
 
@@ -12,6 +13,7 @@ global BEAMLINE
 
 % Stay-clear defined as Naper X beta size + NaperE * rms dispersive size
 Nbeta=10; % # sigma apertures to define (Naper * rms beam size determined from Twiss parameters)
+minclear=1/sqrt(2)*5*1e-3; % Minimum clearance to use (in x and y)
 nemit=20e-6; % Max expected operating normalized transverse emittance
 % Include TCAV streaked images for stay-clear in relevant sections
 tcavname={'TCY10490' 'TCY15280' 'XTCAVF'};
@@ -29,7 +31,7 @@ end
 c=299792458; % speed of light in vacuum [m/s]
 
 % Define max energy offset based on 2-bunch profile configuration
-de=[0.0014    0.0084    0.2700    0.3000 0.3]; % Max energy offset (GeV) defined at exit of [injector,L1,L2,L3] - use linear interpolation for intermediate locations
+de=[0.0014    0.0084    0.2700    0.3000 0.3].*1.1; % Max energy offset (GeV) defined at exit of [injector,L1,L2,L3] - use linear interpolation for intermediate locations
 dename={'BEGL1F' 'ENDL1F' 'ENDL2F' 'ENDL3F_2' 'MAINDUMP'};
 deind=zeros(1,length(dename));
 for iele=1:length(dename)
@@ -91,7 +93,9 @@ for iele=1:length(BEAMLINE)
   
   StayClear_x(iele).all = sqrt( StayClear_x(iele).beta^2 + StayClear_x(iele).eta^2 + StayClear_x(iele).tcav^2 ) ;
   StayClear_y(iele).all = sqrt( StayClear_y(iele).beta^2 + StayClear_y(iele).eta^2 + StayClear_y(iele).tcav^2 ) ;
-  StayClear_r(iele).all = sqrt( StayClear_r(iele).beta^2 + StayClear_r(iele).eta^2 + StayClear_r(iele).tcav^2 ) ;
+  StayClear_x(iele).all = max([StayClear_x(iele).all minclear]) ;
+  StayClear_y(iele).all = max([StayClear_y(iele).all minclear]) ;
+  StayClear_r(iele).all = sqrt( StayClear_x(iele).all.^2 + StayClear_y(iele).all^2 ) ;
   
 end
 close all
@@ -99,3 +103,11 @@ plot(S,[StayClear_r(:).beta].*1e3,S,[StayClear_r(:).eta].*1e3,S,[StayClear_r(:).
 legend({'Betatron stay-clear' 'Dispersive stay-clear' 'TCAV streak stay-clear' 'Overall stay-clear'});
 xlabel('S [m]'); ylabel('Stay-Clear Radius [mm]');
 AddMagnetPlot(1,length(BEAMLINE));
+vnames={'BeamlineIndex' 'S' 'x_all' 'x_beta' 'x_eta' 'x_tcav' 'y_all' 'y_beta' 'y_eta' 'y_tcav' 'r_all' 'r_beta' 'r_eta' 'r_tcav'};
+StayClearTable=table((1:length(BEAMLINE))',S(:),...
+  [StayClear_x(:).all]',[StayClear_x(:).beta]',[StayClear_x(:).eta]',[StayClear_x(:).tcav]',...
+  [StayClear_y(:).all]',[StayClear_y(:).beta]',[StayClear_y(:).eta]',[StayClear_y(:).tcav]',...
+  [StayClear_r(:).all]',[StayClear_r(:).beta]',[StayClear_r(:).eta]',[StayClear_r(:).tcav]','VariableNames',vnames);
+StayClearTable.Properties.Description=char(tablename);
+writetable(StayClearTable,sprintf('BeamStayClear_%s.xlsx',tablename));
+save(sprintf('BeamStayClear_%s',tablename),'StayClearTable');

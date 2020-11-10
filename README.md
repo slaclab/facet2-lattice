@@ -3,6 +3,7 @@ Lattice files for the FACET-II accelerator
 
 
 CHANGELOG:
+* 11/5/2020, G. White: Added model-independent data directory for storing e.g. Beam stay clear data
 * 05/18/2020, G. White: Imported (older) ImpactT files for FACET-II injector (warning, doesn't exactly match GPT files)
 * 03/03/2020, G. White: Files imported into slac lab / facet2-lattice github repo
 * 07/21/2017, G. White: Re-formatted decks by MDW and re-configured injector for FACET-II requirements
@@ -23,6 +24,7 @@ Also positron damping ring in AT format.
 See MAD/doc directory for some documentation.
 
 CONTENTS:
+* Data/ : Model independent data : Beam stay clear files
 * MAD/doc/ : Documentation directory
 * MAD/FACET2e.mad8 : Master deck file for parsing electron beamlines
 * Lucretia/models/FACET2e/FACET2e.mat : Lucretia file for electron beamlines

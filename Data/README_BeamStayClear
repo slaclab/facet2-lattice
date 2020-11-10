@@ -9,4 +9,4 @@ Data columns are:
 * "all" refers to overall stay clear- this is sum in quadrature of below
 * "beta" refers to betatron aperture (10 * sqrt(emit*beta))
 * "eta" refers to dispersive aperture (eta*de/E_max) + 10% safety margin
-* "tcav" refers to streaked tcav image (R_(12 or 34) * upstream tcav kick * sigma_z)
+* "tcav" refers to streaked tcav image (R_(12 or 34) * upstream tcav kick * sigma_z
