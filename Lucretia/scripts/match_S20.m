@@ -11,7 +11,9 @@ function varargout = match_S20(Initial,ConfigName,Nbunch,SextupoleMatch)
 %opts=match_S20('GetOps')
 % Lists available matching configuration options
 %
-%match_S20(Initial,ConfigurationName,Nbunch)
+%I_20=match_S20(Initial,ConfigurationName,Nbunch)
+%
+% I_20: Lucretia Initial structure corresponding to BEGBC20 marker
 %
 % Initial : Lucretia Initial structire from loaded repository model
 %
@@ -109,6 +111,7 @@ I=TwissToInitial(T,i1,Initial);
 I.Q=2e-9;
 I.x.NEmit=3.0e-6; I.y.NEmit=3e-6;
 I.SigPUncorrel=I.Momentum.*de;
+varargout{1}=I;
 
 % Form power supplies for matching magnet strengths
 qm={'QFF1*' 'QFF2*' 'QFF4*' 'QFF5*' 'QFF6*'};
