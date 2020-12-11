@@ -45,8 +45,8 @@ Initial=M.initStruc;
 Initial.SigPUncorrel=0.135*0.1e-2;
 T=TwissPlot(1,length(BEAMLINE),Initial,[1 1 0]);
 
-ip=findcells(BEAMLINE,'Name','MIP');
-fprintf('IP beta_x = %g beta_y = %g\n',T.betax(ip),T.betay(ip))
+% Set 15cm IP as default Sector 20 optics
+match_S20(Initial,'PWFA_15cm',1);
 
 % S-band structure apertures
 for iele=findcells(BEAMLINE,'Class','LCAV')
@@ -57,6 +57,14 @@ end
 SetSPositions(1,length(BEAMLINE),0);
 SetElementSlices(1,length(BEAMLINE));
 SetElementBlocks(1,length(BEAMLINE));
+
+% Check end co-ordinates
+dX_end = BEAMLINE{end}.Coordf-[0 -0.0796021612227596 2019.20524109153];
+dANG_end = BEAMLINE{end}.Anglef-[0 -0.006 0];
+disp('END BEAMLINE POSITION ERROR:')
+disp(dX_end)
+disp('END BEAMLINE ANGLE ERROR:')
+disp(dANG_end)
 
 % Save lattices
 % - BMAD

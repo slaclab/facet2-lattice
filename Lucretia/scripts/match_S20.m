@@ -87,8 +87,10 @@ switch ConfigName
     psno=3:5;
   case "filamentation_solid"
     ipbeta=[0.15 0.15];
+    ipname='FILS';
   case "filamentation_gas"
     ipbeta=[0.7 0.7];
+    ipname='FILG';
   otherwise
     error('Unknown configuration');
 end
