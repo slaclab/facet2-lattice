@@ -59,7 +59,7 @@ E0=[];
 if Nbunch==2
   E0=9.921; % Witness bunch energy
 end
-de=0.2e-2; % rms energy spread in S20
+de=1.2e-2; % rms relative energy spread in S20 (for matching sextupoles)
 psno=1:5;
 ConfigName = lower(string(ConfigName)) ;
 switch ConfigName
@@ -190,25 +190,24 @@ if SextupoleMatch
   disp('Optimizing Sextupole Strengths...');
   AssignToPS(findcells(BEAMLINE,'Name','S1E*'),length(PS)+1); sps(1)=length(PS); MovePhysicsVarsToPS(sps(1));
   AssignToPS(findcells(BEAMLINE,'Name','S2E*'),length(PS)+1); sps(2)=length(PS); MovePhysicsVarsToPS(sps(2));
+  AssignToPS(findcells(BEAMLINE,'Name','S3E*'),length(PS)+1); sps(3)=length(PS); MovePhysicsVarsToPS(sps(2));
   for ips=sps
     PS(ips).Ampl=0; PS(ips).SetPt=0;
   end
   SetTrackFlags('ZMotion',1,1,length(BEAMLINE));
-  if ConfigName == "sfqed"
-    tind=iscr;
-  else
-    tind=ipele;
-  end
   M=Match;
   M.beam=MakeBeam6DGauss(I,1e4,3,1);
   M.iInitial=i1;
   M.initStruc=I;
   M.verbose=false; % see optimizer output or not
-  M.optim='lsqnonlin';
+  M.optim='fminsearch';
   M.optimDisplay='iter';
   M.addVariable('PS', sps(1),'Ampl',-2170.6,2170.6); % S1's
   M.addVariable('PS', sps(2),'Ampl',-776.8,776.8); % S2's
-  M.addMatch(tind,'NEmit_x',0,I.x.NEmit);
+  M.addVariable('PS', sps(3),'Ampl',-776.8,776.8); % S3's
+  M.addMatch(ipele,'NEmit_x',0,I.x.NEmit);
+  M.addMatch(ipele,'NEmit_y',0,I.x.NEmit);
+  disp(M);
   M.doMatch();
   disp(M);
 end
