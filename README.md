@@ -3,7 +3,8 @@ Lattice files for the FACET-II accelerator
 
 
 CHANGELOG:
-* 11/5/2020, G. White: Added model-independent data directory for storing e.g. Beam stay clear data
+* 01/22/2021, G. White: Move BC11 magnets and devices per B. O'Shea for edge radiation equipmemt installation
+* 11/05/2020, G. White: Added model-independent data directory for storing e.g. Beam stay clear data
 * 05/18/2020, G. White: Imported (older) ImpactT files for FACET-II injector (warning, doesn't exactly match GPT files)
 * 03/03/2020, G. White: Files imported into slac lab / facet2-lattice github repo
 * 07/21/2017, G. White: Re-formatted decks by MDW and re-configured injector for FACET-II requirements
@@ -14,14 +15,13 @@ CHANGELOG:
 * 04/26/2017, G. White: Update PRLTDR optics to be compatible with v1.43 DR optics
 * 03/23/2016, G. White: Update to v1.43 of DR optics (sliced magnet models)
 * 11/15/2016, G. White: Add v1.4 of DR optics (Harmonic #=51, with 2 or 4 RF cavities)
-* 04/13/2016, G.White: TDR version
-* 02/08/2015, G.White: Initial CVS release.
+* 04/13/2016, G. White: TDR version
+* 02/08/2015, G. White: Initial CVS release.
 
-This archive file contains lattice files in MAD8 (or XSIF) and Lucretia format for the FACET2 electron and positron beam lines.
-Also electron beam line and positron damping ring in bmad format.
-Also positron damping ring in AT format.
-
-See MAD/doc directory for some documentation.
+The "source" description of all lattices should be considered to be the MAD8 files, which are mirrored in the SLAC CVS repository.
+This archive file contains lattice files in MAD8 (or XSIF), Lucretia and BMAD format for the FACET2 electron and positron beam lines.
+The positron damping ring is also in AT format.
+The injector, up to the exit of L0a is modelled in GPT, for which a GPT input and suporting files exists.
 
 CONTENTS:
 * Data/ : Model independent data : Beam stay clear files
@@ -41,4 +41,4 @@ CONTENTS:
 * AT/FACET2p_DR.mat : AT positron damping ring model
 * QDDSQ*.[xsif|bmad] : Sliced quad-sextupole arc models for DR
 * BA/BD.[xsif|bmad] : Sliced models for bend-quad-sextupole arc magnets for DR
-* ImpactT: Matlab scripts and supporting ImpactT data files to generate FACET-II electron injector lattice up to exit of L0a
+* GPT: Matlab scripts and supporting ImpactT data files to generate FACET-II electron injector lattice up to exit of L0a
