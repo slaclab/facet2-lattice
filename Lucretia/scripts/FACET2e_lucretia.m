@@ -43,10 +43,10 @@ M.doMatch;
 display(M)
 Initial=M.initStruc;
 Initial.SigPUncorrel=0.135*0.1e-2;
-T=TwissPlot(1,length(BEAMLINE),Initial,[1 1 0]);
 
-% Set 15cm IP as default Sector 20 optics
-match_S20(Initial,'PWFA_15cm',1);
+% Set default Sector 20 optics
+match_S20(Initial,"Phase1",1);
+T=TwissPlot(1,length(BEAMLINE),Initial,[1 1 0]);
 
 % S-band structure apertures
 for iele=findcells(BEAMLINE,'Class','LCAV')

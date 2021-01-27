@@ -1,4 +1,4 @@
-! Beam lines generated from Lucretia: (11-Dec-2020 09:24:41)
+! Beam lines generated from Lucretia: (26-Jan-2021 18:48:23)
 
 ! ===============================================
 parameter[e_tot] = 0.006 * 1e9
@@ -180,19 +180,17 @@ SQ2,SQ2,DFF2CMC,DYC1FF,YC1FF,DYC1FF,DYC1XC1F,DXC1FF,XC1FF,DXC1FF,DXC1QF,QFF2_1,&
 QFF2_1,DQ2FFM1,M2FF,DQ2FFM2,QFF2_2,QFF2_2,DQ2FF,QFF2_3,QFF2_3,DYC2QF,DYC2FF,&
 YC2FF,DYC2FF,DYC2XC2F,DXC2FF,DXC2PF,USTHZ,DBMARK67,DFF4P,DSTHZ,DYC3PF,DYC3FF,&
 DYC3XC3F,DXC3FF,XC3FF,DXC3FF,DXC3QF,QFF4_1,QFF4_1,DQ4FFM1,M3FF,DQ4FFM2,QFF4_2,&
-QFF4_2,DFF5A,DXC4FF,XC4FF,DXC4FF,DFF5B,QFF5,M4FF,QFF5,DFF6A,DYC4FF,YC4FF,&
-DYC4FF,DFF6B,QFF6,QFF6,ENDFF20,BEGEXPT20,DEX20_1,USOTR,DEX20_2,IQMON20,DEX20_3,&
-LCUBE,DEX20_4,PIC_CENT,DEX20_5,FILG,DEX20_5A,FILS,DEX20_5B,IPOTR1,DEX20_6,&
-IPOTR2,DEX20_7,IPWS1,DEX20_8,PENT,MIP,DEX20_9,PCENT,DEX20_10,IPWS2,DEX20_11,&
-IPOTR3,DEX20_12,ECUBE,DEX20_13,DWIN,DEX20_14,DSOTR1,DEX20_15,DSOTR2,DEX20_16,&
-ENDEXPT20,BEGSPECT20,QS1,QS1,DM1QEX,M1EX,LQSEPMA,DXC1EX,XC1EX,DXC1EX,LQSEPMB,&
-QS2,QS2,DM2QEX,M2EX,LQ2BENDM,B5D361,B5D362,DM3BEX,M3EX,LBPM2WIN,SCATSSTL,PRDMP,&
-LAIRA,TABLE2,LAIRB,ELANEX,LAIRC,BETAL,LAIRD,BETA1,LAIRE,CNEAR,LAIRF,AEROGEL,&
-LAIRG,CFAR,LAIRH,BETA2,LAIRI,PHOSPHOR,LAIRJ,MAINDUMP,DBMARK30,ENDSPECT20)
+QFF4_2,DFF5A,DXC4FF,XC4FF,DXC4FF,DFF5B,DQFF5,DFF6A,DYC4FF,YC4FF,DYC4FF,DFF6B,&
+QFF6,QFF6,ENDFF20,BEGEXPT20,DEX20_1,USOTR,DEX20_2,IQMON20,DEX20_3,LCUBE,&
+DEX20_4,PIC_CENT,DEX20_5,FILG,DEX20_5A,FILS,DEX20_5B,IPOTR1,DEX20_6,IPOTR2,&
+DEX20_7,IPWS1,DEX20_8,PENT,MIP,DEX20_9,PCENT,DEX20_10,IPWS2,DEX20_11,IPOTR3,&
+DEX20_12,ECUBE,DEX20_13,DWIN,DEX20_14,DSOTR1,DEX20_15,DSOTR2,DEX20_16,&
+ENDEXPT20,DMQ0D,Q0D,Q0D,DM1QEX,M0EX,D1D,DMQ1D,Q1D,Q1D,DM1QEX,M1EX,D2D,DMQ2D,&
+Q2D,Q2D,DM1QEX,M2EX,D3D,XC1EX,D4D,D7D,D6D,B5D361,B5D362,DM3BEX,M3EX,D8D,PDUMP,&
+LAIRG,MAINDUMP)
 
 ! MARK Definitions:
 
-AEROGEL: marker
 AS1EL: marker
 AS1ER: marker
 AS2EL: marker
@@ -213,7 +211,6 @@ BEGL1F: marker
 BEGL2F: marker
 BEGL3F_1: marker
 BEGL3F_2: marker
-BEGSPECT20: marker
 BX0FBEG: marker
 BX0FEND: marker
 CB1LE: marker
@@ -225,7 +222,6 @@ CB3RE: marker
 CNT0F: marker
 CNT1B: marker
 CNT2B: marker
-DBMARK30: marker
 DBMARK67: marker
 DLFDAF: marker
 DLFDBF: marker
@@ -245,7 +241,6 @@ ENDL1F: marker
 ENDL2F: marker
 ENDL3F_1: marker
 ENDL3F_2: marker
-ENDSPECT20: marker
 FILG: marker
 FILS: marker
 FLNGAF1: marker
@@ -296,10 +291,7 @@ OUTCPAF: marker
 OUTCPBF: marker
 PCENT: marker
 PENT: marker
-PHOSPHOR: marker
 PIC_CENT: marker
-SCATSSTL: marker
-TABLE2: marker
 
 ! DRIF Definitions:
 
@@ -322,6 +314,7 @@ D199C: drift,l=1.4195
 D199D: drift,l=1.4922
 D199E: drift,l=1.659184
 D199F: drift,l=0.308490683
+D1D: drift,l=0.75475698
 D1ET1A: drift,l=2.821013
 D1ET1B: drift,l=1.0449607
 D1ET2A: drift,l=2.452948
@@ -331,8 +324,11 @@ D210B1: drift,l=0.1
 D210B1_A: drift,l=0.9379
 D210B2: drift,l=0.1
 D210B_A: drift,l=6.83044831
+D2D: drift,l=0.754657
 D2EA: drift,l=0.917799
+D3D: drift,l=0.056305
 D3E: drift,l=0.1936
+D4D: drift,l=0.3742
 D4EA1: drift,l=0.193656
 D4EA2: drift,l=0.1028
 D4EB1: drift,l=0.250412
@@ -345,14 +341,17 @@ D5EC1A: drift,l=0.745056
 D5EC1B: drift,l=0.729533
 D5EC2A: drift,l=0.890355
 D5EC2B: drift,l=0.585095
+D6D: drift,l=0.100564884
 D6EA1: drift
 D6EA2: drift
 D6EB1: drift,l=0.187577754
 D6EB2: drift,l=0.157684754
 D6EC1: drift,l=0.15642775
 D6EC2: drift,l=0.18632075
+D7D: drift,l=0.3
 D7E1: drift,l=0.2293
 D7E2: drift,l=0.2293
+D8D: drift,l=10.7479317
 D8E: drift,l=0.241798
 D8EM: drift,l=0.205155
 DAA7: drift,l=0.8747
@@ -514,7 +513,6 @@ DM23C: drift,l=0.227465
 DM24A: drift,l=0.3065
 DM24B: drift,l=0.2487
 DM25: drift,l=0.3735
-DM2QEX: drift,l=0.290067
 DM3BEX: drift,l=0.357504435
 DM3Q: drift,l=0.157182
 DM4Q: drift,l=0.2397
@@ -524,6 +522,9 @@ DM7Q: drift
 DM8Q: drift,l=0.2397
 DM9Q: drift,l=0.185895
 DMQ: drift,l=0.1
+DMQ0D: drift,l=0.180048
+DMQ1D: drift,l=0.180048
+DMQ2D: drift,l=0.180048
 DPMM1: drift,l=0.339192
 DQ2FF: drift,l=0.2395984
 DQ2FFM1: drift,l=0.115523
@@ -532,6 +533,7 @@ DQ3E: drift,l=0.2294
 DQ4E: drift,l=0.2294
 DQ4FFM1: drift,l=0.329335
 DQ4FFM2: drift,l=0.1757666
+DQFF5: drift,l=2.026
 DS3E: drift,l=0.2397
 DTCWIG: drift,l=0.303373944
 DTM11: drift,l=0.916217
@@ -539,7 +541,6 @@ DTPM: drift,l=0.60494
 DWE: drift,l=0.126525395
 DXC1B: drift,l=0.26755
 DXC1E: drift,l=0.13
-DXC1EX: drift,l=0.175
 DXC1FF: drift,l=0.13
 DXC1QF: drift,l=0.192904
 DXC2E: drift,l=0.13
@@ -568,21 +569,8 @@ DYC3PF: drift,l=0.063941
 DYC3XC3F: drift,l=0.0367095
 DYC4FF: drift,l=0.068
 IN10WALL: drift,l=1.4224
-LAIRA: drift,l=0.016000288
-LAIRB: drift,l=0.044000792
-LAIRC: drift,l=0.1000018
-LAIRD: drift,l=0.288005184
-LAIRE: drift,l=0.322005796
-LAIRF: drift,l=0.05500099
-LAIRG: drift,l=0.05500099
-LAIRH: drift,l=0.482008676
-LAIRI: drift,l=1.01061819
-LAIRJ: drift,l=1.67272011
-LBPM2WIN: drift,l=8.37528775
+LAIRG: drift,l=1.672776
 LOADLOCKF: drift,l=0.869048001
-LQ2BENDM: drift,l=0.450403
-LQSEPMA: drift,l=0.579072
-LQSEPMB: drift,l=2.784333
 
 ! QUAD Definitions:
 
@@ -592,6 +580,7 @@ CQ14738: quadrupole,k1=-0.00228768472,l=0.08795,aperture=0.02667,&
 type="2.1q5.87"
 CQ14866: quadrupole,k1=-0.00228768472,l=0.08795,aperture=0.02667,&
 type="2.1q5.87"
+Q0D: quadrupole,k1=-0.225448895,l=0.5,aperture=0.027,type="2.13q38.31"
 Q11201: quadrupole,k1=1.77265557,l=0.0534,aperture=0.0137795,type="1.085q4.31"
 Q11301: quadrupole,k1=-3.16493255,l=0.0534,aperture=0.0137795,&
 type="1.085q4.31"
@@ -722,8 +711,10 @@ Q19801: quadrupole,k1=1.00000091,l=0.0534,aperture=0.0137795,type="1.085q4.31"
 Q19851: quadrupole,k1=-1.74950086,l=0.0534,aperture=0.0137795,&
 type="1.085q4.31"
 Q19871: quadrupole,k1=1.17416331,l=0.0534,aperture=0.0137795,type="1.085q4.31"
+Q1D: quadrupole,k1=0.401690652,l=0.5,aperture=0.027,type="2.13q38.31"
 Q1EL: quadrupole,k1=0.811267045,l=0.2981,aperture=0.008325,type="0.813q23"
 Q1ER: quadrupole,k1=0.811228495,l=0.2981,aperture=0.008325,type="0.813q23"
+Q2D: quadrupole,k1=-0.225448895,l=0.5,aperture=0.027,type="2.13q38.31"
 Q2EL: quadrupole,k1=-0.462440332,l=0.5,aperture=0.025,type="2.13q38.31"
 Q2ER: quadrupole,k1=-0.462438625,l=0.5,aperture=0.025,type="2.13q38.31"
 Q3EL_1: quadrupole,k1=0.462720997,l=0.3571,aperture=0.0186375,&
@@ -760,19 +751,18 @@ QE10425: quadrupole,k1=-15.2019038,l=0.054,aperture=0.016,type="1.26q3.5"
 QE10441: quadrupole,k1=14.6200181,l=0.054,aperture=0.016,type="1.26q3.5"
 QE10511: quadrupole,k1=10.3685859,l=0.054,aperture=0.016,type="1.26q3.5"
 QE10525: quadrupole,k1=-10.4752804,l=0.054,aperture=0.016,type="1.26q3.5"
-QFF1: quadrupole,k1=-0.439188675,l=0.23045,aperture=0.008325,type="0.813q17.7"
-QFF2_1: quadrupole,k1=-0.408376315,l=0.23045,aperture=0.008325,&
+QFF1: quadrupole,k1=0.603541911,l=0.23045,aperture=0.008325,type="0.813q17.7"
+QFF2_1: quadrupole,k1=-0.262506196,l=0.23045,aperture=0.008325,&
 type="0.813q17.7"
-QFF2_2: quadrupole,k1=-0.408376315,l=0.23045,aperture=0.008325,&
+QFF2_2: quadrupole,k1=-0.262506196,l=0.23045,aperture=0.008325,&
 type="0.813q17.7"
-QFF2_3: quadrupole,k1=-0.408376315,l=0.23045,aperture=0.008325,&
+QFF2_3: quadrupole,k1=-0.262506196,l=0.23045,aperture=0.008325,&
 type="0.813q17.7"
-QFF4_1: quadrupole,k1=0.386672585,l=0.3571,aperture=0.0186375,&
+QFF4_1: quadrupole,k1=0.313258907,l=0.3571,aperture=0.0186375,&
 type="1.625q27.3"
-QFF4_2: quadrupole,k1=0.386672585,l=0.3571,aperture=0.0186375,&
+QFF4_2: quadrupole,k1=0.313258907,l=0.3571,aperture=0.0186375,&
 type="1.625q27.3"
-QFF5: quadrupole,k1=-0.341234987,l=1.013,aperture=0.024,type="2.05q78.74"
-QFF6: quadrupole,k1=0.395104954,l=0.3571,aperture=0.0186375,type="1.625q27.3"
+QFF6: quadrupole,k1=-0.119329177,l=0.3571,aperture=0.0186375,type="1.625q27.3"
 QM10631: quadrupole,k1=11.9908879,l=0.054,aperture=0.016,type="1.26q3.5"
 QM10651: quadrupole,k1=-11.2334942,l=0.054,aperture=0.016,type="1.26q3.5"
 QM10771: quadrupole,k1=-7.12359311,l=0.054,aperture=0.016,type="1.26q3.5"
@@ -789,8 +779,6 @@ QM14715: quadrupole,k1=1.56924713,l=0.0534,aperture=0.0137795,&
 type="1.085q4.31"
 QM14891: quadrupole,k1=1.30176284,l=0.0534,aperture=0.0137795,&
 type="1.085q4.31"
-QS1: quadrupole,k1=-0.315229783,l=0.5,aperture=0.027,type="2.13q38.31"
-QS2: quadrupole,k1=0.229212641,l=0.5,aperture=0.027,type="2.13q38.31"
 SQ1: quadrupole,k1=0,l=0.19065,tilt=0.785398163,aperture=0.0257302,&
 type="2.026q14"
 SQ2: quadrupole,k1=0,l=0.19065,tilt=0.785398163,aperture=0.0257302,&
@@ -2065,6 +2053,7 @@ BPM19701: instrument,type="stripline-2"
 BPM19801: instrument,type="stripline-2"
 BPM19851: instrument,type="stripline-2"
 BPM19871: instrument,type="stripline-2"
+M0EX: instrument,type="r45"
 M11E: instrument,type="r45"
 M1E: instrument,type="r45"
 M1EX: instrument,type="r45"
@@ -2075,7 +2064,6 @@ M3E: instrument,type="r45"
 M3EX: instrument,type="r45"
 M3FF: instrument,type="r45"
 M4E: instrument,type="r45"
-M4FF: instrument,type="r0"
 M5E: instrument,type="r0"
 M6E: instrument,type="r24"
 M7E: instrument,type="r0"
@@ -2105,20 +2093,15 @@ WALLEND: instrument
 
 ! PROF Definitions:
 
-BETA1: instrument,type="unknown"
-BETA2: instrument,type="unknown"
-BETAL: instrument,type="unknown"
-CFAR: instrument,type="cherenkovwafer"
-CNEAR: instrument,type="cherenkovwafer"
 DSOTR1: instrument,type="otrfoil/yag"
 DSOTR2: instrument,type="otrfoil/yag"
 DSTHZ: instrument,type="otrfoil/yag"
-ELANEX: instrument,type="unknown"
 IPOTR1: instrument,type="otrfoil/yag"
 IPOTR2: instrument,type="otrfoil/yag"
 IPOTR3: instrument,type="otrfoil/yag"
 IPWS1: instrument,type="wire"
 IPWS2: instrument,type="wire"
+PDUMP: instrument,type="phosphor"
 PMON: instrument,type="phosphor"
 PR10241: instrument,type="yag"
 PR10465: instrument,type="@0,otr"
@@ -2129,7 +2112,6 @@ PR11335: instrument,type="otrbc"
 PR11375: instrument,type="otr"
 PR14803: instrument,type="otrbc"
 PR15944: instrument,type="otr"
-PRDMP: instrument,type="phosphor"
 SYAG: instrument,type="yag"
 TD11390: instrument,type="tune-updump"
 USOTR: instrument,type="otrfoil/yag"

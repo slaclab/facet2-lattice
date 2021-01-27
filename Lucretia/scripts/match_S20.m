@@ -18,6 +18,7 @@ function varargout = match_S20(Initial,ConfigName,Nbunch,SextupoleMatch)
 % Initial : Lucretia Initial structire from loaded repository model
 %
 % ConfigurationName :
+% "Phase1" - beta* = 50cm for KPP verification
 % "PWFA_15cm" - PWFA oven IP (PENT), beta*_x,y = 15cm
 % "PWFA_50cm" - PWFA oven IP (PENT), beta*_x,y = 50cm
 % "PWFA_100cm" - PWFA oven IP (PENT), beta*_x,y = 100cm
@@ -63,6 +64,9 @@ de=1.2e-2; % rms relative energy spread in S20 (for matching sextupoles)
 psno=1:5;
 ConfigName = lower(string(ConfigName)) ;
 switch ConfigName
+  case "phase1"
+    psno=1:4;
+    ipbeta=[15 15];
   case "pwfa_15cm"
     ipbeta=[0.15 0.15];
   case "pwfa_50cm"
@@ -96,7 +100,7 @@ switch ConfigName
 end
 
 % Required beamline indices
-iscr=findcells(BEAMLINE,'Name','PHOSPHOR');
+iscr=findcells(BEAMLINE,'Name','PDUMP');
 i1=findcells(BEAMLINE,'Name','BEGBC20');
 l3_1=findcells(BEAMLINE,'Name','BEGL3F_1');
 % l3_2=findcells(BEAMLINE,'Name','ENDL3F_1');
@@ -116,16 +120,23 @@ I.SigPUncorrel=I.Momentum.*de;
 varargout{1}=I;
 
 % Form power supplies for matching magnet strengths
-qm={'QFF1*' 'QFF2*' 'QFF4*' 'QFF5*' 'QFF6*'};
-for iquad=1:5
+if ConfigName=="phase1"
+  qm={'QFF1*' 'QFF2*' 'QFF4*' 'QFF6*'};
+else
+  qm={'QFF1*' 'QFF2*' 'QFF4*' 'QFF5*' 'QFF6*'};
+end
+for iquad=1:length(qm)
   iele=findcells(BEAMLINE,'Name',qm{iquad});
   AssignToPS( iele, length(PS)+1 ) ;
 end
 MovePhysicsVarsToPS(1:length(PS));
 
-if ConfigName=="sfqed"
+if ConfigName=="sfqed" || ConfigName~="phase1"
   for ips=1:length(PS)
     PS(ips).Ampl=0; PS(ips).SetPt=0;
+    for iele=PS(ips).Element
+      BEAMLINE{iele}.B=0;
+    end
   end
 end
 
@@ -144,30 +155,40 @@ M.optim=optim;
 M.optimDisplay=odisp;
 M.addMatch(ipele,'alpha_x',0,0.0001);
 M.addMatch(ipele,'alpha_y',0,0.0001);
-M.addMatch(ipele,'beta_x',ipbeta(1),0.0001);
-M.addMatch(ipele,'beta_y',ipbeta(2),0.0001);
+% if ConfigName~="phase1"
+  M.addMatch(ipele,'beta_x',ipbeta(1),0.0001);
+  M.addMatch(ipele,'beta_y',ipbeta(2),0.0001);
+% end
 M.doMatch();
 if strcmp(odisp,'iter')
   disp(M);
 end
 
+
 % Match dump optics from IP
 if ~startsWith(ConfigName,"kraken")
-  qd=findcells(BEAMLINE,'Name','QS1');
-  qf=findcells(BEAMLINE,'Name','QS2');
+  if ConfigName == "sfqed"
+    qd=findcells(BEAMLINE,'Name','Q2D');
+    qf=findcells(BEAMLINE,'Name','Q1D');
+    for iele=findcells(BEAMLINE,'Name','Q0D')
+      BEAMLINE{iele}.B=0;
+    end
+  else
+    qd=[findcells(BEAMLINE,'Name','Q0D') findcells(BEAMLINE,'Name','Q2D')];
+    qf=findcells(BEAMLINE,'Name','Q1D');
+  end
   for iele=qf;BEAMLINE{iele}.B=1; end
   for iele=qd;BEAMLINE{iele}.B=-1; end
   AssignToPS(qf,length(PS)+1); psqf=length(PS);
   AssignToPS(qd,length(PS)+1); psqd=length(PS);
-  MovePhysicsVarsToPS(psqf);
-  MovePhysicsVarsToPS(psqd);
+  MovePhysicsVarsToPS([psqf psqd]);
   qmax=100;
   M=Match;
   M.beam=MakeBeam6DGauss(I,1e3,3,1);
   M.iInitial=i1;
   M.initStruc=I;
   M.verbose=false; % see optimizer output or not
-  M.optim='fminsearch';
+  M.optim='lsqnonlin';
   M.optimDisplay=odisp;
   if ConfigName == "sfqed"
     M.addMatch(iscr,'R',0,1e-14,'11');
@@ -213,7 +234,7 @@ if SextupoleMatch
 end
 
 % Display matched magnet values and restore database to BEAMLINE
-qm=[qm {'QS1' 'QS2'}];
+qm=[qm {'Q0D' 'Q1D' 'Q2D'}];
 for ips=1:length(PS)
   for iele=PS(ips).Element
     if GetTrueStrength(iele)==0
@@ -238,9 +259,20 @@ for ips=1:length(qm)
   fprintf('BDES %s := %.1f (BMAX = %.1f) \n',BEAMLINE{iele(1)}.Name,10*sum(arrayfun(@(x) BEAMLINE{x}.B,iele)),bmax(ips));
 end
 if SextupoleMatch
-  snames={'S1E','S2E'};
+  snames={'S1E','S2E','S3E'};
   for isext=1:length(snames)
     iele=findcells(BEAMLINE,'Name',sprintf('%s*',snames{isext}));
     fprintf('K%s := %g\n',BEAMLINE{iele(1)}.Name,BEAMLINE{iele(1)}.B/(BEAMLINE{iele(1)}.L*Cb*BEAMLINE{iele(1)}.P));
   end
 end
+% Show FFS magnets in format for import into FFS_magnets.xlsx
+iv=IVB; % current lookup object
+magnames={'QFF1*' 'QFF2*' 'QFF4*' 'QFF6*' 'Q0D' 'Q1D' 'Q2D'};
+disp(magnames)
+for ips=1:length(magnames)
+  iele=findcells(BEAMLINE,'Name',magnames{ips});
+  BDES = sum(arrayfun(@(x) BEAMLINE{x}.B,iele)) ;
+  IDES=GetI(iv,BEAMLINE{iele(1)}.Type,BDES);
+  fprintf('%g %g ',BDES*10,IDES);
+end
+fprintf('\n');

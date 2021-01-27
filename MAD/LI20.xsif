@@ -1,8 +1,9 @@
 
-! *** OPTICS=FACET2-21AUG19 ***
+! *** FACET-II Sector 20 Phase-I upgrade configuration ***
+! : QFF5 magnet removed, Q0-Q2D triplet installed in final positions
 
 ! ==============================================================================
-! FACET e- optics, v35
+! FACET e- optics
 ! ------------------------------------------------------------------------------
 ! 17-JUN-2020, G. White
 !  * Added new beamline components to IP area as per engineering drawing from
@@ -440,11 +441,10 @@
   KQFF1 :=  0.415520132864
   KQFF2 := -0.320900222208 !3 magnets
   KQFF4 :=  0.344582790778 !2 magnets
-  KQFF5 := -0.439926573681
   KQFF6 :=  0.886316
-  KQS0  := -1.070719       !-335 kG @ 20.35 GeV
-  KQS1  :=  0.306155969542
-  KQS2  := -0.236008213549
+  KQ0D  :=  0
+  KQ1D  :=  0
+  KQ2D  :=  0
 
   QFF1   : QUAD, TYPE="0.813Q17.7", L=LQFF1/2, APER=AQFF1, K1=KQFF1
   QFF2_1 : QUAD, TYPE="0.813Q17.7", L=LQFF2/2, APER=AQFF2, K1=KQFF2
@@ -452,13 +452,13 @@
   QFF2_3 : QUAD, TYPE="0.813Q17.7", L=LQFF2/2, APER=AQFF2, K1=KQFF2
   QFF4_1 : QUAD, TYPE="1.625Q27.3", L=LQFF4/2, APER=AQFF4, K1=KQFF4
   QFF4_2 : QUAD, TYPE="1.625Q27.3", L=LQFF4/2, APER=AQFF4, K1=KQFF4
-  QFF5   : QUAD, TYPE="2.05Q78.74", L=LQFF5/2, APER=AQFF5, K1=KQFF5
+  DQFF5  : DRIF, L=LQFF5 ! space where removed QFF5 magnet was removed from 
   QFF6   : QUAD, TYPE="1.625Q27.3", L=LQFF6/2, APER=AQFF6, K1=KQFF6
 
-! spectrometer: image MIP to AEROGEL
-
-  QS1 : QUAD, TYPE="2.13Q38.31", L=LQS/2, APER=AQS, K1=KQS1
-  QS2 : QUAD, TYPE="2.13Q38.31", L=LQS/2, APER=AQS, K1=KQS2
+! spectrometer:
+  Q0D: QUADRUPOLE,K1=KQ0D,L=0.5,APERTURE=AQS,TYPE="2.13Q38.31"
+  Q1D: QUADRUPOLE,K1=KQ1D,L=0.5,APERTURE=AQS,TYPE="2.13Q38.31"
+  Q2D: QUADRUPOLE,K1=KQ0D,L=0.5,APERTURE=AQS,TYPE="2.13Q38.31"
 
 ! skew quadrupoles
 
@@ -738,11 +738,10 @@
   DYC4FF   : DRIF, L=LC136/2
   DFF6B    : DRIF, L=0.1681+dZQFF6
 
-  DM1QEX   : DRIF, L=LDM1QEX-0.026765
+  DM1QEX   : DRIF, L=0.286595
   LQSEPMA  : DRIF, L=0.579-dZQS1
   DXC1EX   : DRIF, L=0.35/2
   LQSEPMB  : DRIF, L=2.784289+dZQS2
-  DM2QEX   : DRIF, L=LDM2QEX-0.023363
   LQ2BENDM : DRIF, L=LQ2BEND-LDM2QEX+0.021007-dZQS2
 
   DM3BEX   : DRIF, L=0.357498/COS(ABD)
@@ -753,10 +752,28 @@
   LAIRd    : DRIF, L=0.288/COS(ABD)
   LAIRe    : DRIF, L=0.322/COS(ABD)
   LAIRf    : DRIF, L=0.055/COS(ABD)
-  LAIRg    : DRIF, L=0.055/COS(ABD)
   LAIRh    : DRIF, L=0.482/COS(ABD)
   LAIRi    : DRIF, L=1.0106/COS(ABD)
   LAIRj    : DRIF, L=1.67269/COS(ABD)
+
+  DMQ5FF: DRIFT,L=0.0833
+  DMQ4FF: DRIFT,L=0.2049
+  DMQ3FF: DRIFT,L=0.176336
+  DMQ2FF: DRIFT,L=0.2049
+  DMQ0FF: DRIFT,L=0.204852
+  DMQ0D: DRIFT,L=0.180048
+  DMQ1D: DRIFT,L=0.180048
+  DMQ2D: DRIFT,L=0.180048
+  DFFS1: DRIFT,L=0.5
+  DFFS2: DRIFT,L=0.5
+  D1D: DRIFT,L=1.04135198-0.286595
+  D2D: DRIFT,L=1.041252-0.286595
+  D3D: DRIFT,L=0.3429-0.286595
+  D4D: DRIFT,L=0.3742
+  D6D: DRIFT,L=0.100564884418124
+  D7D: DRIFT,L=0.3
+  D8D: DRIFT,L=11.105436138-0.357504435
+  LAIRG: DRIFT,L=1.6727760021
 
 ! Experiment table drifts
   DEX20_1  : DRIF, L=0.3443808
@@ -797,6 +814,7 @@
   XC4FF  : HKIC, TYPE="3D8.8MK2"     !0.815" gap
   XC1EX  : HKIC, TYPE="3D4"          !1.181" gap
 
+
 ! ==============================================================================
 ! YCORs
 ! ------------------------------------------------------------------------------
@@ -810,6 +828,8 @@
   YC1FF  : VKIC, TYPE="3D8.8MK2"     !0.815" gap
   YC2FF  : VKIC, TYPE="3D8.8MK2"     !0.815" gap
   YC4FF  : VKIC, TYPE="3D4"          !1.181" gap
+
+  YC0D: VKICK,TYPE="3D8.8MK2"
 
 ! ==============================================================================
 ! BPMs
@@ -830,9 +850,13 @@
   M2FF  : MONI, TYPE="R45"
   M3FF  : MONI, TYPE="R45"
   M4FF  : MONI, TYPE="R0"
+  M0EX  : MONI, TYPE="R45"
   M1EX  : MONI, TYPE="R45"
   M2EX  : MONI, TYPE="R45"
   M3EX  : MONI, TYPE="R45"
+  MQ0D: MONI 
+  MQ1D: MONI
+  MQ2D: MONI
 
 ! ==============================================================================
 ! diagnostics, collimators, MARKERs, etc.
@@ -916,10 +940,10 @@
   SCATSSTL   : MARK
   TABLE2     : MARK
   AEROGEL    : MARK
-  PHOSPHOR   : MARK !phosphor paper taped to dump face
   MAINDUMP   : INST !dump face
   DBMARK30   : MARK
   ENDSPECT20 : MARK
+  PDUMP: PROF,TYPE="phosphor" ! dump screen
 
 ! ==============================================================================
 ! BEAMLINEs
@@ -1044,7 +1068,6 @@
   QFF2_3_full : LINE=(QFF2_3,QFF2_3)
   QFF4_1_full : LINE=(QFF4_1,QFF4_1)
   QFF4_2_full : LINE=(QFF4_2,QFF4_2)
-  QFF5_full   : LINE=(QFF5,M4FF,QFF5)
   QFF6_full   : LINE=(QFF6,QFF6)
 
   FF : LINE=(BEGFF20,DFF1,MFFF,&
@@ -1057,7 +1080,7 @@
      DBMARK67,DFF4P,DSTHz,DYC3PF,DYC3FF,DYC3XC3F,DXC3FF,XC3FF,DXC3FF,DXC3QF,&
     QFF4_1_full,DQ4FFM1,M3FF,DQ4FFM2,&
     QFF4_2_full,DFF5A,DXC4FF,XC4FF,DXC4FF,DFF5B,&
-    QFF5_full,DFF6A,DYC4FF,YC4FF,DYC4FF,DFF6B,&
+    DQFF5,DFF6A,DYC4FF,YC4FF,DYC4FF,DFF6B,&
     QFF6_full,&
     ENDFF20)
 
@@ -1067,18 +1090,22 @@
     DWIN,DEX20_14,DSOTR1,DEX20_15,DSOTR2,DEX20_16,ENDEXPT20)
 
   B5D36_full : LINE=(B5D361,B5D362)
-
-  QS1_full : LINE=(QS1,QS1)
-  QS2_full : LINE=(QS2,QS2)
  
   ! z= 1998.708952
-  SPECT : LINE=(BEGSPECT20,&
-    QS1_full,DM1QEX,M1EX,LQSEPMA,DXC1EX,XC1EX,DXC1EX,LQSEPMB,&
-    QS2_full,DM2QEX,M2EX,LQ2BENDM,&
-    B5D36_full,DM3BEX,M3EX,LBPM2WIN,SCATSSTL,PRDMP,LAIRa,TABLE2,&
-     LAIRb,ELANEX,LAIRc,BETAL,LAIRd,BETA1,LAIRe,CNEAR,LAIRf,AEROGEL,&
-     LAIRg,CFAR,LAIRh,BETA2,LAIRi,PHOSPHOR,LAIRj,MAINDUMP,DBMARK30,&
-    ENDSPECT20)
+  SPECT : LINE=(DMQ0D,Q0D,Q0D,DM1QEX,M0EX,D1D,DMQ1D,Q1D,Q1D,DM1QEX,M1EX,D2D,DMQ2D,Q2D,&
+    Q2D,DM1QEX,M2EX,D3D,XC1EX,D4D,D7D,D6D,B5D36_full,&
+    DM3BEX,M3EX,D8D,PDUMP,LAIRG,MAINDUMP)
+  ! version with more correctors:
+  !SPECT : LINE=(DMQ0D,Q0D,Q0D,DM1QEX,M0EX,D1D,DMQ1D,Q1D,Q1D,DM1QEX,M1EX,D2D,DMQ2D,Q2D,&
+  !  Q2D,DM1QEX,M2EX,D3D,XC1EX,D4D,YC0D,D7D,XC1D,D6D,B5D36_full,D8D,PDUMP,LAIRG,MAINDUMP)
+
+!SPECT : LINE=(BEGSPECT20,&
+!    QS1_full,DM1QEX,M1EX,LQSEPMA,DXC1EX,XC1EX,DXC1EX,LQSEPMB,&
+!    QS2_full,DM2QEX,M2EX,LQ2BENDM,&
+!    B5D36_full,DM3BEX,M3EX,LBPM2WIN,SCATSSTL,PRDMP,LAIRa,TABLE2,&
+!     LAIRb,ELANEX,LAIRc,BETAL,LAIRd,BETA1,LAIRe,CNEAR,LAIRf,AEROGEL,&
+!     LAIRg,CFAR,LAIRh,BETA2,LAIRi,PHOSPHOR,LAIRj,MAINDUMP,DBMARK30,&
+!    ENDSPECT20)
 
   S20E : LINE=(CHICANE,FF,EXPT,SPECT)
 
