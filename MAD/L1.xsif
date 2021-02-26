@@ -1,5 +1,5 @@
 
-! *** OPTICS=FACET2-21AUG19 ***
+! *** OPTICS=FACET2-25FEB21 ***
 
 ! ==============================================================================
 ! Modification History
@@ -43,8 +43,8 @@
                   ELOSS=KlossL1*2.3752, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K11_1d  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*gradL1*3.0441, PHI0=phiL1, &
-                  ELOSS=KlossL1*3.0441, &
+                  L=DLWL10, DELTAE=P25*gradL1*DLWL10, PHI0=phiL1, &
+                  ELOSS=KlossL1*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
 
   K11_2a1 : LCAV, FREQ=SbandF, TYPE="10ft", &
@@ -60,8 +60,8 @@
                   ELOSS=KlossL1*2.4315, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K11_2b  : LCAV, FREQ=SbandF, TYPE="9.4ft", &
-                  L=2.8692, DELTAE=P25*gradL1*2.8692, PHI0=phiL1, &
-                  ELOSS=KlossL1*2.8692, &
+                  L=DLWL9, DELTAE=P25*gradL1*DLWL9, PHI0=phiL1, &
+                  ELOSS=KlossL1*DLWL9, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K11_2c1 : LCAV, FREQ=SbandF, TYPE="10ft", &
                   L=0.5000, DELTAE=P50*gradL1*0.5000, PHI0=phiL1, &
@@ -72,12 +72,37 @@
                   ELOSS=KlossL1*2.5441, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
 
+! define unsplit LCAVs for BMAD ... not used by MAD
+
+  K11_1b : LCAV, FREQ=SbandF, TYPE="9.4ft", &
+                 L=DLWL9, DELTAE=P50*gradL1*DLWL9, PHI0=phiL1, &
+                 ELOSS=KlossL1*DLWL9, &
+                 LFILE="sband_l.dat", TFILE="sband_t.dat"
+  K11_1c : LCAV, FREQ=SbandF, TYPE="10ft", &
+                 L=DLWL10, DELTAE=P25*gradL1*DLWL10, PHI0=phiL1, &
+                 ELOSS=KlossL1*DLWL10, &
+                 LFILE="sband_l.dat", TFILE="sband_t.dat"
+
+  K11_2a : LCAV, FREQ=SbandF, TYPE="10ft", &
+                 L=DLWL10, DELTAE=P25*gradL1*DLWL10, PHI0=phiL1, &
+                 ELOSS=KlossL1*DLWL10, &
+                 LFILE="sband_l.dat", TFILE="sband_t.dat"
+
+  K11_2c : LCAV, FREQ=SbandF, TYPE="10ft", &
+                 L=DLWL10, DELTAE=P50*gradL1*DLWL10, PHI0=phiL1, &
+                 ELOSS=KlossL1*DLWL10, &
+                 LFILE="sband_l.dat", TFILE="sband_t.dat"
+
 ! ------------------------------------------------------------------------------
 ! L1 X-band
 ! ------------------------------------------------------------------------------
 
   L1XF__1 : LCAV, FREQ=XbandF, TYPE="@0,linearizer", L=DLWLX/2, ELOSS=0
   L1XF__2 : LCAV, FREQ=XbandF, TYPE="@0,linearizer", L=DLWLX/2, ELOSS=0
+
+! define unsplit LCAVs for BMAD ... not used by MAD
+
+  L1XF : LCAV, FREQ=XbandF, TYPE="@0,linearizer", L=DLWLX, ELOSS=0
 
 ! ==============================================================================
 ! QUADs
@@ -158,11 +183,13 @@
 
   L1c : LINE=(D9,DAQA,QFL1,QFL1,DAQA,D9,DAQA,QDL1,QDL1,DAQA)
 
-  K11_1b : LINE=(K11_1b1,XC11104,YC11105,K11_1b2)
-  K11_1c : LINE=(K11_1c1,XC11140,YC11141,K11_1c2)
-  K11_2a : LINE=(K11_2a1,XC11202,K11_2a2,YC11203,K11_2a3)
-  K11_2c : LINE=(K11_2c1,XC11272,YC11273,K11_2c2)
-  K1XF   : LINE=(L1XFBEG,L1XF__1,XC11304,YC11305,L1XF__2,L1XFEND)
+  K11_1b_full : LINE=(K11_1b1,XC11104,YC11105,K11_1b2)
+  K11_1c_full : LINE=(K11_1c1,XC11140,YC11141,K11_1c2)
+  K11_1d_full : LINE=(K11_1d)
+  K11_2a_full : LINE=(K11_2a1,XC11202,K11_2a2,YC11203,K11_2a3)
+  K11_2b_full : LINE=(K11_2b)
+  K11_2c_full : LINE=(K11_2c1,XC11272,YC11273,K11_2c2)
+  L1XF_full   : LINE=(L1XFBEG,L1XF__1,XC11304,YC11305,L1XF__2,L1XFEND)
 
   QA11132_full : LINE=(QA11132,BPM11132,QA11132)
   Q11201_full  : LINE=(Q11201,BPM11201,Q11201)
@@ -170,11 +197,13 @@
   Q11301_full  : LINE=(Q11301,BPM11301,Q11301)
 
   L1F : LINE=(BEGL1F,&
-    K11_1b,DAQA1,QA11132_full,DAQA2,K11_1c,K11_1d,DAQ1,&
-    Q11201_full,DAQ2,&
-    K11_2a,K11_2b,DAQA3,QA11265_full,DAQA4,K11_2c,DAQA5,&
-    Q11301_full,DAQA6,VV11302,DL1X,&
-    K1XF,DM10A,VV11308,&
+    K11_1b_full,DAQA1,QA11132_full,DAQA2,&
+    K11_1c_full,&
+    K11_1d_full,DAQ1,Q11201_full,DAQ2,&
+    K11_2a_full,&
+    K11_2b_full,DAQA3,QA11265_full,DAQA4,&
+    K11_2c_full,DAQA5,Q11301_full,DAQA6,VV11302,DL1X,&
+    L1XF_full,DM10A,VV11308,&
     ENDL1F)
 
 ! ==============================================================================

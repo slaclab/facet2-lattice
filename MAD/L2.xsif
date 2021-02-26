@@ -1,5 +1,5 @@
 
-! *** OPTICS=FACET2-21AUG19 ***
+! *** OPTICS=FACET2-25FEB21 ***
 
 ! ==============================================================================
 ! Modification History
@@ -49,16 +49,16 @@
                   ELOSS=KlossL2*1.5926, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K11_4b  : LCAV, FREQ=SbandF, TYPE="7ft", &
-                  L=2.1694, DELTAE=P25*g11_4*2.1694, PHI0=phiL2, &
-                  ELOSS=KlossL2*2.1694, &
+                  L=DLWL7, DELTAE=P25*g11_4*DLWL7, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL7, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K11_4c  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g11_4*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g11_4*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K11_4d  : LCAV, FREQ=SbandF, TYPE="7ft", &
-                  L=2.1694, DELTAE=P25*g11_4*2.1694, PHI0=phiL2, &
-                  ELOSS=KlossL2*2.1694, &
+                  L=DLWL7, DELTAE=P25*g11_4*DLWL7, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL7, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
 
   K11_5a1 : LCAV, FREQ=SbandF, TYPE="10ft", &
@@ -70,16 +70,16 @@
                   ELOSS=KlossL2*2.3752, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K11_5b  : LCAV, FREQ=SbandF, TYPE="7ft", &
-                  L=2.1694, DELTAE=P25*g11_5*2.1694, PHI0=phiL2, &
-                  ELOSS=KlossL2*2.1694, &
+                  L=DLWL7, DELTAE=P25*g11_5*DLWL7, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL7, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K11_5c  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g11_5*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g11_5*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K11_5d  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g11_5*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g11_5*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
 
   K11_6a1 : LCAV, FREQ=SbandF, TYPE="7ft", &
@@ -95,33 +95,33 @@
                   ELOSS=KlossL2*1.5914, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K11_6b  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g11_6*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g11_6*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K11_6c  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g11_6*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g11_6*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K11_6d  : LCAV, FREQ=SbandF, TYPE="7ft", &
-                  L=2.1694, DELTAE=P25*g11_6*2.1694, PHI0=phiL2, &
-                  ELOSS=KlossL2*2.1694, &
+                  L=DLWL7, DELTAE=P25*g11_6*DLWL7, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL7, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
 
   K11_7a  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g11_7*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g11_7*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K11_7b  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g11_7*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g11_7*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K11_7c  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g11_7*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g11_7*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K11_7d  : LCAV, FREQ=SbandF, TYPE="7ft", &
-                  L=2.1694, DELTAE=P25*g11_7*2.1694, PHI0=phiL2, &
-                  ELOSS=KlossL2*2.1694, &
+                  L=DLWL7, DELTAE=P25*g11_7*DLWL7, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL7, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
 
   K11_8a1 : LCAV, FREQ=SbandF, TYPE="10ft", &
@@ -133,33 +133,33 @@
                   ELOSS=KlossL2*2.65777, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K11_8b  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g11_8*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g11_8*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K11_8c  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g11_8*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g11_8*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K11_8d  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g11_8*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g11_8*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
 
   K12_1a  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g12_1*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g12_1*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K12_1b  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g12_1*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g12_1*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K12_1c  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g12_1*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g12_1*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K12_1d  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g12_1*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g12_1*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
 
   K12_2a1 : LCAV, FREQ=SbandF, TYPE="7ft", &
@@ -175,16 +175,16 @@
                   ELOSS=KlossL2*1.5914, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K12_2b  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g12_2*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g12_2*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K12_2c  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g12_2*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g12_2*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K12_2d  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g12_2*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g12_2*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
 
   K12_3a1 : LCAV, FREQ=SbandF, TYPE="10ft", &
@@ -200,16 +200,16 @@
                   ELOSS=KlossL2*2.4629, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K12_3b  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g12_3*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g12_3*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K12_3c  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g12_3*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g12_3*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K12_3d  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g12_3*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g12_3*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
 
   K12_4a1 : LCAV, FREQ=SbandF, TYPE="10ft", &
@@ -225,16 +225,16 @@
                   ELOSS=KlossL2*2.4673, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K12_4b  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g12_4*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g12_4*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K12_4c  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g12_4*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g12_4*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K12_4d  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g12_4*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g12_4*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
 
   K12_5a1 : LCAV, FREQ=SbandF, TYPE="10ft", &
@@ -250,16 +250,16 @@
                   ELOSS=KlossL2*2.4617, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K12_5b  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g12_5*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g12_5*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K12_5c  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g12_5*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g12_5*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K12_5d  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g12_5*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g12_5*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
 
   K12_6a1 : LCAV, FREQ=SbandF, TYPE="10ft", &
@@ -275,16 +275,16 @@
                   ELOSS=KlossL2*2.2831, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K12_6b  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g12_6*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g12_6*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K12_6c  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g12_6*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g12_6*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K12_6d  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g12_6*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g12_6*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
 
   K12_7a1 : LCAV, FREQ=SbandF, TYPE="10ft", &
@@ -300,16 +300,16 @@
                   ELOSS=KlossL2*2.3530, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K12_7b  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g12_7*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g12_7*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K12_7c  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g12_7*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g12_7*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K12_7d  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g12_7*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g12_7*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
 
   K12_8a1 : LCAV, FREQ=SbandF, TYPE="10ft", &
@@ -325,12 +325,12 @@
                   ELOSS=KlossL2*2.3117, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K12_8b  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g12_8*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g12_8*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K12_8c  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g12_8*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g12_8*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K12_8d1 : LCAV, FREQ=SbandF, TYPE="10ft", &
                   L=2.3869, DELTAE=P25*g12_8*2.3869, PHI0=phiL2, &
@@ -346,20 +346,20 @@
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
 
   K13_1a  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g13_1*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g13_1*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K13_1b  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g13_1*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g13_1*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K13_1c  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g13_1*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g13_1*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K13_1d  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g13_1*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g13_1*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
 
   K13_2a1 : LCAV, FREQ=SbandF, TYPE="10ft", &
@@ -375,16 +375,16 @@
                   ELOSS=KlossL2*2.3339, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K13_2b  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g13_2*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g13_2*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K13_2c  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g13_2*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g13_2*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K13_2d  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g13_2*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g13_2*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
 
   K13_3a1 : LCAV, FREQ=SbandF, TYPE="10ft", &
@@ -400,16 +400,16 @@
                   ELOSS=KlossL2*2.3307, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K13_3b  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g13_3*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g13_3*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K13_3c  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g13_3*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g13_3*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K13_3d  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g13_3*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g13_3*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
 
   K13_4a1 : LCAV, FREQ=SbandF, TYPE="10ft", &
@@ -425,16 +425,16 @@
                   ELOSS=KlossL2*2.2672, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K13_4b  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g13_4*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g13_4*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K13_4c  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g13_4*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g13_4*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K13_4d  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g13_4*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g13_4*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
 
   K13_5a1 : LCAV, FREQ=SbandF, TYPE="10ft", &
@@ -450,16 +450,16 @@
                   ELOSS=KlossL2*2.4617, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K13_5b  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g13_5*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g13_5*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K13_5c  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g13_5*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g13_5*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K13_5d  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g13_5*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g13_5*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
 
   K13_6a1 : LCAV, FREQ=SbandF, TYPE="10ft", &
@@ -475,16 +475,16 @@
                   ELOSS=KlossL2*2.4661, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K13_6b  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g13_6*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g13_6*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K13_6c  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g13_6*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g13_6*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K13_6d  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g13_6*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g13_6*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
 
   K13_7a1 : LCAV, FREQ=SbandF, TYPE="10ft", &
@@ -500,16 +500,16 @@
                   ELOSS=KlossL2*2.4605, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K13_7b  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g13_7*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g13_7*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K13_7c  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g13_7*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g13_7*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K13_7d  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g13_7*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g13_7*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
 
   K13_8a1 : LCAV, FREQ=SbandF, TYPE="10ft", &
@@ -525,12 +525,12 @@
                   ELOSS=KlossL2*2.3085, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K13_8b  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g13_8*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g13_8*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K13_8c  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g13_8*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g13_8*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K13_8d1 : LCAV, FREQ=SbandF, TYPE="10ft", &
                   L=2.3869, DELTAE=P25*g13_8*2.3869, PHI0=phiL2, &
@@ -546,20 +546,20 @@
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
 
   K14_1a  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g14_1*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g14_1*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K14_1b  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g14_1*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g14_1*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K14_1c  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g14_1*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g14_1*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K14_1d  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g14_1*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g14_1*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
 
   K14_2a1 : LCAV, FREQ=SbandF, TYPE="10ft", &
@@ -575,16 +575,16 @@
                   ELOSS=KlossL2*2.4685, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K14_2b  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g14_2*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g14_2*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K14_2c  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g14_2*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g14_2*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K14_2d  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g14_2*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g14_2*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
 
   K14_3a1 : LCAV, FREQ=SbandF, TYPE="10ft", &
@@ -600,16 +600,16 @@
                   ELOSS=KlossL2*2.3117, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K14_3b  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g14_3*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g14_3*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K14_3c  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g14_3*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g14_3*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K14_3d  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g14_3*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g14_3*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
 
   K14_4a1 : LCAV, FREQ=SbandF, TYPE="10ft", &
@@ -625,16 +625,16 @@
                   ELOSS=KlossL2*2.4673, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K14_4b  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g14_4*3.0441, PHI0=-phiFB2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g14_4*DLWL10, PHI0=-phiFB2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K14_4c  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g14_4*3.0441, PHI0=-phiFB2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g14_4*DLWL10, PHI0=-phiFB2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K14_4d  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g14_4*3.0441, PHI0=-phiFB2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g14_4*DLWL10, PHI0=-phiFB2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
 
   K14_5a1 : LCAV, FREQ=SbandF, TYPE="10ft", &
@@ -650,16 +650,16 @@
                   ELOSS=KlossL2*2.4617, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K14_5b  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g14_5*3.0441, PHI0=+phiFB2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g14_5*DLWL10, PHI0=+phiFB2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K14_5c  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g14_5*3.0441, PHI0=+phiFB2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g14_5*DLWL10, PHI0=+phiFB2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K14_5d  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g14_5*3.0441, PHI0=+phiFB2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g14_5*DLWL10, PHI0=+phiFB2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
 
   K14_6a1 : LCAV, FREQ=SbandF, TYPE="10ft", &
@@ -675,12 +675,12 @@
                   ELOSS=KlossL2*2.3117, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K14_6b  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g14_6*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g14_6*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K14_6c  : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=3.0441, DELTAE=P25*g14_6*3.0441, PHI0=phiL2, &
-                  ELOSS=KlossL2*3.0441, &
+                  L=DLWL10, DELTAE=P25*g14_6*DLWL10, PHI0=phiL2, &
+                  ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K14_6d1 : LCAV, FREQ=SbandF, TYPE="10ft", &
                   L=2.3321, DELTAE=P25*g14_6*2.3321, PHI0=phiL2, &
@@ -694,6 +694,135 @@
                   L=0.4072, DELTAE=P25*g14_6*0.4072, PHI0=phiL2, &
                   ELOSS=KlossL2*0.4072, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
+
+! define unsplit LCAVs for BMAD ... not used by MAD
+
+  K11_4a : LCAV, FREQ=SbandF, TYPE="7ft", &
+                 L=DLWL7, DELTAE=P25*g11_4*DLWL7, PHI0=phiL2, &
+                 ELOSS=KlossL2*DLWL7, &
+                 LFILE="sband_l.dat", TFILE="sband_t.dat"
+
+  K11_5a : LCAV, FREQ=SbandF, TYPE="10ft", &
+                 L=DLWL10, DELTAE=P25*g11_5*DLWL10, PHI0=phiL2, &
+                 ELOSS=KlossL2*DLWL10, &
+                 LFILE="sband_l.dat", TFILE="sband_t.dat"
+
+  K11_6a : LCAV, FREQ=SbandF, TYPE="7ft", &
+                 L=DLWL7, DELTAE=P25*g11_6*DLWL7, PHI0=phiL2, &
+                 ELOSS=KlossL2*DLWL7, &
+                 LFILE="sband_l.dat", TFILE="sband_t.dat"
+
+  K11_8a : LCAV, FREQ=SbandF, TYPE="10ft", &
+                 L=DLWL10, DELTAE=P25*g11_8*DLWL10, PHI0=phiL2, &
+                 ELOSS=KlossL2*DLWL10, &
+                 LFILE="sband_l.dat", TFILE="sband_t.dat"
+
+  K12_2a : LCAV, FREQ=SbandF, TYPE="7ft", &
+                 L=DLWL7, DELTAE=P25*g12_2*DLWL7, PHI0=phiL2, &
+                 ELOSS=KlossL2*DLWL7, &
+                 LFILE="sband_l.dat", TFILE="sband_t.dat"
+
+  K12_3a : LCAV, FREQ=SbandF, TYPE="10ft", &
+                 L=DLWL10, DELTAE=P25*g12_3*DLWL10, PHI0=phiL2, &
+                 ELOSS=KlossL2*DLWL10, &
+                 LFILE="sband_l.dat", TFILE="sband_t.dat"
+
+  K12_4a : LCAV, FREQ=SbandF, TYPE="10ft", &
+                 L=DLWL10, DELTAE=P25*g12_4*DLWL10, PHI0=phiL2, &
+                 ELOSS=KlossL2*DLWL10, &
+                 LFILE="sband_l.dat", TFILE="sband_t.dat"
+
+  K12_5a : LCAV, FREQ=SbandF, TYPE="10ft", &
+                 L=DLWL10, DELTAE=P25*g12_5*DLWL10, PHI0=phiL2, &
+                 ELOSS=KlossL2*DLWL10, &
+                 LFILE="sband_l.dat", TFILE="sband_t.dat"
+
+  K12_6a : LCAV, FREQ=SbandF, TYPE="10ft", &
+                 L=DLWL10, DELTAE=P25*g12_6*DLWL10, PHI0=phiL2, &
+                 ELOSS=KlossL2*DLWL10, &
+                 LFILE="sband_l.dat", TFILE="sband_t.dat"
+
+  K12_7a : LCAV, FREQ=SbandF, TYPE="10ft", &
+                 L=DLWL10, DELTAE=P25*g12_7*DLWL10, PHI0=phiL2, &
+                 ELOSS=KlossL2*DLWL10, &
+                 LFILE="sband_l.dat", TFILE="sband_t.dat"
+
+  K12_8a : LCAV, FREQ=SbandF, TYPE="10ft", &
+                 L=DLWL10, DELTAE=P25*g12_8*DLWL10, PHI0=phiL2, &
+                 ELOSS=KlossL2*DLWL10, &
+                 LFILE="sband_l.dat", TFILE="sband_t.dat"
+  K12_8d : LCAV, FREQ=SbandF, TYPE="10ft", &
+                 L=DLWL10, DELTAE=P25*g12_8*DLWL10, PHI0=phiL2, &
+                 ELOSS=KlossL2*DLWL10, &
+                 LFILE="sband_l.dat", TFILE="sband_t.dat"
+
+  K13_2a : LCAV, FREQ=SbandF, TYPE="10ft", &
+                 L=DLWL10, DELTAE=P25*g13_2*DLWL10, PHI0=phiL2, &
+                 ELOSS=KlossL2*DLWL10, &
+                 LFILE="sband_l.dat", TFILE="sband_t.dat"
+
+  K13_3a : LCAV, FREQ=SbandF, TYPE="10ft", &
+                 L=DLWL10, DELTAE=P25*g13_3*DLWL10, PHI0=phiL2, &
+                 ELOSS=KlossL2*DLWL10, &
+                 LFILE="sband_l.dat", TFILE="sband_t.dat"
+
+  K13_4a : LCAV, FREQ=SbandF, TYPE="10ft", &
+                 L=DLWL10, DELTAE=P25*g13_4*DLWL10, PHI0=phiL2, &
+                 ELOSS=KlossL2*DLWL10, &
+                 LFILE="sband_l.dat", TFILE="sband_t.dat"
+
+  K13_5a : LCAV, FREQ=SbandF, TYPE="10ft", &
+                 L=DLWL10, DELTAE=P25*g13_5*DLWL10, PHI0=phiL2, &
+                 ELOSS=KlossL2*DLWL10, &
+                 LFILE="sband_l.dat", TFILE="sband_t.dat"
+
+  K13_6a : LCAV, FREQ=SbandF, TYPE="10ft", &
+                 L=DLWL10, DELTAE=P25*g13_6*DLWL10, PHI0=phiL2, &
+                 ELOSS=KlossL2*DLWL10, &
+                 LFILE="sband_l.dat", TFILE="sband_t.dat"
+
+  K13_7a : LCAV, FREQ=SbandF, TYPE="10ft", &
+                 L=DLWL10, DELTAE=P25*g13_7*DLWL10, PHI0=phiL2, &
+                 ELOSS=KlossL2*DLWL10, &
+                 LFILE="sband_l.dat", TFILE="sband_t.dat"
+
+  K13_8a : LCAV, FREQ=SbandF, TYPE="10ft", &
+                 L=DLWL10, DELTAE=P25*g13_8*DLWL10, PHI0=phiL2, &
+                 ELOSS=KlossL2*DLWL10, &
+                 LFILE="sband_l.dat", TFILE="sband_t.dat"
+  K13_8d : LCAV, FREQ=SbandF, TYPE="10ft", &
+                 L=DLWL10, DELTAE=P25*g13_8*DLWL10, PHI0=phiL2, &
+                 ELOSS=KlossL2*DLWL10, &
+                 LFILE="sband_l.dat", TFILE="sband_t.dat"
+
+  K14_2a : LCAV, FREQ=SbandF, TYPE="10ft", &
+                 L=DLWL10, DELTAE=P25*g14_2*DLWL10, PHI0=phiL2, &
+                 ELOSS=KlossL2*DLWL10, &
+                 LFILE="sband_l.dat", TFILE="sband_t.dat"
+
+  K14_3a : LCAV, FREQ=SbandF, TYPE="10ft", &
+                 L=DLWL10, DELTAE=P25*g14_3*DLWL10, PHI0=phiL2, &
+                 ELOSS=KlossL2*DLWL10, &
+                 LFILE="sband_l.dat", TFILE="sband_t.dat"
+
+  K14_4a : LCAV, FREQ=SbandF, TYPE="10ft", &
+                 L=DLWL10, DELTAE=P25*g14_4*DLWL10, PHI0=-phiFB2, &
+                 ELOSS=KlossL2*DLWL10, &
+                 LFILE="sband_l.dat", TFILE="sband_t.dat"
+
+  K14_5a : LCAV, FREQ=SbandF, TYPE="10ft", &
+                 L=DLWL10, DELTAE=P25*g14_5*DLWL10, PHI0=+phiFB2, &
+                 ELOSS=KlossL2*DLWL10, &
+                 LFILE="sband_l.dat", TFILE="sband_t.dat"
+
+  K14_6a : LCAV, FREQ=SbandF, TYPE="10ft", &
+                 L=DLWL10, DELTAE=P25*g14_6*DLWL10, PHI0=phiL2, &
+                 ELOSS=KlossL2*DLWL10, &
+                 LFILE="sband_l.dat", TFILE="sband_t.dat"
+  K14_6d : LCAV, FREQ=SbandF, TYPE="10ft", &
+                 L=DLWL10, DELTAE=P25*g14_6*DLWL10, PHI0=phiL2, &
+                 ELOSS=KlossL2*DLWL10, &
+                 LFILE="sband_l.dat", TFILE="sband_t.dat"
 
 ! ==============================================================================
 ! QUADs
@@ -917,63 +1046,35 @@
 
   L2c : LINE=(QFL2,DL2fodo,QDL2,QDL2,DL2fodo,QFL2)
 
-  K11_4a : LINE=(K11_4a1,XC11402,K11_4a2,YC11403,K11_4a3)
-  K11_5a : LINE=(K11_5a1,YC11503,K11_5a2)
-  K11_6a : LINE=(K11_6a1,XC11602,K11_6a2,YC11603,K11_6a3)
-  K11_8a : LINE=(K11_8a1,YC11803,K11_8a2)
-  K12_2a : LINE=(K12_2a1,XC12202,K12_2a2,YC12203,K12_2a3)
-  K12_3a : LINE=(K12_3a1,XC12302,K12_3a2,YC12303,K12_3a3)
-  K12_4a : LINE=(K12_4a1,XC12402,K12_4a2,YC12403,K12_4a3)
-  K12_5a : LINE=(K12_5a1,XC12502,K12_5a2,YC12503,K12_5a3)
-  K12_6a : LINE=(K12_6a1,XC12602,K12_6a2,YC12603,K12_6a3)
-  K12_7a : LINE=(K12_7a1,XC12702,K12_7a2,YC12703,K12_7a3)
-  K12_8a : LINE=(K12_8a1,XC12802,K12_8a2,YC12803,K12_8a3)
-  K12_8d : LINE=(K12_8d1,XC12900,K12_8d2,YC12900,K12_8d3)
-  K13_2a : LINE=(K13_2a1,XC13202,K13_2a2,YC13203,K13_2a3)
-  K13_3a : LINE=(K13_3a1,XC13302,K13_3a2,YC13303,K13_3a3)
-  K13_4a : LINE=(K13_4a1,XC13402,K13_4a2,YC13403,K13_4a3)
-  K13_5a : LINE=(K13_5a1,XC13502,K13_5a2,YC13503,K13_5a3)
-  K13_6a : LINE=(K13_6a1,XC13602,K13_6a2,YC13603,K13_6a3)
-  K13_7a : LINE=(K13_7a1,XC13702,K13_7a2,YC13703,K13_7a3)
-  K13_8a : LINE=(K13_8a1,XC13802,K13_8a2,YC13803,K13_8a3)
-  K13_8d : LINE=(K13_8d1,XC13900,K13_8d2,YC13900,K13_8d3)
-  K14_2a : LINE=(K14_2a1,XC14202,K14_2a2,YC14203,K14_2a3)
-  K14_3a : LINE=(K14_3a1,XC14302,K14_3a2,YC14303,K14_3a3)
-  K14_4a : LINE=(K14_4a1,XC14402,K14_4a2,YC14403,K14_4a3)
-  K14_5a : LINE=(K14_5a1,XC14502,K14_5a2,YC14503,K14_5a3)
-  K14_6a : LINE=(K14_6a1,XC14602,K14_6a2,YC14603,K14_6a3)
-  K14_6d : LINE=(K14_6d1,XC14702,K14_6d2,YC14703,K14_6d3)
+! ------------------------------------------------------------------------------
 
-  K11_4 : LINE=(K11_4a,DAA7,K11_4b,DAA7,K11_4c,K11_4d)
-  K11_5 : LINE=(K11_5a,K11_5b,DAA7,K11_5c,K11_5d)
-  K11_6 : LINE=(K11_6a,DAA7d,WS11614,DAA7e,K11_6b,K11_6c,K11_6d)
-  K11_7 : LINE=(K11_7a,K11_7b,K11_7c,K11_7d)
-  K11_8 : LINE=(K11_8a,K11_8b,K11_8c,K11_8d)
+  K11_4a_full : LINE=(K11_4a1,XC11402,K11_4a2,YC11403,K11_4a3)
+  K11_4b_full : LINE=(K11_4b)
+  K11_4c_full : LINE=(K11_4c)
+  K11_4d_full : LINE=(K11_4d)
+  K11_5a_full : LINE=(K11_5a1,YC11503,K11_5a2)
+  K11_5b_full : LINE=(K11_5b)
+  K11_5c_full : LINE=(K11_5c)
+  K11_5d_full : LINE=(K11_5d)
+  K11_6a_full : LINE=(K11_6a1,XC11602,K11_6a2,YC11603,K11_6a3)
+  K11_6b_full : LINE=(K11_6b)
+  K11_6c_full : LINE=(K11_6c)
+  K11_6d_full : LINE=(K11_6d)
+  K11_7a_full : LINE=(K11_7a)
+  K11_7b_full : LINE=(K11_7b)
+  K11_7c_full : LINE=(K11_7c)
+  K11_7d_full : LINE=(K11_7d)
+  K11_8a_full : LINE=(K11_8a1,YC11803,K11_8a2)
+  K11_8b_full : LINE=(K11_8b)
+  K11_8c_full : LINE=(K11_8c)
+  K11_8d_full : LINE=(K11_8d)
 
-  K12_1 : LINE=(K12_1a,K12_1b,K12_1c,K12_1d)
-  K12_2 : LINE=(K12_2a,DAA7d,WS12214,DAA7e,K12_2b,K12_2c,K12_2d)
-  K12_3 : LINE=(K12_3a,K12_3b,K12_3c,K12_3d)
-  K12_4 : LINE=(K12_4a,K12_4b,K12_4c,K12_4d)
-  K12_5 : LINE=(K12_5a,K12_5b,K12_5c,K12_5d)
-  K12_6 : LINE=(K12_6a,K12_6b,K12_6c,K12_6d)
-  K12_7 : LINE=(K12_7a,K12_7b,K12_7c,K12_7d)
-  K12_8 : LINE=(K12_8a,K12_8b,K12_8c,K12_8d)
-
-  K13_1 : LINE=(K13_1a,K13_1b,K13_1c,K13_1d)
-  K13_2 : LINE=(K13_2a,K13_2b,K13_2c,K13_2d)
-  K13_3 : LINE=(K13_3a,K13_3b,K13_3c,K13_3d)
-  K13_4 : LINE=(K13_4a,K13_4b,K13_4c,K13_4d)
-  K13_5 : LINE=(K13_5a,K13_5b,K13_5c,K13_5d)
-  K13_6 : LINE=(K13_6a,K13_6b,K13_6c,K13_6d)
-  K13_7 : LINE=(K13_7a,K13_7b,K13_7c,K13_7d)
-  K13_8 : LINE=(K13_8a,K13_8b,K13_8c,K13_8d)
-
-  K14_1 : LINE=(K14_1a,K14_1b,K14_1c,K14_1d)
-  K14_2 : LINE=(K14_2a,K14_2b,K14_2c,K14_2d)
-  K14_3 : LINE=(K14_3a,K14_3b,K14_3c,K14_3d)
-  K14_4 : LINE=(K14_4a,K14_4b,K14_4c,K14_4d)
-  K14_5 : LINE=(K14_5a,K14_5b,K14_5c,K14_5d)
-  K14_6 : LINE=(K14_6a,K14_6b,K14_6c,K14_6d)
+  K11_4 : LINE=(K11_4a_full,DAA7,K11_4b_full,DAA7,K11_4c_full,K11_4d_full)
+  K11_5 : LINE=(K11_5a_full,K11_5b_full,DAA7,K11_5c_full,K11_5d_full)
+  K11_6 : LINE=(K11_6a_full,DAA7d,WS11614,DAA7e,K11_6b_full,K11_6c_full,&
+                K11_6d_full)
+  K11_7 : LINE=(K11_7a_full,K11_7b_full,K11_7c_full,K11_7d_full)
+  K11_8 : LINE=(K11_8a_full,K11_8b_full,K11_8c_full,K11_8d_full)
 
   Q11501_full : LINE=(Q11501,BPM11501,Q11501)
   Q11601_full : LINE=(Q11601,BPM11601,Q11601)
@@ -988,6 +1089,51 @@
     K11_7,DAA7a,XC11802,DAA7b,WS11744,DAA7c,DAQ1,Q11801_full,DAQ2,&
     K11_8,DAQ3,Q11901_full,DAQ4a,XC11900,DAQ4b,YC11900,DAQ4c,&
     LI11end)
+
+! ------------------------------------------------------------------------------
+
+  K12_1a_full : LINE=(K12_1a)
+  K12_1b_full : LINE=(K12_1b)
+  K12_1c_full : LINE=(K12_1c)
+  K12_1d_full : LINE=(K12_1d)
+  K12_2a_full : LINE=(K12_2a1,XC12202,K12_2a2,YC12203,K12_2a3)
+  K12_2b_full : LINE=(K12_2b)
+  K12_2c_full : LINE=(K12_2c)
+  K12_2d_full : LINE=(K12_2d)
+  K12_3a_full : LINE=(K12_3a1,XC12302,K12_3a2,YC12303,K12_3a3)
+  K12_3b_full : LINE=(K12_3b)
+  K12_3c_full : LINE=(K12_3c)
+  K12_3d_full : LINE=(K12_3d)
+  K12_4a_full : LINE=(K12_4a1,XC12402,K12_4a2,YC12403,K12_4a3)
+  K12_4b_full : LINE=(K12_4b)
+  K12_4c_full : LINE=(K12_4c)
+  K12_4d_full : LINE=(K12_4d)
+  K12_5a_full : LINE=(K12_5a1,XC12502,K12_5a2,YC12503,K12_5a3)
+  K12_5b_full : LINE=(K12_5b)
+  K12_5c_full : LINE=(K12_5c)
+  K12_5d_full : LINE=(K12_5d)
+  K12_6a_full : LINE=(K12_6a1,XC12602,K12_6a2,YC12603,K12_6a3)
+  K12_6b_full : LINE=(K12_6b)
+  K12_6c_full : LINE=(K12_6c)
+  K12_6d_full : LINE=(K12_6d)
+  K12_7a_full : LINE=(K12_7a1,XC12702,K12_7a2,YC12703,K12_7a3)
+  K12_7b_full : LINE=(K12_7b)
+  K12_7c_full : LINE=(K12_7c)
+  K12_7d_full : LINE=(K12_7d)
+  K12_8a_full : LINE=(K12_8a1,XC12802,K12_8a2,YC12803,K12_8a3)
+  K12_8b_full : LINE=(K12_8b)
+  K12_8c_full : LINE=(K12_8c)
+  K12_8d_full : LINE=(K12_8d1,XC12900,K12_8d2,YC12900,K12_8d3)
+
+  K12_1 : LINE=(K12_1a_full,K12_1b_full,K12_1c_full,K12_1d_full)
+  K12_2 : LINE=(K12_2a_full,DAA7d,WS12214,DAA7e,K12_2b_full,K12_2c_full,&
+                K12_2d_full)
+  K12_3 : LINE=(K12_3a_full,K12_3b_full,K12_3c_full,K12_3d_full)
+  K12_4 : LINE=(K12_4a_full,K12_4b_full,K12_4c_full,K12_4d_full)
+  K12_5 : LINE=(K12_5a_full,K12_5b_full,K12_5c_full,K12_5d_full)
+  K12_6 : LINE=(K12_6a_full,K12_6b_full,K12_6c_full,K12_6d_full)
+  K12_7 : LINE=(K12_7a_full,K12_7b_full,K12_7c_full,K12_7d_full)
+  K12_8 : LINE=(K12_8a_full,K12_8b_full,K12_8c_full,K12_8d_full)
 
   Q12201_full : LINE=(Q12201,BPM12201,Q12201)
   Q12301_full : LINE=(Q12301,BPM12301,Q12301)
@@ -1009,6 +1155,50 @@
     K12_8,DAQ3,Q12901_full,DAQ4,&
     LI12end)
 
+! ------------------------------------------------------------------------------
+
+  K13_1a_full : LINE=(K13_1a)
+  K13_1b_full : LINE=(K13_1b)
+  K13_1c_full : LINE=(K13_1c)
+  K13_1d_full : LINE=(K13_1d)
+  K13_2a_full : LINE=(K13_2a1,XC13202,K13_2a2,YC13203,K13_2a3)
+  K13_2b_full : LINE=(K13_2b)
+  K13_2c_full : LINE=(K13_2c)
+  K13_2d_full : LINE=(K13_2d)
+  K13_3a_full : LINE=(K13_3a1,XC13302,K13_3a2,YC13303,K13_3a3)
+  K13_3b_full : LINE=(K13_3b)
+  K13_3c_full : LINE=(K13_3c)
+  K13_3d_full : LINE=(K13_3d)
+  K13_4a_full : LINE=(K13_4a1,XC13402,K13_4a2,YC13403,K13_4a3)
+  K13_4b_full : LINE=(K13_4b)
+  K13_4c_full : LINE=(K13_4c)
+  K13_4d_full : LINE=(K13_4d)
+  K13_5a_full : LINE=(K13_5a1,XC13502,K13_5a2,YC13503,K13_5a3)
+  K13_5b_full : LINE=(K13_5b)
+  K13_5c_full : LINE=(K13_5c)
+  K13_5d_full : LINE=(K13_5d)
+  K13_6a_full : LINE=(K13_6a1,XC13602,K13_6a2,YC13603,K13_6a3)
+  K13_6b_full : LINE=(K13_6b)
+  K13_6c_full : LINE=(K13_6c)
+  K13_6d_full : LINE=(K13_6d)
+  K13_7a_full : LINE=(K13_7a1,XC13702,K13_7a2,YC13703,K13_7a3)
+  K13_7b_full : LINE=(K13_7b)
+  K13_7c_full : LINE=(K13_7c)
+  K13_7d_full : LINE=(K13_7d)
+  K13_8a_full : LINE=(K13_8a1,XC13802,K13_8a2,YC13803,K13_8a3)
+  K13_8b_full : LINE=(K13_8b)
+  K13_8c_full : LINE=(K13_8c)
+  K13_8d_full : LINE=(K13_8d1,XC13900,K13_8d2,YC13900,K13_8d3)
+
+  K13_1 : LINE=(K13_1a_full,K13_1b_full,K13_1c_full,K13_1d_full)
+  K13_2 : LINE=(K13_2a_full,K13_2b_full,K13_2c_full,K13_2d_full)
+  K13_3 : LINE=(K13_3a_full,K13_3b_full,K13_3c_full,K13_3d_full)
+  K13_4 : LINE=(K13_4a_full,K13_4b_full,K13_4c_full,K13_4d_full)
+  K13_5 : LINE=(K13_5a_full,K13_5b_full,K13_5c_full,K13_5d_full)
+  K13_6 : LINE=(K13_6a_full,K13_6b_full,K13_6c_full,K13_6d_full)
+  K13_7 : LINE=(K13_7a_full,K13_7b_full,K13_7c_full,K13_7d_full)
+  K13_8 : LINE=(K13_8a_full,K13_8b_full,K13_8c_full,K13_8d_full)
+
   Q13201_full : LINE=(Q13201,BPM13201,Q13201)
   Q13301_full : LINE=(Q13301,BPM13301,Q13301)
   Q13401_full : LINE=(Q13401,BPM13401,Q13401)
@@ -1029,6 +1219,40 @@
     K13_8,DAQ3,Q13901_full,DAQ4,&
     LI13end)
 
+! ------------------------------------------------------------------------------
+
+  K14_1a_full : LINE=(K14_1a)
+  K14_1b_full : LINE=(K14_1b)
+  K14_1c_full : LINE=(K14_1c)
+  K14_1d_full : LINE=(K14_1d)
+  K14_2a_full : LINE=(K14_2a1,XC14202,K14_2a2,YC14203,K14_2a3)
+  K14_2b_full : LINE=(K14_2b)
+  K14_2c_full : LINE=(K14_2c)
+  K14_2d_full : LINE=(K14_2d)
+  K14_3a_full : LINE=(K14_3a1,XC14302,K14_3a2,YC14303,K14_3a3)
+  K14_3b_full : LINE=(K14_3b)
+  K14_3c_full : LINE=(K14_3c)
+  K14_3d_full : LINE=(K14_3d)
+  K14_4a_full : LINE=(K14_4a1,XC14402,K14_4a2,YC14403,K14_4a3)
+  K14_4b_full : LINE=(K14_4b)
+  K14_4c_full : LINE=(K14_4c)
+  K14_4d_full : LINE=(K14_4d)
+  K14_5a_full : LINE=(K14_5a1,XC14502,K14_5a2,YC14503,K14_5a3)
+  K14_5b_full : LINE=(K14_5b)
+  K14_5c_full : LINE=(K14_5c)
+  K14_5d_full : LINE=(K14_5d)
+  K14_6a_full : LINE=(K14_6a1,XC14602,K14_6a2,YC14603,K14_6a3)
+  K14_6b_full : LINE=(K14_6b)
+  K14_6c_full : LINE=(K14_6c)
+  K14_6d_full : LINE=(K14_6d1,XC14702,K14_6d2,YC14703,K14_6d3)
+
+  K14_1 : LINE=(K14_1a_full,K14_1b_full,K14_1c_full,K14_1d_full)
+  K14_2 : LINE=(K14_2a_full,K14_2b_full,K14_2c_full,K14_2d_full)
+  K14_3 : LINE=(K14_3a_full,K14_3b_full,K14_3c_full,K14_3d_full)
+  K14_4 : LINE=(K14_4a_full,K14_4b_full,K14_4c_full,K14_4d_full)
+  K14_5 : LINE=(K14_5a_full,K14_5b_full,K14_5c_full,K14_5d_full)
+  K14_6 : LINE=(K14_6a_full,K14_6b_full,K14_6c_full,K14_6d_full)
+
   Q14201_full : LINE=(Q14201,BPM14201,Q14201)
   Q14301_full : LINE=(Q14301,BPM14301,Q14301)
   Q14401_full : LINE=(Q14401,BPM14401,Q14401)
@@ -1043,6 +1267,8 @@
     K14_5,DAQ1,Q14601_full,DAQ2,&
     K14_6,&
     LI14term)
+
+! ------------------------------------------------------------------------------
 
   L2F : LINE=(BEGL2F,&
     LI11,LI12,LI13,LI14,&
