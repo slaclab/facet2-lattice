@@ -1,6 +1,6 @@
 ! Impact-T input file
 !Npcol Nprow
-8 16
+1 1
 !Dt Ntstep Nbunch
 5e-13 1000000 1
 !Dim Np Flagmap Flagerr Flagdiag Flagimg Zimage
