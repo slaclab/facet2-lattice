@@ -50,4 +50,7 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
-bmad/models/.DS_Store
+
+
+.DS_Store
+*digested*
