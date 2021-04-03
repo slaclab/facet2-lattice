@@ -1,5 +1,5 @@
 
-! *** OPTICS=FACET2-21AUG19 ***
+! *** OPTICS=FACET2-25FEB21 ***
 
 ! ------------------------------------------------------------------------------
 ! constants and global parameters
@@ -98,7 +98,7 @@
   CALL, FILENAME="L2.xsif"
   CALL, FILENAME="BC14.xsif"
   CALL, FILENAME="L3.xsif"
-  CALL, FILENAME="LI20.xsif" !FACET v35
+  CALL, FILENAME="LI20.xsif" !FACET-II Sector 20 Phase-I upgrade
 
   BC14    : LINE=(BC14_1,BC14P,BC14_2)      !positron side
   FACET2p : LINE=(BC11_2,L2F,BC14,L3F,S20E) !BC11 exit to LI20 dump

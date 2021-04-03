@@ -1,6 +1,6 @@
-  TITLE, "FACET2 scavenger e- (August 21, 2019)"
+  TITLE, "FACET2 scavenger e- (February 25, 2021)"
 
-! *** OPTICS=FACET2-21AUG19 ***
+! *** OPTICS=FACET2-25FEB21 ***
 
   ASSIGN, PRINT="FACET2s.print"
   ASSIGN, ECHO="FACET2s.echo"
@@ -24,7 +24,6 @@
 ! ------------------------------------------------------------------------------
 
   CALL, FILENAME="FACET2e_master.xsif"
- !CALL, FILENAME="FACET2e_patch.mad8" !resets everything to Lucretia values
 
 ! ------------------------------------------------------------------------------
 ! BETA0 block definitions
