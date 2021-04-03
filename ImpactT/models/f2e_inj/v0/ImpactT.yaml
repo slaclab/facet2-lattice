@@ -1,0 +1,65 @@
+input_file: ImpactT_template.in
+
+verbose: False
+
+group:
+
+
+
+  GUN_phase:
+    ele_names: [ GUN ]
+    var_name: dtheta0_deg
+    absolute: False
+    attributes: theta0_deg
+    value: 299.6150666844639
+  GUN_scale:
+    ele_names: [ GUN ]
+    factors: [ 8.66053289471487 ] # = 47537665.05908992/(6e6-.511e6)
+    absolute: True    
+    var_name: voltage
+    attributes: rf_field_scale
+    value: 39018304.1317983 # = 6e6-0.511e6
+
+
+  # Change in L0A phase. 
+  # 0 should be on-crest. 
+  L0A_phase:
+    ele_names: [ L0A_entrance, L0A_body_1, L0A_body_2, L0A_exit ]
+    attributes: theta0_deg
+    absolute: False 
+    var_name: dtheta0_deg
+    value: 591.9861554162742 # -9.197730665862807  # To match Feng's solution
+    
+  # Change in L0B phase   
+  # 0 should be on-crest.  
+  L0B_phase:
+    ele_names: [ L0B_entrance, L0B_body_1, L0B_body_2, L0B_exit ]
+    attributes: theta0_deg
+    absolute: False
+    var_name: dtheta0_deg
+    value: 778.3766666631432  # -3.983259077279564   # To match Feng's solution
+     
+  # Overall L0A scale  
+  L0A_scale:
+    ele_names:  [ L0A_entrance, L0A_body_1, L0A_body_2, L0A_exit ]
+    absolute: True    
+    #var_name: rf_field_scale
+    #factors: [0.86571945106805, 1, 1, 0.86571945106805]  # sin(k*d) with d = 3.5e-2 m 
+    #value: 30048347.300712895
+    var_name: voltage
+    attributes: rf_field_scale
+    factors: [0.44850757, 0.51807495, 0.51807495, 0.44850757]  # Factors found from autophase_and_scale: 30048347.359377533/(64e6 - 6e6) * np.array( [0.86571945106805, 1, 1, 0.86571945106805])
+    value: 30567659.815443344
+    
+    
+  # Overall L0B scale. 
+  L0B_scale:
+    ele_names:  [ L0B_entrance, L0B_body_1, L0B_body_2, L0B_exit ]
+    var_name: rf_field_scale
+    #factors: [0.86571945106805, 1, 1, 0.86571945106805]  # sin(k*d) with d = 3.5e-2 m 
+    absolute: True
+    #value: 36780527.3869102
+    var_name: voltage
+    attributes: rf_field_scale
+    factors: [0.44850757, 0.51807495, 0.51807495, 0.44850757] 
+    value: 37348220.73755335
