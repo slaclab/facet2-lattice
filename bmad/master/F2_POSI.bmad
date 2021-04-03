@@ -1,0 +1,28 @@
+!+
+! Translated from MAD8 file: F2_POSI.xsif
+!-
+
+
+! *** OPTICS=FACET2-25FEB21 ***
+
+! F2_POSI path configurations
+
+call, file = FACET2p_master.bmad !calls other xsif files
+
+q19201[k1] = 0.837673958863
+q19301[k1] = -0.954917712534
+q19401[k1] = 0.879651425756
+q19501[k1] = -1.00297703404
+q19601[k1] = 0.757627220184
+q19701[k1] = -0.833848070176
+q19801[k1] = 0.96996169183
+q19851[k1] = -1.760128528634
+q19871[k1] = 1.152051963034
+
+ !COMMENT
+use, f2_posi !start at end of BC11
+    ! initial energy: E11
+    ! initial SURVEY: 0, 0, Zi, 0, 0, 0
+    ! initial Twiss : BXi, AXi, BYi, AYi
+ !ENDCOMMENT
+

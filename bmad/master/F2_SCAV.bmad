@@ -1,0 +1,28 @@
+!+
+! Translated from MAD8 file: F2_SCAV.xsif
+!-
+
+
+! *** OPTICS=FACET2-25FEB21 ***
+
+! F2_SCAV path configuration
+
+call, file = FACET2e_master.bmad !calls other xsif files
+
+  F2_SCAVi : LINE=(FACET2s) !start at DL10
+
+ !COMMENT
+use, f2_scav !start at CATHODE
+    ! initial energy: E0
+    ! initial SURVEY: Xc, 0, Zc, THETAc, 0, 0
+    ! initial Twiss : BX0, AX0, BY0, AY0
+ !ENDCOMMENT
+
+!=!  COMMENT
+!=!  COMMENT
+!=!    USE, F2_SCAVi
+!=!    ! initial energy: Ei
+!=!    ! initial SURVEY: Xi, 0, Zi, THETAi, 0, 0
+!=!    ! initial Twiss : BXi, AXi, BYi, AYi
+!=!  ENDCOMMENT
+

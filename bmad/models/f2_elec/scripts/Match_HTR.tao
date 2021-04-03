@@ -1,0 +1,6 @@
+vv
+vd
+use dat HTR.begtwiss[1:4]
+use var begtwiss[1:4]
+olmdif
+

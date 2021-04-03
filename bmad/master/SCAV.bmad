@@ -1,0 +1,477 @@
+
+! *** OPTICS=FACET2-25FEB21 ***
+
+! ==============================================================================
+! Modification History
+! ------------------------------------------------------------------------------
+! 31-DEC-2018, M. Woodley
+!  * use original SCAVX19 kicker strength
+!  * off-axis quadrupole strengths from FACET2e_patch.mad8 ... geometry not
+!    rematched (assume we can steer onto target)
+! ------------------------------------------------------------------------------
+! 31-JAN-2017, M. Woodley
+!  * from facet_v28E_posi_target.mad8
+!  * change "skeleton deck" element names to LCLS-II/FACET-II format
+!  * include extraction from LI19
+! ------------------------------------------------------------------------------
+! 16-FEB-2011, Y. Nosochkov
+!    Rematch quad strengths for FACET v.28
+! 24-AUG-2010, Y. Nosochkov
+!    Rematch quad strengths for updated FACET v.27
+! 03-MAY-2010, Y. Nosochkov
+!    Rematch quad strengths for FACET v.27.
+! 08-NOV-1989, M. Woodley [MDW]
+!    From SCAV20A TRANS on IBM/VM disk RHH 193; surveyed positions for
+!    BPMS EP01 170, MONITOR EP01 171, XCOR EP01 175, YCOR EP01 184,
+!    XCOR EP01 185, and YCOR EP01 187; turn off ROB, RO8, -RO8, and
+!    0ROL rolls
+! 08-MAY-1990, MDW
+!    Remove YCOR EP01 187, XCOR EP01 380, and YCOR EP01 380; add
+!    YCOR EP01 183 and BPMS EP01 185; move XCOR EP01 175,
+!    YCOR EP01 184, and XCOR EP01 185 ... locations of new and moved
+!    diagnostic and correction devices per A. Kulikov; turn rolls back
+!    on; set roll values and field for BNDS EP01 275 as per
+!    current version of SCAV20A TRANS on IBM/VM-XA disk RHH 193
+! 18-JAN-1991, MDW
+!    New lattice for increased energy acceptance from RHH deck
+!    EXTR02 TRANS; locations of devices between VLAM-174 and QF-186,
+!    and COLL-186, STOP-193, and STOP-194 taken from drawings
+!    ID-234-108-15 and SA-234-101-35; TORO-199 and pre-target
+!    diagnostic device locations from visual survey
+! 05-FEB-1991, MDW
+!    Add MONITOR EP02 390 at location specified by A. Kulikov
+! ------------------------------------------------------------------------------
+
+! ==============================================================================
+! accelerating structures
+! ------------------------------------------------------------------------------
+
+lk19_5x = 4*dlwl10
+lk19_6x = 4*dlwl10+1.0e-6 !kicked beam
+
+k19_5x: lcavity, rf_frequency = sbandf * 1e6, type = "40ft", l = lk19_5x, voltage = p25*g19_5*lk19_5x * 1e6,
+          phi0 = +phifb3
+k19_6x: lcavity, rf_frequency = sbandf * 1e6, type = "40ft", l = lk19_6x, voltage = p25*g19_6*lk19_6x * 1e6,
+          phi0 = +phifb3
+
+! ==============================================================================
+! SBEN
+! ------------------------------------------------------------------------------
+
+! LI19 scavenger kicker
+
+gks = 0.0254
+aks = 0.204084364491e-3 !0.1969E-3
+aks_2 = aks*aks
+aks_4 = aks_2*aks_2
+aks_6 = aks_4*aks_2
+sincaks = 1-aks_2/6+aks_4/120-aks_6/5040 !~sinc(AKs)=sin(AKs)/AKs
+lks = zks/sincaks
+akss = asin(sin(aks)/2)
+akss_2 = akss*akss
+akss_4 = akss_2*akss_2
+akss_6 = akss_4*akss_2
+sincakss = 1-akss_2/6+akss_4/120-akss_6/5040 !~sinc(AKsS)=sin(AKsS)/AKsS
+lkss = zks/(2*sincakss)
+aksl = aks-akss
+lksl = lks-lkss
+
+bky170a: sbend, type = "FNAL kicker", hgap = gks/2, l = lkss, angle = akss, e1 = 0, fint = 0.5, fintx = 0,
+          ref_tilt = pi/2
+bky170b: sbend, type = "FNAL kicker", hgap = gks/2, l = lksl, angle = aksl, e2 = aks, fint = 0, fintx = 0.5,
+          ref_tilt = pi/2
+
+! define unsplit SBENs for BMAD ... not used by MAD
+
+bky170: sbend, type = "FNAL kicker", hgap = gks/2, l = lks, angle = aks, e1 = 0, fint = 0.5, e2 = aks, fintx = 0.5,
+          ref_tilt = pi/2
+
+! EP01 (bitid 57) bends
+
+blx57172a: sbend, type = "0.26SD85", l = 1.0, hgap = 0.00334, angle = -0.91770196e-02, e1 = 0
+blx57172b: sbend, type = "0.26SD85", l = 1.0, hgap = 0.00334, angle = -0.91770196e-02, e2 = -0.18360864e-01
+bly57174a: sbend, type = "0.26SD85", l = 1.0, hgap = 0.00334, angle = 0.37402743e-02, e1 = 0, ref_tilt = pi/2
+bly57174b: sbend, type = "0.26SD85", l = 1.0, hgap = 0.00334, angle = 0.37402743e-02, e2 = 0.74874625e-02,
+          ref_tilt = pi/2
+by57202a: sbend, type = "1D60.75", l = 0.7798, hgap = 0.0129, angle = 0.11953120e-01, e1 = 0.11955505e-01,
+          ref_tilt = pi/2
+by57202b: sbend, type = "1D60.75", l = 0.7798, hgap = 0.0129, angle = 0.11953120e-01, e2 = 0.11955505e-01,
+          ref_tilt = pi/2
+bx57205a: sbend, type = "1D128T", l = 1.6383, hgap = 0.0129, angle = -0.25112588e-01, e1 = -0.25115288e-01
+bx57205b: sbend, type = "1D128T", l = 1.6383, hgap = 0.0129, angle = -0.25112588e-01, e2 = -0.25115288e-01
+bx57215a: sbend, type = "1D128T", l = 1.6383, hgap = 0.0129, angle = -0.25112588e-01, e1 = -0.25115288e-01
+bx57215b: sbend, type = "1D128T", l = 1.6383, hgap = 0.0129, angle = -0.25112588e-01, e2 = -0.25115288e-01
+bx57225a: sbend, type = "1D128T", l = 1.6383, hgap = 0.0129, angle = -0.25112588e-01, e1 = -0.25115288e-01
+bx57225b: sbend, type = "1D128T", l = 1.6383, hgap = 0.0129, angle = -0.25112588e-01, e2 = -0.25115288e-01
+bx57235a: sbend, type = "1D128T", l = 1.6383, hgap = 0.0129, angle = -0.25112588e-01, e1 = -0.25115288e-01
+bx57235b: sbend, type = "1D128T", l = 1.6383, hgap = 0.0129, angle = -0.25112588e-01, e2 = -0.25115288e-01
+bx57245a: sbend, type = "1D128T", l = 1.6383, hgap = 0.0129, angle = -0.25112588e-01, e1 = -0.25115288e-01
+bx57245b: sbend, type = "1D128T", l = 1.6383, hgap = 0.0129, angle = -0.25112588e-01, e2 = -0.25115288e-01
+bx57255a: sbend, type = "1D128T", l = 1.6383, hgap = 0.0129, angle = -0.25112588e-01, e1 = -0.25115288e-01
+bx57255b: sbend, type = "1D128T", l = 1.6383, hgap = 0.0129, angle = -0.25112588e-01, e2 = -0.25115288e-01
+bx57265a: sbend, type = "1D128T", l = 1.6383, hgap = 0.0129, angle = -0.25112588e-01, e1 = -0.25115288e-01
+bx57265b: sbend, type = "1D128T", l = 1.6383, hgap = 0.0129, angle = -0.25112588e-01, e2 = -0.25115288e-01
+bx57275a: sbend, type = "1D128T", l = 1.6383, hgap = 0.0129, angle = -0.25125566e-01, e1 = -0.25115288e-01
+bx57275b: sbend, type = "1D128T", l = 1.6383, hgap = 0.0129, angle = -0.25125566e-01, e2 = -0.25115288e-01
+
+! define unsplit SBENs for BMAD ... not used by MAD
+
+lblx57 = 2*blx57172a[l]
+ablx57 = 2*blx57172a[angle]
+lbly57 = 2*bly57174a[l]
+ably57 = 2*bly57174a[angle]
+lby57 = 2*by57202a[l]
+aby57 = 2*by57202a[angle]
+lbx57 = 2*bx57205a[l]
+abx57 = 2*bx57205a[angle]
+abx57e = 2*bx57275a[angle]
+
+blx57172: sbend, type = "0.26SD85", hgap = 0.00334, l = lblx57, angle = ablx57, e1 = 0, e2 = -0.18360864e-01
+bly57174: sbend, type = "0.26SD85", hgap = 0.00334, l = lbly57, angle = ably57, e1 = 0, e2 = +0.74874625e-02,
+          ref_tilt = pi/2
+by57202: sbend, type = "1D60.75", hgap = 0.0129, l = lby57, angle = aby57, e1 = +0.11955505e-01, e2 = +0.11955505e-01,
+          ref_tilt = pi/2
+bx57205: sbend, type = "1D128T", hgap = 0.0129, l = lblx57, angle = abx57, e1 = -0.25115288e-01, e2 = -0.25115288e-01
+bx57215: sbend, type = "1D128T", hgap = 0.0129, l = lblx57, angle = abx57, e1 = -0.25115288e-01, e2 = -0.25115288e-01
+bx57225: sbend, type = "1D128T", hgap = 0.0129, l = lblx57, angle = abx57, e1 = -0.25115288e-01, e2 = -0.25115288e-01
+bx57235: sbend, type = "1D128T", hgap = 0.0129, l = lblx57, angle = abx57, e1 = -0.25115288e-01, e2 = -0.25115288e-01
+bx57245: sbend, type = "1D128T", hgap = 0.0129, l = lblx57, angle = abx57, e1 = -0.25115288e-01, e2 = -0.25115288e-01
+bx57255: sbend, type = "1D128T", hgap = 0.0129, l = lblx57, angle = abx57, e1 = -0.25115288e-01, e2 = -0.25115288e-01
+bx57265: sbend, type = "1D128T", hgap = 0.0129, l = lblx57, angle = abx57, e1 = -0.25115288e-01, e2 = -0.25115288e-01
+bx57275: sbend, type = "1D128T", hgap = 0.0129, l = lblx57, angle = abx57e, e1 = -0.25115288e-01, e2 = -0.25115288e-01
+
+! ==============================================================================
+! QUAD (off-axis)
+! ------------------------------------------------------------------------------
+
+! run MGEO1 match; then use offAxisQuad.m to compute initial angles;
+! then use MGEO2 match to fine-tune the kicker angle and Q19701 bend angle
+
+akq501 = -0.697627545e-5
+akq601 = +0.1010490572e-3
+akq701 = -0.339144696197e-3 !-0.3388633894E-3
+
+q19501x: sbend, type = "1.085Q4.31", l = q19501[l], k1 = -q19501[k1], angle = akq501, ref_tilt = pi/2
+
+q19601x: sbend, type = "1.085Q4.31", l = q19601[l], k1 = -q19601[k1], angle = akq601, ref_tilt = pi/2
+
+q19701x: sbend, type = "1.085Q4.31", l = q19701[l], k1 = -q19701[k1], angle = akq701, ref_tilt = pi/2
+
+! ==============================================================================
+! QUAD
+! ------------------------------------------------------------------------------
+
+kq57186 = 0.434861284035
+kq57190 = -0.573614963712
+kq57204 = 0.453180832142
+kq57210 = -0.508482870713
+kq57220 = 0.738426550257
+kq57280 = 0.686348881151
+
+q57186: quadrupole, type = "1Q19", l = 0.2486, k1 = kq57186
+q57190: quadrupole, type = "1Q22", l = 0.2799, k1 = kq57190
+q57204: quadrupole, type = "1Q24", l = 0.3077, k1 = kq57204
+q57210: quadrupole, type = "1Q24", l = 0.3077, k1 = kq57210
+q57220: quadrupole, type = "1Q24", l = 0.3077, k1 = kq57220
+q57230: quadrupole, type = "1Q24", l = 0.3077, k1 = kq57210
+q57240: quadrupole, type = "1Q24", l = 0.3077, k1 = kq57220
+q57250: quadrupole, type = "1Q24", l = 0.3077, k1 = kq57210
+q57260: quadrupole, type = "1Q24", l = 0.3077, k1 = kq57220
+q57270: quadrupole, type = "1Q24", l = 0.3077, k1 = kq57210
+q57280: quadrupole, type = "1Q24", l = 0.3077, k1 = kq57280
+
+! ==============================================================================
+! DRIF
+! ------------------------------------------------------------------------------
+
+dri34001: drift, l = 0.2506
+dri34002: drift, l = 0.2413
+dri34003: drift, l = 0.4547
+dri34004: drift, l = 0.3556
+dri34005: drift, l = 0.99
+dri34006: drift, l = 1.475
+dri34007: drift, l = 0.1651
+dri34008: drift, l = 0.2093
+dri34009: drift, l = 1.7501
+dri34010: drift, l = 3.6591
+dri34011: drift, l = 0.4008
+dri34012: drift, l = 0.3073
+dri34013: drift, l = 0.3907
+dri34014: drift, l = 0.3747
+dri34015: drift, l = 0.2248
+dri34016: drift, l = 0.1476
+dri34017: drift, l = 0.1518
+dri34018: drift, l = 0.0875
+dri34019: drift, l = 0.3868
+dri34020: drift, l = 2.8567
+dri34021: drift, l = 1.8288
+dri34022: drift, l = 1.2081
+dri34023: drift, l = 0.2838
+dri34024: drift, l = 0.2765
+dri34025: drift, l = 0.5051
+dri34026: drift, l = 0.2921
+dri34027: drift, l = 0.2159
+dri34028: drift, l = 1.2637
+dri34029: drift, l = 0.1969
+dri34030: drift, l = 0.1524
+dri34031: drift, l = 0.7366
+dri34032: drift, l = 0.254
+dri34033: drift, l = 0.6486
+dri34034: drift, l = 0.6
+
+! ==============================================================================
+! SROT
+! ------------------------------------------------------------------------------
+
+rob: patch, tilt = 0.77600829e-01
+ro8: patch, tilt = 0.38221140e-01
+neg_ro8: patch, tilt = -0.38221140e-01
+zero_rol: patch, tilt = -0.85532653e-01
+
+! ==============================================================================
+! XCORs and YCORs
+! ------------------------------------------------------------------------------
+
+xc57175: hkicker, type = "0.687D13.5"
+xc57185: hkicker, type = "1.625D12"
+xc57205: hkicker, type = "bend trim"
+xc57215: hkicker, type = "bend trim"
+xc57225: hkicker, type = "bend trim"
+xc57235: hkicker, type = "bend trim"
+xc57245: hkicker, type = "bend trim"
+xc57255: hkicker, type = "bend trim"
+xc57265: hkicker, type = "bend trim"
+xc57275: hkicker, type = "bend trim"
+xc57282: hkicker
+
+yc57183: vkicker
+yc57184: vkicker
+yc57210: vkicker, type = "quad trim"
+yc57220: vkicker, type = "quad trim"
+yc57230: vkicker, type = "quad trim"
+yc57240: vkicker, type = "quad trim"
+yc57250: vkicker, type = "quad trim"
+yc57260: vkicker, type = "quad trim"
+yc57270: vkicker, type = "quad trim"
+yc57280: vkicker, type = "quad trim"
+yc57282: vkicker
+
+! ==============================================================================
+! diagnostics
+! ------------------------------------------------------------------------------
+
+! BPMs (LCLS-II type designations)
+
+bpm57170: monitor
+bpm57175: monitor
+bpm57185: monitor
+bpm57186: monitor
+bpm57190: monitor
+bpm57204: monitor
+bpm57210: monitor
+bpm57220: monitor
+bpm57230: monitor
+bpm57240: monitor
+bpm57250: monitor
+bpm57260: monitor
+bpm57270: monitor
+bpm57280: monitor
+bpm57383: monitor
+bpm57400: monitor
+
+! misc
+
+pr57171: monitor, type = "phosphor"
+pc57175: ecollimator
+im57175: marker, type = "toroid"
+pc57178: ecollimator, l = 0.9525
+ws57184: marker
+pr57185: monitor, type = "phosphor"
+pc57186a: ecollimator, l = 0.9563, type = "aluminum"
+pc57186c: ecollimator, l = 0.4176, type = "copper"
+st57193: instrument, type = "stopper"
+st57194: instrument, type = "stopper"
+im57199: marker, type = "toroid"
+sp57281: instrument, type = "spoiler"
+bz57372: instrument, type = "ceramic gap"
+im57375: marker, type = "toroid"
+im57376: marker, type = "toroid"
+pr57385: monitor, type = "wire array"
+pc57388: ecollimator
+pr58390: monitor, type = "phosphor"
+
+! ==============================================================================
+! MARK
+! ------------------------------------------------------------------------------
+
+begscav: marker
+dbmark32: marker !e+ production target
+endscav: marker
+
+! ==============================================================================
+! BEAMLINEs
+! ------------------------------------------------------------------------------
+
+BKY170_full: line = (BKY170)
+!old:   BKY170_full  : LINE=(BKY170a,BKY170b)
+
+
+!Old split line: LINE=(Q19501x,BPM19501,Q19501x)
+
+q19501x_full: line = (q19501x)
+q19501x[L] = 2*q19501x[L]
+bpm19501[superimpose] = T
+bpm19501[ref] = q19501x
+
+
+!Old split line: LINE=(Q19601x,BPM19601,Q19601x)
+
+q19601x_full: line = (q19601x)
+q19601x[L] = 2*q19601x[L]
+bpm19601[superimpose] = T
+bpm19601[ref] = q19601x
+
+
+!Old split line: LINE=(Q19701x,BPM19701,Q19701x)
+
+q19701x_full: line = (q19701x)
+q19701x[L] = 2*q19701x[L]
+bpm19701[superimpose] = T
+bpm19701[ref] = q19701x
+
+  SCAV19X : LINE=(BEGSCAV,BKY170_full,DAA7m,DAQ1,Q19501x_full,DAQ2,K19_5x,DAQ1,Q19601x_full,DAQ2,K19_6x,DAQ1,
+         Q19701x_full,MSCAV)
+
+BLX57172_full: line = (BLX57172)
+!old:   BLX57172_full : LINE=(BLX57172a,BLX57172b)
+BLY57174_full: line = (BLY57174)
+!old:   BLY57174_full : LINE=(BLY57174a,BLY57174b)
+BY57202_full: line = (BY57202)
+!old:   BY57202_full  : LINE=(BY57202a,BY57202b)
+BX57205_full: line = (BX57205)
+!old:   BX57205_full  : LINE=(BX57205a,XC57205,BX57205b)
+BX57215_full: line = (BX57215)
+!old:   BX57215_full  : LINE=(BX57215a,XC57215,BX57215b)
+BX57225_full: line = (BX57225)
+!old:   BX57225_full  : LINE=(BX57225a,XC57225,BX57225b)
+BX57235_full: line = (BX57235)
+!old:   BX57235_full  : LINE=(BX57235a,XC57235,BX57235b)
+BX57245_full: line = (BX57245)
+!old:   BX57245_full  : LINE=(BX57245a,XC57245,BX57245b)
+BX57255_full: line = (BX57255)
+!old:   BX57255_full  : LINE=(BX57255a,XC57255,BX57255b)
+BX57265_full: line = (BX57265)
+!old:   BX57265_full  : LINE=(BX57265a,XC57265,BX57265b)
+BX57275_full: line = (BX57275)
+!old:   BX57275_full  : LINE=(BX57275a,XC57275,BX57275b)
+
+
+
+!Old split line: LINE=(Q57186,Q57186)
+
+q57186_full: line = (q57186)
+q57186[L] = 2*q57186[L]
+
+
+!Old split line: LINE=(Q57190,Q57190)
+
+q57190_full: line = (q57190)
+q57190[L] = 2*q57190[L]
+
+
+!Old split line: LINE=(Q57204,Q57204)
+
+q57204_full: line = (q57204)
+q57204[L] = 2*q57204[L]
+
+
+!Old split line: LINE=(Q57210,YC57210,Q57210)
+
+q57210_full: line = (q57210)
+q57210[L] = 2*q57210[L]
+yc57210[superimpose] = T
+yc57210[ref] = q57210
+
+
+!Old split line: LINE=(Q57220,YC57220,Q57220)
+
+q57220_full: line = (q57220)
+q57220[L] = 2*q57220[L]
+yc57220[superimpose] = T
+yc57220[ref] = q57220
+
+
+!Old split line: LINE=(Q57230,YC57230,Q57230)
+
+q57230_full: line = (q57230)
+q57230[L] = 2*q57230[L]
+yc57230[superimpose] = T
+yc57230[ref] = q57230
+
+
+!Old split line: LINE=(Q57240,YC57240,Q57240)
+
+q57240_full: line = (q57240)
+q57240[L] = 2*q57240[L]
+yc57240[superimpose] = T
+yc57240[ref] = q57240
+
+
+!Old split line: LINE=(Q57250,YC57250,Q57250)
+
+q57250_full: line = (q57250)
+q57250[L] = 2*q57250[L]
+yc57250[superimpose] = T
+yc57250[ref] = q57250
+
+
+!Old split line: LINE=(Q57260,YC57260,Q57260)
+
+q57260_full: line = (q57260)
+q57260[L] = 2*q57260[L]
+yc57260[superimpose] = T
+yc57260[ref] = q57260
+
+
+!Old split line: LINE=(Q57270,YC57270,Q57270)
+
+q57270_full: line = (q57270)
+q57270[L] = 2*q57270[L]
+yc57270[superimpose] = T
+yc57270[ref] = q57270
+
+
+!Old split line: LINE=(Q57280,YC57280,Q57280)
+
+q57280_full: line = (q57280)
+q57280[L] = 2*q57280[L]
+yc57280[superimpose] = T
+yc57280[ref] = q57280
+
+  SCAV20A : LINE=(DRI34001,BPM57170,DRI34002,PR57171,DRI34003,BLX57172_full,DRI34004,BLY57174_full,DRI34005,XC57175,
+         DRI34006,PC57175,DRI34007,BPM57175,DRI34008,IM57175,DRI34009,PC57178,DRI34010,YC57183,DRI34011,YC57184,DRI34012,WS57184,
+         DRI34013,XC57185,DRI34014,PR57185,DRI34015,BPM57185,DRI34016,BPM57186,Q57186_full,DRI34017,PC57186A,DRI34018,PC57186C,
+         DRI34019,BPM57190,Q57190_full,DRI34020,ST57193,DRI34021,ST57194,DRI34022,IM57199,DRI34023,BY57202_full,DRI34024,ROB,
+         BPM57204,Q57204_full,DRI34024,BX57205_full,DRI34024,BPM57210,Q57210_full,DRI34024,BX57215_full,DRI34024,BPM57220,
+         Q57220_full,DRI34024,BX57225_full,DRI34024,BPM57230,Q57230_full,DRI34024,BX57235_full,DRI34024,BPM57240,Q57240_full,
+         DRI34024,BX57245_full,DRI34024,BPM57250,Q57250_full,DRI34024,BX57255_full,DRI34024,BPM57260,Q57260_full,DRI34024,
+         BX57265_full,DRI34024,BPM57270,Q57270_full,DRI34024,RO8,BX57275_full,NEG_RO8,DRI34024,BPM57280,Q57280_full,ZERO_ROL,
+         DRI34025,SP57281,DRI34026,YC57282,DRI34027,XC57282,DRI34028,BZ57372,DRI34029,IM57375,DRI34030,IM57376 ,DRI34031,
+         BPM57383,DRI34030,PR57385,DRI34032,PC57388,DRI34033,PR58390,DRI34034,BPM57400,DBMARK32,ENDSCAV)
+
+  SCAV : LINE=(SCAV19X,SCAV20A)
+
+! ------------------------------------------------------------------------------
+! extraction
+! ------------------------------------------------------------------------------
+
+! use MGEO1 to compute
+
+kky170: vkicker, l = zks, kick = -0.206697149403e-3 !-0.19169E-3
+kq701: vkicker, kick = 0.931675695179e-4 ! 0
+
+  LI19x : LINE=(BEGSCAV,KKY170,DAA7m,DAQ1,Q19501,Q19501,DAQ2,K19_5,DAQ1,Q19601,Q19601,DAQ2,K19_6,DAQ1,Q19701,KQ701,
+         Q19701,MSCAV)
+
+! ==============================================================================
+
