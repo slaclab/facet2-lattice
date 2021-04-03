@@ -1,0 +1,1871 @@
+
+! *** OPTICS=FACET2-25FEB21 ***
+
+! ==============================================================================
+! Modification History
+! ------------------------------------------------------------------------------
+! 04-MAR-2019, M. Woodley
+!  * restore 19-8a accelerator section
+! 21-FEB-2019, M. Woodley
+!  * rename some LI19 quads: Q1979x->Q19801, Q19801->Q19851, Q19901->Q19871
+!  * move Q19801 back to it's nominal (SLC) location ... ~46 cm d/s
+!  * restore original FACET correctors and toroid on 19-8 and 19-9
+!  * rename LI18 collimators per L. Alsberg: CX1896->CX18960, CY1896->CY18960
+! ------------------------------------------------------------------------------
+! 23-AUG-2018, M. Woodley
+!  * gradL3, phiL3, gradFB3, and phiFB3 values from FACET2e_baseline.mat;
+!    set KlossL3=0
+!  * quadrupole K1 values from FACET2e_baseline.mat
+!  * remove TCAV isolation valves in LI15
+! ------------------------------------------------------------------------------
+! 22-DEC-2017, M. Woodley
+!  * revert to original FACET (v35) layout and optics in LI18/LI19
+!  * rematch into BC20 with Q18601, Q18701, Q18801, and Q18901
+!  * reinstate TCAV3 (TCY15280) as an lcavity; add frequency (Sband) and
+!    TYPE ("LOLA")
+!  * shorten 18-1d, 18-2d, 18-3d, and 18-4d to 9.4' ... add wire scanners
+! ------------------------------------------------------------------------------
+! 31-JAN-2017, M. Woodley
+!  * from FACET2e.xsif
+! ------------------------------------------------------------------------------
+
+! ==============================================================================
+! accelerating structures
+! ------------------------------------------------------------------------------
+! the L3 S-band linac consists of: 146 x 10'   structure @ 25% power
+!                                    1 x 10'   structure @ 50% power
+!                                    3 x  9.4' structure @ 25% power
+!                                    1 x  7'   structure @ 25% power
+! ------------------------------------------------------------------------------
+
+fl3 = 0.981867111676
+gradl3 = 12.734495002141*fl3 !MeV/m
+phil3 = 0.0/360            !rad/2pi
+gradfb3 = 18.48619126048*fl3  !MeV/m
+phifb3 = 60.0/360            !rad/2pi
+klossl3 = 0                  !V/C/m
+
+g15_1 = gradl3
+g15_2 = gradl3
+g15_3 = gradl3
+g15_4 = gradl3
+g15_5 = gradl3
+g15_6 = gradl3
+g15_7 = gradl3
+g15_8 = gradl3
+g16_1 = gradl3
+g16_2 = gradl3
+g16_3 = gradl3
+g16_4 = gradl3
+g16_5 = gradl3
+g16_6 = gradl3
+g16_7 = gradl3
+g16_8 = gradl3
+g17_1 = gradl3
+g17_2 = gradl3
+g17_3 = gradl3
+g17_4 = gradl3
+g17_5 = gradl3
+g17_6 = gradl3
+g17_7 = gradl3
+g17_8 = gradl3
+g18_1 = gradl3
+g18_2 = gradl3
+g18_3 = gradl3
+g18_4 = gradl3
+g18_5 = gradl3
+g18_6 = gradl3
+g18_7 = gradl3
+g18_8 = gradl3
+g19_1 = gradfb3
+g19_2 = gradfb3
+g19_3 = gradfb3
+g19_4 = gradfb3
+g19_5 = gradfb3
+g19_6 = gradfb3
+
+k15_1a1: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.33, voltage = p25*g15_1*0.33 * 1e6, phi0 = phil3
+k15_1a2: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.25, voltage = p25*g15_1*0.25 * 1e6, phi0 = phil3
+k15_1a3: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 2.4641, voltage = p25*g15_1*2.4641 * 1e6, phi0 = phil3
+k15_1b: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g15_1*dlwl10 * 1e6, phi0 = phil3
+k15_1c: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g15_1*dlwl10 * 1e6, phi0 = phil3
+k15_1d: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g15_1*dlwl10 * 1e6, phi0 = phil3
+
+k15_2a1: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.3256, voltage = p25*g15_2*0.3256 * 1e6, phi0 = phil3
+k15_2a2: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.25, voltage = p25*g15_2*0.25 * 1e6, phi0 = phil3
+k15_2a3: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 2.4685, voltage = p25*g15_2*2.4685 * 1e6, phi0 = phil3
+k15_2b: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g15_2*dlwl10 * 1e6, phi0 = phil3
+k15_2c: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p50*g15_2*dlwl10 * 1e6, phi0 = phil3
+
+k15_3a1: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.3312, voltage = p25*g15_3*0.3312 * 1e6, phi0 = phil3
+k15_3a2: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.4044, voltage = p25*g15_3*0.4044 * 1e6, phi0 = phil3
+k15_3a3: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 2.3085, voltage = p25*g15_3*2.3085 * 1e6, phi0 = phil3
+k15_3b: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g15_3*dlwl10 * 1e6, phi0 = phil3
+k15_3c: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g15_3*dlwl10 * 1e6, phi0 = phil3
+k15_3d: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g15_3*dlwl10 * 1e6, phi0 = phil3
+
+k15_4a1: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.3268, voltage = p25*g15_4*0.3268 * 1e6, phi0 = phil3
+k15_4a2: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.25, voltage = p25*g15_4*0.25 * 1e6, phi0 = phil3
+k15_4a3: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 2.4673, voltage = p25*g15_4*2.4673 * 1e6, phi0 = phil3
+k15_4b: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g15_4*dlwl10 * 1e6, phi0 = phil3
+k15_4c: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g15_4*dlwl10 * 1e6, phi0 = phil3
+k15_4d: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g15_4*dlwl10 * 1e6, phi0 = phil3
+
+k15_5a1: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.3324, voltage = p25*g15_5*0.3324 * 1e6, phi0 = phil3
+k15_5a2: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.3937, voltage = p25*g15_5*0.3937 * 1e6, phi0 = phil3
+k15_5a3: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 2.318, voltage = p25*g15_5*2.318 * 1e6, phi0 = phil3
+k15_5b: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g15_5*dlwl10 * 1e6, phi0 = phil3
+k15_5c: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g15_5*dlwl10 * 1e6, phi0 = phil3
+k15_5d: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g15_5*dlwl10 * 1e6, phi0 = phil3
+
+k15_6a1: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.328, voltage = p25*g15_6*0.328 * 1e6, phi0 = phil3
+k15_6a2: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.25, voltage = p25*g15_6*0.25 * 1e6, phi0 = phil3
+k15_6a3: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 2.4661, voltage = p25*g15_6*2.4661 * 1e6, phi0 = phil3
+k15_6b: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g15_6*dlwl10 * 1e6, phi0 = phil3
+k15_6c: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g15_6*dlwl10 * 1e6, phi0 = phil3
+k15_6d: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g15_6*dlwl10 * 1e6, phi0 = phil3
+
+k15_7a1: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.3336, voltage = p25*g15_7*0.3336 * 1e6, phi0 = phil3
+k15_7a2: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.25, voltage = p25*g15_7*0.25 * 1e6, phi0 = phil3
+k15_7a3: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 2.4605, voltage = p25*g15_7*2.4605 * 1e6, phi0 = phil3
+k15_7b: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g15_7*dlwl10 * 1e6, phi0 = phil3
+k15_7c: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g15_7*dlwl10 * 1e6, phi0 = phil3
+k15_7d: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g15_7*dlwl10 * 1e6, phi0 = phil3
+
+k15_8a1: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.3292, voltage = p25*g15_8*0.3292 * 1e6, phi0 = phil3
+k15_8a2: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.4413, voltage = p25*g15_8*0.4413 * 1e6, phi0 = phil3
+k15_8a3: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 2.2736, voltage = p25*g15_8*2.2736 * 1e6, phi0 = phil3
+k15_8b: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g15_8*dlwl10 * 1e6, phi0 = phil3
+k15_8c: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g15_8*dlwl10 * 1e6, phi0 = phil3
+k15_8d1: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 2.3869, voltage = p25*g15_8*2.3869 * 1e6, phi0 = phil3
+k15_8d2: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.25, voltage = p25*g15_8*0.25 * 1e6, phi0 = phil3
+k15_8d3: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.4072, voltage = p25*g15_8*0.4072 * 1e6, phi0 = phil3
+
+k16_1a: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g16_1*dlwl10 * 1e6, phi0 = phil3
+k16_1b: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g16_1*dlwl10 * 1e6, phi0 = phil3
+k16_1c: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g16_1*dlwl10 * 1e6, phi0 = phil3
+k16_1d: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g16_1*dlwl10 * 1e6, phi0 = phil3
+
+k16_2a1: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.3256, voltage = p25*g16_2*0.3256 * 1e6, phi0 = phil3
+k16_2a2: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.3655, voltage = p25*g16_2*0.3655 * 1e6, phi0 = phil3
+k16_2a3: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 2.353, voltage = p25*g16_2*2.353 * 1e6, phi0 = phil3
+k16_2b: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g16_2*dlwl10 * 1e6, phi0 = phil3
+k16_2c: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g16_2*dlwl10 * 1e6, phi0 = phil3
+k16_2d: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g16_2*dlwl10 * 1e6, phi0 = phil3
+
+k16_3a1: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.3312, voltage = p25*g16_3*0.3312 * 1e6, phi0 = phil3
+k16_3a2: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.25, voltage = p25*g16_3*0.25 * 1e6, phi0 = phil3
+k16_3a3: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 2.4629, voltage = p25*g16_3*2.4629 * 1e6, phi0 = phil3
+k16_3b: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g16_3*dlwl10 * 1e6, phi0 = phil3
+k16_3c: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g16_3*dlwl10 * 1e6, phi0 = phil3
+k16_3d: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g16_3*dlwl10 * 1e6, phi0 = phil3
+
+k16_4a1: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.3268, voltage = p25*g16_4*0.3268 * 1e6, phi0 = phil3
+k16_4a2: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.3675, voltage = p25*g16_4*0.3675 * 1e6, phi0 = phil3
+k16_4a3: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 2.3498, voltage = p25*g16_4*2.3498 * 1e6, phi0 = phil3
+k16_4b: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g16_4*dlwl10 * 1e6, phi0 = phil3
+k16_4c: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g16_4*dlwl10 * 1e6, phi0 = phil3
+k16_4d: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g16_4*dlwl10 * 1e6, phi0 = phil3
+
+k16_5a1: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.3324, voltage = p25*g16_5*0.3324 * 1e6, phi0 = phil3
+k16_5a2: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.3651, voltage = p25*g16_5*0.3651 * 1e6, phi0 = phil3
+k16_5a3: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 2.3466, voltage = p25*g16_5*2.3466 * 1e6, phi0 = phil3
+k16_5b: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g16_5*dlwl10 * 1e6, phi0 = phil3
+k16_5c: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g16_5*dlwl10 * 1e6, phi0 = phil3
+k16_5d: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g16_5*dlwl10 * 1e6, phi0 = phil3
+
+k16_6a1: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.328, voltage = p25*g16_6*0.328 * 1e6, phi0 = phil3
+k16_6a2: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.4139, voltage = p25*g16_6*0.4139 * 1e6, phi0 = phil3
+k16_6a3: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 2.3022, voltage = p25*g16_6*2.3022 * 1e6, phi0 = phil3
+k16_6b: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g16_6*dlwl10 * 1e6, phi0 = phil3
+k16_6c: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g16_6*dlwl10 * 1e6, phi0 = phil3
+k16_6d: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g16_6*dlwl10 * 1e6, phi0 = phil3
+
+k16_7a1: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.3336, voltage = p25*g16_7*0.3336 * 1e6, phi0 = phil3
+k16_7a2: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.3893, voltage = p25*g16_7*0.3893 * 1e6, phi0 = phil3
+k16_7a3: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 2.3212, voltage = p25*g16_7*2.3212 * 1e6, phi0 = phil3
+k16_7b: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g16_7*dlwl10 * 1e6, phi0 = phil3
+k16_7c: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g16_7*dlwl10 * 1e6, phi0 = phil3
+k16_7d: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g16_7*dlwl10 * 1e6, phi0 = phil3
+
+k16_8a1: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.3292, voltage = p25*g16_8*0.3292 * 1e6, phi0 = phil3
+k16_8a2: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.25, voltage = p25*g16_8*0.25 * 1e6, phi0 = phil3
+k16_8a3: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 2.4649, voltage = p25*g16_8*2.4649 * 1e6, phi0 = phil3
+k16_8b: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g16_8*dlwl10 * 1e6, phi0 = phil3
+k16_8c: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g16_8*dlwl10 * 1e6, phi0 = phil3
+k16_8d1: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 2.3869, voltage = p25*g16_8*2.3869 * 1e6, phi0 = phil3
+k16_8d2: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.25, voltage = p25*g16_8*0.25 * 1e6, phi0 = phil3
+k16_8d3: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.4072, voltage = p25*g16_8*0.4072 * 1e6, phi0 = phil3
+
+k17_1a: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g17_1*dlwl10 * 1e6, phi0 = phil3
+k17_1b: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g17_1*dlwl10 * 1e6, phi0 = phil3
+k17_1c: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g17_1*dlwl10 * 1e6, phi0 = phil3
+k17_1d: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g17_1*dlwl10 * 1e6, phi0 = phil3
+
+k17_2a1: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.3256, voltage = p25*g17_2*0.3256 * 1e6, phi0 = phil3
+k17_2a2: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.3814, voltage = p25*g17_2*0.3814 * 1e6, phi0 = phil3
+k17_2a3: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 2.3371, voltage = p25*g17_2*2.3371 * 1e6, phi0 = phil3
+k17_2b: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g17_2*dlwl10 * 1e6, phi0 = phil3
+k17_2c: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g17_2*dlwl10 * 1e6, phi0 = phil3
+k17_2d: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g17_2*dlwl10 * 1e6, phi0 = phil3
+
+k17_3a1: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.3312, voltage = p25*g17_3*0.3312 * 1e6, phi0 = phil3
+k17_3a2: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.25, voltage = p25*g17_3*0.25 * 1e6, phi0 = phil3
+k17_3a3: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 2.4629, voltage = p25*g17_3*2.4629 * 1e6, phi0 = phil3
+k17_3b: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g17_3*dlwl10 * 1e6, phi0 = phil3
+k17_3c: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g17_3*dlwl10 * 1e6, phi0 = phil3
+k17_3d: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g17_3*dlwl10 * 1e6, phi0 = phil3
+
+k17_4a1: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.3268, voltage = p25*g17_4*0.3268 * 1e6, phi0 = phil3
+k17_4a2: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.25, voltage = p25*g17_4*0.25 * 1e6, phi0 = phil3
+k17_4a3: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 2.4673, voltage = p25*g17_4*2.4673 * 1e6, phi0 = phil3
+k17_4b: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g17_4*dlwl10 * 1e6, phi0 = phil3
+k17_4c: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g17_4*dlwl10 * 1e6, phi0 = phil3
+k17_4d: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g17_4*dlwl10 * 1e6, phi0 = phil3
+
+k17_5a1: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.3324, voltage = p25*g17_5*0.3324 * 1e6, phi0 = phil3
+k17_5a2: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.3841, voltage = p25*g17_5*0.3841 * 1e6, phi0 = phil3
+k17_5a3: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 2.3276, voltage = p25*g17_5*2.3276 * 1e6, phi0 = phil3
+k17_5b: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g17_5*dlwl10 * 1e6, phi0 = phil3
+k17_5c: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g17_5*dlwl10 * 1e6, phi0 = phil3
+k17_5d: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g17_5*dlwl10 * 1e6, phi0 = phil3
+
+k17_6a1: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.328, voltage = p25*g17_6*0.328 * 1e6, phi0 = phil3
+k17_6a2: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.3949, voltage = p25*g17_6*0.3949 * 1e6, phi0 = phil3
+k17_6a3: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 2.3212, voltage = p25*g17_6*2.3212 * 1e6, phi0 = phil3
+k17_6b: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g17_6*dlwl10 * 1e6, phi0 = phil3
+k17_6c: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g17_6*dlwl10 * 1e6, phi0 = phil3
+k17_6d: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g17_6*dlwl10 * 1e6, phi0 = phil3
+
+k17_7a1: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.3336, voltage = p25*g17_7*0.3336 * 1e6, phi0 = phil3
+k17_7a2: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.25, voltage = p25*g17_7*0.25 * 1e6, phi0 = phil3
+k17_7a3: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 2.4605, voltage = p25*g17_7*2.4605 * 1e6, phi0 = phil3
+k17_7b: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g17_7*dlwl10 * 1e6, phi0 = phil3
+k17_7c: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g17_7*dlwl10 * 1e6, phi0 = phil3
+k17_7d: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g17_7*dlwl10 * 1e6, phi0 = phil3
+
+k17_8a1: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.3292, voltage = p25*g17_8*0.3292 * 1e6, phi0 = phil3
+k17_8a2: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.25, voltage = p25*g17_8*0.25 * 1e6, phi0 = phil3
+k17_8a3: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 2.4649, voltage = p25*g17_8*2.4649 * 1e6, phi0 = phil3
+k17_8b: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g17_8*dlwl10 * 1e6, phi0 = phil3
+k17_8c: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g17_8*dlwl10 * 1e6, phi0 = phil3
+k17_8d1: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 2.2856, voltage = p25*g17_8*2.2856 * 1e6, phi0 = phil3
+k17_8d2: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.3513, voltage = p25*g17_8*0.3513 * 1e6, phi0 = phil3
+k17_8d3: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.4072, voltage = p25*g17_8*0.4072 * 1e6, phi0 = phil3
+
+k18_1a: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g18_1*dlwl10 * 1e6, phi0 = phil3
+k18_1b: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g18_1*dlwl10 * 1e6, phi0 = phil3
+k18_1c: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g18_1*dlwl10 * 1e6, phi0 = phil3
+k18_1d: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g18_1*dlwl10 * 1e6, phi0 = phil3
+
+k18_2a1: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.3256, voltage = p25*g18_2*0.3256 * 1e6, phi0 = phil3
+k18_2a2: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.3878, voltage = p25*g18_2*0.3878 * 1e6, phi0 = phil3
+k18_2a3: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 2.3307, voltage = p25*g18_2*2.3307 * 1e6, phi0 = phil3
+k18_2b: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g18_2*dlwl10 * 1e6, phi0 = phil3
+k18_2c: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g18_2*dlwl10 * 1e6, phi0 = phil3
+k18_2d: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g18_2*dlwl10 * 1e6, phi0 = phil3
+
+k18_3a1: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.3312, voltage = p25*g18_3*0.3312 * 1e6, phi0 = phil3
+k18_3a2: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.25, voltage = p25*g18_3*0.25 * 1e6, phi0 = phil3
+k18_3a3: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 2.4629, voltage = p25*g18_3*2.4629 * 1e6, phi0 = phil3
+k18_3b: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g18_3*dlwl10 * 1e6, phi0 = phil3
+k18_3c: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g18_3*dlwl10 * 1e6, phi0 = phil3
+k18_3d: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g18_3*dlwl10 * 1e6, phi0 = phil3
+
+k18_4a1: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.3268, voltage = p25*g18_4*0.3268 * 1e6, phi0 = phil3
+k18_4a2: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.25, voltage = p25*g18_4*0.25 * 1e6, phi0 = phil3
+k18_4a3: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 2.4673, voltage = p25*g18_4*2.4673 * 1e6, phi0 = phil3
+k18_4b: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g18_4*dlwl10 * 1e6, phi0 = phil3
+k18_4c: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g18_4*dlwl10 * 1e6, phi0 = phil3
+k18_4d: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g18_4*dlwl10 * 1e6, phi0 = phil3
+
+k18_5a1: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.3324, voltage = p25*g18_5*0.3324 * 1e6, phi0 = phil3
+k18_5a2: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.4095, voltage = p25*g18_5*0.4095 * 1e6, phi0 = phil3
+k18_5a3: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 2.3022, voltage = p25*g18_5*2.3022 * 1e6, phi0 = phil3
+k18_5b: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g18_5*dlwl10 * 1e6, phi0 = phil3
+k18_5c: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g18_5*dlwl10 * 1e6, phi0 = phil3
+k18_5d: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g18_5*dlwl10 * 1e6, phi0 = phil3
+
+k18_6a1: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.328, voltage = p25*g18_6*0.328 * 1e6, phi0 = phil3
+k18_6a2: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.3885, voltage = p25*g18_6*0.3885 * 1e6, phi0 = phil3
+k18_6a3: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 2.3276, voltage = p25*g18_6*2.3276 * 1e6, phi0 = phil3
+k18_6b: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g18_6*dlwl10 * 1e6, phi0 = phil3
+k18_6c: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g18_6*dlwl10 * 1e6, phi0 = phil3
+k18_6d: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g18_6*dlwl10 * 1e6, phi0 = phil3
+
+k18_7a1: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.3336, voltage = p25*g18_7*0.3336 * 1e6, phi0 = phil3
+k18_7a2: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.3798, voltage = p25*g18_7*0.3798 * 1e6, phi0 = phil3
+k18_7a3: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 2.3307, voltage = p25*g18_7*2.3307 * 1e6, phi0 = phil3
+k18_7b: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g18_7*dlwl10 * 1e6, phi0 = phil3
+k18_7c: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g18_7*dlwl10 * 1e6, phi0 = phil3
+k18_7d: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g18_7*dlwl10 * 1e6, phi0 = phil3
+
+k18_8a1: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.3292, voltage = p25*g18_8*0.3292 * 1e6, phi0 = phil3
+k18_8a2: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.4127, voltage = p25*g18_8*0.4127 * 1e6, phi0 = phil3
+k18_8a3: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 2.3022, voltage = p25*g18_8*2.3022 * 1e6, phi0 = phil3
+k18_8b: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g18_8*dlwl10 * 1e6, phi0 = phil3
+k18_8c: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g18_8*dlwl10 * 1e6, phi0 = phil3
+k18_8d1: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 2.2729, voltage = p25*g18_8*2.2729 * 1e6, phi0 = phil3
+k18_8d2: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.364, voltage = p25*g18_8*0.364 * 1e6, phi0 = phil3
+k18_8d3: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.4072, voltage = p25*g18_8*0.4072 * 1e6, phi0 = phil3
+
+k19_1a: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g19_1*dlwl10 * 1e6, phi0 = -phifb3
+k19_1b: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g19_1*dlwl10 * 1e6, phi0 = -phifb3
+k19_1c: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g19_1*dlwl10 * 1e6, phi0 = -phifb3
+k19_1d: lcavity, rf_frequency = sbandf * 1e6, type = "9.4ft", l = dlwl9, voltage = p25*g19_1*dlwl9 * 1e6, phi0 = -phifb3
+
+k19_2a1: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.3256, voltage = p25*g19_2*0.3256 * 1e6,
+          phi0 = -phifb3
+k19_2a2: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.3592, voltage = p25*g19_2*0.3592 * 1e6,
+          phi0 = -phifb3
+k19_2a3: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 2.3593, voltage = p25*g19_2*2.3593 * 1e6,
+          phi0 = -phifb3
+k19_2b: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g19_2*dlwl10 * 1e6, phi0 = -phifb3
+k19_2c: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g19_2*dlwl10 * 1e6, phi0 = -phifb3
+k19_2d: lcavity, rf_frequency = sbandf * 1e6, type = "9.4ft", l = dlwl9, voltage = p25*g19_2*dlwl9 * 1e6, phi0 = -phifb3
+
+k19_3a1: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.3312, voltage = p25*g19_3*0.3312 * 1e6,
+          phi0 = -phifb3
+k19_3a2: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.3695, voltage = p25*g19_3*0.3695 * 1e6,
+          phi0 = -phifb3
+k19_3a3: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 2.3434, voltage = p25*g19_3*2.3434 * 1e6,
+          phi0 = -phifb3
+k19_3b: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g19_3*dlwl10 * 1e6, phi0 = -phifb3
+k19_3c: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g19_3*dlwl10 * 1e6, phi0 = -phifb3
+k19_3d: lcavity, rf_frequency = sbandf * 1e6, type = "9.4ft", l = dlwl9, voltage = p25*g19_3*dlwl9 * 1e6, phi0 = -phifb3
+
+k19_4a1: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.3268, voltage = p25*g19_4*0.3268 * 1e6,
+          phi0 = +phifb3
+k19_4a2: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.3897, voltage = p25*g19_4*0.3897 * 1e6,
+          phi0 = +phifb3
+k19_4a3: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 2.3276, voltage = p25*g19_4*2.3276 * 1e6,
+          phi0 = +phifb3
+k19_4b: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g19_4*dlwl10 * 1e6, phi0 = +phifb3
+k19_4c: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g19_4*dlwl10 * 1e6, phi0 = +phifb3
+k19_4d1: lcavity, rf_frequency = sbandf * 1e6, type = "7ft", l = 1.595, voltage = p25*g19_4*1.595 * 1e6, phi0 = +phifb3
+k19_4d2: lcavity, rf_frequency = sbandf * 1e6, type = "7ft", l = 0.3207, voltage = p25*g19_4*0.3207 * 1e6, phi0 = +phifb3
+k19_4d3: lcavity, rf_frequency = sbandf * 1e6, type = "7ft", l = 0.2537, voltage = p25*g19_4*0.2537 * 1e6, phi0 = +phifb3
+
+k19_5a1: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.3324, voltage = p25*g19_5*0.3324 * 1e6,
+          phi0 = +phifb3
+k19_5a2: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.4032, voltage = p25*g19_5*0.4032 * 1e6,
+          phi0 = +phifb3
+k19_5a3: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 2.3085, voltage = p25*g19_5*2.3085 * 1e6,
+          phi0 = +phifb3
+k19_5b: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g19_5*dlwl10 * 1e6, phi0 = +phifb3
+k19_5c: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g19_5*dlwl10 * 1e6, phi0 = +phifb3
+k19_5d: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g19_5*dlwl10 * 1e6, phi0 = +phifb3
+
+k19_6a1: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.328, voltage = p25*g19_6*0.328 * 1e6, phi0 = +phifb3
+k19_6a2: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.3854, voltage = p25*g19_6*0.3854 * 1e6,
+          phi0 = +phifb3
+k19_6a3: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 2.3307, voltage = p25*g19_6*2.3307 * 1e6,
+          phi0 = +phifb3
+k19_6b: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g19_6*dlwl10 * 1e6, phi0 = +phifb3
+k19_6c: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g19_6*dlwl10 * 1e6, phi0 = +phifb3
+k19_6d1: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.8425, voltage = p25*g19_6*0.8425 * 1e6,
+          phi0 = +phifb3
+k19_6d2: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 1.4632, voltage = p25*g19_6*1.4632 * 1e6,
+          phi0 = +phifb3
+k19_6d3: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.7384, voltage = p25*g19_6*0.7384 * 1e6,
+          phi0 = +phifb3
+
+! 19-8b,c,d removed ... 19-8a remains (unpowered)
+
+k19_8a1: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.3895
+k19_8a2: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.2985
+k19_8a3: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 2.3561
+
+! define unsplit lcavitys for BMAD ... not used by MAD
+
+k15_1a: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g15_1*dlwl10 * 1e6, phi0 = phil3
+
+k15_2a: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g15_2*dlwl10 * 1e6, phi0 = phil3
+
+k15_3a: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g15_3*dlwl10 * 1e6, phi0 = phil3
+
+k15_4a: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g15_4*dlwl10 * 1e6, phi0 = phil3
+
+k15_5a: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g15_5*dlwl10 * 1e6, phi0 = phil3
+
+k15_6a: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g15_6*dlwl10 * 1e6, phi0 = phil3
+
+k15_7a: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g15_7*dlwl10 * 1e6, phi0 = phil3
+
+k15_8a: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g15_8*dlwl10 * 1e6, phi0 = phil3
+k15_8d: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g15_8*dlwl10 * 1e6, phi0 = phil3
+
+k16_2a: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g16_2*dlwl10 * 1e6, phi0 = phil3
+
+k16_3a: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g16_3*dlwl10 * 1e6, phi0 = phil3
+
+k16_4a: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g16_4*dlwl10 * 1e6, phi0 = phil3
+
+k16_5a: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g16_5*dlwl10 * 1e6, phi0 = phil3
+
+k16_6a: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g16_6*dlwl10 * 1e6, phi0 = phil3
+
+k16_7a: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g16_7*dlwl10 * 1e6, phi0 = phil3
+
+k16_8a: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g16_8*dlwl10 * 1e6, phi0 = phil3
+k16_8d: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g16_8*dlwl10 * 1e6, phi0 = phil3
+
+k17_2a: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g17_2*dlwl10 * 1e6, phi0 = phil3
+
+k17_3a: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g17_3*dlwl10 * 1e6, phi0 = phil3
+
+k17_4a: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g17_4*dlwl10 * 1e6, phi0 = phil3
+
+k17_5a: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g17_5*dlwl10 * 1e6, phi0 = phil3
+
+k17_6a: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g17_6*dlwl10 * 1e6, phi0 = phil3
+
+k17_7a: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g17_7*dlwl10 * 1e6, phi0 = phil3
+
+k17_8a: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g17_8*dlwl10 * 1e6, phi0 = phil3
+k17_8d: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g17_8*dlwl10 * 1e6, phi0 = phil3
+
+k18_2a: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g18_2*dlwl10 * 1e6, phi0 = phil3
+
+k18_3a: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g18_3*dlwl10 * 1e6, phi0 = phil3
+
+k18_4a: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g18_4*dlwl10 * 1e6, phi0 = phil3
+
+k18_5a: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g18_5*dlwl10 * 1e6, phi0 = phil3
+
+k18_6a: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g18_6*dlwl10 * 1e6, phi0 = phil3
+
+k18_7a: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g18_7*dlwl10 * 1e6, phi0 = phil3
+
+k18_8a: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g18_8*dlwl10 * 1e6, phi0 = phil3
+k18_8d: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g18_8*dlwl10 * 1e6, phi0 = phil3
+
+k19_2a: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g19_2*dlwl10 * 1e6, phi0 = -phifb3
+
+k19_3a: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g19_3*dlwl10 * 1e6, phi0 = -phifb3
+
+k19_4a: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g19_4*dlwl10 * 1e6, phi0 = +phifb3
+k19_4d: lcavity, rf_frequency = sbandf * 1e6, type = "7ft", l = dlwl7, voltage = p25*g19_4*dlwl7 * 1e6, phi0 = +phifb3
+
+k19_5a: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g19_5*dlwl10 * 1e6, phi0 = +phifb3
+
+k19_6a: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g19_6*dlwl10 * 1e6, phi0 = +phifb3
+k19_6d: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g19_6*dlwl10 * 1e6, phi0 = +phifb3
+
+! 19-8b,c,d removed ... 19-8a remains (unpowered)
+
+k19_8a: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10
+
+! transverse deflecting cavity (TCAV)
+
+tcy15280: lcavity, rf_frequency = sbandf * 1e6, type = "LOLA", l = 2.438/2
+ !TCY15280 : DRIF, L=2.438/2
+
+! ==============================================================================
+! QUADs
+! ------------------------------------------------------------------------------
+
+kql3 = 0.81745071251 !65 degree cells
+
+qfl3: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = +kql3
+qdl3: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = -kql3
+
+kq15201 = 0.683413636633
+kq15301 = -0.845262147155
+kq15401 = 0.675642032342
+kq15501 = -0.364291147505
+kq15601 = 0.338793929142
+kq15701 = -0.623667834891
+kq15801 = 0.791763004861
+kq15901 = -0.801101447545
+kq16201 = 0.821463787359
+kq16301 = -0.850401234411
+kq16401 = 0.788733005474
+kq16501 = -0.769929455281
+kq16601 = 0.770004947138
+kq16701 = -0.795410224465
+kq16801 = 0.850112860734
+kq16901 = -0.817211247334
+kq17201 = 0.823948541708
+kq17301 = -0.848144311116
+kq17401 = 0.786314789976
+kq17501 = -0.768808328938
+kq17601 = 0.769910102282
+kq17701 = -0.796241135217
+kq17801 = 0.851384850293
+kq17901 = -0.818176454295
+kq18201 = 0.823948541708
+kq18301 = -0.848144311116
+kq18401 = 0.786314789976
+kq18501 = -0.768808328938
+kq18601 = 0.769910102282
+kq18701 = -0.796241135217
+kq18801 = 0.851384850293
+kq18901 = -0.818176454295
+
+! LI19 bulk (201-801) I = 47.018 A, max boost < 15 A
+
+kq19201 = 0.836411275054
+kq19301 = -0.933653738427
+kq19401 = 0.833761518539
+kq19501 = -1.022643707024 !-0.77122157 ... scavenger extraction
+kq19601 = 0.757743409798 ! 0.77143041 ... scavenger extraction
+kq19701 = -0.749406010373 !-0.7786437  ... scavenger extraction
+kq19801 = 1.000000914904
+kq19851 = -1.749500861406 !new
+kq19871 = 1.174163314925 !new
+
+q15201: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = qsign*(kq15201)
+q15301: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = qsign*(kq15301)
+q15401: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = qsign*(kq15401)
+q15501: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = qsign*(kq15501)
+q15601: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = qsign*(kq15601)
+q15701: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = qsign*(kq15701)
+q15801: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = qsign*(kq15801)
+q15901: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = qsign*(kq15901)
+
+q16201: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = qsign*(kq16201)
+q16301: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = qsign*(kq16301)
+q16401: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = qsign*(kq16401)
+q16501: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = qsign*(kq16501)
+q16601: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = qsign*(kq16601)
+q16701: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = qsign*(kq16701)
+q16801: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = qsign*(kq16801)
+q16901: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = qsign*(kq16901)
+
+q17201: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = qsign*(kq17201)
+q17301: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = qsign*(kq17301)
+q17401: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = qsign*(kq17401)
+q17501: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = qsign*(kq17501)
+q17601: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = qsign*(kq17601)
+q17701: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = qsign*(kq17701)
+q17801: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = qsign*(kq17801)
+q17901: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = qsign*(kq17901)
+
+q18201: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = qsign*(kq18201)
+q18301: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = qsign*(kq18301)
+q18401: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = qsign*(kq18401)
+q18501: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = qsign*(kq18501)
+q18601: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = qsign*(kq18601)
+q18701: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = qsign*(kq18701)
+q18801: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = qsign*(kq18801)
+q18901: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = qsign*(kq18901)
+
+q19201: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = qsign*(kq19201)
+q19301: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = qsign*(kq19301)
+q19401: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = qsign*(kq19401)
+q19501: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = qsign*(kq19501)
+q19601: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = qsign*(kq19601)
+q19701: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = qsign*(kq19701)
+q19801: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = qsign*(kq19801)
+q19851: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = qsign*(kq19851)
+q19871: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = qsign*(kq19871)
+
+! ==============================================================================
+! drifts
+! ------------------------------------------------------------------------------
+
+dl3fodo: drift, l = 12.2376
+
+d152da: drift, l = 0.1806+0.15
+d152db: drift, l = 0.1255+0.15
+daq4d: drift, l = 0.5
+daq4e: drift, l = daq4[l]-daq4d[l]
+daq4k: drift, l = 0.222952
+daq4l: drift, l = 0.443738
+daq4m: drift, l = 0.31891
+daq4n: drift, l = ldaq4-(daq4k[l]+daq4l[l]+daq4m[l])
+daq5: drift, l = dlwl10-dlwl9
+daq5a: drift, l = 0.1
+daq5b: drift, l = daq5[l]-daq5a[l]
+dbky170: drift, l = 0.5/2
+daa7m: drift, l = 0.585-(zks+lqe)/2  !LDAA7-DAA7l[L]
+daa7l: drift, l = ldaa7-zks-daa7m[l] !0.4378
+d10: drift, l = dlwl10
+d10a: drift, l = 0.9196
+d10b: drift, l = d10[l]-d10a[l]
+
+lmdw = 25.801374683414 !Q19701 exit to ENDL3F (from FACET v35)
+
+d199a: drift, l = 3.2062
+d199b: drift, l = 2.0867 !26238214
+d199c: drift, l = 1.4195
+d199d: drift, l = 1.4922
+d199e: drift, l = 1.659184
+d199f: drift, l = lmdw-(daq2[l]+4*dlwl10+daq1[l]+lqe+daq2[l]+dlwl10+d199a[l]+lqe+d199b[l]+lqe+d199c[l]+d199d[l]+d199e[l])
+
+! ==============================================================================
+! XCORs and YCORs
+! ------------------------------------------------------------------------------
+
+xc14900: hkicker, type = "type-4"
+xc15202: hkicker, type = "type-4"
+xc15302: hkicker, type = "type-4"
+xc15402: hkicker, type = "type-4"
+xc15502: hkicker, type = "type-4"
+xc15602: hkicker, type = "type-4"
+xc15702: hkicker, type = "type-4"
+xc15802: hkicker, type = "type-4"
+xc15900: hkicker, type = "type-4"
+
+xc16202: hkicker, type = "type-4"
+xc16302: hkicker, type = "type-4"
+xc16402: hkicker, type = "type-4"
+xc16502: hkicker, type = "type-4"
+xc16602: hkicker, type = "type-4"
+xc16702: hkicker, type = "type-4"
+xc16802: hkicker, type = "type-4"
+xc16900: hkicker, type = "type-4"
+
+xc17202: hkicker, type = "type-4"
+xc17302: hkicker, type = "type-4"
+xc17402: hkicker, type = "type-4"
+xc17502: hkicker, type = "type-4"
+xc17602: hkicker, type = "type-4"
+xc17702: hkicker, type = "type-4"
+xc17802: hkicker, type = "type-4"
+xc17900: hkicker, type = "type-4"
+
+xc18202: hkicker, type = "type-4"
+xc18302: hkicker, type = "type-4"
+xc18402: hkicker, type = "type-4"
+xc18502: hkicker, type = "type-4"
+xc18602: hkicker, type = "type-4"
+xc18702: hkicker, type = "type-4"
+xc18802: hkicker, type = "type-4"
+xc18900: hkicker, type = "type-4"
+
+xc19202: hkicker, type = "type-4"
+xc19302: hkicker, type = "type-4"
+xc19402: hkicker, type = "type-4"
+xc19502: hkicker, type = "type-4"
+xc19602: hkicker, type = "type-4"
+xc19700: hkicker, type = "type-4"
+xc19802: hkicker, type = "type-4"
+xc19900: hkicker, type = "type-4"
+
+yc14900: vkicker, type = "type-4"
+yc15203: vkicker, type = "type-4"
+yc15303: vkicker, type = "type-4"
+yc15403: vkicker, type = "type-4"
+yc15503: vkicker, type = "type-4"
+yc15603: vkicker, type = "type-4"
+yc15703: vkicker, type = "type-4"
+yc15803: vkicker, type = "type-4"
+yc15900: vkicker, type = "type-4"
+
+yc16203: vkicker, type = "type-4"
+yc16303: vkicker, type = "type-4"
+yc16403: vkicker, type = "type-4"
+yc16503: vkicker, type = "type-4"
+yc16603: vkicker, type = "type-4"
+yc16703: vkicker, type = "type-4"
+yc16803: vkicker, type = "type-4"
+yc16900: vkicker, type = "type-4"
+
+yc17203: vkicker, type = "type-4"
+yc17303: vkicker, type = "type-4"
+yc17403: vkicker, type = "type-4"
+yc17503: vkicker, type = "type-4"
+yc17603: vkicker, type = "type-4"
+yc17703: vkicker, type = "type-4"
+yc17803: vkicker, type = "type-4"
+yc17900: vkicker, type = "type-4"
+
+yc18203: vkicker, type = "type-4"
+yc18303: vkicker, type = "type-4"
+yc18403: vkicker, type = "type-4"
+yc18503: vkicker, type = "type-4"
+yc18603: vkicker, type = "type-4"
+yc18703: vkicker, type = "type-4"
+yc18803: vkicker, type = "type-4"
+yc18900: vkicker, type = "type-4"
+
+yc19203: vkicker, type = "type-4"
+yc19303: vkicker, type = "type-4"
+yc19403: vkicker, type = "type-4"
+yc57145: vkicker, type = "type-4" !scavenger e- DC extraction
+yc57146: vkicker, type = "type-4" !scavenger e- DC extraction
+yc19503: vkicker, type = "type-4"
+yc19603: vkicker, type = "type-4"
+yc19700: vkicker, type = "type-4"
+yc19803: vkicker, type = "type-4"
+yc19900: vkicker, type = "type-4"
+
+! ==============================================================================
+! diagnostics
+! ------------------------------------------------------------------------------
+
+! BPMs (LCLS-II type designations)
+
+bpm15201: monitor, type = "Stripline-2"
+bpm15301: monitor, type = "Stripline-2"
+bpm15401: monitor, type = "Stripline-2"
+bpm15501: monitor, type = "Stripline-2"
+bpm15601: monitor, type = "Stripline-2"
+bpm15701: monitor, type = "Stripline-2"
+bpm15801: monitor, type = "Stripline-2"
+bpm15901: monitor, type = "Stripline-2"
+
+bpm16201: monitor, type = "Stripline-2"
+bpm16301: monitor, type = "Stripline-2"
+bpm16401: monitor, type = "Stripline-2"
+bpm16501: monitor, type = "Stripline-2"
+bpm16601: monitor, type = "Stripline-2"
+bpm16701: monitor, type = "Stripline-2"
+bpm16801: monitor, type = "Stripline-2"
+bpm16901: monitor, type = "Stripline-2"
+
+bpm17201: monitor, type = "Stripline-2"
+bpm17301: monitor, type = "Stripline-2"
+bpm17401: monitor, type = "Stripline-2"
+bpm17501: monitor, type = "Stripline-2"
+bpm17601: monitor, type = "Stripline-2"
+bpm17701: monitor, type = "Stripline-2"
+bpm17801: monitor, type = "Stripline-2"
+bpm17901: monitor, type = "Stripline-2"
+
+bpm18201: monitor, type = "Stripline-2"
+bpm18301: monitor, type = "Stripline-2"
+bpm18401: monitor, type = "Stripline-2"
+bpm18501: monitor, type = "Stripline-2"
+bpm18601: monitor, type = "Stripline-2"
+bpm18701: monitor, type = "Stripline-2"
+bpm18801: monitor, type = "Stripline-2"
+bpm18901: monitor, type = "Stripline-2"
+
+bpm19201: monitor, type = "Stripline-2"
+bpm19301: monitor, type = "Stripline-2"
+bpm19401: monitor, type = "Stripline-2"
+bpm19501: monitor, type = "Stripline-2"
+bpm19601: monitor, type = "Stripline-2"
+bpm19701: monitor, type = "Stripline-2"
+bpm19801: monitor, type = "Stripline-2"
+bpm19851: monitor, type = "Stripline-2"
+bpm19871: monitor, type = "Stripline-2"
+
+! misc
+
+pr15944: monitor, type = "OTR" !post-BC14 longitudinal diagnostics
+                             !NOTE: dMUY from TCY15280 is ~135 deg (should be 90)
+bl18900: monitor, type = "pyro" !bunch length monitor / OTR at 18-9
+ws18944: marker
+ws19144: marker
+ws19244: marker
+ws19344: marker
+im1988: marker, type = "toroid"
+
+! ==============================================================================
+! collimators
+! ------------------------------------------------------------------------------
+
+cx18960: rcollimator
+cy18960: rcollimator
+
+! ==============================================================================
+! MARK
+! ------------------------------------------------------------------------------
+
+begl3f_1: marker
+li15beg: marker
+li15end: marker
+li16beg: marker
+li16end: marker
+li17beg: marker
+li17end: marker
+li18beg: marker
+li18end: marker
+li19beg: marker
+mscavext: marker !match to SCAVX19.TRANS here
+endl3f_1: marker
+begl3f_2: marker
+mscav: marker !match to SCAV20A.TRANS here
+hlam: marker !entrance face of HLAM172
+li19term: marker
+endl3f_2: marker
+
+! ==============================================================================
+! BEAMLINEs
+! ------------------------------------------------------------------------------
+
+  L3c : LINE=(QFL3,DL3fodo,QDL3,QDL3,DL3fodo,QFL3)
+
+! ------------------------------------------------------------------------------
+
+!---------------------
+! K15_1A LCAVITY
+K15_1A_full: line = (K15_1A)
+! contains zero length elements:
+    XC14900[superimpose] = T
+    XC14900[ref] = K15_1A
+    XC14900[ref_origin] = beginning
+    XC14900[offset] = 0.33
+    YC14900[superimpose] = T
+    YC14900[ref] = K15_1A
+    YC14900[ref_origin] = beginning
+    YC14900[offset] = 0.58
+!old:   K15_1a_full : LINE=(K15_1a1,XC14900,K15_1a2,YC14900,K15_1a3)
+  K15_1b_full : LINE=(K15_1b)
+  K15_1c_full : LINE=(K15_1c)
+  K15_1d_full : LINE=(K15_1d)
+!---------------------
+! K15_2A LCAVITY
+K15_2A_full: line = (K15_2A)
+! contains zero length elements:
+    XC15202[superimpose] = T
+    XC15202[ref] = K15_2A
+    XC15202[ref_origin] = beginning
+    XC15202[offset] = 0.3256
+    YC15203[superimpose] = T
+    YC15203[ref] = K15_2A
+    YC15203[ref_origin] = beginning
+    YC15203[offset] = 0.5756
+!old:   K15_2a_full : LINE=(K15_2a1,XC15202,K15_2a2,YC15203,K15_2a3)
+  K15_2b_full : LINE=(K15_2b)
+  K15_2c_full : LINE=(K15_2c)
+  K15_2d_full : LINE=(K15_2d)
+!---------------------
+! K15_3A LCAVITY
+K15_3A_full: line = (K15_3A)
+! contains zero length elements:
+    XC15302[superimpose] = T
+    XC15302[ref] = K15_3A
+    XC15302[ref_origin] = beginning
+    XC15302[offset] = 0.3312
+    YC15303[superimpose] = T
+    YC15303[ref] = K15_3A
+    YC15303[ref_origin] = beginning
+    YC15303[offset] = 0.7356
+!old:   K15_3a_full : LINE=(K15_3a1,XC15302,K15_3a2,YC15303,K15_3a3)
+  K15_3b_full : LINE=(K15_3b)
+  K15_3c_full : LINE=(K15_3c)
+  K15_3d_full : LINE=(K15_3d)
+!---------------------
+! K15_4A LCAVITY
+K15_4A_full: line = (K15_4A)
+! contains zero length elements:
+    XC15402[superimpose] = T
+    XC15402[ref] = K15_4A
+    XC15402[ref_origin] = beginning
+    XC15402[offset] = 0.3268
+    YC15403[superimpose] = T
+    YC15403[ref] = K15_4A
+    YC15403[ref_origin] = beginning
+    YC15403[offset] = 0.5768
+!old:   K15_4a_full : LINE=(K15_4a1,XC15402,K15_4a2,YC15403,K15_4a3)
+  K15_4b_full : LINE=(K15_4b)
+  K15_4c_full : LINE=(K15_4c)
+  K15_4d_full : LINE=(K15_4d)
+!---------------------
+! K15_5A LCAVITY
+K15_5A_full: line = (K15_5A)
+! contains zero length elements:
+    XC15502[superimpose] = T
+    XC15502[ref] = K15_5A
+    XC15502[ref_origin] = beginning
+    XC15502[offset] = 0.3324
+    YC15503[superimpose] = T
+    YC15503[ref] = K15_5A
+    YC15503[ref_origin] = beginning
+    YC15503[offset] = 0.7261
+!old:   K15_5a_full : LINE=(K15_5a1,XC15502,K15_5a2,YC15503,K15_5a3)
+  K15_5b_full : LINE=(K15_5b)
+  K15_5c_full : LINE=(K15_5c)
+  K15_5d_full : LINE=(K15_5d)
+!---------------------
+! K15_6A LCAVITY
+K15_6A_full: line = (K15_6A)
+! contains zero length elements:
+    XC15602[superimpose] = T
+    XC15602[ref] = K15_6A
+    XC15602[ref_origin] = beginning
+    XC15602[offset] = 0.328
+    YC15603[superimpose] = T
+    YC15603[ref] = K15_6A
+    YC15603[ref_origin] = beginning
+    YC15603[offset] = 0.578
+!old:   K15_6a_full : LINE=(K15_6a1,XC15602,K15_6a2,YC15603,K15_6a3)
+  K15_6b_full : LINE=(K15_6b)
+  K15_6c_full : LINE=(K15_6c)
+  K15_6d_full : LINE=(K15_6d)
+!---------------------
+! K15_7A LCAVITY
+K15_7A_full: line = (K15_7A)
+! contains zero length elements:
+    XC15702[superimpose] = T
+    XC15702[ref] = K15_7A
+    XC15702[ref_origin] = beginning
+    XC15702[offset] = 0.3336
+    YC15703[superimpose] = T
+    YC15703[ref] = K15_7A
+    YC15703[ref_origin] = beginning
+    YC15703[offset] = 0.5836
+!old:   K15_7a_full : LINE=(K15_7a1,XC15702,K15_7a2,YC15703,K15_7a3)
+  K15_7b_full : LINE=(K15_7b)
+  K15_7c_full : LINE=(K15_7c)
+  K15_7d_full : LINE=(K15_7d)
+!---------------------
+! K15_8A LCAVITY
+K15_8A_full: line = (K15_8A)
+! contains zero length elements:
+    XC15802[superimpose] = T
+    XC15802[ref] = K15_8A
+    XC15802[ref_origin] = beginning
+    XC15802[offset] = 0.3292
+    YC15803[superimpose] = T
+    YC15803[ref] = K15_8A
+    YC15803[ref_origin] = beginning
+    YC15803[offset] = 0.7705
+!old:   K15_8a_full : LINE=(K15_8a1,XC15802,K15_8a2,YC15803,K15_8a3)
+  K15_8b_full : LINE=(K15_8b)
+  K15_8c_full : LINE=(K15_8c)
+!---------------------
+! K15_8D LCAVITY
+K15_8D_full: line = (K15_8D)
+! contains zero length elements:
+    XC15900[superimpose] = T
+    XC15900[ref] = K15_8D
+    XC15900[ref_origin] = beginning
+    XC15900[offset] = 2.3869
+    YC15900[superimpose] = T
+    YC15900[ref] = K15_8D
+    YC15900[ref_origin] = beginning
+    YC15900[offset] = 2.6369
+!old:   K15_8d_full : LINE=(K15_8d1,XC15900,K15_8d2,YC15900,K15_8d3)
+
+
+
+!Old split line: LINE=(TCY15280,TCY15280)
+
+tcy15280_full: line = (tcy15280)
+tcy15280[L] = 2*tcy15280[L]
+
+  K15_1 : LINE=(K15_1a_full,K15_1b_full,K15_1c_full,K15_1d_full)
+  K15_2 : LINE=(K15_2a_full,K15_2b_full,K15_2c_full            )
+  K15_3 : LINE=(K15_3a_full,K15_3b_full,K15_3c_full,K15_3d_full)
+  K15_4 : LINE=(K15_4a_full,K15_4b_full,K15_4c_full,K15_4d_full)
+  K15_5 : LINE=(K15_5a_full,K15_5b_full,K15_5c_full,K15_5d_full)
+  K15_6 : LINE=(K15_6a_full,K15_6b_full,K15_6c_full,K15_6d_full)
+  K15_7 : LINE=(K15_7a_full,K15_7b_full,K15_7c_full,K15_7d_full)
+  K15_8 : LINE=(K15_8a_full,K15_8b_full,K15_8c_full,K15_8d_full)
+
+
+
+!Old split line: LINE=(Q15201,BPM15201,Q15201)
+
+q15201_full: line = (q15201)
+q15201[L] = 2*q15201[L]
+bpm15201[superimpose] = T
+bpm15201[ref] = q15201
+
+
+!Old split line: LINE=(Q15301,BPM15301,Q15301)
+
+q15301_full: line = (q15301)
+q15301[L] = 2*q15301[L]
+bpm15301[superimpose] = T
+bpm15301[ref] = q15301
+
+
+!Old split line: LINE=(Q15401,BPM15401,Q15401)
+
+q15401_full: line = (q15401)
+q15401[L] = 2*q15401[L]
+bpm15401[superimpose] = T
+bpm15401[ref] = q15401
+
+
+!Old split line: LINE=(Q15501,BPM15501,Q15501)
+
+q15501_full: line = (q15501)
+q15501[L] = 2*q15501[L]
+bpm15501[superimpose] = T
+bpm15501[ref] = q15501
+
+
+!Old split line: LINE=(Q15601,BPM15601,Q15601)
+
+q15601_full: line = (q15601)
+q15601[L] = 2*q15601[L]
+bpm15601[superimpose] = T
+bpm15601[ref] = q15601
+
+
+!Old split line: LINE=(Q15701,BPM15701,Q15701)
+
+q15701_full: line = (q15701)
+q15701[L] = 2*q15701[L]
+bpm15701[superimpose] = T
+bpm15701[ref] = q15701
+
+
+!Old split line: LINE=(Q15801,BPM15801,Q15801)
+
+q15801_full: line = (q15801)
+q15801[L] = 2*q15801[L]
+bpm15801[superimpose] = T
+bpm15801[ref] = q15801
+
+
+!Old split line: LINE=(Q15901,BPM15901,Q15901)
+
+q15901_full: line = (q15901)
+q15901[L] = 2*q15901[L]
+bpm15901[superimpose] = T
+bpm15901[ref] = q15901
+
+  LI15 : LINE=(LI15beg,K15_1,DAQ1,Q15201_full,DAQ2,K15_2,D152Da,TCY15280_full,D152Db,DAQ1,Q15301_full,DAQ2,K15_3,DAQ1,
+         Q15401_full,DAQ2,K15_4,DAQ1,Q15501_full,DAQ2,K15_5,DAQ1,Q15601_full,DAQ2,K15_6,DAQ1,Q15701_full,DAQ2,K15_7,DAQ1,
+         Q15801_full,DAQ2,K15_8,DAQ3,Q15901_full,DAQ4d,PR15944,DAQ4e,LI15end)
+
+! ------------------------------------------------------------------------------
+
+  K16_1a_full : LINE=(K16_1a)
+  K16_1b_full : LINE=(K16_1b)
+  K16_1c_full : LINE=(K16_1c)
+  K16_1d_full : LINE=(K16_1d)
+!---------------------
+! K16_2A LCAVITY
+K16_2A_full: line = (K16_2A)
+! contains zero length elements:
+    XC16202[superimpose] = T
+    XC16202[ref] = K16_2A
+    XC16202[ref_origin] = beginning
+    XC16202[offset] = 0.3256
+    YC16203[superimpose] = T
+    YC16203[ref] = K16_2A
+    YC16203[ref_origin] = beginning
+    YC16203[offset] = 0.6911
+!old:   K16_2a_full : LINE=(K16_2a1,XC16202,K16_2a2,YC16203,K16_2a3)
+  K16_2b_full : LINE=(K16_2b)
+  K16_2c_full : LINE=(K16_2c)
+  K16_2d_full : LINE=(K16_2d)
+!---------------------
+! K16_3A LCAVITY
+K16_3A_full: line = (K16_3A)
+! contains zero length elements:
+    XC16302[superimpose] = T
+    XC16302[ref] = K16_3A
+    XC16302[ref_origin] = beginning
+    XC16302[offset] = 0.3312
+    YC16303[superimpose] = T
+    YC16303[ref] = K16_3A
+    YC16303[ref_origin] = beginning
+    YC16303[offset] = 0.5812
+!old:   K16_3a_full : LINE=(K16_3a1,XC16302,K16_3a2,YC16303,K16_3a3)
+  K16_3b_full : LINE=(K16_3b)
+  K16_3c_full : LINE=(K16_3c)
+  K16_3d_full : LINE=(K16_3d)
+!---------------------
+! K16_4A LCAVITY
+K16_4A_full: line = (K16_4A)
+! contains zero length elements:
+    XC16402[superimpose] = T
+    XC16402[ref] = K16_4A
+    XC16402[ref_origin] = beginning
+    XC16402[offset] = 0.3268
+    YC16403[superimpose] = T
+    YC16403[ref] = K16_4A
+    YC16403[ref_origin] = beginning
+    YC16403[offset] = 0.6943
+!old:   K16_4a_full : LINE=(K16_4a1,XC16402,K16_4a2,YC16403,K16_4a3)
+  K16_4b_full : LINE=(K16_4b)
+  K16_4c_full : LINE=(K16_4c)
+  K16_4d_full : LINE=(K16_4d)
+!---------------------
+! K16_5A LCAVITY
+K16_5A_full: line = (K16_5A)
+! contains zero length elements:
+    XC16502[superimpose] = T
+    XC16502[ref] = K16_5A
+    XC16502[ref_origin] = beginning
+    XC16502[offset] = 0.3324
+    YC16503[superimpose] = T
+    YC16503[ref] = K16_5A
+    YC16503[ref_origin] = beginning
+    YC16503[offset] = 0.6975
+!old:   K16_5a_full : LINE=(K16_5a1,XC16502,K16_5a2,YC16503,K16_5a3)
+  K16_5b_full : LINE=(K16_5b)
+  K16_5c_full : LINE=(K16_5c)
+  K16_5d_full : LINE=(K16_5d)
+!---------------------
+! K16_6A LCAVITY
+K16_6A_full: line = (K16_6A)
+! contains zero length elements:
+    XC16602[superimpose] = T
+    XC16602[ref] = K16_6A
+    XC16602[ref_origin] = beginning
+    XC16602[offset] = 0.328
+    YC16603[superimpose] = T
+    YC16603[ref] = K16_6A
+    YC16603[ref_origin] = beginning
+    YC16603[offset] = 0.7419
+!old:   K16_6a_full : LINE=(K16_6a1,XC16602,K16_6a2,YC16603,K16_6a3)
+  K16_6b_full : LINE=(K16_6b)
+  K16_6c_full : LINE=(K16_6c)
+  K16_6d_full : LINE=(K16_6d)
+!---------------------
+! K16_7A LCAVITY
+K16_7A_full: line = (K16_7A)
+! contains zero length elements:
+    XC16702[superimpose] = T
+    XC16702[ref] = K16_7A
+    XC16702[ref_origin] = beginning
+    XC16702[offset] = 0.3336
+    YC16703[superimpose] = T
+    YC16703[ref] = K16_7A
+    YC16703[ref_origin] = beginning
+    YC16703[offset] = 0.7229
+!old:   K16_7a_full : LINE=(K16_7a1,XC16702,K16_7a2,YC16703,K16_7a3)
+  K16_7b_full : LINE=(K16_7b)
+  K16_7c_full : LINE=(K16_7c)
+  K16_7d_full : LINE=(K16_7d)
+!---------------------
+! K16_8A LCAVITY
+K16_8A_full: line = (K16_8A)
+! contains zero length elements:
+    XC16802[superimpose] = T
+    XC16802[ref] = K16_8A
+    XC16802[ref_origin] = beginning
+    XC16802[offset] = 0.3292
+    YC16803[superimpose] = T
+    YC16803[ref] = K16_8A
+    YC16803[ref_origin] = beginning
+    YC16803[offset] = 0.5792
+!old:   K16_8a_full : LINE=(K16_8a1,XC16802,K16_8a2,YC16803,K16_8a3)
+  K16_8b_full : LINE=(K16_8b)
+  K16_8c_full : LINE=(K16_8c)
+!---------------------
+! K16_8D LCAVITY
+K16_8D_full: line = (K16_8D)
+! contains zero length elements:
+    XC16900[superimpose] = T
+    XC16900[ref] = K16_8D
+    XC16900[ref_origin] = beginning
+    XC16900[offset] = 2.3869
+    YC16900[superimpose] = T
+    YC16900[ref] = K16_8D
+    YC16900[ref_origin] = beginning
+    YC16900[offset] = 2.6369
+!old:   K16_8d_full : LINE=(K16_8d1,XC16900,K16_8d2,YC16900,K16_8d3)
+
+  K16_1 : LINE=(K16_1a_full,K16_1b_full,K16_1c_full,K16_1d_full)
+  K16_2 : LINE=(K16_2a_full,K16_2b_full,K16_2c_full,K16_2d_full)
+  K16_3 : LINE=(K16_3a_full,K16_3b_full,K16_3c_full,K16_3d_full)
+  K16_4 : LINE=(K16_4a_full,K16_4b_full,K16_4c_full,K16_4d_full)
+  K16_5 : LINE=(K16_5a_full,K16_5b_full,K16_5c_full,K16_5d_full)
+  K16_6 : LINE=(K16_6a_full,K16_6b_full,K16_6c_full,K16_6d_full)
+  K16_7 : LINE=(K16_7a_full,K16_7b_full,K16_7c_full,K16_7d_full)
+  K16_8 : LINE=(K16_8a_full,K16_8b_full,K16_8c_full,K16_8d_full)
+
+
+
+!Old split line: LINE=(Q16201,BPM16201,Q16201)
+
+q16201_full: line = (q16201)
+q16201[L] = 2*q16201[L]
+bpm16201[superimpose] = T
+bpm16201[ref] = q16201
+
+
+!Old split line: LINE=(Q16301,BPM16301,Q16301)
+
+q16301_full: line = (q16301)
+q16301[L] = 2*q16301[L]
+bpm16301[superimpose] = T
+bpm16301[ref] = q16301
+
+
+!Old split line: LINE=(Q16401,BPM16401,Q16401)
+
+q16401_full: line = (q16401)
+q16401[L] = 2*q16401[L]
+bpm16401[superimpose] = T
+bpm16401[ref] = q16401
+
+
+!Old split line: LINE=(Q16501,BPM16501,Q16501)
+
+q16501_full: line = (q16501)
+q16501[L] = 2*q16501[L]
+bpm16501[superimpose] = T
+bpm16501[ref] = q16501
+
+
+!Old split line: LINE=(Q16601,BPM16601,Q16601)
+
+q16601_full: line = (q16601)
+q16601[L] = 2*q16601[L]
+bpm16601[superimpose] = T
+bpm16601[ref] = q16601
+
+
+!Old split line: LINE=(Q16701,BPM16701,Q16701)
+
+q16701_full: line = (q16701)
+q16701[L] = 2*q16701[L]
+bpm16701[superimpose] = T
+bpm16701[ref] = q16701
+
+
+!Old split line: LINE=(Q16801,BPM16801,Q16801)
+
+q16801_full: line = (q16801)
+q16801[L] = 2*q16801[L]
+bpm16801[superimpose] = T
+bpm16801[ref] = q16801
+
+
+!Old split line: LINE=(Q16901,BPM16901,Q16901)
+
+q16901_full: line = (q16901)
+q16901[L] = 2*q16901[L]
+bpm16901[superimpose] = T
+bpm16901[ref] = q16901
+
+  LI16 : LINE=(LI16beg,K16_1,DAQ1,Q16201_full,DAQ2,K16_2,DAQ1,Q16301_full,DAQ2,K16_3,DAQ1,Q16401_full,DAQ2,K16_4,DAQ1,
+         Q16501_full,DAQ2,K16_5,DAQ1,Q16601_full,DAQ2,K16_6,DAQ1,Q16701_full,DAQ2,K16_7,DAQ1,Q16801_full,DAQ2,K16_8,DAQ3,
+         Q16901_full,DAQ4,LI16end)
+
+! ------------------------------------------------------------------------------
+
+  K17_1a_full : LINE=(K17_1a)
+  K17_1b_full : LINE=(K17_1b)
+  K17_1c_full : LINE=(K17_1c)
+  K17_1d_full : LINE=(K17_1d)
+!---------------------
+! K17_2A LCAVITY
+K17_2A_full: line = (K17_2A)
+! contains zero length elements:
+    XC17202[superimpose] = T
+    XC17202[ref] = K17_2A
+    XC17202[ref_origin] = beginning
+    XC17202[offset] = 0.3256
+    YC17203[superimpose] = T
+    YC17203[ref] = K17_2A
+    YC17203[ref_origin] = beginning
+    YC17203[offset] = 0.707
+!old:   K17_2a_full : LINE=(K17_2a1,XC17202,K17_2a2,YC17203,K17_2a3)
+  K17_2b_full : LINE=(K17_2b)
+  K17_2c_full : LINE=(K17_2c)
+  K17_2d_full : LINE=(K17_2d)
+!---------------------
+! K17_3A LCAVITY
+K17_3A_full: line = (K17_3A)
+! contains zero length elements:
+    XC17302[superimpose] = T
+    XC17302[ref] = K17_3A
+    XC17302[ref_origin] = beginning
+    XC17302[offset] = 0.3312
+    YC17303[superimpose] = T
+    YC17303[ref] = K17_3A
+    YC17303[ref_origin] = beginning
+    YC17303[offset] = 0.5812
+!old:   K17_3a_full : LINE=(K17_3a1,XC17302,K17_3a2,YC17303,K17_3a3)
+  K17_3b_full : LINE=(K17_3b)
+  K17_3c_full : LINE=(K17_3c)
+  K17_3d_full : LINE=(K17_3d)
+!---------------------
+! K17_4A LCAVITY
+K17_4A_full: line = (K17_4A)
+! contains zero length elements:
+    XC17402[superimpose] = T
+    XC17402[ref] = K17_4A
+    XC17402[ref_origin] = beginning
+    XC17402[offset] = 0.3268
+    YC17403[superimpose] = T
+    YC17403[ref] = K17_4A
+    YC17403[ref_origin] = beginning
+    YC17403[offset] = 0.5768
+!old:   K17_4a_full : LINE=(K17_4a1,XC17402,K17_4a2,YC17403,K17_4a3)
+  K17_4b_full : LINE=(K17_4b)
+  K17_4c_full : LINE=(K17_4c)
+  K17_4d_full : LINE=(K17_4d)
+!---------------------
+! K17_5A LCAVITY
+K17_5A_full: line = (K17_5A)
+! contains zero length elements:
+    XC17502[superimpose] = T
+    XC17502[ref] = K17_5A
+    XC17502[ref_origin] = beginning
+    XC17502[offset] = 0.3324
+    YC17503[superimpose] = T
+    YC17503[ref] = K17_5A
+    YC17503[ref_origin] = beginning
+    YC17503[offset] = 0.7165
+!old:   K17_5a_full : LINE=(K17_5a1,XC17502,K17_5a2,YC17503,K17_5a3)
+  K17_5b_full : LINE=(K17_5b)
+  K17_5c_full : LINE=(K17_5c)
+  K17_5d_full : LINE=(K17_5d)
+!---------------------
+! K17_6A LCAVITY
+K17_6A_full: line = (K17_6A)
+! contains zero length elements:
+    XC17602[superimpose] = T
+    XC17602[ref] = K17_6A
+    XC17602[ref_origin] = beginning
+    XC17602[offset] = 0.328
+    YC17603[superimpose] = T
+    YC17603[ref] = K17_6A
+    YC17603[ref_origin] = beginning
+    YC17603[offset] = 0.7229
+!old:   K17_6a_full : LINE=(K17_6a1,XC17602,K17_6a2,YC17603,K17_6a3)
+  K17_6b_full : LINE=(K17_6b)
+  K17_6c_full : LINE=(K17_6c)
+  K17_6d_full : LINE=(K17_6d)
+!---------------------
+! K17_7A LCAVITY
+K17_7A_full: line = (K17_7A)
+! contains zero length elements:
+    XC17702[superimpose] = T
+    XC17702[ref] = K17_7A
+    XC17702[ref_origin] = beginning
+    XC17702[offset] = 0.3336
+    YC17703[superimpose] = T
+    YC17703[ref] = K17_7A
+    YC17703[ref_origin] = beginning
+    YC17703[offset] = 0.5836
+!old:   K17_7a_full : LINE=(K17_7a1,XC17702,K17_7a2,YC17703,K17_7a3)
+  K17_7b_full : LINE=(K17_7b)
+  K17_7c_full : LINE=(K17_7c)
+  K17_7d_full : LINE=(K17_7d)
+!---------------------
+! K17_8A LCAVITY
+K17_8A_full: line = (K17_8A)
+! contains zero length elements:
+    XC17802[superimpose] = T
+    XC17802[ref] = K17_8A
+    XC17802[ref_origin] = beginning
+    XC17802[offset] = 0.3292
+    YC17803[superimpose] = T
+    YC17803[ref] = K17_8A
+    YC17803[ref_origin] = beginning
+    YC17803[offset] = 0.5792
+!old:   K17_8a_full : LINE=(K17_8a1,XC17802,K17_8a2,YC17803,K17_8a3)
+  K17_8b_full : LINE=(K17_8b)
+  K17_8c_full : LINE=(K17_8c)
+!---------------------
+! K17_8D LCAVITY
+K17_8D_full: line = (K17_8D)
+! contains zero length elements:
+    XC17900[superimpose] = T
+    XC17900[ref] = K17_8D
+    XC17900[ref_origin] = beginning
+    XC17900[offset] = 2.2856
+    YC17900[superimpose] = T
+    YC17900[ref] = K17_8D
+    YC17900[ref_origin] = beginning
+    YC17900[offset] = 2.6369
+!old:   K17_8d_full : LINE=(K17_8d1,XC17900,K17_8d2,YC17900,K17_8d3)
+
+  K17_1 : LINE=(K17_1a_full,K17_1b_full,K17_1c_full,K17_1d_full)
+  K17_2 : LINE=(K17_2a_full,K17_2b_full,K17_2c_full,K17_2d_full)
+  K17_3 : LINE=(K17_3a_full,K17_3b_full,K17_3c_full,K17_3d_full)
+  K17_4 : LINE=(K17_4a_full,K17_4b_full,K17_4c_full,K17_4d_full)
+  K17_5 : LINE=(K17_5a_full,K17_5b_full,K17_5c_full,K17_5d_full)
+  K17_6 : LINE=(K17_6a_full,K17_6b_full,K17_6c_full,K17_6d_full)
+  K17_7 : LINE=(K17_7a_full,K17_7b_full,K17_7c_full,K17_7d_full)
+  K17_8 : LINE=(K17_8a_full,K17_8b_full,K17_8c_full,K17_8d_full)
+
+
+
+!Old split line: LINE=(Q17201,BPM17201,Q17201)
+
+q17201_full: line = (q17201)
+q17201[L] = 2*q17201[L]
+bpm17201[superimpose] = T
+bpm17201[ref] = q17201
+
+
+!Old split line: LINE=(Q17301,BPM17301,Q17301)
+
+q17301_full: line = (q17301)
+q17301[L] = 2*q17301[L]
+bpm17301[superimpose] = T
+bpm17301[ref] = q17301
+
+
+!Old split line: LINE=(Q17401,BPM17401,Q17401)
+
+q17401_full: line = (q17401)
+q17401[L] = 2*q17401[L]
+bpm17401[superimpose] = T
+bpm17401[ref] = q17401
+
+
+!Old split line: LINE=(Q17501,BPM17501,Q17501)
+
+q17501_full: line = (q17501)
+q17501[L] = 2*q17501[L]
+bpm17501[superimpose] = T
+bpm17501[ref] = q17501
+
+
+!Old split line: LINE=(Q17601,BPM17601,Q17601)
+
+q17601_full: line = (q17601)
+q17601[L] = 2*q17601[L]
+bpm17601[superimpose] = T
+bpm17601[ref] = q17601
+
+
+!Old split line: LINE=(Q17701,BPM17701,Q17701)
+
+q17701_full: line = (q17701)
+q17701[L] = 2*q17701[L]
+bpm17701[superimpose] = T
+bpm17701[ref] = q17701
+
+
+!Old split line: LINE=(Q17801,BPM17801,Q17801)
+
+q17801_full: line = (q17801)
+q17801[L] = 2*q17801[L]
+bpm17801[superimpose] = T
+bpm17801[ref] = q17801
+
+
+!Old split line: LINE=(Q17901,BPM17901,Q17901)
+
+q17901_full: line = (q17901)
+q17901[L] = 2*q17901[L]
+bpm17901[superimpose] = T
+bpm17901[ref] = q17901
+
+  LI17 : LINE=(LI17beg,K17_1,DAQ1,Q17201_full,DAQ2,K17_2,DAQ1,Q17301_full,DAQ2,K17_3,DAQ1,Q17401_full,DAQ2,K17_4,DAQ1,
+         Q17501_full,DAQ2,K17_5,DAQ1,Q17601_full,DAQ2,K17_6,DAQ1,Q17701_full,DAQ2,K17_7,DAQ1,Q17801_full,DAQ2,K17_8,DAQ3,
+         Q17901_full,DAQ4,LI17end)
+
+! ------------------------------------------------------------------------------
+
+  K18_1a_full : LINE=(K18_1a)
+  K18_1b_full : LINE=(K18_1b)
+  K18_1c_full : LINE=(K18_1c)
+  K18_1d_full : LINE=(K18_1d)
+!---------------------
+! K18_2A LCAVITY
+K18_2A_full: line = (K18_2A)
+! contains zero length elements:
+    XC18202[superimpose] = T
+    XC18202[ref] = K18_2A
+    XC18202[ref_origin] = beginning
+    XC18202[offset] = 0.3256
+    YC18203[superimpose] = T
+    YC18203[ref] = K18_2A
+    YC18203[ref_origin] = beginning
+    YC18203[offset] = 0.7134
+!old:   K18_2a_full : LINE=(K18_2a1,XC18202,K18_2a2,YC18203,K18_2a3)
+  K18_2b_full : LINE=(K18_2b)
+  K18_2c_full : LINE=(K18_2c)
+  K18_2d_full : LINE=(K18_2d)
+!---------------------
+! K18_3A LCAVITY
+K18_3A_full: line = (K18_3A)
+! contains zero length elements:
+    XC18302[superimpose] = T
+    XC18302[ref] = K18_3A
+    XC18302[ref_origin] = beginning
+    XC18302[offset] = 0.3312
+    YC18303[superimpose] = T
+    YC18303[ref] = K18_3A
+    YC18303[ref_origin] = beginning
+    YC18303[offset] = 0.5812
+!old:   K18_3a_full : LINE=(K18_3a1,XC18302,K18_3a2,YC18303,K18_3a3)
+  K18_3b_full : LINE=(K18_3b)
+  K18_3c_full : LINE=(K18_3c)
+  K18_3d_full : LINE=(K18_3d)
+!---------------------
+! K18_4A LCAVITY
+K18_4A_full: line = (K18_4A)
+! contains zero length elements:
+    XC18402[superimpose] = T
+    XC18402[ref] = K18_4A
+    XC18402[ref_origin] = beginning
+    XC18402[offset] = 0.3268
+    YC18403[superimpose] = T
+    YC18403[ref] = K18_4A
+    YC18403[ref_origin] = beginning
+    YC18403[offset] = 0.5768
+!old:   K18_4a_full : LINE=(K18_4a1,XC18402,K18_4a2,YC18403,K18_4a3)
+  K18_4b_full : LINE=(K18_4b)
+  K18_4c_full : LINE=(K18_4c)
+  K18_4d_full : LINE=(K18_4d)
+!---------------------
+! K18_5A LCAVITY
+K18_5A_full: line = (K18_5A)
+! contains zero length elements:
+    XC18502[superimpose] = T
+    XC18502[ref] = K18_5A
+    XC18502[ref_origin] = beginning
+    XC18502[offset] = 0.3324
+    YC18503[superimpose] = T
+    YC18503[ref] = K18_5A
+    YC18503[ref_origin] = beginning
+    YC18503[offset] = 0.7419
+!old:   K18_5a_full : LINE=(K18_5a1,XC18502,K18_5a2,YC18503,K18_5a3)
+  K18_5b_full : LINE=(K18_5b)
+  K18_5c_full : LINE=(K18_5c)
+  K18_5d_full : LINE=(K18_5d)
+!---------------------
+! K18_6A LCAVITY
+K18_6A_full: line = (K18_6A)
+! contains zero length elements:
+    XC18602[superimpose] = T
+    XC18602[ref] = K18_6A
+    XC18602[ref_origin] = beginning
+    XC18602[offset] = 0.328
+    YC18603[superimpose] = T
+    YC18603[ref] = K18_6A
+    YC18603[ref_origin] = beginning
+    YC18603[offset] = 0.7165
+!old:   K18_6a_full : LINE=(K18_6a1,XC18602,K18_6a2,YC18603,K18_6a3)
+  K18_6b_full : LINE=(K18_6b)
+  K18_6c_full : LINE=(K18_6c)
+  K18_6d_full : LINE=(K18_6d)
+!---------------------
+! K18_7A LCAVITY
+K18_7A_full: line = (K18_7A)
+! contains zero length elements:
+    XC18702[superimpose] = T
+    XC18702[ref] = K18_7A
+    XC18702[ref_origin] = beginning
+    XC18702[offset] = 0.3336
+    YC18703[superimpose] = T
+    YC18703[ref] = K18_7A
+    YC18703[ref_origin] = beginning
+    YC18703[offset] = 0.7134
+!old:   K18_7a_full : LINE=(K18_7a1,XC18702,K18_7a2,YC18703,K18_7a3)
+  K18_7b_full : LINE=(K18_7b)
+  K18_7c_full : LINE=(K18_7c)
+  K18_7d_full : LINE=(K18_7d)
+!---------------------
+! K18_8A LCAVITY
+K18_8A_full: line = (K18_8A)
+! contains zero length elements:
+    XC18802[superimpose] = T
+    XC18802[ref] = K18_8A
+    XC18802[ref_origin] = beginning
+    XC18802[offset] = 0.3292
+    YC18803[superimpose] = T
+    YC18803[ref] = K18_8A
+    YC18803[ref_origin] = beginning
+    YC18803[offset] = 0.7419
+!old:   K18_8a_full : LINE=(K18_8a1,XC18802,K18_8a2,YC18803,K18_8a3)
+  K18_8b_full : LINE=(K18_8b)
+  K18_8c_full : LINE=(K18_8c)
+!---------------------
+! K18_8D LCAVITY
+K18_8D_full: line = (K18_8D)
+! contains zero length elements:
+    XC18900[superimpose] = T
+    XC18900[ref] = K18_8D
+    XC18900[ref_origin] = beginning
+    XC18900[offset] = 2.2729
+    YC18900[superimpose] = T
+    YC18900[ref] = K18_8D
+    YC18900[ref_origin] = beginning
+    YC18900[offset] = 2.6369
+!old:   K18_8d_full : LINE=(K18_8d1,XC18900,K18_8d2,YC18900,K18_8d3)
+
+  K18_1 : LINE=(K18_1a_full,K18_1b_full,K18_1c_full,K18_1d_full)
+  K18_2 : LINE=(K18_2a_full,K18_2b_full,K18_2c_full,K18_2d_full)
+  K18_3 : LINE=(K18_3a_full,K18_3b_full,K18_3c_full,K18_3d_full)
+  K18_4 : LINE=(K18_4a_full,K18_4b_full,K18_4c_full,K18_4d_full)
+  K18_5 : LINE=(K18_5a_full,K18_5b_full,K18_5c_full,K18_5d_full)
+  K18_6 : LINE=(K18_6a_full,K18_6b_full,K18_6c_full,K18_6d_full)
+  K18_7 : LINE=(K18_7a_full,K18_7b_full,K18_7c_full,K18_7d_full)
+  K18_8 : LINE=(K18_8a_full,K18_8b_full,K18_8c_full,K18_8d_full)
+
+
+
+!Old split line: LINE=(Q18201,BPM18201,Q18201)
+
+q18201_full: line = (q18201)
+q18201[L] = 2*q18201[L]
+bpm18201[superimpose] = T
+bpm18201[ref] = q18201
+
+
+!Old split line: LINE=(Q18301,BPM18301,Q18301)
+
+q18301_full: line = (q18301)
+q18301[L] = 2*q18301[L]
+bpm18301[superimpose] = T
+bpm18301[ref] = q18301
+
+
+!Old split line: LINE=(Q18401,BPM18401,Q18401)
+
+q18401_full: line = (q18401)
+q18401[L] = 2*q18401[L]
+bpm18401[superimpose] = T
+bpm18401[ref] = q18401
+
+
+!Old split line: LINE=(Q18501,BPM18501,Q18501)
+
+q18501_full: line = (q18501)
+q18501[L] = 2*q18501[L]
+bpm18501[superimpose] = T
+bpm18501[ref] = q18501
+
+
+!Old split line: LINE=(Q18601,BPM18601,Q18601)
+
+q18601_full: line = (q18601)
+q18601[L] = 2*q18601[L]
+bpm18601[superimpose] = T
+bpm18601[ref] = q18601
+
+
+!Old split line: LINE=(Q18701,BPM18701,Q18701)
+
+q18701_full: line = (q18701)
+q18701[L] = 2*q18701[L]
+bpm18701[superimpose] = T
+bpm18701[ref] = q18701
+
+
+!Old split line: LINE=(Q18801,BPM18801,Q18801)
+
+q18801_full: line = (q18801)
+q18801[L] = 2*q18801[L]
+bpm18801[superimpose] = T
+bpm18801[ref] = q18801
+
+
+!Old split line: LINE=(Q18901,BPM18901,Q18901)
+
+q18901_full: line = (q18901)
+q18901[L] = 2*q18901[L]
+bpm18901[superimpose] = T
+bpm18901[ref] = q18901
+
+  LI18 : LINE=(LI18beg,K18_1,DAQ1,Q18201_full,DAQ2,K18_2,DAQ1,Q18301_full,DAQ2,K18_3,DAQ1,Q18401_full,DAQ2,K18_4,DAQ1,
+         Q18501_full,DAQ2,K18_5,DAQ1,Q18601_full,DAQ2,K18_6,DAQ1,Q18701_full,DAQ2,K18_7,DAQ1,Q18801_full,DAQ2,K18_8,DAQ3,
+         Q18901_full,DAQ4k,BL18900,DAQ4l,WS18944,DAQ4m,CX18960,CY18960,DAQ4n,LI18end)
+
+! ------------------------------------------------------------------------------
+
+  K19_1a_full : LINE=(K19_1a)
+  K19_1b_full : LINE=(K19_1b)
+  K19_1c_full : LINE=(K19_1c)
+  K19_1d_full : LINE=(K19_1d)
+!---------------------
+! K19_2A LCAVITY
+K19_2A_full: line = (K19_2A)
+! contains zero length elements:
+    XC19202[superimpose] = T
+    XC19202[ref] = K19_2A
+    XC19202[ref_origin] = beginning
+    XC19202[offset] = 0.3256
+    YC19203[superimpose] = T
+    YC19203[ref] = K19_2A
+    YC19203[ref_origin] = beginning
+    YC19203[offset] = 0.6848
+!old:   K19_2a_full : LINE=(K19_2a1,XC19202,K19_2a2,YC19203,K19_2a3)
+  K19_2b_full : LINE=(K19_2b)
+  K19_2c_full : LINE=(K19_2c)
+  K19_2d_full : LINE=(K19_2d)
+!---------------------
+! K19_3A LCAVITY
+K19_3A_full: line = (K19_3A)
+! contains zero length elements:
+    XC19302[superimpose] = T
+    XC19302[ref] = K19_3A
+    XC19302[ref_origin] = beginning
+    XC19302[offset] = 0.3312
+    YC19303[superimpose] = T
+    YC19303[ref] = K19_3A
+    YC19303[ref_origin] = beginning
+    YC19303[offset] = 0.7007
+!old:   K19_3a_full : LINE=(K19_3a1,XC19302,K19_3a2,YC19303,K19_3a3)
+  K19_3b_full : LINE=(K19_3b)
+  K19_3c_full : LINE=(K19_3c)
+  K19_3d_full : LINE=(K19_3d)
+!---------------------
+! K19_4A LCAVITY
+K19_4A_full: line = (K19_4A)
+! contains zero length elements:
+    XC19402[superimpose] = T
+    XC19402[ref] = K19_4A
+    XC19402[ref_origin] = beginning
+    XC19402[offset] = 0.3268
+    YC19403[superimpose] = T
+    YC19403[ref] = K19_4A
+    YC19403[ref_origin] = beginning
+    YC19403[offset] = 0.7165
+!old:   K19_4a_full : LINE=(K19_4a1,XC19402,K19_4a2,YC19403,K19_4a3)
+  K19_4b_full : LINE=(K19_4b)
+  K19_4c_full : LINE=(K19_4c)
+!---------------------
+! K19_4D LCAVITY
+K19_4D_full: line = (K19_4D)
+! contains zero length elements:
+    YC57145[superimpose] = T
+    YC57145[ref] = K19_4D
+    YC57145[ref_origin] = beginning
+    YC57145[offset] = 1.595
+    YC57146[superimpose] = T
+    YC57146[ref] = K19_4D
+    YC57146[ref_origin] = beginning
+    YC57146[offset] = 1.9157
+!old:   K19_4d_full : LINE=(K19_4d1,YC57145,K19_4d2,YC57146,K19_4d3)
+!---------------------
+! K19_5A LCAVITY
+K19_5A_full: line = (K19_5A)
+! contains zero length elements:
+    XC19502[superimpose] = T
+    XC19502[ref] = K19_5A
+    XC19502[ref_origin] = beginning
+    XC19502[offset] = 0.3324
+    YC19503[superimpose] = T
+    YC19503[ref] = K19_5A
+    YC19503[ref_origin] = beginning
+    YC19503[offset] = 0.7356
+!old:   K19_5a_full : LINE=(K19_5a1,XC19502,K19_5a2,YC19503,K19_5a3)
+  K19_5b_full : LINE=(K19_5b)
+  K19_5c_full : LINE=(K19_5c)
+  K19_5d_full : LINE=(K19_5d)
+!---------------------
+! K19_6A LCAVITY
+K19_6A_full: line = (K19_6A)
+! contains zero length elements:
+    XC19602[superimpose] = T
+    XC19602[ref] = K19_6A
+    XC19602[ref_origin] = beginning
+    XC19602[offset] = 0.328
+    YC19603[superimpose] = T
+    YC19603[ref] = K19_6A
+    YC19603[ref_origin] = beginning
+    YC19603[offset] = 0.7134
+!old:   K19_6a_full : LINE=(K19_6a1,XC19602,K19_6a2,YC19603,K19_6a3)
+  K19_6b_full : LINE=(K19_6b)
+  K19_6c_full : LINE=(K19_6c)
+!---------------------
+! K19_6D LCAVITY
+K19_6D_full: line = (K19_6D)
+! contains zero length elements:
+    YC19700[superimpose] = T
+    YC19700[ref] = K19_6D
+    YC19700[ref_origin] = beginning
+    YC19700[offset] = 0.8425
+    XC19700[superimpose] = T
+    XC19700[ref] = K19_6D
+    XC19700[ref_origin] = beginning
+    XC19700[offset] = 2.3057
+!old:   K19_6d_full : LINE=(K19_6d1,YC19700,K19_6d2,XC19700,K19_6d3)
+!---------------------
+! K19_8A LCAVITY
+K19_8A_full: line = (K19_8A)
+! contains zero length elements:
+    XC19802[superimpose] = T
+    XC19802[ref] = K19_8A
+    XC19802[ref_origin] = beginning
+    XC19802[offset] = 0.3895
+    YC19803[superimpose] = T
+    YC19803[ref] = K19_8A
+    YC19803[ref_origin] = beginning
+    YC19803[offset] = 0.688
+!old:   K19_8a_full : LINE=(K19_8a1,XC19802,K19_8a2,YC19803,K19_8a3)
+
+  K19_1 : LINE=(K19_1a_full,K19_1b_full,K19_1c_full,K19_1d_full)
+  K19_2 : LINE=(K19_2a_full,K19_2b_full,K19_2c_full,K19_2d_full)
+  K19_3 : LINE=(K19_3a_full,K19_3b_full,K19_3c_full,K19_3d_full)
+  K19_4 : LINE=(K19_4a_full,K19_4b_full,K19_4c_full,K19_4d_full)
+  K19_5 : LINE=(K19_5a_full,K19_5b_full,K19_5c_full,K19_5d_full)
+  K19_6 : LINE=(K19_6a_full,K19_6b_full,K19_6c_full,K19_6d_full)
+  D19_7 : LINE=(D10a,HLAM,D10b,D10,D10,D10)
+  K19_8 : LINE=(K19_8a_full)
+
+
+
+!Old split line: LINE=(Q19201,BPM19201,Q19201)
+
+q19201_full: line = (q19201)
+q19201[L] = 2*q19201[L]
+bpm19201[superimpose] = T
+bpm19201[ref] = q19201
+
+
+!Old split line: LINE=(Q19301,BPM19301,Q19301)
+
+q19301_full: line = (q19301)
+q19301[L] = 2*q19301[L]
+bpm19301[superimpose] = T
+bpm19301[ref] = q19301
+
+
+!Old split line: LINE=(Q19401,BPM19401,Q19401)
+
+q19401_full: line = (q19401)
+q19401[L] = 2*q19401[L]
+bpm19401[superimpose] = T
+bpm19401[ref] = q19401
+
+
+!Old split line: LINE=(Q19501,BPM19501,Q19501)
+
+q19501_full: line = (q19501)
+q19501[L] = 2*q19501[L]
+bpm19501[superimpose] = T
+bpm19501[ref] = q19501
+
+
+!Old split line: LINE=(Q19601,BPM19601,Q19601)
+
+q19601_full: line = (q19601)
+q19601[L] = 2*q19601[L]
+bpm19601[superimpose] = T
+bpm19601[ref] = q19601
+
+
+!Old split line: LINE=(Q19701,BPM19701,Q19701)
+
+q19701_full: line = (q19701)
+q19701[L] = 2*q19701[L]
+bpm19701[superimpose] = T
+bpm19701[ref] = q19701
+
+
+!Old split line: LINE=(Q19801,BPM19801,Q19801)
+
+q19801_full: line = (q19801)
+q19801[L] = 2*q19801[L]
+bpm19801[superimpose] = T
+bpm19801[ref] = q19801
+
+
+!Old split line: LINE=(Q19851,BPM19851,Q19851)
+
+q19851_full: line = (q19851)
+q19851[L] = 2*q19851[L]
+bpm19851[superimpose] = T
+bpm19851[ref] = q19851
+
+
+!Old split line: LINE=(Q19871,BPM19871,Q19871)
+
+q19871_full: line = (q19871)
+q19871[L] = 2*q19871[L]
+bpm19871[superimpose] = T
+bpm19871[ref] = q19871
+
+  LI19a : LINE=(LI19beg,K19_1,DAQ5a,WS19144,DAQ5b,DAQ1,Q19201_full,DAQ2,K19_2,DAQ5a,WS19244,DAQ5b,DAQ1,Q19301_full,DAQ2,
+         K19_3,DAQ5a,WS19344,DAQ5b,DAQ1,Q19401_full,DAQ2,K19_4,DAA7l,MSCAVEXT)
+
+  LI19b : LINE=(DBKY170,DBKY170,DAA7m,DAQ1,Q19501_full,DAQ2,K19_5,DAQ1,Q19601_full,DAQ2,K19_6,DAQ1,Q19701_full)
+
+  LI19c : LINE=(DAQ2,D19_7,DAQ1,Q19801_full,DAQ2,K19_8,D199a,Q19851_full,D199b,Q19871_full,D199c,XC19900,D199d,YC19900,
+         D199e,IM1988,D199f,LI19term)
+
+  LI19 : LINE=(LI19a,LI19b,LI19c)
+
+! ------------------------------------------------------------------------------
+
+  L3F_1 : LINE=(BEGL3F_1,LI15,LI16,LI17,LI18,LI19a,ENDL3F_1)
+  L3F_2 : LINE=(BEGL3F_2,LI19b,LI19c,ENDL3F_2)
+  L3F   : LINE=(L3F_1,L3F_2)
+
+! ==============================================================================
+

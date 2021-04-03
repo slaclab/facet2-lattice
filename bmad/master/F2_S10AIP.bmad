@@ -1,0 +1,18 @@
+!+
+! Translated from MAD8 file: F2_S10AIP.xsif
+!-
+
+
+! *** OPTICS=FACET2-21AUG19 ***
+
+! F2_S10AIP path configuration
+
+call, file = FACET2e_master.bmad !calls other xsif files
+
+ !COMMENT
+use, f2_s10aip !start at CATHODE
+    ! initial energy: E0
+    ! initial SURVEY: Xc, 0, Zc, THETAc, 0, 0
+    ! initial Twiss : BX0, AX0, BY0, AY0
+ !ENDCOMMENT
+

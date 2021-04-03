@@ -1,0 +1,438 @@
+
+! *** OPTICS=FACET2-25FEB21 ***
+
+! ==============================================================================
+! Modification History
+! ------------------------------------------------------------------------------
+! 19-FEB-2021, M. Woodley
+!  * remove IN10 ACMs (IM10607 and IM10618)
+! ------------------------------------------------------------------------------
+! 25-JUL-2019, M. Woodley
+!  * laser heater chicane, undulator, and OTR's won't be installed for startup
+!    per N. Lipkowitz ... defer (level 0)
+! ------------------------------------------------------------------------------
+! 05-MAR-2019, M. Woodley
+!  * add WALLBEG, WALLEND (INSTs), IM10607, IM10618 (MARKERs) per N. Lipkowitz
+! ------------------------------------------------------------------------------
+! 23-AUG-2018, M. Woodley
+!  * correct TYPE designation of dogleg bends
+!  * quadrupole K1 values from FACET2e_baseline.mat
+! ------------------------------------------------------------------------------
+! 16-MAY-2017, M. Woodley
+!  * add bunch length monitor (ceramic gap) BZ10596
+! 06-APR-2017, M. Woodley
+!  * use LCLS unit numbers in element names
+!  * undefer TCY10490
+!  * remove OTR1B
+!  * change keyword for vacuum valves (VV*) to INST
+! 31-JAN-2017, M. Woodley
+!  * from FACET2e.xsif
+! ------------------------------------------------------------------------------
+
+! ==============================================================================
+! lcavity
+! ------------------------------------------------------------------------------
+
+! vertically deflecting transverse cavity
+
+tcy10490: lcavity, rf_frequency = sbandf * 1e6, type = "short TCAV", l = 0.6680236/2
+
+! ==============================================================================
+! SBEN
+! ------------------------------------------------------------------------------
+
+! laser heater chicane
+! - use series approximation for sinc(x)=sin(x)/x to allow BBh=0
+
+! GBH   : 5D3.9 gap height (m)
+! ZBH   : 5D3.9 "Z" length (m)
+! ABH   : chicane bend angle (rad)
+! LBH   : chicane bend path length (m)
+! ABHs  : "short" half chicane bend angle (rad)
+! LBHs  : "short" half chicane bend path length (m)
+! ABHl  : "long" half chicane bend angle (rad)
+! LBHl  : "long" half chicane bend path length (m)
+
+gbh = 0.03
+zbh = 0.1244
+abh = 0 !0.1316410831
+abh_2 = abh*abh
+abh_4 = abh_2*abh_2
+abh_6 = abh_4*abh_2
+sincabh = 1-abh_2/6+abh_4/120-abh_6/5040 !~sinc(ABH)=sin(ABH)/ABH
+lbh = zbh/sincabh
+abhs = asin(sin(abh)/2)
+abhs_2 = abhs*abhs
+abhs_4 = abhs_2*abhs_2
+abhs_6 = abhs_4*abhs_2
+sincabhs = 1-abhs_2/6+abhs_4/120-abhs_6/5040 !~sinc(ABHs)=sin(ABHs)/ABHs
+lbhs = (zbh/2)/sincabhs
+abhl = abh-abhs
+lbhl = lbh-lbhs
+
+bcx10451a: sbend, type = "@0,5D3.9", l = lbhs, angle = -abhs, hgap = gbh/2, e1 = 0, fint = 0.400, fintx = 0
+bcx10451b: sbend, type = "@0,5D3.9", l = lbhl, angle = -abhl, hgap = gbh/2, fint = 0, e2 = -abh, fintx = 0.400
+bcx10461a: sbend, type = "@0,5D3.9", l = lbhl, angle = +abhl, hgap = gbh/2, e1 = +abh, fint = 0.400, fintx = 0
+bcx10461b: sbend, type = "@0,5D3.9", l = lbhs, angle = +abhs, hgap = gbh/2, fint = 0, e2 = 0, fintx = 0.400
+bcx10475a: sbend, type = "@0,5D3.9", l = lbhs, angle = +abhs, hgap = gbh/2, e1 = 0, fint = 0.400, fintx = 0
+bcx10475b: sbend, type = "@0,5D3.9", l = lbhl, angle = +abhl, hgap = gbh/2, fint = 0, e2 = +abh, fintx = 0.400
+bcx10481a: sbend, type = "@0,5D3.9", l = lbhl, angle = -abhl, hgap = gbh/2, e1 = -abh, fint = 0.400, fintx = 0
+bcx10481b: sbend, type = "@0,5D3.9", l = lbhs, angle = -abhs, hgap = gbh/2, fint = 0, e2 = 0, fintx = 0.400
+
+! define unsplit SBENs for BMAD ... not used by MAD
+
+
+bcx10451: sbend, type = "@0,5D3.9", l = lbh, hgap = gbh/2, angle = -abh, e1 = 0, fint = 0.400, e2 = -abh, fintx = 0.400
+bcx10461: sbend, type = "@0,5D3.9", l = lbh, hgap = gbh/2, angle = +abh, e1 = +abh, fint = 0.400, e2 = 0, fintx = 0.400
+bcx10475: sbend, type = "@0,5D3.9", l = lbh, hgap = gbh/2, angle = +abh, e1 = 0, fint = 0.400, e2 = +abh, fintx = 0.400
+bcx10481: sbend, type = "@0,5D3.9", l = lbh, hgap = gbh/2, angle = -abh, e1 = -abh, fint = 0.400, e2 = 0, fintx = 0.400
+
+! dogleg
+
+gb0 = 0.03                   !gap height (m)
+zb0 = 0.2032                 !full "Z" length (m)
+ab0 = adl1/2                 !full bend angle (rad)
+lb0 = zb0*ab0/(2*sin(ab0/2)) !full bend path length (m)
+
+bx10661a: sbend, type = "1.182D6.82T", l = lb0/2, hgap = gb0/2, angle = ab0/2, e1 = ab0/2, fint = 0.45, fintx = 0
+bx10661b: sbend, type = "1.182D6.82T", l = lb0/2, hgap = gb0/2, angle = ab0/2, e2 = ab0/2, fint = 0, fintx = 0.45
+bx10751a: sbend, type = "1.182D6.82T", l = lb0/2, hgap = gb0/2, angle = ab0/2, e1 = ab0/2, fint = 0.45, fintx = 0
+bx10751b: sbend, type = "1.182D6.82T", l = lb0/2, hgap = gb0/2, angle = ab0/2, e2 = ab0/2, fint = 0, fintx = 0.45
+
+! define unsplit SBENs for BMAD ... not used by MAD
+
+bx10661: sbend, type = "1.182D6.82T", hgap = gb0/2, l = lb0, angle = ab0, e1 = ab0/2, fint = 0.45, e2 = ab0/2,
+          fintx = 0.45
+bx10751: sbend, type = "1.182D6.82T", hgap = gb0/2, l = lb0, angle = ab0, e1 = ab0/2, fint = 0.45, e2 = ab0/2,
+          fintx = 0.45
+
+! ==============================================================================
+! MATR
+! ------------------------------------------------------------------------------
+
+! laser heater undulator
+! - half-undulator modeled as R-matrix to include vertical natural focusing
+
+! lam   : laser-heater undulator period [m]
+! lamr  : heater laser wavelength [m]
+! gami  : Lorentz energy factor in laser-heater undulator [1]
+! K_und : undulator K for laser heater undulator
+! Lhun  : half-length of laser-heater undulator (5 periods) [m]
+! kqlh  : natural undulator focusing "k" in y-plane [1/m2]
+
+lam = 0.054
+lamr = 758e-9
+gami = ei/emass
+k_und = 0 !sqrt(2*(lamr*2*gami^2/lam-1))
+lhun = 0.506263/2
+kqlh = (k_und*2*pi/lam/sqrt(2)/gami)^2
+
+! handle K_und->0 by expressing R34 as an approximate SINC function
+
+argu = lhun*sqrt(kqlh)
+argu2 = argu*argu
+argu4 = argu2*argu2
+argu6 = argu4*argu2
+sincargu = 1-argu2/6+argu4/120-argu6/5040 !~sinc(ARGu)=sin(ARGu)/ARGu
+r34u = lhun*sincargu
+
+
+!------- Laser Heater Undulator for Copper Linac -------
+my_lh_und_k = 0
+um10466: wiggler, 
+        type = "laser_heater_undulator",
+        L_period = 0.054, 
+        n_period = 10, 
+        b_max = my_lh_und_k * 2*pi*m_electron / (c_light * 0.054), 
+        L = 10*0.054 ! Was: 0.506263, 
+        ds_step = 0.054
+        
+um10466[L] = um10466[L]/2 ! Will be doubled in desplitting process. 
+!--------------------------------- !,                            &
+!old: um10466: taylor, type = "@0,LHund", l = lhun, tt11 = 1.0, tt12 = lhun, tt21 = 0, tt22 = 1.0,
+!old           tt33 = cos(lhun*sqrt(kqlh)), tt34 = r34u, tt43 = -sin(lhun*sqrt(kqlh))*sqrt(kqlh), tt44 = cos(lhun*sqrt(kqlh)),
+!old           tt55 = 1.0, tt66 = 1.0
+   !R56=Lhun/(gami^2)*(1+(K_und^2)/2)
+
+! ==============================================================================
+! QUAD
+! ------------------------------------------------------------------------------
+
+! match around laser heater (not installed)
+
+kqe10425 = -15.201903779328
+kqe10441 = 14.620018144249
+kqe10511 = 10.3685858706
+kqe10525 = -10.475280419976
+
+! match to BC11CEND (X-band not installed)
+
+kqm10631 = 11.990887883552
+kqm10651 = -11.233494237683
+kqb10731 = 22.169701529671
+kqm10771 = -7.123593114848
+kqm10781 = 11.698487496707
+
+qe10425: quadrupole, type = "1.26Q3.5", l = lqx/2, aperture = rqx, k1 = kqe10425
+qe10441: quadrupole, type = "1.26Q3.5", l = lqx/2, aperture = rqx, k1 = kqe10441
+qe10511: quadrupole, type = "1.26Q3.5", l = lqx/2, aperture = rqx, k1 = kqe10511
+qe10525: quadrupole, type = "1.26Q3.5", l = lqx/2, aperture = rqx, k1 = kqe10525
+qm10631: quadrupole, type = "1.26Q3.5", l = lqx/2, aperture = rqx, k1 = kqm10631
+qm10651: quadrupole, type = "1.26Q3.5", l = lqx/2, aperture = rqx, k1 = kqm10651
+qb10731: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = kqb10731
+qm10771: quadrupole, type = "1.26Q3.5", l = lqx/2, aperture = rqx, k1 = kqm10771
+qm10781: quadrupole, type = "1.26Q3.5", l = lqx/2, aperture = rqx, k1 = kqm10781
+
+! ==============================================================================
+! DRIF
+! ------------------------------------------------------------------------------
+
+de00: drift, l = 0.041607
+de01: drift, l = 0.293513
+dh00: drift, l = 0.12733045
+dh01: drift, l = 0.1406/cos(abh)
+dh02: drift, l = 0.165597479262
+dh03: drift, l = 0.159129470738
+dh04: drift, l = 0.1406/cos(abh)
+dh05: drift, l = 0.8430976
+de03: drift, l = 0.2819662
+de04: drift, l = 0.411914814698
+in10wall: drift, l = 1.4224
+de05: drift, l = 2.439604885302
+de06: drift, l = 0.4478221
+de07: drift, l = 0.22345
+db00: drift, l = 0.7264
+db01: drift, l = 0.7264
+dm00: drift, l = 0.361983
+dm01: drift, l = 0.297167
+dm02: drift, l = 0.297648
+
+de01a: drift, l = 0.076373
+de01b: drift, l = 0.122359
+de01c: drift, l = 0.094781
+dh02a: drift, l = 0.0809678529
+
+! Shorten so that lh_und has an integer number of poles
+dh02b: drift, l = 0.0846296264 - ( 10*0.054 - 0.506263 ) /2
+!old: dh02b: drift, l = 0.0846296264
+
+! Shorten so that lh_und has an integer number of poles
+dh03a: drift, l = 0.0845477112 - ( 10*0.054 - 0.506263 ) /2
+!old: dh03a: drift, l = 0.0845477112
+dh03b: drift, l = 0.0745817596
+dh05a: drift, l = 0.1229007
+dh05b: drift, l = 0.0521733
+de03a: drift, l = 0.1454672
+de03b: drift, l = 0.136499
+de04a: drift, l = 0.290414154052
+de04b: drift, l = 0.121500660646
+de05a: drift, l = 0.280100320492
+de05b: drift, l = 0.317702877106
+de05c: drift, l = 0.215468253984
+de05d: drift, l = 0.16498649439
+de05e: drift, l = 0.391744624197
+de05f: drift, l = 0.15
+de05g: drift, l = 1.069602315133-de05f[l]
+
+de06a: drift, l = 0.1478721
+de06b: drift, l = 0.29995
+db00a: drift, l = 0.3997
+db00b: drift, l = 0.161
+db00c: drift, l = 0.1657
+dm00a: drift, l = 0.2213
+dm00b: drift, l = 0.140683
+dm02a: drift, l = 0.1402
+dm02b: drift, l = 0.057448
+dm02c: drift, l = 0.1
+
+de05c1: drift, l = de05c[l]/2
+de05c2: drift, l = de05c[l]/2
+de05g1: drift, l = 0.3
+de05g2: drift, l = 0.3
+de05g3: drift, l = de05g[l]-de05g1[l]-de05g2[l]
+
+! ==============================================================================
+! XCORs and YCORs
+! ------------------------------------------------------------------------------
+
+xc10491: hkicker, type = "Class_1t"
+xc10521: hkicker, type = "Class_1a"
+xc10641: hkicker, type = "Class_1a"
+xc10721: hkicker, type = "Class_1a"
+xc10761: hkicker, type = "Class_1a"
+
+yc10492: vkicker, type = "Class_1t"
+yc10522: vkicker, type = "Class_1a"
+yc10642: vkicker, type = "Class_1a"
+yc10722: vkicker, type = "Class_1a"
+yc10762: vkicker, type = "Class_1a"
+
+! ==============================================================================
+! diagnostics
+! ------------------------------------------------------------------------------
+
+! BPMs (LCLS-II type designations)
+
+bpm10425: monitor, type = "Stripline-1"
+bpm10511: monitor, type = "Stripline-1"
+bpm10525: monitor, type = "Stripline-1"
+bpm10581: monitor, type = "Stripline-1"
+bpm10631: monitor, type = "Stripline-1"
+bpm10651: monitor, type = "Stripline-1"
+bpm10731: monitor, type = "Stripline-2"
+bpm10771: monitor, type = "Stripline-1"
+bpm10781: monitor, type = "Stripline-1"
+
+! misc
+
+im10431: marker, type = "toroid"
+vv10435: instrument
+pr10465: monitor, type = "@0,OTR"
+pr10471: monitor, type = "@0,OTR"
+vv10545: instrument
+wallbeg: instrument
+wallend: instrument
+rst10551: instrument, type = "rad stop"
+ws10561: marker
+pr10571: monitor, type = "OTR"
+im10591: marker, type = "toroid"
+bz10596: monitor, type = "ceramic gap"
+pr10711: monitor, type = "OTR"
+im10791: marker, type = "toroid"
+vv10795: instrument
+
+! ==============================================================================
+! MARK
+! ------------------------------------------------------------------------------
+
+begdl10: marker
+lh10beg: marker
+htrundf: marker
+lh10end: marker
+mrk0f: marker !beam waist location
+bx0fbeg: marker
+bx0fend: marker
+cnt0f: marker
+enddl10: marker
+
+! ==============================================================================
+! BEAMLINEs
+! ------------------------------------------------------------------------------
+
+BCX10451_full: line = (BCX10451)
+!old:   BCX10451_full : LINE=(BCX10451a,BCX10451b)
+BCX10461_full: line = (BCX10461)
+!old:   BCX10461_full : LINE=(BCX10461a,BCX10461b)
+
+
+!Old split line: LINE=(UM10466,HTRUNDF,UM10466)
+
+um10466_full: line = (um10466)
+um10466[L] = 2*um10466[L]
+htrundf[superimpose] = T
+htrundf[ref] = um10466
+BCX10475_full: line = (BCX10475)
+!old:   BCX10475_full : LINE=(BCX10475a,BCX10475b)
+BCX10481_full: line = (BCX10481)
+!old:   BCX10481_full : LINE=(BCX10481a,BCX10481b)
+
+  LH10 : LINE=(LH10BEG,BCX10451_full,DH01,BCX10461_full,DH02a,PR10465,DH02b,UM10466_full,DH03a,PR10471,DH03b,
+         BCX10475_full,DH04,BCX10481_full,LH10END)
+
+BX10661_full: line = (BX10661)
+!old:   BX10661_full : LINE=(BX10661a,BX10661b)
+
+
+!Old split line: LINE=(QB10731,BPM10731,QB10731)
+
+qb10731_full: line = (qb10731)
+qb10731[L] = 2*qb10731[L]
+bpm10731[superimpose] = T
+bpm10731[ref] = qb10731
+  BX10751_full : LINE=(BX10751a,BX10751b)
+
+  BX0F : LINE=(BX0FBEG,BX10661_full,DB00a,PR10711,DB00b,XC10721,YC10722,DB00c,QB10731_full,DB01,BX10751_full,CNT0F,
+         BX0FEND)
+
+
+
+!Old split line: LINE=(TCY10490,XC10491,YC10492,TCY10490)
+
+tcy10490_full: line = (tcy10490)
+tcy10490[L] = 2*tcy10490[L]
+xc10491[superimpose] = T
+xc10491[ref] = tcy10490
+yc10492[superimpose] = T
+yc10492[ref] = tcy10490
+
+
+
+!Old split line: LINE=(QE10425,BPM10425,QE10425)
+
+qe10425_full: line = (qe10425)
+qe10425[L] = 2*qe10425[L]
+bpm10425[superimpose] = T
+bpm10425[ref] = qe10425
+
+
+!Old split line: LINE=(QE10441,QE10441)
+
+qe10441_full: line = (qe10441)
+qe10441[L] = 2*qe10441[L]
+
+
+!Old split line: LINE=(QE10511,BPM10511,QE10511)
+
+qe10511_full: line = (qe10511)
+qe10511[L] = 2*qe10511[L]
+bpm10511[superimpose] = T
+bpm10511[ref] = qe10511
+
+
+!Old split line: LINE=(QE10525,BPM10525,QE10525)
+
+qe10525_full: line = (qe10525)
+qe10525[L] = 2*qe10525[L]
+bpm10525[superimpose] = T
+bpm10525[ref] = qe10525
+
+
+!Old split line: LINE=(QM10631,BPM10631,QM10631)
+
+qm10631_full: line = (qm10631)
+qm10631[L] = 2*qm10631[L]
+bpm10631[superimpose] = T
+bpm10631[ref] = qm10631
+
+
+!Old split line: LINE=(QM10651,BPM10651,QM10651)
+
+qm10651_full: line = (qm10651)
+qm10651[L] = 2*qm10651[L]
+bpm10651[superimpose] = T
+bpm10651[ref] = qm10651
+
+
+!Old split line: LINE=(QM10771,BPM10771,QM10771)
+
+qm10771_full: line = (qm10771)
+qm10771[L] = 2*qm10771[L]
+bpm10771[superimpose] = T
+bpm10771[ref] = qm10771
+
+
+!Old split line: LINE=(QM10781,BPM10781,QM10781)
+
+qm10781_full: line = (qm10781)
+qm10781[L] = 2*qm10781[L]
+bpm10781[superimpose] = T
+bpm10781[ref] = qm10781
+
+  DL10 : LINE=(BEGDL10,DE00,QE10425_full,DE01a,IM10431,DE01b,VV10435,DE01c,QE10441_full,DH00,LH10,DH05a,TCY10490_full,
+         DH05b,QE10511_full,DE03a,XC10521,YC10522,DE03b,QE10525_full,DE04a,VV10545,DE04b,WALLBEG,IN10WALL,WALLEND,DE05a,RST10551,
+         DE05b,WS10561,DE05c1,MRK0F,DE05c2,PR10571,DE05d,BPM10581,DE05e,IM10591,DE05f,BZ10596,DE05g,QM10631_full,DE06a,XC10641,
+         YC10642,DE06b,QM10651_full,DE07,BX0F,DM00a,XC10761,YC10762,DM00b,QM10771_full,DM01,QM10781_full,DM02a,IM10791,DM02b,
+         VV10795,DM02c,ENDDL10)
+
+! ==============================================================================
+

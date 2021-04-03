@@ -1,0 +1,28 @@
+!+
+! Translated from MAD8 file: F2_ELEC.xsif
+!-
+
+
+! *** OPTICS=FACET2-25FEB21 ***
+
+! F2_ELEC path configurations
+
+call, file = FACET2e_master.bmad !calls other xsif files
+
+  F2_ELECi : LINE=(FACET2e) !start at DL10
+
+ !COMMENT
+use, f2_elec !start at CATHODE
+    ! initial energy: E0
+    ! initial SURVEY: Xc, 0, Zc, THETAc, 0, 0
+    ! initial Twiss : BX0, AX0, BY0, AY0
+ !ENDCOMMENT
+
+!=!  COMMENT
+!=!  COMMENT
+!=!    USE, F2_ELECi
+!=!    ! initial energy: Ei
+!=!    ! initial SURVEY: Xi, 0, Zi, THETAi, 0, 0
+!=!    ! initial Twiss : BXi, AXi, BYi, AYi
+!=!  ENDCOMMENT
+
