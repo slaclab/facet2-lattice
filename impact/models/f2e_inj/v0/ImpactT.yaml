@@ -4,44 +4,42 @@ verbose: False
 
 group:
 
-
-
-  GUN_phase:
-    ele_names: [ GUN ]
+  GUNF_phase:
+    ele_names: [ GUNF ]
     var_name: dtheta0_deg
     absolute: False
     attributes: theta0_deg
-    value: 299.6150666844639
-  GUN_scale:
-    ele_names: [ GUN ]
+    value: 0
+  GUNF_scale:
+    ele_names: [ GUNF ]
     factors: [ 8.66053289471487 ] # = 47537665.05908992/(6e6-.511e6)
     absolute: True    
     var_name: voltage
     attributes: rf_field_scale
-    value: 39018304.1317983 # = 6e6-0.511e6
+    value: 5.489e+6 # = 6e6-0.511e6
 
 
-  # Change in L0A phase. 
+  # Change in L0AF phase. 
   # 0 should be on-crest. 
-  L0A_phase:
-    ele_names: [ L0A_entrance, L0A_body_1, L0A_body_2, L0A_exit ]
+  L0AF_phase:
+    ele_names: [ L0AF_entrance, L0AF_body_1, L0AF_body_2, L0AF_exit ]
     attributes: theta0_deg
     absolute: False 
     var_name: dtheta0_deg
-    value: 591.9861554162742 # -9.197730665862807  # To match Feng's solution
+    value: 0
     
-  # Change in L0B phase   
+  # Change in L0BF phase   
   # 0 should be on-crest.  
-  L0B_phase:
-    ele_names: [ L0B_entrance, L0B_body_1, L0B_body_2, L0B_exit ]
+  L0BF_phase:
+    ele_names: [ L0BF_entrance, L0BF_body_1, L0BF_body_2, L0BF_exit ]
     attributes: theta0_deg
     absolute: False
     var_name: dtheta0_deg
-    value: 778.3766666631432  # -3.983259077279564   # To match Feng's solution
+    value: 0  # -3.983259077279564   # To match Feng's solution
      
-  # Overall L0A scale  
-  L0A_scale:
-    ele_names:  [ L0A_entrance, L0A_body_1, L0A_body_2, L0A_exit ]
+  # Overall L0AF scale  
+  L0AF_scale:
+    ele_names:  [ L0AF_entrance, L0AF_body_1, L0AF_body_2, L0AF_exit ]
     absolute: True    
     #var_name: rf_field_scale
     #factors: [0.86571945106805, 1, 1, 0.86571945106805]  # sin(k*d) with d = 3.5e-2 m 
@@ -49,12 +47,12 @@ group:
     var_name: voltage
     attributes: rf_field_scale
     factors: [0.44850757, 0.51807495, 0.51807495, 0.44850757]  # Factors found from autophase_and_scale: 30048347.359377533/(64e6 - 6e6) * np.array( [0.86571945106805, 1, 1, 0.86571945106805])
-    value: 30567659.815443344
+    value: 58.0e+6
     
     
-  # Overall L0B scale. 
-  L0B_scale:
-    ele_names:  [ L0B_entrance, L0B_body_1, L0B_body_2, L0B_exit ]
+  # Overall L0BF scale. 
+  L0BF_scale:
+    ele_names:  [ L0BF_entrance, L0BF_body_1, L0BF_body_2, L0BF_exit ]
     var_name: rf_field_scale
     #factors: [0.86571945106805, 1, 1, 0.86571945106805]  # sin(k*d) with d = 3.5e-2 m 
     absolute: True
@@ -62,4 +60,6 @@ group:
     var_name: voltage
     attributes: rf_field_scale
     factors: [0.44850757, 0.51807495, 0.51807495, 0.44850757] 
-    value: 37348220.73755335
+    value: 71.0e+6
+    
+
