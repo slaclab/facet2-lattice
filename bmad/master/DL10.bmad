@@ -349,7 +349,8 @@ qb10731_full: line = (qb10731)
 qb10731[L] = 2*qb10731[L]
 bpm10731[superimpose] = T
 bpm10731[ref] = qb10731
-  BX10751_full : LINE=(BX10751a,BX10751b)
+BX10751_full: line = (BX10751)
+!old:   BX10751_full : LINE=(BX10751a,BX10751b)
 
   BX0F : LINE=(BX0FBEG,BX10661_full,DB00a,PR10711,DB00b,XC10721,YC10722,DB00c,QB10731_full,DB01,BX10751_full,CNT0F,
          BX0FEND)
