@@ -15,7 +15,7 @@ total_charge:
 r_dist:
     type: radial_uniform
     max_r:
-        value: 2
+        value: 2.75
         units: mm
 
 t_dist:
