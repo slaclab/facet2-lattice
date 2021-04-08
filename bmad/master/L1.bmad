@@ -206,6 +206,10 @@ L1XF_full: line = (L1XF)
     YC11305[ref] = L1XF
     YC11305[ref_origin] = beginning
     YC11305[offset] = 0.2974
+    L1XFEND[superimpose] = T
+    L1XFEND[ref] = L1XF
+    L1XFEND[ref_origin] = beginning
+    L1XFEND[offset] = 0.5948
 !old:   L1XF_full   : LINE=(L1XFBEG,L1XF__1,XC11304,YC11305,L1XF__2,L1XFEND)
 
 

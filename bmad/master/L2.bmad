@@ -1150,6 +1150,10 @@ K14_6D_full: line = (K14_6D)
     YC14703[ref] = K14_6D
     YC14703[ref_origin] = beginning
     YC14703[offset] = 2.6369
+    LI14TERM[superimpose] = T
+    LI14TERM[ref] = K14_6D
+    LI14TERM[ref_origin] = beginning
+    LI14TERM[offset] = 3.0441
 !old:   K14_6d_full : LINE=(K14_6d1,XC14702,K14_6d2,YC14703,K14_6d3)
 
   K14_1 : LINE=(K14_1a_full,K14_1b_full,K14_1c_full,K14_1d_full)

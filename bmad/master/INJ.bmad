@@ -231,6 +231,18 @@ L0AF_full: line = (L0AF)
     OUTCPAF[ref] = L0AF
     OUTCPAF[ref_origin] = beginning
     OUTCPAF[offset] = 3.034325
+    FLNGAF2[superimpose] = T
+    FLNGAF2[ref] = L0AF
+    FLNGAF2[ref_origin] = beginning
+    FLNGAF2[offset] = 3.095244
+    L0AFWAKE[superimpose] = T
+    L0AFWAKE[ref] = L0AF
+    L0AFWAKE[ref_origin] = beginning
+    L0AFWAKE[offset] = 3.095244
+    L0AFEND[superimpose] = T
+    L0AFEND[ref] = L0AF
+    L0AFEND[ref_origin] = beginning
+    L0AFEND[offset] = 3.095244
 !old:   L0AF_full : LINE=(L0AFbeg,FLNGAF1,L0AF__1,DLFDAF,L0AF__2,L0AF__3,SC2F,L0AF__4,L0AFmid,L0AF__5,L0AF__6,OUTCPAF,L0AF__7,
 !old          FLNGAF2,L0AFwake,L0AFend)
 
@@ -266,6 +278,18 @@ L0BF_full: line = (L0BF)
     OUTCPBF[ref] = L0BF
     OUTCPBF[ref_origin] = beginning
     OUTCPBF[offset] = 3.034325
+    FLNGBF2[superimpose] = T
+    FLNGBF2[ref] = L0BF
+    FLNGBF2[ref_origin] = beginning
+    FLNGBF2[offset] = 3.095244
+    L0BFWAKE[superimpose] = T
+    L0BFWAKE[ref] = L0BF
+    L0BFWAKE[ref_origin] = beginning
+    L0BFWAKE[offset] = 3.095244
+    L0BFEND[superimpose] = T
+    L0BFEND[ref] = L0BF
+    L0BFEND[ref_origin] = beginning
+    L0BFEND[offset] = 3.095244
 !old:   L0BF_full : LINE=(L0BFbeg,FLNGBF1,L0BF__1,DLFDBF,L0BF__2,SC4F,L0BF__3,L0BFmid,L0BF__4,SC5F,L0BF__5,OUTCPBF,L0BF__6,
 !old          FLNGBF2,L0BFwake,L0BFend)
 
