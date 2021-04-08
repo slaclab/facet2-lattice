@@ -9,14 +9,15 @@ group:
     var_name: dtheta0_deg
     absolute: False
     attributes: theta0_deg
-    value: 0
+    value: -30
   GUNF_scale:
     ele_names: [ GUNF ]
     factors: [ 8.66053289471487 ] # = 47537665.05908992/(6e6-.511e6)
     absolute: True    
     var_name: voltage
     attributes: rf_field_scale
-    value: 5.489e+6 # = 6e6-0.511e6
+#    value: 5.489e+6 # = 6e6-0.511e6
+    value: 5763450.0 # = 6e6-0.511e6 * 1.05 for 2 nC
 
 
   # Change in L0AF phase. 
@@ -26,7 +27,7 @@ group:
     attributes: theta0_deg
     absolute: False 
     var_name: dtheta0_deg
-    value: 0
+    value: -28
     
   # Change in L0BF phase   
   # 0 should be on-crest.  
@@ -35,7 +36,7 @@ group:
     attributes: theta0_deg
     absolute: False
     var_name: dtheta0_deg
-    value: 0  # -3.983259077279564   # To match Feng's solution
+    value: -23  
      
   # Overall L0AF scale  
   L0AF_scale:
