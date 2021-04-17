@@ -1,12 +1,15 @@
 
-! *** OPTICS=FACET2-25FEB21 ***
-
 ! *** FACET-II Sector 20 Phase-I upgrade configuration ***
 ! : QFF5 magnet removed, Q0-Q2D triplet installed in final positions
 
 ! ==============================================================================
 ! FACET e- optics
 ! ------------------------------------------------------------------------------
+! 17-APR-2021, G. White
+!  * Fixed as-installed Q0D, Q1D, Q2D locations: measurements by Georg
+!  * Added all current expt table and spectrometer table devices according to
+!    walk-through by Christine: https://docs.google.com/spreadsheets/d/
+!    1Qw85KBUfSJ6Jt8tArqjcGTVlpZCtUz2hDWX8EuCRcb4/edit?usp=sharing
 ! 17-JUN-2020, G. White
 !  * Added new beamline components to IP area as per engineering drawing from
 !    D. Storey
@@ -763,39 +766,46 @@
   DMQ3FF: DRIFT,L=0.176336
   DMQ2FF: DRIFT,L=0.2049
   DMQ0FF: DRIFT,L=0.204852
-  DMQ0D: DRIFT,L=0.180048
-  DMQ1D: DRIFT,L=0.180048
-  DMQ2D: DRIFT,L=0.180048
+  DMQ0D: DRIFT,L=0.202439
+  DMQ1D: DRIFT,L=0.356564
+  DMQ2D: DRIFT,L=0.183182
   DFFS1: DRIFT,L=0.5
   DFFS2: DRIFT,L=0.5
-  D1D: DRIFT,L=1.04135198-0.286595
-  D2D: DRIFT,L=1.041252-0.286595
-  D3D: DRIFT,L=0.3429-0.286595
-  D4D: DRIFT,L=0.3742
-  D6D: DRIFT,L=0.100564884418124
-  D7D: DRIFT,L=0.3
-  D8D: DRIFT,L=11.105436138-0.357504435
-  LAIRG: DRIFT,L=1.6727760021
+  D1D: DRIFT,L=0.580966
+  D2D: DRIFT,L=0.754657
+  D3D: DRIFT,L=0.056305
+  D4D: DRIFT,L=3.177152733425373
+  D5D: DRIFT,L=1.22355893395943
+  D6D: DRIFT,L=1.36
+  D7D: DRIFT,L=1.13
+  D8D: DRIFT,L=0.5
+  D9D: DRIFT,L=4.26
+  D10D: DRIFT,L=0.05
+  D11D: DRIFT,L=0.23
+  D12D: DRIFT,L=0.09
+  D13D: DRIFT,L=0.590168
+  D14D: DRIFT,L=1.31
+  LAIRG: DRIFT,L=1.675292936069446
 
 ! Experiment table drifts
-  DEX20_1  : DRIF, L=0.3443808
-  DEX20_2  : DRIF, L=0.123
-  DEX20_3  : DRIF, L=1.067
-  DEX20_4  : DRIF, L=0.703
-  DEX20_5  : DRIF, L=0.4017
-  DEX20_5a : DRIF, L=0.052
-  DEX20_5b : DRIF, L=0.4413
-  DEX20_6  : DRIF, L=0.078
-  DEX20_7  : DRIF, L=0.088
-  DEX20_8  : DRIF, L=0.137
-  DEX20_9  : DRIF, L=0.4
-  DEX20_10 : DRIF, L=0.537
-  DEX20_11 : DRIF, L=0.088
-  DEX20_12 : DRIF, L=0.625
-  DEX20_13 : DRIF, L=0.438
-  DEX20_14 : DRIF, L=0.172
-  DEX20_15 : DRIF, L=1.917
-  DEX20_16 : DRIF, L=0.519952
+  DEX20_1  : DRIF, L=0.983380841076041
+  DEX20_2  : DRIF, L=0.26
+  DEX20_3  : DRIF, L=0.1
+  DEX20_4  : DRIF, L=0.06
+  DEX20_5  : DRIF, L=0.12
+  DEX20_6  : DRIF, L=0.72
+  DEX20_7  : DRIF, L=0.4017
+  DEX20_8  : DRIF, L=0.052
+  DEX20_9  : DRIF, L=0.4663
+  DEX20_10 : DRIF, L=0.09
+  DEX20_10a : DRIF, L=0.04
+  DEX20_11 : DRIF, L=0.04
+  DEX20_12 : DRIF, L=1.13
+  DEX20_12a : DRIFT, L=0.05
+  DEX20_13 : DRIF, L=0.9
+  DEX20_14 : DRIF, L=0.11
+  DEX20_15 : DRIF, L=0.05
+  DEX20_16 : DRIF, L=0.13
 
 ! ==============================================================================
 ! XCORs
@@ -868,29 +878,33 @@
 
   PMON   : PROF, TYPE="phosphor"        !P202042T
   sYAG   : PROF, TYPE="YAG"             !P202432T
-  USTHz  : PROF, TYPE="OTR foil/YAG"    !PD203070
+  USTHz  : PROF, TYPE="OTR foil/YAG"    ! OTRS:LI20:3070 CAMR:LI20:106
   DSTHz  : PROF, TYPE="OTR foil/YAG"    !PD203075
   PRDMP  : PROF, TYPE="phosphor"        !P203475T
   ELANEX : PROF, TYPE="unknown"         !P203500
   BETAL  : PROF, TYPE="unknown"         !P203303
   BETA1  : PROF, TYPE="unknown"         !P203501
-  CNEAR  : PROF, TYPE="cherenkov wafer" !P203490
-  CFAR   : PROF, TYPE="cherenkov wafer" !P203492
+  CNEAR  : PROF, TYPE="cherenkov wafer" ! CMOS:LI20:3490
   BETA2  : PROF, TYPE="unknown"         !P203488
-  USOTR  : PROF, TYPE="OTR foil/YAG"
-  IPOTR1 : PROF, TYPE="OTR foil/YAG"
-  IPOTR2 : PROF, TYPE="OTR foil/YAG"
-  IPWS1  : PROF, TYPE="WIRE"
-  IPWS2  : PROF, TYPE="WIRE"
+  USOTR  : PROF, TYPE="OTR foil/YAG"    ! OTRS:LI20:3158 CAMR:LI20:101
+  IPOTR1P : PROF, TYPE="OTR foil/YAG"   ! OTRS:LI20:3175 (in plasma oven)
+  IPOTR1 : PROF, TYPE="OTR foil/YAG"    ! OTRS:LI20:3180 (in bypass line) CAMR:LI20:102
+  IPOTR2 : PROF, TYPE="OTR foil/YAG"    ! OTRS:LI20:3202 (in bypass line)
+  IPWS1  : PROF, TYPE="WIRE"            ! WIRE:LI20:3179 (in bypass line)
+  IPWS2  : PROF, TYPE="WIRE"            ! WIRE:LI20:3206 (not installed)
+  IPWS3  : PROF, TYPE="WIRE"            ! WIRE:LI20:3229
   IPOTR3 : PROF, TYPE="OTR foil/YAG"
-  DSOTR1 : PROF, TYPE="OTR foil/YAG" ! "DSOTR" on IP AREA BEAMLINE drawning
-  DSOTR2 : PROF, TYPE="OTR foil/YAG" ! "OTR" on IP AREA BEAMLINE drawning
+  DSOTR  : PROF, TYPE="OTR foil/YAG" ! OTRS:LI20:3206 CAMR:LI20:103
+  WDSOTR : PROF, TYPE="OTR" ! OTRS:LI20:3239 CAMR:LI20:104
+  DTOTR  : PROF, TYPE="OTR"
+  PGAM1  : PROF, TYPE="phosphor" ! PROF:LI20:3500 CMOS:LI20:3490 (Gamma 1 screen)
 
 ! toroids
 
   IM2040  : IMON !T202040T
   IM2452  : IMON !T202452T
-  IQMON20 : IMON ! "Resonant charge monitor" in S20 experimental region
+  IQMON20 : IMON ! TORO:LI20:3163 "Resonant charge monitor" in S20 experimental region
+  IM3255  : IMON ! TORO:LI20:3255
 
 ! collimators
 
@@ -930,18 +944,23 @@
   MIP        : MARK ! Default IP location (for optics reference)
   LCUBE      : MARK ! Laser Injection Cube
   PIC_CENT   : MARK ! Center location of "picnic basket"
-  PENT       : MARK ! E300 plasma entrance definition
-  PCENT      : MARK ! Plasma oven center location
+  PENT       : MARK ! E300 plasma entrance (Gate valve A)
+  PEXT       : MARK ! Plasma oven exit (Gate valve B)
   FILG       : MARK ! Filamentation experiment gas target
   FILS       : MARK ! Filamentation experiment solid target
   ECUBE      : MARK ! "CUBE"
   DWIN       : MARK ! Valve Diamond Window
-  
+  EXTHOLE1   : MARK ! Extension table (first hole)
+  BEWIN      : MARK ! Beryllium window
   ENDEXPT20  : MARK
-  BEGSPECT20 : MARK !QS1 entrance
-  SCATSSTL   : MARK
-  TABLE2     : MARK
-  AEROGEL    : MARK
+
+  BEGSPECT20 : MARK
+  BEGPDC     : MARK ! Upstream end of PDC chamber
+  ENDPDC     : MARK ! Downstream end of PDC chamber
+  BEGEDC     : MARK ! Upstream end of EDC chamber
+  ENDEDC     : MARK ! Downstream end of EDC chamber
+  BFLYMID    : MARK ! Middle of Butterfly chamber
+  EXTWIN     : MARK ! Exit window (5mm thick Al)
   MAINDUMP   : INST !dump face
   DBMARK30   : MARK
   ENDSPECT20 : MARK
@@ -1087,11 +1106,10 @@
     ENDFF20)
 
   EXPT : LINE=(BEGEXPT20,&
-    DEX20_1,USOTR,DEX20_2,IQMON20,DEX20_3,LCUBE,DEX20_4,PIC_CENT,DEX20_5,&
-    FILG,DEX20_5a,FILS,DEX20_5b,IPOTR1,DEX20_6,IPOTR2,DEX20_7,&
-    IPWS1,DEX20_8,PENT,MIP,DEX20_9,PCENT,DEX20_10,IPWS2,&
-    DEX20_11,IPOTR3,DEX20_12,ECUBE,DEX20_13,DWIN,DEX20_14,DSOTR1,DEX20_15,&
-    DSOTR2,DEX20_16,&
+    DEX20_1,EXTHOLE1,DEX20_2,USOTR,DEX20_3,IQMON20,DEX20_4,BEWIN,DEX20_5,LCUBE,&
+    DEX20_6,PIC_CENT,DEX20_7,FILG,DEX20_8,FILS,DEX20_9,IPOTR1P,DEX20_10,IPOTR1,&
+    DEX20_10a,PENT,MIP,DEX20_11,IPWS1,DEX20_12,PEXT,DEX20_12a,IPOTR2,DEX20_13,&
+    IM3255,DEX20_14,BEWIN,DEX20_15,IPWS3,DEX20_16,DSOTR,&
     ENDEXPT20)
 
   Q0D_full : LINE=(Q0D,Q0D)
@@ -1101,27 +1119,13 @@
  
   ! z= 1998.708952
   SPECT : LINE=(BEGSPECT20,DMQ0D,&
-    Q0D_full,DM1QEX,M0EX,D1D,DMQ1D,&
+    Q0D_full,DM1QEX,M0EX,D1D,WDSOTR,DMQ1D,&
     Q1D_full,DM1QEX,M1EX,D2D,DMQ2D,&
-    Q2D_full,DM1QEX,M2EX,D3D,XC1EX,D4D,D7D,D6D,&
-    B5D36_full,DM3BEX,M3EX,D8D,PDUMP,LAIRG,MAINDUMP,DBMARK30,&
+    Q2D_full,DM1QEX,M2EX,D3D,XC1EX,D4D,&
+    B5D36_full,DM3BEX,M3EX,D5D,BEGPDC,D6D,ENDPDC,D7D,BEGEDC,D8D,ENDEDC,D9D,&
+    DTOTR,D10D,BFLYMID,D11D,EXTWIN,D12D,PGAM1,D13D,CNEAR,D14D,PDUMP,LAIRG,MAINDUMP,DBMARK30,&
     ENDSPECT20)
 
-! version with more correctors:
-! SPECT : LINE=(BEGSPECT20,DMQ0D,&
-!   Q0D_full,DM1QEX,M0EX,D1D,DMQ1D,&
-!   Q1D_full,DM1QEX,M1EX,D2D,DMQ2D,&
-!   Q2D_full,DM1QEX,M2EX,D3D,XC1EX,D4D,YC0D,D7D,XC1D,D6D,&
-!   B5D36_full,D8D,PDUMP,LAIRG,MAINDUMP,DBMARK30,&
-!   ENDSPECT20)
-
-! SPECT : LINE=(BEGSPECT20,&
-!   QS1_full,DM1QEX,M1EX,LQSEPMA,DXC1EX,XC1EX,DXC1EX,LQSEPMB,&
-!   QS2_full,DM2QEX,M2EX,LQ2BENDM,&
-!   B5D36_full,DM3BEX,M3EX,LBPM2WIN,SCATSSTL,PRDMP,LAIRa,TABLE2,&
-!   LAIRb,ELANEX,LAIRc,BETAL,LAIRd,BETA1,LAIRe,CNEAR,LAIRf,AEROGEL,&
-!   LAIRg,CFAR,LAIRh,BETA2,LAIRi,PHOSPHOR,LAIRj,MAINDUMP,DBMARK30,&
-!   ENDSPECT20)
 
   S20E : LINE=(CHICANE,FF,EXPT,SPECT)
 

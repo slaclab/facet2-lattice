@@ -68,8 +68,8 @@ disp(dANG_end)
 
 % Save lattices
 % - BMAD
-DT=DeckTool('BMAD');
-DT.WriteDeck(Initial,'FACET2e.bmad','FACET2e',true) ;
+% DT=DeckTool('BMAD');
+% DT.WriteDeck(Initial,'FACET2e.bmad','FACET2e',true) ;
 % - Luctretia
 % convert 0 angle bends into drifts- breaks Lucretia tracking
 for iele=1:length(BEAMLINE)
