@@ -3,8 +3,9 @@ Lattice files for the FACET-II accelerator
 
 
 CHANGELOG:
-* 2/25/2021, G. White & M. Woodley: changes to reflect in-tunnel hardware for INJ, BC11, BC14 & S20 (see MAD xsif files for details)
-* 11/5/2020, G. White: Added model-independent data directory for storing e.g. Beam stay clear data
+* 04/17/2021, G. White: Fixed LI19 corrector locations, removed 19-8a and updated S20 experiment object locations @ Q0-2D quad locations
+* 02/25/2021, G. White & M. Woodley: changes to reflect in-tunnel hardware for INJ, BC11, BC14 & S20 (see MAD xsif files for details)
+* 11/05/2020, G. White: Added model-independent data directory for storing e.g. Beam stay clear data
 * 05/18/2020, G. White: Imported (older) ImpactT files for FACET-II injector (warning, doesn't exactly match GPT files)
 * 03/03/2020, G. White: Files imported into slac lab / facet2-lattice github repo
 * 07/21/2017, G. White: Re-formatted decks by MDW and re-configured injector for FACET-II requirements

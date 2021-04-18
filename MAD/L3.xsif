@@ -1,9 +1,9 @@
 
-! *** OPTICS=FACET2-25FEB21 ***
-
 ! ==============================================================================
 ! Modification History
 ! ------------------------------------------------------------------------------
+! 16-APR-2021, G. White
+!  * 19-8a removed, XC19900 & YC19900 moved to match as-installed
 ! 04-MAR-2019, M. Woodley
 !  * restore 19-8a accelerator section
 ! 21-FEB-2019, M. Woodley
@@ -1363,14 +1363,13 @@
 
   Lmdw := 25.801374683414 !Q19701 exit to ENDL3F (from FACET v35)
 
-  D199a : DRIF, L=3.2062
+  D199a1 : DRIF, L=0.8016
+  D199a2 : DRIF, L=0.32
+  D199a : DRIF, L=5.4757-0.32
   D199b : DRIF, L=2.0867 !26238214
-  D199c : DRIF, L=1.4195
-  D199d : DRIF, L=1.4922
-  D199e : DRIF, L=1.659184
-  D199f : DRIF, L=Lmdw-(DAQ2[L]+4*DLWL10+DAQ1[L]+LQE+DAQ2[L]+&
-                  DLWL10+D199a[L]+LQE+D199b[L]+LQE+D199c[L]+&
-                  D199d[L]+D199e[L])
+  D199c : DRIF, L=4.570884
+  D199d : DRIF, L=Lmdw-(DAQ2[L]+4*DLWL10+DAQ1[L]+LQE+DAQ2[L]+&
+                  DLWL10+3.2062+LQE+2.0867+LQE+D199c[L])
 
 ! ==============================================================================
 ! XCORs and YCORs
@@ -1886,9 +1885,9 @@
     K19_6,DAQ1,Q19701_full)
 
   LI19c : LINE=(DAQ2,&
-    D19_7,DAQ1,Q19801_full,DAQ2,&
-    K19_8,D199a,Q19851_full,D199b,&
-    Q19871_full,D199c,XC19900,D199d,YC19900,D199e,IM1988,D199f,&
+    D19_7,DAQ1,Q19801_full,D199a1,XC19900,D199a2,&
+    YC19900,D199a,Q19851_full,D199b,&
+    Q19871_full,D199c,IM1988,D199d,&
     LI19term)
 
   LI19 : LINE=(LI19a,LI19b,LI19c)
