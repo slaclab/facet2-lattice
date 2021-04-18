@@ -34,11 +34,11 @@
 beam_init%random_engine = 'quasi'
 ix_universe = 1
 beam_saved_at =  "MARKER::*"
-track_start = 'OTR2'
-!track_end = 'DBMARK82'
+track_start = 'DE04a'
+!track_end = 'K11_1D'
 !track_end = 'BC1CEND'
-beam_init%position_file = '$LCLS_LATTICE/bmad/beams/OTR2_250pC_rescaleto540um_solGTF1M_flat_scattered_20keV_100k.beam0'
-!beam_init%position_file = 'beam_1.hdf5'
+!beam_init%position_file = '$LCLS_LATTICE/bmad/beams/OTR2_250pC_rescaleto540um_solGTF1M_flat_scattered_20keV_100k.beam0'
+beam_init%position_file = 'particles.h5'
 beam_init%center(1) = 0.0
 beam_init%center(2) = 0.0
 beam_init%center(3) = 0.0
@@ -145,14 +145,11 @@ beam_init%center(6) = 0.0
         datum( 6) =  'etap.x'     '' '' 'BC11CEND'   'target'   0   1e2
 /
 &tao_d1_data
-        ix_d1_data = 2
-        default_weight = 1
-        d1_data%name = 'energy'
-        datum( 1) =  'e_tot_ref'           '' '' 'BC1CBEG'   'target'  0   
-        datum( 2) =  'e_tot_ref'           '' '' 'BC1CEND'   'target'  0   
-        datum( 3) =  'orbit.e_tot'     '' '' 'BC1CBEG'   'target'  0   
-        datum( 4) =  'orbit.e_tot'     '' '' 'BC1CEND'   'target'  0   
- / 
+    ix_d1_data = 2
+    d1_data%name = 'betas'
+    datum( 1) =  'beta.a'     '' 'QM10771' 'BC11CEND'   'max'   35   1e1
+    datum( 2) =  'beta.b'     '' 'QM10771' 'BC11CEND'   'max'   35   1e1
+/
  &tao_d1_data
         ix_d1_data = 3
         default_weight = 1
@@ -340,7 +337,7 @@ beam_init%center(6) = 0.0
     v1_var%name = 'q.BC11C'
 	default_step = 1e-4
 	default_attribute = 'K1'
-	var(1:)%ele_name = 'QM10771', 'QM10781', 'QA11132', 'Q11201', 'Q11301', 'QM11312'
+	var(1:)%ele_name = 'QM10631', 'QM10651', 'QM10771', 'QM10781', 'QA11132', 'Q11201', 'Q11301', 'QM11312'
 /
 
 
