@@ -1,5 +1,5 @@
 
-! *** OPTICS=FACET2-25FEB21 ***
+! *** OPTICS=FACET2-18MAY21 ***
 
 ! ------------------------------------------------------------------------------
 ! constants and global parameters (from FACET2e_baseline.mat)
@@ -144,7 +144,7 @@
   CALL, FILENAME="L2.xsif"
   CALL, FILENAME="BC14.xsif"
   CALL, FILENAME="L3.xsif"
-  CALL, FILENAME="LI20.xsif" !FACET-II Sector 20 Phase-I upgrade
+  CALL, FILENAME="LI20.xsif" !FACET2 Phase 2
   CALL, FILENAME="SCAV.xsif"
 
   BC14    : LINE=(BC14_1,BC14E,BC14_2) !electron side

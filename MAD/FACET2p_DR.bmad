@@ -1,0 +1,119 @@
+! ========================================
+! FACET-II Positron Damping Ring v1.4.3
+! ========================================
+! Version 1.4.3
+! - QDDSQ effective length increased 60 -> 80 mm
+! - Implemented sliced Opera3 models for QDDSQ, QF2Q and QFCQ
+! Version 1.4.2
+! - QFCQ/QF2Q quads effective length increased to 120 mm
+! - BMEBMH combination of dispersion supressor bend magnets named to single "BD"
+! - Slice model (1cm slices) of BD bend implemented
+! Version 1.4.1
+! - QFCQ/QF2Q quads effective length increased to 110 mm
+! - Updated BEBCBE field model
+! - Changed BEBCBE set of magnet names to single "BA"
+! - harmonic # = 51, C=21.4137m, widened distance between QDI/QFI pairs to allow placement of septum
+! - 2 714 MHz RF cavities, max 1.1 MV
+! Version 1.3.4
+! - 5BA cell per arc
+! - Remove permanent sextupoles
+! - Sliced BC-BE magnet, no edge focus but BC is lengthened while BE is reduced
+! ========================================
+! Ring parameters @ MMM (injection/extraction point in septa)
+! ========================================
+parameter[e_tot] = 0.335 * 1e9
+parameter[n_part] = 6.2415e+09
+parameter[geometry] = Closed
+beam_start[emittance_a] = 8.3896e-09
+beam_start[emittance_b] = 8.3896e-09
+beginning[beta_a] = 1.4579
+beginning[beta_b] = 4.3684
+beginning[alpha_a] = 0
+beginning[alpha_b] = 0
+parameter[particle] = positron
+parameter[taylor_order] = 3
+parameter[ptc_exact_model] = True
+totvolt = 1.1 ! total RF voltage / MV
+! ========================================
+! Beamline Definition
+! ========================================
+! - Northern Straight section from ring center to West Arc
+STRN1: LINE = (MMM, DSEP2, DI1B, QDI,DI2,QFI,DI3SL,DCAV,BK,BK,DI3C,&
+DI3SS, QDI1, LQII, QII1, LQII, QFI1, DII3)
+! - West Arc
+ARCW: LINE = (MAW, BD, QDDS, QF2Q, BA, QFCQ, BA, QFCQR, BA, QF2QR, QDDSR, &
+BDR, MAW)
+! - Southern Straight Section
+STRS : LINE =(DII3, QFI1, LQII, QII1, LQII, QDI1, DI3SS, DI3C, BK, BK, DCAV, &
+ DI3SL, QFI, DI2, QDI, DI1B, DSEP2, MMM, DSEP1, DI1A,QDI,DI2,QFI, DRF3L, CAV, &
+DRF3S, QDI1, LQII, QII1, LQII, QFI1, DII3 )
+! - East Arc
+ARCE: LINE = (MAE, BD, QDDS, QF2Q, BA, QFCQ, BA, QFCQR, BA, QF2QR, QDDSR, &
+BDR, MAE)
+! - Northern Straight section from East Arc exit to ring center
+STRN2: LINE=(DII3, QFI1, LQII, QII1, LQII, QDI1, DRF3S, CAV, DRF3L, QFI, &
+DI2, QDI, DI1A, DSEP1)
+! - Complete Positron Damping Ring
+RING: LINE = (STRN1, ARCW, STRS, ARCE, STRN2, MMM)
+! ========================================
+! Main Bend Magnets
+! ========================================
+call, filename = "BA.bmad"
+call, filename = "BD.bmad"
+! ========================================
+! Quad Match Values
+! ========================================
+KQFI1 := 25.1598
+KQDI1 := -15.8871
+KQFI := 18.111240
+KQDI := -14.81104
+
+! ========================================
+! Arc Quadrupoles
+! ========================================
+CALL, FILENAME="QDDSQ.bmad"
+QDDS : line=(DSF, QDDSQ, DS1SF)
+QDDSR : line=(DS1SF, QDDSQR, DSF)
+CALL, FILENAME="QFCQ.bmad"
+CALL, FILENAME="QF2Q.bmad"
+
+! ========================================
+! Straight-Section Quadrupoles
+! ========================================
+QFI: QUADRUPOLE, L=0.14, K1=KQFI, tracking_method=Symp_Lie_PTC, Symplectify=true
+QDI: QUADRUPOLE, L=0.14, K1=KQDI, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFI1: QUADRUPOLE, L=0.14, K1=KQFI1, tracking_method=Symp_Lie_PTC, Symplectify=true
+QDI1: QUADRUPOLE, L=0.14, K1=KQDI1, tracking_method=Symp_Lie_PTC, Symplectify=true
+QII1: QUADRUPOLE, L=0.1094, K1=0.3, TILT=0.78540 ! Skew quad for achieving coupled beams
+
+! ========================================
+! RF Cavity
+! ========================================
+cav: rfcavity, voltage = totvolt/2 * 1e6, harmon = 51, phi0 = 0.5 * twopi,l = 0.51
+
+! ========================================
+! Drifts and Markers
+! ========================================
+DS: DRIFT, L=0.031
+DSF: DRIFT, L=0.5e-6
+DS1SF: DRIFT, L=0.042832887
+BK: DRIFT, L=0.295
+DSEP1: DRIFT, L=0.552
+DSEP2: DRIFT, L=0.828
+DI1A: DRIFT, L=0.338
+DI1B: DRIFT, L=0.062
+DI2: DRIFT, L=0.1
+DI3: DRIFT, L=1.23774
+DI3S: DRIFT, L=0.64774
+DI3SS: DRIFT, L=0.05759255
+DI3SL: DRIFT, L=0.05
+DI3C: DRIFT, L=0.1
+LQII: DRIFT, L=0.02498
+DII3: DRIFT, L=0.153638
+DCAV: DRIFT, L=0.51
+DRF3S: DRIFT, L=0.09991255
+DRF3L: DRIFT, L=0.69768
+MMM: MARKER ! Center of ring
+MAE: MARKER ! Boundary markers for East Arc
+MAW: MARKER ! Boundary markers for West Arc
+use, ring

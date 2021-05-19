@@ -1,6 +1,6 @@
-  TITLE, "FACET2 e- (February 25, 2021)"
+  TITLE, "FACET2 e- (May 18, 2021)"
 
-! *** OPTICS=FACET2-25FEB21 ***
+! *** OPTICS=FACET2-18MAY21 ***
 
   ASSIGN, PRINT="FACET2e.print"
   ASSIGN, ECHO="FACET2e.echo"
@@ -8,6 +8,12 @@
 
 ! ==============================================================================
 ! Modification History
+! ------------------------------------------------------------------------------
+! 18-MAY-2021, G. White
+!  * fixed LI19 corrector locations, removed 19-8a and updated S20 experiment
+!    object locations @ Q0-2D quad locations
+!  * added Q0FF, Q1FF, Q2FF, removed QFF4, locations according to metrology
+!    measurements
 ! ------------------------------------------------------------------------------
 ! 13-NOV-2017, M. Woodley
 !  * move CATHODE closer to L0; remove BPM3F
