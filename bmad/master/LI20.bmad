@@ -1,12 +1,20 @@
 
-! *** OPTICS=FACET2-25FEB21 ***
+! *** OPTICS=FACET2-18MAY21 ***
 
-! *** FACET-II Sector 20 Phase-I upgrade configuration ***
-! : QFF5 magnet removed, Q0-Q2D triplet installed in final positions
+! *** FACET-II Sector 20  ***
+!  "Phase 2" FFS installation with 0.5m IP beta functions
 
 ! ==============================================================================
 ! FACET e- optics
 ! ------------------------------------------------------------------------------
+! 17-MAY-2021, G. White
+!  * Removed QFF4, inserted Q0FF, Q1FF & Q2FF
+!    - z locations measured by metrology: see FACET elog 05/05/2021
+! 17-APR-2021, G. White
+!  * Fixed as-installed Q0D, Q1D, Q2D locations: measurements by Georg
+!  * Added all current expt table and spectrometer table devices according to
+!    walk-through by Christine: https://docs.google.com/spreadsheets/d/
+!    1Qw85KBUfSJ6Jt8tArqjcGTVlpZCtUz2hDWX8EuCRcb4/edit?usp=sharing
 ! 17-JUN-2020, G. White
 !  * Added new beamline components to IP area as per engineering drawing from
 !    D. Storey
@@ -418,22 +426,25 @@ aqs0 = 11.5e-3
 lqs = 1.0
 aqs = 27.0e-3
 
-kqff1 = 0.603542
-kqff2 = -0.262506
-kqff4 = 0.313259
-kqff6 = -0.119329
-kq0d = -0.225449
-kq1d = 0.401691
-kq2d = -0.225449
+kqff1 = 0.235988
+kqff2 = -0.269377
+kq2ff = 0.725752
+kq1ff = -1.09179
+kq0ff = 0.4
+kq0d = -0.321363
+kq1d = 0.533683
+kq2d = -0.321363
 
 qff1: quadrupole, type = "0.813Q17.7", l = lqff1/2, aperture = aqff1, k1 = kqff1
 qff2_1: quadrupole, type = "0.813Q17.7", l = lqff2/2, aperture = aqff2, k1 = kqff2
 qff2_2: quadrupole, type = "0.813Q17.7", l = lqff2/2, aperture = aqff2, k1 = kqff2
 qff2_3: quadrupole, type = "0.813Q17.7", l = lqff2/2, aperture = aqff2, k1 = kqff2
-qff4_1: quadrupole, type = "1.625Q27.3", l = lqff4/2, aperture = aqff4, k1 = kqff4
-qff4_2: quadrupole, type = "1.625Q27.3", l = lqff4/2, aperture = aqff4, k1 = kqff4
-dqff5: drift, l = lqff5 ! space where removed QFF5 magnet was removed from
-qff6: quadrupole, type = "1.625Q27.3", l = lqff6/2, aperture = aqff6, k1 = kqff6
+q0ff: quadrupole, k1 = kq0ff, l = 0.3571, aperture = 0.0186, type = "1.625Q27.3"
+q1ff: quadrupole, k1 = kq1ff, l = 0.3571, aperture = 0.0186, type = "1.625Q27.3"
+q2ff: quadrupole, k1 = kq2ff, l = 0.3571, aperture = 0.0186, type = "1.625Q27.3"
+! Q3FF: QUADRUPOLE,K1=KQ3FF,L=0.3571,APERTURE=0.0186,TYPE="1.625Q27.3"
+!  Q4FF: QUADRUPOLE,K1=KQ4FF,L=0.3571,APERTURE=0.0186,TYPE="1.625Q27.3"
+!  Q5FF: QUADRUPOLE,K1=KQ5FF,L=0.2304,APERTURE=0.0083,TYPE="0.813Q17.7"
 
 ! spectrometer:
 q0d: quadrupole, k1 = kq0d, l = 0.5, aperture = aqs, type = "2.13Q38.31"
@@ -732,44 +743,50 @@ lairh: drift, l = 0.482/cos(abd)
 lairi: drift, l = 1.0106/cos(abd)
 lairj: drift, l = 1.67269/cos(abd)
 
-dmq5ff: drift, l = 0.0833
-dmq4ff: drift, l = 0.2049
-dmq3ff: drift, l = 0.176336
-dmq2ff: drift, l = 0.2049
+d3ff: drift, l = 2.966226
+d2ff: drift, l = 0.86484
+d1ff: drift, l = 0.8639
 dmq0ff: drift, l = 0.204852
-dmq0d: drift, l = 0.180048
-dmq1d: drift, l = 0.180048
-dmq2d: drift, l = 0.180048
+dmq0d: drift, l = 0.202439
+dmq1d: drift, l = 0.356564
+dmq2d: drift, l = 0.183182
 dffs1: drift, l = 0.5
 dffs2: drift, l = 0.5
-d1d: drift, l = 1.04135198-0.286595
-d2d: drift, l = 1.041252-0.286595
-d3d: drift, l = 0.3429-0.286595
-d4d: drift, l = 0.3742
-d6d: drift, l = 0.100564884418124
-d7d: drift, l = 0.3
-d8d: drift, l = 11.105436138-0.357504435
-lairg: drift, l = 1.6727760021
+d1d: drift, l = 0.580966
+d2d: drift, l = 0.754657
+d3d: drift, l = 0.056305
+d4d: drift, l = 3.177152733425373
+d5d: drift, l = 1.22355893395943
+d6d: drift, l = 1.36
+d7d: drift, l = 1.13
+d8d: drift, l = 0.5
+d9d: drift, l = 4.26
+d10d: drift, l = 0.05
+d11d: drift, l = 0.23
+d12d: drift, l = 0.09
+d13d: drift, l = 0.590168
+d14d: drift, l = 1.31
+lairg: drift, l = 1.675292936069446
 
 ! Experiment table drifts
-dex20_1: drift, l = 0.3443808
-dex20_2: drift, l = 0.123
-dex20_3: drift, l = 1.067
-dex20_4: drift, l = 0.703
-dex20_5: drift, l = 0.4017
-dex20_5a: drift, l = 0.052
-dex20_5b: drift, l = 0.4413
-dex20_6: drift, l = 0.078
-dex20_7: drift, l = 0.088
-dex20_8: drift, l = 0.137
-dex20_9: drift, l = 0.4
-dex20_10: drift, l = 0.537
-dex20_11: drift, l = 0.088
-dex20_12: drift, l = 0.625
-dex20_13: drift, l = 0.438
-dex20_14: drift, l = 0.172
-dex20_15: drift, l = 1.917
-dex20_16: drift, l = 0.519952
+dex20_1: drift, l = 0.072982138228781
+dex20_2: drift, l = 0.26
+dex20_3: drift, l = 0.1
+dex20_4: drift, l = 0.06
+dex20_5: drift, l = 0.12
+dex20_6: drift, l = 0.72
+dex20_7: drift, l = 0.4017
+dex20_8: drift, l = 0.052
+dex20_9: drift, l = 0.4663
+dex20_10: drift, l = 0.09
+dex20_10a: drift, l = 0.04
+dex20_11: drift, l = 0.04
+dex20_12: drift, l = 1.13
+dex20_12a: drift, l = 0.05
+dex20_13: drift, l = 0.9
+dex20_14: drift, l = 0.11
+dex20_15: drift, l = 0.05
+dex20_16: drift, l = 0.13
 
 ! ==============================================================================
 ! XCORs
@@ -824,8 +841,9 @@ m9e: monitor, type = "R45"
 m11e: monitor, type = "R45"
 m1ff: monitor, type = "R45"
 m2ff: monitor, type = "R45"
-m3ff: monitor, type = "R45"
-m4ff: monitor, type = "R0"
+m3ff: monitor
+m4ff: monitor
+m5ff: monitor
 m0ex: monitor, type = "R45"
 m1ex: monitor, type = "R45"
 m2ex: monitor, type = "R45"
@@ -842,29 +860,33 @@ mq2d: monitor
 
 pmon: monitor, type = "phosphor"        !P202042T
 syag: monitor, type = "YAG"             !P202432T
-usthz: monitor, type = "OTR foil/YAG"    !PD203070
+usthz: monitor, type = "OTR foil/YAG"    ! OTRS:LI20:3070 CAMR:LI20:106
 dsthz: monitor, type = "OTR foil/YAG"    !PD203075
 prdmp: monitor, type = "phosphor"        !P203475T
 elanex: monitor, type = "unknown"         !P203500
 betal: monitor, type = "unknown"         !P203303
 beta1: monitor, type = "unknown"         !P203501
-cnear: monitor, type = "cherenkov wafer" !P203490
-cfar: monitor, type = "cherenkov wafer" !P203492
+cnear: monitor, type = "cherenkov wafer" ! CMOS:LI20:3490
 beta2: monitor, type = "unknown"         !P203488
-usotr: monitor, type = "OTR foil/YAG"
-ipotr1: monitor, type = "OTR foil/YAG"
-ipotr2: monitor, type = "OTR foil/YAG"
-ipws1: monitor, type = "MARKER"
-ipws2: monitor, type = "MARKER"
+usotr: monitor, type = "OTR foil/YAG"    ! OTRS:LI20:3158 CAMR:LI20:101
+ipotr1p: monitor, type = "OTR foil/YAG"   ! OTRS:LI20:3175 (in plasma oven)
+ipotr1: monitor, type = "OTR foil/YAG"    ! OTRS:LI20:3180 (in bypass line) CAMR:LI20:102
+ipotr2: monitor, type = "OTR foil/YAG"    ! OTRS:LI20:3202 (in bypass line)
+ipws1: monitor, type = "MARKER"            ! MARKER:LI20:3179 (in bypass line)
+ipws2: monitor, type = "MARKER"            ! MARKER:LI20:3206 (not installed)
+ipws3: monitor, type = "MARKER"            ! MARKER:LI20:3229
 ipotr3: monitor, type = "OTR foil/YAG"
-dsotr1: monitor, type = "OTR foil/YAG" ! "DSOTR" on IP AREA BEAMLINE drawning
-dsotr2: monitor, type = "OTR foil/YAG" ! "OTR" on IP AREA BEAMLINE drawning
+dsotr: monitor, type = "OTR foil/YAG" ! OTRS:LI20:3206 CAMR:LI20:103
+wdsotr: monitor, type = "OTR" ! OTRS:LI20:3239 CAMR:LI20:104
+dtotr: monitor, type = "OTR"
+pgam1: monitor, type = "phosphor" ! MONITOR:LI20:3500 CMOS:LI20:3490 (Gamma 1 screen)
 
 ! toroids
 
 im2040: marker !T202040T
 im2452: marker !T202452T
-iqmon20: marker ! "Resonant charge monitor" in S20 experimental region
+iqmon20: marker ! TORO:LI20:3163 "Resonant charge monitor" in S20 experimental region
+im3255: marker ! TORO:LI20:3255
 
 ! collimators
 
@@ -904,18 +926,24 @@ begexpt20: marker
 mip: marker ! Default IP location (for optics reference)
 lcube: marker ! Laser Injection Cube
 pic_cent: marker ! Center location of "picnic basket"
-pent: marker ! E300 plasma entrance definition
-pcent: marker ! Plasma oven center location
+pent: marker ! E300 plasma entrance (Gate valve A)
+pext: marker ! Plasma oven exit (Gate valve B)
 filg: marker ! Filamentation experiment gas target
 fils: marker ! Filamentation experiment solid target
 ecube: marker ! "CUBE"
 dwin: marker ! Valve Diamond Window
-
+exthole1: marker ! Extension table (first hole)
+bewin1: marker ! 1st Beryllium window
+bewin2: marker ! 2nd Beryllium window
 endexpt20: marker
-begspect20: marker !QS1 entrance
-scatsstl: marker
-table2: marker
-aerogel: marker
+
+begspect20: marker
+begpdc: marker ! Upstream end of PDC chamber
+endpdc: marker ! Downstream end of PDC chamber
+begedc: marker ! Upstream end of EDC chamber
+endedc: marker ! Downstream end of EDC chamber
+bflymid: marker ! Middle of Butterfly chamber
+extwin: marker ! Exit window (5mm thick Al)
 maindump: instrument !dump face
 dbmark30: marker
 endspect20: marker
@@ -1168,32 +1196,14 @@ qff2_2[L] = 2*qff2_2[L]
 qff2_3_full: line = (qff2_3)
 qff2_3[L] = 2*qff2_3[L]
 
-
-!Old split line: LINE=(QFF4_1,QFF4_1)
-
-qff4_1_full: line = (qff4_1)
-qff4_1[L] = 2*qff4_1[L]
-
-
-!Old split line: LINE=(QFF4_2,QFF4_2)
-
-qff4_2_full: line = (qff4_2)
-qff4_2[L] = 2*qff4_2[L]
-
-
-!Old split line: LINE=(QFF6,QFF6)
-
-qff6_full: line = (qff6)
-qff6[L] = 2*qff6[L]
-
   FF : LINE=(BEGFF20,DFF1,MFFF,QFF1_full,DM1QF,M1FF,DFF2CMa,BL20_4,DFF2CMb,SQ2_full,DFF2CMc,DYC1FF,YC1FF,DYC1FF,
          DYC1XC1F,DXC1FF,XC1FF,DXC1FF,DXC1QF,QFF2_1_full,DQ2FFM1,M2FF,DQ2FFM2,QFF2_2_full,DQ2FF,QFF2_3_full,DYC2QF,DYC2FF,YC2FF,
-         DYC2FF,DYC2XC2F,DXC2FF,DXC2PF,USTHz,DBMARK67,DFF4P,DSTHz,DYC3PF,DYC3FF,DYC3XC3F,DXC3FF,XC3FF,DXC3FF,DXC3QF,QFF4_1_full,
-         DQ4FFM1,M3FF,DQ4FFM2,QFF4_2_full,DFF5A,DXC4FF,XC4FF,DXC4FF,DFF5B,DQFF5,DFF6A,DYC4FF,YC4FF,DYC4FF,DFF6B,QFF6_full,ENDFF20)
+         DYC2FF,DYC2XC2F,DXC2FF,DXC2PF,USTHz,DBMARK67,DFF4P,DSTHz,DYC3PF,DYC3FF,DYC3XC3F,DXC3FF,XC3FF,D3FF,Q2FF,Q2FF,M3FF,D2FF,
+         Q1FF,Q1FF,M4FF,D1FF,Q0FF,Q0FF,M5FF,DMQ0FF,ENDFF20)
 
-  EXPT : LINE=(BEGEXPT20,DEX20_1,USOTR,DEX20_2,IQMON20,DEX20_3,LCUBE,DEX20_4,PIC_CENT,DEX20_5,FILG,DEX20_5a,FILS,
-         DEX20_5b,IPOTR1,DEX20_6,IPOTR2,DEX20_7,IPWS1,DEX20_8,PENT,MIP,DEX20_9,PCENT,DEX20_10,IPWS2,DEX20_11,IPOTR3,DEX20_12,
-         ECUBE,DEX20_13,DWIN,DEX20_14,DSOTR1,DEX20_15,DSOTR2,DEX20_16,ENDEXPT20)
+  EXPT : LINE=(BEGEXPT20,DEX20_1,EXTHOLE1,DEX20_2,USOTR,DEX20_3,IQMON20,DEX20_4,BEWIN1,DEX20_5,LCUBE,DEX20_6,PIC_CENT,
+         DEX20_7,FILG,DEX20_8,FILS,DEX20_9,IPOTR1P,DEX20_10,IPOTR1,DEX20_10a,PENT,MIP,DEX20_11,IPWS1,DEX20_12,PEXT,DEX20_12a,
+         IPOTR2,DEX20_13,IM3255,DEX20_14,BEWIN2,DEX20_15,IPWS3,DEX20_16,DSOTR,ENDEXPT20)
 
 
 
@@ -1216,24 +1226,10 @@ q2d[L] = 2*q2d[L]
   B5D36_full : LINE=(B5D361,B5D362)
 
   ! z= 1998.708952
-  SPECT : LINE=(BEGSPECT20,DMQ0D,Q0D_full,DM1QEX,M0EX,D1D,DMQ1D,Q1D_full,DM1QEX,M1EX,D2D,DMQ2D,Q2D_full,DM1QEX,M2EX,D3D,
-         XC1EX,D4D,D7D,D6D,B5D36_full,DM3BEX,M3EX,D8D,PDUMP,LAIRG,MAINDUMP,DBMARK30,ENDSPECT20)
+  SPECT : LINE=(BEGSPECT20,DMQ0D,Q0D_full,DM1QEX,M0EX,D1D,WDSOTR,DMQ1D,Q1D_full,DM1QEX,M1EX,D2D,DMQ2D,Q2D_full,DM1QEX,
+         M2EX,D3D,XC1EX,D4D,B5D36_full,DM3BEX,M3EX,D5D,BEGPDC,D6D,ENDPDC,D7D,BEGEDC,D8D,ENDEDC,D9D,DTOTR,D10D,BFLYMID,D11D,
+         EXTWIN,D12D,PGAM1,D13D,CNEAR,D14D,PDUMP,LAIRG,MAINDUMP,DBMARK30,ENDSPECT20)
 
-! version with more correctors:
-! SPECT : LINE=(BEGSPECT20,DMQ0D,&
-!   Q0D_full,DM1QEX,M0EX,D1D,DMQ1D,&
-!   Q1D_full,DM1QEX,M1EX,D2D,DMQ2D,&
-!   Q2D_full,DM1QEX,M2EX,D3D,XC1EX,D4D,YC0D,D7D,XC1D,D6D,&
-!   B5D36_full,D8D,PDUMP,LAIRG,MAINDUMP,DBMARK30,&
-!   ENDSPECT20)
-
-! SPECT : LINE=(BEGSPECT20,&
-!   QS1_full,DM1QEX,M1EX,LQSEPMA,DXC1EX,XC1EX,DXC1EX,LQSEPMB,&
-!   QS2_full,DM2QEX,M2EX,LQ2BENDM,&
-!   B5D36_full,DM3BEX,M3EX,LBPM2WIN,SCATSSTL,PRDMP,LAIRa,TABLE2,&
-!   LAIRb,ELANEX,LAIRc,BETAL,LAIRd,BETA1,LAIRe,CNEAR,LAIRf,AEROGEL,&
-!   LAIRg,CFAR,LAIRh,BETA2,LAIRi,PHOSPHOR,LAIRj,MAINDUMP,DBMARK30,&
-!   ENDSPECT20)
 
   S20E : LINE=(CHICANE,FF,EXPT,SPECT)
 
