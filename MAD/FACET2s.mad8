@@ -1,6 +1,6 @@
-  TITLE, "FACET2 scavenger e- (August 21, 2019)"
+  TITLE, "FACET2 scavenger e- (May 18, 2021)"
 
-! *** OPTICS=FACET2-21AUG19 ***
+! *** OPTICS=FACET2-18MAY21 ***
 
   ASSIGN, PRINT="FACET2s.print"
   ASSIGN, ECHO="FACET2s.echo"
@@ -8,6 +8,12 @@
 
 ! ==============================================================================
 ! Modification History
+! ------------------------------------------------------------------------------
+! 18-MAY-2021, G. White
+!  * fixed LI19 corrector locations, removed 19-8a and updated S20 experiment
+!    object locations @ Q0-2D quad locations
+!  * added Q0FF, Q1FF, Q2FF, removed QFF4, locations according to metrology
+!    measurements
 ! ------------------------------------------------------------------------------
 ! 06-MAR-2019, M. Woodley
 !  * from FACET2e.mad8 ... simple geometry matched
@@ -24,7 +30,6 @@
 ! ------------------------------------------------------------------------------
 
   CALL, FILENAME="FACET2e_master.xsif"
- !CALL, FILENAME="FACET2e_patch.mad8" !resets everything to Lucretia values
 
 ! ------------------------------------------------------------------------------
 ! BETA0 block definitions

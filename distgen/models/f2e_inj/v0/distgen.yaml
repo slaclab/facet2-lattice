@@ -1,0 +1,28 @@
+n_particle: 1000000
+
+random_type: hammersley
+
+start:
+    type: cathode
+    MTE:
+        value: 250
+        units: meV
+        
+total_charge:
+    value: 2000
+    units: pC
+          
+r_dist:
+    type: radial_uniform
+    max_r:
+        value: 2.75
+        units: mm
+
+t_dist:
+    type: tukey
+    length:
+        value: 2.0
+        units: ps
+    ratio:
+        value: 0.8
+        units: ''

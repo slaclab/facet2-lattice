@@ -1,0 +1,66 @@
+input_file: ImpactT_template.in
+
+verbose: False
+
+group:
+
+  GUNF_phase:
+    ele_names: [ GUNF ]
+    var_name: dtheta0_deg
+    absolute: False
+    attributes: theta0_deg
+    value: -30
+  GUNF_scale:
+    ele_names: [ GUNF ]
+    factors: [ 8.66053289471487 ] # = 47537665.05908992/(6e6-.511e6)
+    absolute: True    
+    var_name: voltage
+    attributes: rf_field_scale
+#    value: 5.489e+6 # = 6e6-0.511e6
+    value: 5763450.0 # = 6e6-0.511e6 * 1.05 for 2 nC
+
+
+  # Change in L0AF phase. 
+  # 0 should be on-crest. 
+  L0AF_phase:
+    ele_names: [ L0AF_entrance, L0AF_body_1, L0AF_body_2, L0AF_exit ]
+    attributes: theta0_deg
+    absolute: False 
+    var_name: dtheta0_deg
+    value: -28
+    
+  # Change in L0BF phase   
+  # 0 should be on-crest.  
+  L0BF_phase:
+    ele_names: [ L0BF_entrance, L0BF_body_1, L0BF_body_2, L0BF_exit ]
+    attributes: theta0_deg
+    absolute: False
+    var_name: dtheta0_deg
+    value: -23  
+     
+  # Overall L0AF scale  
+  L0AF_scale:
+    ele_names:  [ L0AF_entrance, L0AF_body_1, L0AF_body_2, L0AF_exit ]
+    absolute: True    
+    #var_name: rf_field_scale
+    #factors: [0.86571945106805, 1, 1, 0.86571945106805]  # sin(k*d) with d = 3.5e-2 m 
+    #value: 30048347.300712895
+    var_name: voltage
+    attributes: rf_field_scale
+    factors: [0.44850757, 0.51807495, 0.51807495, 0.44850757]  # Factors found from autophase_and_scale: 30048347.359377533/(64e6 - 6e6) * np.array( [0.86571945106805, 1, 1, 0.86571945106805])
+    value: 58.0e+6
+    
+    
+  # Overall L0BF scale. 
+  L0BF_scale:
+    ele_names:  [ L0BF_entrance, L0BF_body_1, L0BF_body_2, L0BF_exit ]
+    var_name: rf_field_scale
+    #factors: [0.86571945106805, 1, 1, 0.86571945106805]  # sin(k*d) with d = 3.5e-2 m 
+    absolute: True
+    #value: 36780527.3869102
+    var_name: voltage
+    attributes: rf_field_scale
+    factors: [0.44850757, 0.51807495, 0.51807495, 0.44850757] 
+    value: 71.0e+6
+    
+

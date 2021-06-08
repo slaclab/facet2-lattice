@@ -1,0 +1,71 @@
+MAD deck changes for 25FEB21
+================================================================================
+
+general
+* from: https://github.com/slaclab/facet2-lattice/tree/S20FFS_Phase1/MAD
+
+FACET2e.mad8
+- 
+
+FACET2e_match.mad8
+- 
+
+FACET2e_master.mad8
+- 
+
+FACET2p.mad8
+- 
+
+FACET2p_match.mad8
+- 
+
+FACET2p_master.mad8
+- 
+
+FACET2s.mad8
+- 
+
+common.xsif
+- 
+
+INJ.xsif
+- 
+
+DL10.xsif
+* remove IN10 ACMs (IM10607 and IM10618)
+
+L1.xsif
+* create "_full" sub-LINEs for LCAVs
+
+BC11.xsif
+- 
+
+L2.xsif
+* create "_full" sub-LINEs for LCAVs
+
+BC14.xsif
+- 
+
+L3.xsif
+* create "_full" sub-LINEs for LCAVs
+
+LI20.xsif
+* FACET-II Sector 20 Phase-I upgrade configuration
+  > QFF5 magnet removed
+  > Q0-Q2D triplet installed in final positions
+
+SCAV.xsif
+- 
+
+================================================================================
+
+Oracle upload
+
+*** Prepend AD_ACCEL stuff to paths file and extras file ***
+
+- 
+
+================================================================================
+
+PRDs/ESDs/IDCs
+- 

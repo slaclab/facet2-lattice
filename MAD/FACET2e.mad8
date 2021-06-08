@@ -1,6 +1,6 @@
-  TITLE, "FACET2 e- (August 21, 2019)"
+  TITLE, "FACET2 e- (May 18, 2021)"
 
-! *** OPTICS=FACET2-21AUG19 ***
+! *** OPTICS=FACET2-18MAY21 ***
 
   ASSIGN, PRINT="FACET2e.print"
   ASSIGN, ECHO="FACET2e.echo"
@@ -8,6 +8,12 @@
 
 ! ==============================================================================
 ! Modification History
+! ------------------------------------------------------------------------------
+! 18-MAY-2021, G. White
+!  * fixed LI19 corrector locations, removed 19-8a and updated S20 experiment
+!    object locations @ Q0-2D quad locations
+!  * added Q0FF, Q1FF, Q2FF, removed QFF4, locations according to metrology
+!    measurements
 ! ------------------------------------------------------------------------------
 ! 13-NOV-2017, M. Woodley
 !  * move CATHODE closer to L0; remove BPM3F
@@ -21,7 +27,6 @@
 ! ------------------------------------------------------------------------------
 
   CALL, FILENAME="FACET2e_master.xsif"
- !CALL, FILENAME="FACET2e_patch.mad8" !resets everything to Lucretia values
 
 ! ------------------------------------------------------------------------------
 ! BETA0 block definitions
@@ -73,6 +78,14 @@
     USE, F2_SCAV
     PRINT, FULL
     TWISS, BETA0=TW0, TAPE="FACET2s_twiss.tape"
+    BEAM, ENERGY=Ei
+    USE, FACET2e
+    PRINT, FULL
+    TWISS, BETA0=TWi, TAPE="FACET2ei_twiss.tape"
+    BEAM, ENERGY=Ei
+    USE, FACET2s
+    PRINT, FULL
+    TWISS, BETA0=TWi, TAPE="FACET2si_twiss.tape"
     STOP
   ENDCOMMENT
 
@@ -89,7 +102,7 @@
     SAVEBETA, TW19, MSCAVEXT
     SAVEBETA, TW20, BEGBC20
     SAVEBETA, TWip, MIP
-    TWISS, BETA0=TW0, COUPLE
+    TWISS, BETA0=TW0, TAPE="FACET2e_twiss.tape" !, COUPLE
     SHOW, TW0a
     SHOW, TWi
     SHOW, TW11
@@ -97,6 +110,8 @@
     SHOW, TW19
     SHOW, TW20
     SHOW, TWip
+    SURVEY, TAPE="FACET2e_survey.tape", &
+      X0=Xc, Y0=Yc, Z0=Zc, THETA0=THETAc, PHI0=PHIc, PSI0=PSIc
     STOP
   ENDCOMMENT
 
@@ -169,7 +184,7 @@
       TITLE="Final Focus + Spectrometer"
  !ENDCOMMENT
 
- !COMMENT
+  COMMENT
     ASSIGN, PRINT="S10AIP.print"
     BEAM, ENERGY=E0
     USE, F2_S10AIP
@@ -180,7 +195,7 @@
     PLOT, TABLE=TWISS, HAXIS=S, VAXIS=BETX,BETY, &
       STYLE=100, SPLINE, RANGE=#S/#E, FILE="S10AIP", &
       TITLE="FACET2 Sector 10 AIP"
- !ENDCOMMENT
+  ENDCOMMENT
 
 ! ------------------------------------------------------------------------------
 

@@ -1,0 +1,11 @@
+x-s all 15 50
+sc
+vv
+vd
+use dat BC11C.endtwiss[1:4]
+use dat BC11C.betas[1,2]
+use var q.BC11C
+set var *|key_bound=F
+set var q.BC11C|key_bound=T
+set var q.BC11C|key_delta = 1e-4
+olmdif

@@ -1,8 +1,11 @@
 
-! *** OPTICS=FACET2-21AUG19 ***
+! *** OPTICS=FACET2-18MAY21 ***
 
 ! ==============================================================================
 ! Modification History
+! ------------------------------------------------------------------------------
+! 19-FEB-2021, M. Woodley
+!  * remove IN10 ACMs (IM10607 and IM10618)
 ! ------------------------------------------------------------------------------
 ! 25-JUL-2019, M. Woodley
 !  * laser heater chicane, undulator, and OTR's won't be installed for startup
@@ -299,8 +302,6 @@
   PR10571  : PROF, TYPE="OTR"
   IM10591  : IMON, TYPE="toroid"
   BZ10596  : BLMO, TYPE="ceramic gap"
-  IM10607  : IMON, TYPE="ACM"
-  IM10618  : IMON, TYPE="ACM"
   PR10711  : PROF, TYPE="OTR"
   IM10791  : IMON, TYPE="toroid"
   VV10795  : INST
@@ -364,8 +365,7 @@
     QE10511_full,DE03a,XC10521,YC10522,DE03b,&
     QE10525_full,DE04a,VV10545,DE04b,WALLBEG,IN10WALL,WALLEND,&
       DE05a,RST10551,DE05b,WS10561,DE05c1,MRK0F,DE05c2,PR10571,DE05d,&
-      BPM10581,DE05e,IM10591,DE05f,BZ10596,&
-      DE05g1,IM10607,DE05g2,IM10618,DE05g3,&
+      BPM10581,DE05e,IM10591,DE05f,BZ10596,DE05g,&
     QM10631_full,DE06a,XC10641,YC10642,DE06b,&
     QM10651_full,DE07,&
     BX0F,DM00a,XC10761,YC10762,DM00b,&

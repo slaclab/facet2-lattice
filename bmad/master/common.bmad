@@ -1,0 +1,50 @@
+
+! *** OPTICS=FACET2-18MAY21 ***
+
+! FACET2 common parameters
+
+! ==============================================================================
+! Modification History
+! ------------------------------------------------------------------------------
+! 31-JAN-2017, M. Woodley
+!  * from FACET2e.xsif
+! ------------------------------------------------------------------------------
+
+! parameters
+
+adl1 = -35.0*raddeg !injection line angle [rad]
+
+! FACET2 quadrupoles
+
+! Qx  : Everson-Tesla quadrupole (1.26Q3.5)
+! QE  : linac QE4 (1.085Q4.31)
+! Qc  : SigmaPhi "tweaker" quadrupole (1.69Q3.4)
+! Qc2 : BC14 "tweaker" quadrupole (2.1Q5.87)
+
+lqx = 0.108        !GLmax=  20 kG @  12 A
+rqx = 0.016
+lqe = 0.1068 !GLmax= 106 kG @ 220 A
+rqe = 1.085*in2m/2
+lqc = 0.108      !GLmax= 2.1 kG @ 12 A
+rqc = 0.043/2
+lqc2 = 0.1759   !GLmax=   4 kG @ 8.67 A
+rqc2 = 2.1*in2m/2
+
+! LI19 scavenger kicker
+
+zks = 0.5
+
+! common drift lengths
+
+ldaq1 = 0.0342
+ldaq2 = 0.027
+ldaq3 = 0.3533
+ldaq4 = 2.5527
+
+daq1: drift, l = ldaq1
+daq2: drift, l = ldaq2
+daq3: drift, l = ldaq3
+daq4: drift, l = ldaq4
+
+! ------------------------------------------------------------------------------
+

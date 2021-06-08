@@ -3,6 +3,9 @@ Lattice files for the FACET-II accelerator
 
 
 CHANGELOG:
+* 05/05/2021, G. White: Added Q0FF, Q1FF, Q2FF, removed QFF4, locations according to metrology mesurements
+* 04/17/2021, G. White: Fixed LI19 corrector locations, removed 19-8a and updated S20 experiment object locations @ Q0-2D quad locations
+* 02/25/2021, G. White & M. Woodley: changes to reflect in-tunnel hardware for INJ, BC11, BC14 & S20 (see MAD xsif files for details)
 * 01/22/2021, G. White: Move BC11 magnets and devices per B. O'Shea for edge radiation equipmemt installation
 * 11/05/2020, G. White: Added model-independent data directory for storing e.g. Beam stay clear data
 * 05/18/2020, G. White: Imported (older) ImpactT files for FACET-II injector (warning, doesn't exactly match GPT files)

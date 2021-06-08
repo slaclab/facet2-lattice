@@ -1,0 +1,252 @@
+
+! *** OPTICS=FACET2-18MAY21 ***
+
+! ==============================================================================
+! Modification History
+! ------------------------------------------------------------------------------
+! 23-AUG-2018, M. Woodley
+!  * gradL1 and phiL1 values from FACET2e_baseline.mat
+!  * quadrupole K1 values from FACET2e_baseline.mat
+! ------------------------------------------------------------------------------
+! 31-JAN-2017, M. Woodley
+!  * from FACET2e.xsif
+! ------------------------------------------------------------------------------
+
+! ==============================================================================
+! accelerating structures
+! ------------------------------------------------------------------------------
+! the L1 S-band linac consists of: 3 x  10' structure @ 25% power
+!                                  1 x  10' structure @ 50% power
+!                                  1 x 9.4' structure @ 25% power
+!                                  1 x 9.4' structure @ 50% power
+! ------------------------------------------------------------------------------
+
+fl1 = 0.986532023493
+gradl1 = 10.628316745522*fl1 !MeV/m
+phil1 = -20.5/360            !rad/2pi
+klossl1 = 0                  !V/C/m
+
+k11_1b1: lcavity, rf_frequency = sbandf * 1e6, type = "9.4ft", l = 0.453432, voltage = p50*gradl1*0.453432 * 1e6,
+          phi0 = phil1
+k11_1b2: lcavity, rf_frequency = sbandf * 1e6, type = "9.4ft", l = 2.415768, voltage = p50*gradl1*2.415768 * 1e6,
+          phi0 = phil1
+k11_1c1: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.6689, voltage = p25*gradl1*0.6689 * 1e6, phi0 = phil1
+k11_1c2: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 2.3752, voltage = p25*gradl1*2.3752 * 1e6, phi0 = phil1
+k11_1d: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*gradl1*dlwl10 * 1e6, phi0 = phil1
+
+k11_2a1: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.3256, voltage = p25*gradl1*0.3256 * 1e6, phi0 = phil1
+k11_2a2: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.2870, voltage = p25*gradl1*0.2870 * 1e6, phi0 = phil1
+k11_2a3: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 2.4315, voltage = p25*gradl1*2.4315 * 1e6, phi0 = phil1
+k11_2b: lcavity, rf_frequency = sbandf * 1e6, type = "9.4ft", l = dlwl9, voltage = p25*gradl1*dlwl9 * 1e6, phi0 = phil1
+k11_2c1: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.5000, voltage = p50*gradl1*0.5000 * 1e6, phi0 = phil1
+k11_2c2: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 2.5441, voltage = p50*gradl1*2.5441 * 1e6, phi0 = phil1
+
+! define unsplit lcavitys for BMAD ... not used by MAD
+
+k11_1b: lcavity, rf_frequency = sbandf * 1e6, type = "9.4ft", l = dlwl9, voltage = p50*gradl1*dlwl9 * 1e6, phi0 = phil1
+k11_1c: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*gradl1*dlwl10 * 1e6, phi0 = phil1
+
+k11_2a: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*gradl1*dlwl10 * 1e6, phi0 = phil1
+
+k11_2c: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p50*gradl1*dlwl10 * 1e6, phi0 = phil1
+
+! ------------------------------------------------------------------------------
+! L1 X-band
+! ------------------------------------------------------------------------------
+
+l1xf__1: lcavity, rf_frequency = xbandf * 1e6, type = "@0,linearizer", l = dlwlx/2
+l1xf__2: lcavity, rf_frequency = xbandf * 1e6, type = "@0,linearizer", l = dlwlx/2
+
+! define unsplit lcavitys for BMAD ... not used by MAD
+
+l1xf: lcavity, rf_frequency = xbandf * 1e6, type = "@0,linearizer", l = dlwlx
+
+! ==============================================================================
+! QUADs
+! ------------------------------------------------------------------------------
+
+kql1 = 3.789198342593
+
+qdl1: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = -kql1
+qfl1: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = +kql1
+
+kqa11132 = -3.031820754245
+kq11201 = 1.772655565069
+kqa11265 = 0.0
+kq11301 = -3.164932554748
+
+qa11132: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = kqa11132
+q11201: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = kq11201
+qa11265: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = kqa11265
+q11301: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = kq11301
+
+! ==============================================================================
+! drifts
+! ------------------------------------------------------------------------------
+
+d9: drift, l = dlwl9
+daqa: drift, l = 0.03345
+
+daqa1: drift, l = 0.03747
+daqa2: drift, l = 0.03063
+daqa3: drift, l = 0.03405
+daqa4: drift, l = 0.03405
+daqa5: drift, l = 0.055970350578 !0.0559696203
+daqa6: drift, l = 0.15733138
+dl1x: drift, l = 0.14146862
+dm10a: drift, l = 0.26360938
+
+! ==============================================================================
+! XCORs and YCORs
+! ------------------------------------------------------------------------------
+
+xc11104: hkicker, type = "type-4"
+xc11140: hkicker, type = "type-4"
+xc11202: hkicker, type = "type-4"
+xc11272: hkicker, type = "type-4"
+xc11304: hkicker, type = "type-4"
+
+yc11105: vkicker, type = "type-4"
+yc11141: vkicker, type = "type-4"
+yc11203: vkicker, type = "type-4"
+yc11273: vkicker, type = "type-4"
+yc11305: vkicker, type = "type-4"
+
+! ==============================================================================
+! diagnostics
+! ------------------------------------------------------------------------------
+
+! BPMs (LCLS-II type designations)
+
+bpm11132: monitor, type = "Stripline-2"
+bpm11201: monitor, type = "Stripline-2"
+bpm11265: monitor, type = "Stripline-2"
+bpm11301: monitor, type = "Stripline-2"
+
+! ==============================================================================
+! MARK
+! ------------------------------------------------------------------------------
+
+begl1f: marker
+vv11302: instrument !vacuum valve
+l1xfbeg: marker
+l1xfend: marker
+vv11308: instrument !vacuum valve
+endl1f: marker
+
+! ==============================================================================
+! BEAMLINEs
+! ------------------------------------------------------------------------------
+
+  L1c : LINE=(D9,DAQA,QFL1,QFL1,DAQA,D9,DAQA,QDL1,QDL1,DAQA)
+
+!---------------------
+! K11_1B LCAVITY
+K11_1B_full: line = (K11_1B)
+! contains zero length elements:
+    XC11104[superimpose] = T
+    XC11104[ref] = K11_1B
+    XC11104[ref_origin] = beginning
+    XC11104[offset] = 0.453432
+    YC11105[superimpose] = T
+    YC11105[ref] = K11_1B
+    YC11105[ref_origin] = beginning
+    YC11105[offset] = 0.453432
+!old:   K11_1b_full : LINE=(K11_1b1,XC11104,YC11105,K11_1b2)
+!---------------------
+! K11_1C LCAVITY
+K11_1C_full: line = (K11_1C)
+! contains zero length elements:
+    XC11140[superimpose] = T
+    XC11140[ref] = K11_1C
+    XC11140[ref_origin] = beginning
+    XC11140[offset] = 0.6689
+    YC11141[superimpose] = T
+    YC11141[ref] = K11_1C
+    YC11141[ref_origin] = beginning
+    YC11141[offset] = 0.6689
+!old:   K11_1c_full : LINE=(K11_1c1,XC11140,YC11141,K11_1c2)
+  K11_1d_full : LINE=(K11_1d)
+!---------------------
+! K11_2A LCAVITY
+K11_2A_full: line = (K11_2A)
+! contains zero length elements:
+    XC11202[superimpose] = T
+    XC11202[ref] = K11_2A
+    XC11202[ref_origin] = beginning
+    XC11202[offset] = 0.3256
+    YC11203[superimpose] = T
+    YC11203[ref] = K11_2A
+    YC11203[ref_origin] = beginning
+    YC11203[offset] = 0.6126
+!old:   K11_2a_full : LINE=(K11_2a1,XC11202,K11_2a2,YC11203,K11_2a3)
+  K11_2b_full : LINE=(K11_2b)
+!---------------------
+! K11_2C LCAVITY
+K11_2C_full: line = (K11_2C)
+! contains zero length elements:
+    XC11272[superimpose] = T
+    XC11272[ref] = K11_2C
+    XC11272[ref_origin] = beginning
+    XC11272[offset] = 0.5
+    YC11273[superimpose] = T
+    YC11273[ref] = K11_2C
+    YC11273[ref_origin] = beginning
+    YC11273[offset] = 0.5
+!old:   K11_2c_full : LINE=(K11_2c1,XC11272,YC11273,K11_2c2)
+!---------------------
+! L1XF LCAVITY
+L1XF_full: line = (L1XF)
+! contains zero length elements:
+    XC11304[superimpose] = T
+    XC11304[ref] = L1XF
+    XC11304[ref_origin] = beginning
+    XC11304[offset] = 0.2974
+    YC11305[superimpose] = T
+    YC11305[ref] = L1XF
+    YC11305[ref_origin] = beginning
+    YC11305[offset] = 0.2974
+    L1XFEND[superimpose] = T
+    L1XFEND[ref] = L1XF
+    L1XFEND[ref_origin] = beginning
+    L1XFEND[offset] = 0.5948
+!old:   L1XF_full   : LINE=(L1XFBEG,L1XF__1,XC11304,YC11305,L1XF__2,L1XFEND)
+
+
+
+!Old split line: LINE=(QA11132,BPM11132,QA11132)
+
+qa11132_full: line = (qa11132)
+qa11132[L] = 2*qa11132[L]
+bpm11132[superimpose] = T
+bpm11132[ref] = qa11132
+
+
+!Old split line: LINE=(Q11201,BPM11201,Q11201)
+
+q11201_full: line = (q11201)
+q11201[L] = 2*q11201[L]
+bpm11201[superimpose] = T
+bpm11201[ref] = q11201
+
+
+!Old split line: LINE=(QA11265,BPM11265,QA11265)
+
+qa11265_full: line = (qa11265)
+qa11265[L] = 2*qa11265[L]
+bpm11265[superimpose] = T
+bpm11265[ref] = qa11265
+
+
+!Old split line: LINE=(Q11301,BPM11301,Q11301)
+
+q11301_full: line = (q11301)
+q11301[L] = 2*q11301[L]
+bpm11301[superimpose] = T
+bpm11301[ref] = q11301
+
+  L1F : LINE=(BEGL1F,K11_1b_full,DAQA1,QA11132_full,DAQA2,K11_1c_full,K11_1d_full,DAQ1,Q11201_full,DAQ2,K11_2a_full,
+         K11_2b_full,DAQA3,QA11265_full,DAQA4,K11_2c_full,DAQA5,Q11301_full,DAQA6,VV11302,DL1X,L1XF_full,DM10A,VV11308,ENDL1F)
+
+! ==============================================================================
+

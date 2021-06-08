@@ -1,0 +1,186 @@
+! QFCQ Quad-Sextupole Sliced model
+! Version date 23-Mar-2017, for use with PDR v1.4.3
+! =================================
+QFCQ_s1 : QUADRUPOLE,L=0.00299468,K1=12.8619, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm1 : MULTIPOLE,K2L=-0.1735,&
+K3L=-1.22248, tracking_method=Symp_Lie_PTC
+QFCQ_s2 : QUADRUPOLE,L=0.00299468,K1=4.61885, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm2 : MULTIPOLE,K2L=-0.090551,&
+K3L=-0.963479, tracking_method=Symp_Lie_PTC
+QFCQ_s3 : QUADRUPOLE,L=0.00299468,K1=5.79158, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm3 : MULTIPOLE,K2L=-0.135193,&
+K3L=-1.62637, tracking_method=Symp_Lie_PTC
+QFCQ_s4 : QUADRUPOLE,L=0.00299468,K1=7.21488, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm4 : MULTIPOLE,K2L=-0.203885,&
+K3L=-2.2463, tracking_method=Symp_Lie_PTC
+QFCQ_s5 : QUADRUPOLE,L=0.00299468,K1=8.94435, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm5 : MULTIPOLE,K2L=-0.298581,&
+K3L=-2.83005, tracking_method=Symp_Lie_PTC
+QFCQ_s6 : QUADRUPOLE,L=0.00299468,K1=10.9731, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm6 : MULTIPOLE,K2L=-0.429723,&
+K3L=-3.71285, tracking_method=Symp_Lie_PTC
+QFCQ_s7 : QUADRUPOLE,L=0.00299468,K1=13.0182, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm7 : MULTIPOLE,K2L=-0.591484,&
+K3L=-2.46169, tracking_method=Symp_Lie_PTC
+QFCQ_s8 : QUADRUPOLE,L=0.00299468,K1=15.7876, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm8 : MULTIPOLE,K2L=-0.84891,&
+K3L=0.407929, tracking_method=Symp_Lie_PTC
+QFCQ_s9 : QUADRUPOLE,L=0.00299468,K1=18.5359, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm9 : MULTIPOLE,K2L=-1.13909,&
+K3L=5.27269, tracking_method=Symp_Lie_PTC
+QFCQ_s10 : QUADRUPOLE,L=0.00299468,K1=20.7654, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm10 : MULTIPOLE,K2L=-1.31051,&
+K3L=4.302, tracking_method=Symp_Lie_PTC
+QFCQ_s11 : QUADRUPOLE,L=0.00299468,K1=21.5966, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm11 : MULTIPOLE,K2L=-1.19619,&
+K3L=-2.34344, tracking_method=Symp_Lie_PTC
+QFCQ_s12 : QUADRUPOLE,L=0.00299468,K1=21.9672, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm12 : MULTIPOLE,K2L=-1.091,&
+K3L=-3.3622, tracking_method=Symp_Lie_PTC
+QFCQ_s13 : QUADRUPOLE,L=0.00299468,K1=22.0511, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm13 : MULTIPOLE,K2L=-1.04815,&
+K3L=-1.86733, tracking_method=Symp_Lie_PTC
+QFCQ_s14 : QUADRUPOLE,L=0.00299468,K1=22.0529, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm14 : MULTIPOLE,K2L=-1.03939,&
+K3L=-1.13446, tracking_method=Symp_Lie_PTC
+QFCQ_s15 : QUADRUPOLE,L=0.00299468,K1=22.0349, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm15 : MULTIPOLE,K2L=-1.03534,&
+K3L=-0.210851, tracking_method=Symp_Lie_PTC
+QFCQ_s16 : QUADRUPOLE,L=0.00299468,K1=22.0276, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm16 : MULTIPOLE,K2L=-1.03259,&
+K3L=-0.0197138, tracking_method=Symp_Lie_PTC
+QFCQ_s17 : QUADRUPOLE,L=0.00299468,K1=22.0291, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm17 : MULTIPOLE,K2L=-1.03135,&
+K3L=-0.00524223, tracking_method=Symp_Lie_PTC
+QFCQ_s18 : QUADRUPOLE,L=0.00299468,K1=22.0282, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm18 : MULTIPOLE,K2L=-1.03075,&
+K3L=0.0323648, tracking_method=Symp_Lie_PTC
+QFCQ_s19 : QUADRUPOLE,L=0.00299468,K1=22.0097, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm19 : MULTIPOLE,K2L=-1.0305,&
+K3L=0.309366, tracking_method=Symp_Lie_PTC
+QFCQ_s20 : QUADRUPOLE,L=0.00299468,K1=22.0052, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm20 : MULTIPOLE,K2L=-1.0302,&
+K3L=0.229466, tracking_method=Symp_Lie_PTC
+QFCQ_s21 : QUADRUPOLE,L=0.00299468,K1=22.0189, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm21 : MULTIPOLE,K2L=-1.03216,&
+K3L=0.169638, tracking_method=Symp_Lie_PTC
+QFCQ_s22 : QUADRUPOLE,L=0.00299468,K1=22.0296, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm22 : MULTIPOLE,K2L=-1.03327,&
+K3L=-0.0178327, tracking_method=Symp_Lie_PTC
+QFCQ_s23 : QUADRUPOLE,L=0.00299468,K1=22.0279, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm23 : MULTIPOLE,K2L=-1.03289,&
+K3L=-0.207899, tracking_method=Symp_Lie_PTC
+QFCQ_s24 : QUADRUPOLE,L=0.00299468,K1=22.0294, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm24 : MULTIPOLE,K2L=-1.034,&
+K3L=0.0316091, tracking_method=Symp_Lie_PTC
+QFCQ_s25 : QUADRUPOLE,L=0.00299468,K1=22.031, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm25 : MULTIPOLE,K2L=-1.03442,&
+K3L=0.27311, tracking_method=Symp_Lie_PTC
+QFCQ_s26 : QUADRUPOLE,L=0.00299468,K1=22.0343, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm26 : MULTIPOLE,K2L=-1.03343,&
+K3L=0.238593, tracking_method=Symp_Lie_PTC
+QFCQ_s27 : QUADRUPOLE,L=0.00299468,K1=22.0354, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm27 : MULTIPOLE,K2L=-1.03298,&
+K3L=0.376839, tracking_method=Symp_Lie_PTC
+QFCQ_s28 : QUADRUPOLE,L=0.00299468,K1=22.0325, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm28 : MULTIPOLE,K2L=-1.03176,&
+K3L=0.147395, tracking_method=Symp_Lie_PTC
+QFCQ_s29 : QUADRUPOLE,L=0.00299468,K1=22.0216, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm29 : MULTIPOLE,K2L=-1.03035,&
+K3L=0.0644216, tracking_method=Symp_Lie_PTC
+QFCQ_s30 : QUADRUPOLE,L=0.00299468,K1=22.0232, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm30 : MULTIPOLE,K2L=-1.02982,&
+K3L=-0.245083, tracking_method=Symp_Lie_PTC
+QFCQ_s31 : QUADRUPOLE,L=0.00299468,K1=22.0331, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm31 : MULTIPOLE,K2L=-1.03378,&
+K3L=0.470402, tracking_method=Symp_Lie_PTC
+QFCQ_s32 : QUADRUPOLE,L=0.00299468,K1=22.038, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm32 : MULTIPOLE,K2L=-1.03553,&
+K3L=0.52516, tracking_method=Symp_Lie_PTC
+QFCQ_s33 : QUADRUPOLE,L=0.00299468,K1=22.0322, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm33 : MULTIPOLE,K2L=-1.0322,&
+K3L=-0.0673174, tracking_method=Symp_Lie_PTC
+QFCQ_s34 : QUADRUPOLE,L=0.00299468,K1=22.0328, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm34 : MULTIPOLE,K2L=-1.03246,&
+K3L=-0.0723921, tracking_method=Symp_Lie_PTC
+QFCQ_s35 : QUADRUPOLE,L=0.00299468,K1=22.0377, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm35 : MULTIPOLE,K2L=-1.03364,&
+K3L=-0.216843, tracking_method=Symp_Lie_PTC
+QFCQ_s36 : QUADRUPOLE,L=0.00299468,K1=22.0405, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm36 : MULTIPOLE,K2L=-1.03483,&
+K3L=-0.636512, tracking_method=Symp_Lie_PTC
+QFCQ_s37 : QUADRUPOLE,L=0.00299468,K1=22.0456, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm37 : MULTIPOLE,K2L=-1.04184,&
+K3L=-0.722418, tracking_method=Symp_Lie_PTC
+QFCQ_s38 : QUADRUPOLE,L=0.00299468,K1=22.0519, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm38 : MULTIPOLE,K2L=-1.05213,&
+K3L=-1.84293, tracking_method=Symp_Lie_PTC
+QFCQ_s39 : QUADRUPOLE,L=0.00299468,K1=21.9704, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm39 : MULTIPOLE,K2L=-1.0913,&
+K3L=-3.31861, tracking_method=Symp_Lie_PTC
+QFCQ_s40 : QUADRUPOLE,L=0.00299468,K1=21.6042, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm40 : MULTIPOLE,K2L=-1.19385,&
+K3L=-2.59879, tracking_method=Symp_Lie_PTC
+QFCQ_s41 : QUADRUPOLE,L=0.00299468,K1=20.7715, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm41 : MULTIPOLE,K2L=-1.31259,&
+K3L=4.21503, tracking_method=Symp_Lie_PTC
+QFCQ_s42 : QUADRUPOLE,L=0.00299468,K1=18.5397, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm42 : MULTIPOLE,K2L=-1.14601,&
+K3L=5.9333, tracking_method=Symp_Lie_PTC
+QFCQ_s43 : QUADRUPOLE,L=0.00299468,K1=15.733, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm43 : MULTIPOLE,K2L=-0.846183,&
+K3L=0.129111, tracking_method=Symp_Lie_PTC
+QFCQ_s44 : QUADRUPOLE,L=0.00299468,K1=12.9571, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm44 : MULTIPOLE,K2L=-0.625709,&
+K3L=-1.20986, tracking_method=Symp_Lie_PTC
+QFCQ_s45 : QUADRUPOLE,L=0.00299468,K1=10.9453, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm45 : MULTIPOLE,K2L=-0.434718,&
+K3L=-3.33893, tracking_method=Symp_Lie_PTC
+QFCQ_s46 : QUADRUPOLE,L=0.00299468,K1=8.92306, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm46 : MULTIPOLE,K2L=-0.301674,&
+K3L=-1.39649, tracking_method=Symp_Lie_PTC
+QFCQ_s47 : QUADRUPOLE,L=0.00299468,K1=7.21823, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm47 : MULTIPOLE,K2L=-0.20621,&
+K3L=-1.52207, tracking_method=Symp_Lie_PTC
+QFCQ_s48 : QUADRUPOLE,L=0.00299468,K1=5.79842, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm48 : MULTIPOLE,K2L=-0.13932,&
+K3L=-1.09556, tracking_method=Symp_Lie_PTC
+QFCQ_s49 : QUADRUPOLE,L=0.00299468,K1=4.62442, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm49 : MULTIPOLE,K2L=-0.0945504,&
+K3L=-0.753699, tracking_method=Symp_Lie_PTC
+QFCQ_s50 : QUADRUPOLE,L=0.00299468,K1=12.4932, tracking_method=Symp_Lie_PTC, Symplectify=true
+QFCQ_sm50 : MULTIPOLE,K2L=-0.173392,&
+K3L=-1.55928, tracking_method=Symp_Lie_PTC
+MQFCQ : MARK
+QFCQ : LINE = (QFCQ_sm50,QFCQ_s50,QFCQ_sm49,QFCQ_s49,QFCQ_sm48,QFCQ_s48,QFCQ_sm47,QFCQ_s47&
+,QFCQ_sm46,QFCQ_s46,QFCQ_sm45,QFCQ_s45,QFCQ_sm44,QFCQ_s44&
+,QFCQ_sm43,QFCQ_s43,QFCQ_sm42,QFCQ_s42,QFCQ_sm41,QFCQ_s41&
+,QFCQ_sm40,QFCQ_s40,QFCQ_sm39,QFCQ_s39,QFCQ_sm38,QFCQ_s38&
+,QFCQ_sm37,QFCQ_s37,QFCQ_sm36,QFCQ_s36,QFCQ_sm35,QFCQ_s35&
+,QFCQ_sm34,QFCQ_s34,QFCQ_sm33,QFCQ_s33,QFCQ_sm32,QFCQ_s32&
+,QFCQ_sm31,QFCQ_s31,QFCQ_sm30,QFCQ_s30,QFCQ_sm29,QFCQ_s29&
+,QFCQ_sm28,QFCQ_s28,QFCQ_sm27,QFCQ_s27,QFCQ_sm26,QFCQ_s26,MQFCQ&
+,QFCQ_sm25,QFCQ_s25,QFCQ_sm24,QFCQ_s24,QFCQ_sm23,QFCQ_s23&
+,QFCQ_sm22,QFCQ_s22,QFCQ_sm21,QFCQ_s21,QFCQ_sm20,QFCQ_s20&
+,QFCQ_sm19,QFCQ_s19,QFCQ_sm18,QFCQ_s18,QFCQ_sm17,QFCQ_s17&
+,QFCQ_sm16,QFCQ_s16,QFCQ_sm15,QFCQ_s15,QFCQ_sm14,QFCQ_s14&
+,QFCQ_sm13,QFCQ_s13,QFCQ_sm12,QFCQ_s12,QFCQ_sm11,QFCQ_s11&
+,QFCQ_sm10,QFCQ_s10,QFCQ_sm9,QFCQ_s9,QFCQ_sm8,QFCQ_s8,QFCQ_sm7,QFCQ_s7&
+,QFCQ_sm6,QFCQ_s6,QFCQ_sm5,QFCQ_s5,QFCQ_sm4,QFCQ_s4,QFCQ_sm3,QFCQ_s3&
+,QFCQ_sm2,QFCQ_s2,QFCQ_sm1,QFCQ_s1)
+QFCQR : LINE = (QFCQ_s1,QFCQ_sm1,QFCQ_s2,QFCQ_sm2,QFCQ_s3,QFCQ_sm3,QFCQ_s4,QFCQ_sm4&
+,QFCQ_s5,QFCQ_sm5,QFCQ_s6,QFCQ_sm6,QFCQ_s7,QFCQ_sm7,QFCQ_s8,QFCQ_sm8&
+,QFCQ_s9,QFCQ_sm9,QFCQ_s10,QFCQ_sm10,QFCQ_s11,QFCQ_sm11,QFCQ_s12,QFCQ_sm12&
+,QFCQ_s13,QFCQ_sm13,QFCQ_s14,QFCQ_sm14,QFCQ_s15,QFCQ_sm15&
+,QFCQ_s16,QFCQ_sm16,QFCQ_s17,QFCQ_sm17,QFCQ_s18,QFCQ_sm18&
+,QFCQ_s19,QFCQ_sm19,QFCQ_s20,QFCQ_sm20,QFCQ_s21,QFCQ_sm21&
+,QFCQ_s22,QFCQ_sm22,QFCQ_s23,QFCQ_sm23,QFCQ_s24,QFCQ_sm24&
+,QFCQ_s25,QFCQ_sm25,MQFCQ,QFCQ_s26,QFCQ_sm26,QFCQ_s27,QFCQ_sm27&
+,QFCQ_s28,QFCQ_sm28,QFCQ_s29,QFCQ_sm29,QFCQ_s30,QFCQ_sm30&
+,QFCQ_s31,QFCQ_sm31,QFCQ_s32,QFCQ_sm32,QFCQ_s33,QFCQ_sm33&
+,QFCQ_s34,QFCQ_sm34,QFCQ_s35,QFCQ_sm35,QFCQ_s36,QFCQ_sm36&
+,QFCQ_s37,QFCQ_sm37,QFCQ_s38,QFCQ_sm38,QFCQ_s39,QFCQ_sm39&
+,QFCQ_s40,QFCQ_sm40,QFCQ_s41,QFCQ_sm41,QFCQ_s42,QFCQ_sm42&
+,QFCQ_s43,QFCQ_sm43,QFCQ_s44,QFCQ_sm44,QFCQ_s45,QFCQ_sm45&
+,QFCQ_s46,QFCQ_sm46,QFCQ_s47,QFCQ_sm47,QFCQ_s48,QFCQ_sm48&
+,QFCQ_s49,QFCQ_sm49,QFCQ_s50,QFCQ_sm50)

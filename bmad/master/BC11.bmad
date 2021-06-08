@@ -1,0 +1,282 @@
+
+! *** OPTICS=FACET2-18MAY21 ***
+
+! ==============================================================================
+! Modification History
+! ------------------------------------------------------------------------------
+! 28-FEB-2020, G. White - changes after visual inspection of beamline
+!  * XC11398, YC11399 & SQ11340 devices removed
+!  * BL11357 moved downstream of QM11358 and changed unit # to 359
+!  * Changed CE11334 unit # to 345
+! 23-AUG-2018, M. Woodley
+!  * quadrupole K1 values from FACET2e_baseline.mat
+! ------------------------------------------------------------------------------
+! 11-APR-2017, M. Woodley
+!  * use LCLS-II Phase 1 BC1B definitions for BC11 chicane
+!  * remove BPM11374
+!  * add PR11375 and TD11390
+! 31-JAN-2017, M. Woodley
+!  * from FACET2e.xsif
+! ------------------------------------------------------------------------------
+
+! ==============================================================================
+! SBEN
+! ------------------------------------------------------------------------------
+
+! BC11
+! - use series approximation for sinc(x)=sin(x)/x to allow AB11=0
+
+! GB11  : chicane bend gap height (m)
+! ZB11  : chicane bend "Z" length (m)
+! AB11  : chicane bend angle (rad)
+! LB11  : chicane bend path length (m)
+! AB11s : "short" half chicane bend angle (rad)
+! LB11s : "short" half chicane bend path length (m)
+! AB11l : "long" half chicane bend angle (rad)
+! LB11l : "long" half chicane bend path length (m)
+
+gb11 = 0.043
+zb11 = 0.2032
+ab11 = 0.09410384256 !0.094
+ab11_2 = ab11*ab11
+ab11_4 = ab11_2*ab11_2
+ab11_6 = ab11_4*ab11_2
+sincab11 = 1-ab11_2/6+ab11_4/120-ab11_6/5040 !~sinc(AB11)=sin(AB11)/AB11
+lb11 = zb11/sincab11
+ab11s = asin(sin(ab11)/2)
+ab11s_2 = ab11s*ab11s
+ab11s_4 = ab11s_2*ab11s_2
+ab11s_6 = ab11s_4*ab11s_2
+sincab11s = 1-ab11s_2/6+ab11s_4/120-ab11s_6/5040 !~sinc(AB11s)=sin(AB11s)/AB11s
+lb11s = zb11/2/sincab11s
+ab11l = ab11-ab11s
+lb11l = lb11-lb11s
+
+bcx11314a: sbend, type = "1.69D6.28T", l = lb11s, angle = -ab11s, hgap = gb11/2, e1 = 0, fint = 0.387, fintx = 0
+bcx11314b: sbend, type = "1.69D6.28T", l = lb11l, angle = -ab11l, hgap = gb11/2, fint = 0, e2 = -ab11, fintx = 0.387
+bcx11331a: sbend, type = "1.69D6.28T", l = lb11l, angle = +ab11l, hgap = gb11/2, e1 = +ab11, fint = 0.387, fintx = 0
+bcx11331b: sbend, type = "1.69D6.28T", l = lb11s, angle = +ab11s, hgap = gb11/2, fint = 0, e2 = 0, fintx = 0.387
+bcx11338a: sbend, type = "1.69D6.28T", l = lb11s, angle = +ab11s, hgap = gb11/2, e1 = 0, fint = 0.387, fintx = 0
+bcx11338b: sbend, type = "1.69D6.28T", l = lb11l, angle = +ab11l, hgap = gb11/2, fint = 0, e2 = +ab11, fintx = 0.387
+bcx11355a: sbend, type = "1.69D6.28T", l = lb11l, angle = -ab11l, hgap = gb11/2, e1 = -ab11, fint = 0.387, fintx = 0
+bcx11355b: sbend, type = "1.69D6.28T", l = lb11s, angle = -ab11s, hgap = gb11/2, fint = 0, e2 = 0, fintx = 0.387
+
+! define unsplit SBENs for BMAD ... not used by MAD
+
+bcx11314: sbend, type = "1.69D6.28T", hgap = gb11/2, l = lb11, angle = -ab11, e1 = 0, fint = 0.387, e2 = -ab11,
+          fintx = 0.387
+bcx11331: sbend, type = "1.69D6.28T", hgap = gb11/2, l = lb11, angle = +ab11, e1 = +ab11, fint = 0.387, e2 = 0,
+          fintx = 0.387
+bcx11338: sbend, type = "1.69D6.28T", hgap = gb11/2, l = lb11, angle = +ab11, e1 = 0, fint = 0.387, e2 = +ab11,
+          fintx = 0.387
+bcx11355: sbend, type = "1.69D6.28T", hgap = gb11/2, l = lb11, angle = -ab11, e1 = -ab11, fint = 0.387, e2 = 0,
+          fintx = 0.387
+
+! ==============================================================================
+! QUAD
+! ------------------------------------------------------------------------------
+
+! electron
+
+kqm11312 = 3.409492877395
+kcq11317 = 0.0
+ksq11340 = 0.0
+kcq11352 = 0.0
+
+qm11312: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = kqm11312
+cq11317: quadrupole, type = "1.69Q3.4", l = lqc/2, aperture = rqc, k1 = kcq11317
+!  SQ11340 : QUAD, TYPE="1.69Q3.4",   L=LQc/2, aperture=rQc, K1=KSQ11340, TILT - removed Feb-28-2020
+cq11352: quadrupole, type = "1.69Q3.4", l = lqc/2, aperture = rqc, k1 = kcq11352
+
+! common
+
+kqm11358 = -6.566666373644
+kqm11362 = 9.11552474842
+kqm11393 = -6.179565617657
+kq11401 = 5.476655059361
+
+qm11358: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = qsign*(kqm11358)
+qm11362: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = qsign*(kqm11362)
+qm11393: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = qsign*(kqm11393)
+q11401: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = qsign*(kq11401)
+
+! ==============================================================================
+! DRIF
+! ------------------------------------------------------------------------------
+
+! LD11   : "Z" distance between BX11B and BX12B (also BX13B and BX14B)
+! LD11a  : "Z" distance between BX11B and CQ11B
+! LD11cq : "Z" length of CQ11B
+! LD11b  : "Z" distance between CQ11B and YCM12B
+! LD11c  : "Z" distance between YCM12B and BX12B
+! LD11d  : "Z" distance between BX12B and SQ13B
+! LD11sq : "Z" length of SQ13B
+! LD11e  : "Z" distance between SQ13B and XCM12B
+! LD11f  : "Z" distance between XCM12B and CQ12B
+! LD11g  : "Z" distance between CQ12B and BX14B
+
+ld11 = 2.434899800885
+ld11a = 0.400381-zb11/2-lqc/2
+ld11cq = lqc*cos(ab11)
+ld11b = 0.557096466353 !0.1
+ld11c = ld11-(ld11a+ld11cq+ld11b)
+ld11d = 0.287185962999 !0.261301
+ld11sq = lqc*cos(ab11)
+ld11f = 0.556696827425 !0.1
+ld11g = ld11a
+ld11e = ld11-(ld11d+ld11sq+ld11f+ld11cq+ld11g)
+
+dm11: drift, l = 0.533689514667 !0.53309
+dm12: drift, l = 0.128601       !0.128001
+d11oa: drift, l = ld11a/cos(ab11), type = "CSR"
+d11ob: drift, l = ld11b/cos(ab11), type = "CSR"
+d11oc: drift, l = ld11c/cos(ab11), type = "CSR"
+ddg11: drift, l = 0.24864, type = "CSR"
+ddg12: drift, l = 0.16446, type = "CSR"
+ddg13: drift, l = 0.182606, type = "CSR"
+ddg14: drift, l = 0.234494, type = "CSR"
+d11od: drift, l = ld11d/cos(ab11), type = "CSR"
+d11od1: drift, l = 0.131230935728, type = "CSR"
+d11od2: drift, l = d11od[l]-d11od1[l], type = "CSR"
+d11oe: drift, l = lqc+ld11e/cos(ab11), type = "CSR"
+d11of: drift, l = ld11f/cos(ab11), type = "CSR"
+d11og: drift, l = ld11g/cos(ab11), type = "CSR"
+
+dm13a: drift, l = 0.161725, type = "CSR"
+dm13b: drift, l = 0.162325, type = "CSR"       !0.161725
+dm14a: drift, l = 0.384724, type = "CSR"       !0.384124
+dm14b: drift, l = 0.17946475, type = "CSR"     !0.17886475
+dm15a: drift, l = 0.352146, type = "CSR"       !0.351546
+dm15b: drift, l = 2.155039035421, type = "CSR"
+dm15c: drift, l = 1.81845801814, type = "CSR"
+dm15d: drift, l = 0.488187, type = "CSR"       !0.487587
+dm16a: drift, l = 0.5760517                  !0.5754517
+dm16b: drift, l = 0.23128
+dm17: drift, l = 0.027
+
+! ==============================================================================
+! XCORs and YCORs
+! ------------------------------------------------------------------------------
+
+yc11321: vkicker, type = "type-4"
+yc11365: vkicker, type = "type-4"
+
+! ==============================================================================
+! diagnostics
+! ------------------------------------------------------------------------------
+
+! BPMs (LCLS-II type designations)
+
+bpm11312: monitor, type = "Stripline-2"
+bpm11333: monitor, type = "Stripline-8"
+bpm11358: monitor, type = "Stripline-2" !was BPM11357
+bpm11362: monitor, type = "Stripline-2" !was BPM11363
+bpm11393: monitor, type = "Stripline-2"
+bpm11401: monitor, type = "Stripline-2"
+
+! misc
+
+pr11335: monitor, type = "OTR BC"
+bl11359: monitor, type = "CSR"
+im11360: marker, type = "toroid"
+pr11375: monitor, type = "OTR"
+td11390: monitor, type = "tune-up dump"
+
+! ==============================================================================
+! collimators
+! ------------------------------------------------------------------------------
+
+ce11345: rcollimator, type = "HCOLL" !energy collimator
+
+! ==============================================================================
+! MARK
+! ------------------------------------------------------------------------------
+
+begbc11_1: marker
+bc11cbeg: marker
+cnt1b: marker, type = "CENTER"
+bc11cend: marker
+endbc11_1: marker
+begbc11_2: marker
+endbc11_2: marker
+
+! ==============================================================================
+! BEAMLINEs
+! ------------------------------------------------------------------------------
+
+BCX11314_full: line = (BCX11314)
+!old:   BCX11314_full : LINE=(BCX11314a,BCX11314b)
+
+
+!Old split line: LINE=(CQ11317,CQ11317)
+
+cq11317_full: line = (cq11317)
+cq11317[L] = 2*cq11317[L]
+BCX11331_full: line = (BCX11331)
+!old:   BCX11331_full : LINE=(BCX11331a,BCX11331b)
+BCX11338_full: line = (BCX11338)
+!old:   BCX11338_full : LINE=(BCX11338a,BCX11338b)
+!  SQ11340_full  : LINE=(SQ11340,SQ11340) - removed FEB-28-2020
+
+
+!Old split line: LINE=(CQ11352,CQ11352)
+
+cq11352_full: line = (cq11352)
+cq11352[L] = 2*cq11352[L]
+BCX11355_full: line = (BCX11355)
+!old:   BCX11355_full : LINE=(BCX11355a,BCX11355b)
+
+  BC11C : LINE=(BC11CBEG,BCX11314_full,D11oa,CQ11317_full,D11ob,YC11321,D11oc,BCX11331_full,DDG11,BPM11333,DDG12,DDG13,
+         PR11335,DDG14,BCX11338_full,D11od1,CE11345,D11od2,D11oe,D11of,CQ11352_full,D11og,BCX11355_full,CNT1B,BC11CEND)
+
+
+
+!Old split line: LINE=(QM11312,BPM11312,QM11312)
+
+qm11312_full: line = (qm11312)
+qm11312[L] = 2*qm11312[L]
+bpm11312[superimpose] = T
+bpm11312[ref] = qm11312
+
+  BC11_1 : LINE=(BEGBC11_1,DM11,QM11312_full,DM12,BC11C,ENDBC11_1)
+
+
+
+!Old split line: LINE=(QM11358,BPM11358,QM11358)
+
+qm11358_full: line = (qm11358)
+qm11358[L] = 2*qm11358[L]
+bpm11358[superimpose] = T
+bpm11358[ref] = qm11358
+
+
+!Old split line: LINE=(QM11362,BPM11362,QM11362)
+
+qm11362_full: line = (qm11362)
+qm11362[L] = 2*qm11362[L]
+bpm11362[superimpose] = T
+bpm11362[ref] = qm11362
+
+
+!Old split line: LINE=(QM11393,BPM11393,QM11393)
+
+qm11393_full: line = (qm11393)
+qm11393[L] = 2*qm11393[L]
+bpm11393[superimpose] = T
+bpm11393[ref] = qm11393
+
+
+!Old split line: LINE=(Q11401,BPM11401,Q11401)
+
+q11401_full: line = (q11401)
+q11401[L] = 2*q11401[L]
+bpm11401[superimpose] = T
+bpm11401[ref] = q11401
+
+  BC11_2 : LINE=(BEGBC11_2,DM13a,DM13b,QM11358_full,DM14a,BL11359,IM11360,DM14b,QM11362_full,DM15a,YC11365,DM15b,
+         PR11375,DM15c,TD11390,DM15d,QM11393_full,DM16a,DM16b,Q11401_full,DM17,ENDBC11_2)
+
+  BC11 : LINE=(BC11_1,BC11_2)
+
+! ==============================================================================
+

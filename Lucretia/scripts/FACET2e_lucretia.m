@@ -43,10 +43,10 @@ M.doMatch;
 display(M)
 Initial=M.initStruc;
 Initial.SigPUncorrel=0.135*0.1e-2;
-T=TwissPlot(1,length(BEAMLINE),Initial,[1 1 0]);
 
-% Set 15cm IP as default Sector 20 optics
-match_S20(Initial,'PWFA_15cm',1);
+% Set default Sector 20 optics
+match_S20(Initial,"Phase2",1);
+T=TwissPlot(1,length(BEAMLINE),Initial,[1 1 0]);
 
 % S-band structure apertures
 for iele=findcells(BEAMLINE,'Class','LCAV')
@@ -68,8 +68,8 @@ disp(dANG_end)
 
 % Save lattices
 % - BMAD
-DT=DeckTool('BMAD');
-DT.WriteDeck(Initial,'FACET2e.bmad','FACET2e',true) ;
+% DT=DeckTool('BMAD');
+% DT.WriteDeck(Initial,'FACET2e.bmad','FACET2e',true) ;
 % - Luctretia
 % convert 0 angle bends into drifts- breaks Lucretia tracking
 for iele=1:length(BEAMLINE)
