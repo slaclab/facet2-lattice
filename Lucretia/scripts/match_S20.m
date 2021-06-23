@@ -49,7 +49,7 @@ if ~isempty(PS)
 end
 
 if ~exist('SextupoleMatch','var')
-  SextupoleMatch=false;
+  SextupoleMatch=0;
 end
 
 odisp='iter';
@@ -65,6 +65,8 @@ psno=1:5;
 ConfigName = lower(string(ConfigName)) ;
 switch ConfigName
   case "phase2"
+    ipbeta=[0.05 0.05];
+  case "pwfa_5cm"
     ipbeta=[0.5 0.5];
   case "pwfa_15cm"
     ipbeta=[0.15 0.15];
@@ -119,11 +121,7 @@ I.SigPUncorrel=I.Momentum.*de;
 varargout{1}=I;
 
 % Form power supplies for matching magnet strengths
-if ConfigName=="phase2"
-  qm={'QFF1*' 'QFF2*' 'Q2FF*' 'Q1FF*' 'Q0FF*'};
-else
-  qm={'QFF1*' 'QFF2*' 'QFF4*' 'QFF5*' 'QFF6*'};
-end
+qm={'Q5FF*' 'Q4FF*' 'Q2FF*' 'Q1FF*' 'Q0FF*'};
 for iquad=1:length(qm)
   iele=findcells(BEAMLINE,'Name',qm{iquad});
   AssignToPS( iele, length(PS)+1 ) ;
@@ -204,11 +202,11 @@ if ~startsWith(ConfigName,"kraken")
 end
 
 % Match sextupoles
-if SextupoleMatch
+AssignToPS(findcells(BEAMLINE,'Name','S1E*'),length(PS)+1); sps(1)=length(PS); MovePhysicsVarsToPS(sps(1));
+AssignToPS(findcells(BEAMLINE,'Name','S2E*'),length(PS)+1); sps(2)=length(PS); MovePhysicsVarsToPS(sps(2));
+AssignToPS(findcells(BEAMLINE,'Name','S3E*'),length(PS)+1); sps(3)=length(PS); MovePhysicsVarsToPS(sps(2));
+if SextupoleMatch>0
   disp('Optimizing Sextupole Strengths...');
-  AssignToPS(findcells(BEAMLINE,'Name','S1E*'),length(PS)+1); sps(1)=length(PS); MovePhysicsVarsToPS(sps(1));
-  AssignToPS(findcells(BEAMLINE,'Name','S2E*'),length(PS)+1); sps(2)=length(PS); MovePhysicsVarsToPS(sps(2));
-  AssignToPS(findcells(BEAMLINE,'Name','S3E*'),length(PS)+1); sps(3)=length(PS); MovePhysicsVarsToPS(sps(2));
   for ips=sps
     PS(ips).Ampl=0; PS(ips).SetPt=0;
   end
@@ -228,6 +226,11 @@ if SextupoleMatch
   disp(M);
   M.doMatch();
   disp(M);
+elseif SextupoleMatch<0
+  disp('Setting Sextupoles to OFF');
+  for ips=sps
+    PS(ips).Ampl=0; PS(ips).SetPt=0;
+  end
 end
 
 % Display matched magnet values and restore database to BEAMLINE
@@ -255,7 +258,7 @@ for ips=1:length(qm)
   iele=findcells(BEAMLINE,'Name',qm{ips});
   fprintf('BDES %s := %.1f (BMAX = %.1f) \n',BEAMLINE{iele(1)}.Name,10*sum(arrayfun(@(x) BEAMLINE{x}.B,iele)),bmax(ips));
 end
-if SextupoleMatch
+if SextupoleMatch>0
   snames={'S1E','S2E','S3E'};
   for isext=1:length(snames)
     iele=findcells(BEAMLINE,'Name',sprintf('%s*',snames{isext}));
@@ -264,7 +267,7 @@ if SextupoleMatch
 end
 % Show FFS magnets in format for import into FFS_magnets.xlsx
 iv=IVB; % current lookup object
-magnames={'QFF1*' 'QFF2*' 'Q2FF*' 'Q1FF*' 'Q0FF*' 'Q0D' 'Q1D' 'Q2D'};
+magnames={'Q5FF*' 'Q4FF*' 'Q2FF*' 'Q1FF*' 'Q0FF*' 'Q0D' 'Q1D' 'Q2D'};
 disp(magnames)
 for ips=1:length(magnames)
   iele=findcells(BEAMLINE,'Name',magnames{ips});
@@ -273,3 +276,8 @@ for ips=1:length(magnames)
   fprintf('%g %g ',BDES*10,IDES);
 end
 fprintf('\n');
+
+% Check Tracking
+B=MakeBeam6DGauss(I,1e5,5,1);
+[~,bo]=TrackThru(i1,ipele,B,1,1);
+fprintf('Tracked EMmittance @ IP= %g\n',GetNEmitFromBeam(bo,1));
