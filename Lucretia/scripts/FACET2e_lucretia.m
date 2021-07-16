@@ -55,8 +55,8 @@ end
 
 % Database initialization
 SetSPositions(1,length(BEAMLINE),0);
-SetElementSlices(1,length(BEAMLINE));
-SetElementBlocks(1,length(BEAMLINE));
+% SetElementSlices(1,length(BEAMLINE));
+% SetElementBlocks(1,length(BEAMLINE));
 
 % Check end co-ordinates
 dX_end = BEAMLINE{end}.Coordf-[0 -0.0796021612227596 2019.20524109153];
