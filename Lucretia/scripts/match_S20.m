@@ -65,7 +65,7 @@ psno=1:5;
 ConfigName = lower(string(ConfigName)) ;
 switch ConfigName
   case "phase2"
-    ipbeta=[0.05 0.05];
+    ipbeta=[0.1 0.1];
   case "pwfa_5cm"
     ipbeta=[0.5 0.5];
   case "pwfa_15cm"
