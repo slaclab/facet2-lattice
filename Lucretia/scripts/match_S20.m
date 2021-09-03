@@ -63,16 +63,18 @@ end
 de=1.2e-2; % rms relative energy spread in S20 (for matching sextupoles)
 psno=1:5;
 ConfigName = lower(string(ConfigName)) ;
+optim='fminsearch';
 switch ConfigName
   case "phase2"
     ipbeta=[0.1 0.1];
   case "pwfa_5cm"
-    ipbeta=[0.5 0.5];
+    ipbeta=[0.05 0.05];
   case "pwfa_15cm"
     ipbeta=[0.15 0.15];
   case "pwfa_50cm"
     ipbeta=[0.5 0.5];
   case "pwfa_100cm"
+    optim='fminsearch';
     ipbeta=[1 1];
   case "tcav"
     ipbeta=[0.05 0.05];
@@ -121,25 +123,25 @@ I.SigPUncorrel=I.Momentum.*de;
 varargout{1}=I;
 
 % Form power supplies for matching magnet strengths
-qm={'Q5FF*' 'Q4FF*' 'Q2FF*' 'Q1FF*' 'Q0FF*'};
+qm={'Q5FF*' 'Q4FF*' 'Q3FF*' 'Q2FF*' 'Q1FF*' 'Q0FF*'};
 for iquad=1:length(qm)
   iele=findcells(BEAMLINE,'Name',qm{iquad});
   AssignToPS( iele, length(PS)+1 ) ;
 end
 MovePhysicsVarsToPS(1:length(PS));
 
-if ConfigName=="sfqed" || ConfigName~="phase2"
-  for ips=1:length(PS)
-    PS(ips).Ampl=0; PS(ips).SetPt=0;
-    for iele=PS(ips).Element
-      BEAMLINE{iele}.B=0;
-    end
-  end
-end
+% if ConfigName=="sfqed"
+%   for ips=1:length(PS)
+%     PS(ips).Ampl=0; PS(ips).SetPt=0;
+%     for iele=PS(ips).Element
+%       BEAMLINE{iele}.B=0;
+%     end
+%   end
+% end
 
 % Match IP
-lval=[-20.3 -21.3 -24.6 -75.8 -44.1]; uval=[20.3 21.3 24.6 75.8 44.1];
-optim='lsqnonlin';
+lval=[-20.3 -21.3 -21.3 -24.6 -75.8 -44.1]; uval=[20.3 21.3 21.3 24.6 75.8 44.1];
+
 M=Match;
 for ips=psno
   M.addVariable('PS',ips,'Ampl',lval(ips),uval(ips)); 
@@ -267,7 +269,7 @@ if SextupoleMatch>0
 end
 % Show FFS magnets in format for import into FFS_magnets.xlsx
 iv=IVB; % current lookup object
-magnames={'Q5FF*' 'Q4FF*' 'Q2FF*' 'Q1FF*' 'Q0FF*' 'Q0D' 'Q1D' 'Q2D'};
+magnames={'Q5FF*' 'Q4FF*' 'Q3FF*' 'Q2FF*' 'Q1FF*' 'Q0FF*' 'Q0D' 'Q1D' 'Q2D'};
 disp(magnames)
 for ips=1:length(magnames)
   iele=findcells(BEAMLINE,'Name',magnames{ips});
