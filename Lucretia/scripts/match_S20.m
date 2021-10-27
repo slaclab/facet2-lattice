@@ -134,7 +134,7 @@ if any(ipbeta>0.5) || startsWith(ConfigName,'kraken')
   lval=[-44 -44 -44 0 0]; uval=[0 44 0 44 20.3];
   optim='fminsearch';
 else
-  lval=[-44 -44 -44 -44 -20.3]; uval=[44 44 44 44 20.3];
+  lval=[-44 -44 -44 -44 -20.3]; uval=[44 44 44 44 0];
   optim='lsqnonlin';
 end
 M=Match;
