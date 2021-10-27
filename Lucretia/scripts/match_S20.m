@@ -1,28 +1,28 @@
-function varargout = match_S20(Initial,ConfigName,Nbunch,SextupoleMatch)
+function match_S20(Initial,ConfigName,Nbunch,SextupoleMatch)
 %MATCHS20 Configure Sector 20 magnets by matching in-memory Lucretia file
 % First load Lucretia file from facet2-lattice/Lucretia/models repository directory.
 % Available configurations depicted in presentation files on:
-% https://www.slac.stanford.edu/~whitegr/F2_S2E
+% https://www.slac.stanford.edu/~whitegr/F2S2E/Sector20_optics.pdf
+% https://www.slac.stanford.edu/~whitegr/F2_S2E/F2_S2E.pdf
 %
 % Use DeckTool to convert to new XSIF or BMAD lattices
 %
 % (Matlab optimization toolbox required)
 %
-%opts=match_S20('GetOps')
-% Lists available matching configuration options
-%
-%I_20=match_S20(Initial,ConfigurationName,Nbunch)
-%
-% I_20: Lucretia Initial structure corresponding to BEGBC20 marker
+%match_s20(Initial,ConfigurationName,Nbunch)
 %
 % Initial : Lucretia Initial structire from loaded repository model
 %
 % ConfigurationName :
-% "Phase2" - beta* = 50cm for KPP verification
-% "PWFA_15cm" - PWFA oven IP (PENT), beta*_x,y = 15cm
+% "PWFA_5cm" - PWFA oven IP (PENT), beta*_x,y = 5cm (default in stored lattice, for 1 bunch mode)
+% "PWFA_10cm" - PWFA oven IP (PENT), beta*_x,y = 10cm
 % "PWFA_50cm" - PWFA oven IP (PENT), beta*_x,y = 50cm
 % "PWFA_100cm" - PWFA oven IP (PENT), beta*_x,y = 100cm
+% "TCAV" - Optics optimized for TCAV measurements
 % "SFQED" - Optics optimized for SFQED experiment, beta* = 10m, E=13 GeV
+% "Kraken_RoundBeam" - Beam waist at Kraken chamber, round focus (29 x 29 cm)
+% "Kraken_FlatBeam" - Beam waist at Kraken chamber, flat beam at focus (200 x 20 cm)
+% "Filamentation_Solid" - Optimized for Filamentation solid target experiment
 % "Filamentation_Gas" - Optimized for Filamentation gas target experiment
 %
 % Nbunch = 1 or 2
@@ -32,12 +32,6 @@ function varargout = match_S20(Initial,ConfigName,Nbunch,SextupoleMatch)
 %
 % Also match sextupoles in Sectro 20 chicane to minimize chromatic abberations at the IP
 global BEAMLINE PS
-
-varargout={};
-if isequal(Initial,'GetOpts') % return considered Sector 20 match optionss
-  varargout{1} = ["pwfa_15cm" "pwfa_50cm" "pwfa_100cm" "sfqed" "filamentation_gas"];
-  return
-end
 
 if nargin<3
   error('Check input arguments');
@@ -49,38 +43,36 @@ if ~isempty(PS)
 end
 
 if ~exist('SextupoleMatch','var')
-  SextupoleMatch=0;
+  SextupoleMatch=false;
 end
 
 odisp='iter';
 % odisp='off';
 
 ipname='PENT';
-E0=[];
+if ~exist('E0','var')
+  E0=[];
+end
 if Nbunch==2
   E0=9.921; % Witness bunch energy
 end
-de=1.2e-2; % rms relative energy spread in S20 (for matching sextupoles)
+de=0.8e-2; % rms energy spread in S20
 psno=1:5;
 ConfigName = lower(string(ConfigName)) ;
-optim='fminsearch';
 switch ConfigName
-  case "phase2"
-    ipbeta=[0.1 0.1];
   case "pwfa_5cm"
     ipbeta=[0.05 0.05];
-  case "pwfa_15cm"
-    ipbeta=[0.15 0.15];
+  case "pwfa_10cm"
+    ipbeta=[0.1 0.1];
   case "pwfa_50cm"
     ipbeta=[0.5 0.5];
   case "pwfa_100cm"
-    optim='fminsearch';
     ipbeta=[1 1];
   case "tcav"
     ipbeta=[0.05 0.05];
     ipname='DWIN';
   case "sfqed"
-    psno=1:5;
+    psno=2:5;
     ipbeta=[10 10];
     E0=13;
     de=0.1e-2;
@@ -93,7 +85,7 @@ switch ConfigName
     ipbeta=[2 0.2];
     psno=3:5;
   case "filamentation_solid"
-    ipbeta=[0.15 0.15];
+    ipbeta=[0.05 0.05];
     ipname='FILS';
   case "filamentation_gas"
     ipbeta=[0.7 0.7];
@@ -103,6 +95,7 @@ switch ConfigName
 end
 
 % Required beamline indices
+pent=findcells(BEAMLINE,'Name','PENT');
 iscr=findcells(BEAMLINE,'Name','PDUMP');
 i1=findcells(BEAMLINE,'Name','BEGBC20');
 l3_1=findcells(BEAMLINE,'Name','BEGL3F_1');
@@ -120,28 +113,30 @@ I=TwissToInitial(T,i1,Initial);
 I.Q=2e-9;
 I.x.NEmit=3.0e-6; I.y.NEmit=3e-6;
 I.SigPUncorrel=I.Momentum.*de;
-varargout{1}=I;
 
 % Form power supplies for matching magnet strengths
-qm={'Q5FF*' 'Q4FF*' 'Q3FF*' 'Q2FF*' 'Q1FF*' 'Q0FF*'};
-for iquad=1:length(qm)
+% PS(1) = [Q0 Q2]; PS(2:5) = [Q1, Q3, Q4, Q5]
+qm={'Q0FF' 'Q1FF' 'Q2FF' 'Q3FF' 'Q4FF' 'Q5FF'};
+iele=[findcells(BEAMLINE,'Name','Q0FF') findcells(BEAMLINE,'Name','Q2FF')];
+AssignToPS( iele, 1 ) ;
+for iquad=[2 4 5 6]
   iele=findcells(BEAMLINE,'Name',qm{iquad});
   AssignToPS( iele, length(PS)+1 ) ;
 end
 MovePhysicsVarsToPS(1:length(PS));
 
-% if ConfigName=="sfqed"
-%   for ips=1:length(PS)
-%     PS(ips).Ampl=0; PS(ips).SetPt=0;
-%     for iele=PS(ips).Element
-%       BEAMLINE{iele}.B=0;
-%     end
-%   end
-% end
-
 % Match IP
-lval=[-20.3 -21.3 -21.3 -24.6 -75.8 -44.1]; uval=[20.3 21.3 21.3 24.6 75.8 44.1];
-
+% - If SFQED, then operate final triplet as a doublet
+if ConfigName == "sfqed"
+  PS(1).Ampl=0; PS(2).Ampl=0;
+end
+if any(ipbeta>0.5) || startsWith(ConfigName,'kraken')
+  lval=[-44 -44 -44 0 0]; uval=[0 44 0 44 20.3];
+  optim='fminsearch';
+else
+  lval=[-44 -44 -44 -44 -20.3]; uval=[44 44 44 44 20.3];
+  optim='lsqnonlin';
+end
 M=Match;
 for ips=psno
   M.addVariable('PS',ips,'Ampl',lval(ips),uval(ips)); 
@@ -161,6 +156,29 @@ if strcmp(odisp,'iter')
   disp(M);
 end
 
+% If Kraken, then re-match waist at dump
+if startsWith(ConfigName,"kraken")
+  % Switch off spectrometer quads
+  qd=[findcells(BEAMLINE,'Name','Q0D') findcells(BEAMLINE,'Name','Q1D') findcells(BEAMLINE,'Name','Q2D')];
+  for iq=qd
+    BEAMLINE{iq}.B=0;
+  end
+  M=Match;
+  M.beam=MakeBeam6DGauss(I,1e3,3,1);
+  M.iInitial=i1;
+  M.initStruc=I;
+  M.verbose=false; % see optimizer output or not
+  M.optim='fminsearch';
+  M.optimDisplay=odisp;
+  M.addMatch(iscr,'beta_x',0,100);
+  M.addMatch(iscr,'beta_y',0,100);
+  M.addVariable('PS',1,'Ampl',lval(1),uval(1)); 
+  M.addVariable('PS',2,'Ampl',lval(2),uval(2)); 
+  M.doMatch();
+  if strcmp(odisp,'iter')
+    disp(M);
+  end
+end
 
 % Match dump optics from IP
 if ~startsWith(ConfigName,"kraken")
@@ -204,15 +222,21 @@ if ~startsWith(ConfigName,"kraken")
 end
 
 % Match sextupoles
-AssignToPS(findcells(BEAMLINE,'Name','S1E*'),length(PS)+1); sps(1)=length(PS); MovePhysicsVarsToPS(sps(1));
-AssignToPS(findcells(BEAMLINE,'Name','S2E*'),length(PS)+1); sps(2)=length(PS); MovePhysicsVarsToPS(sps(2));
-AssignToPS(findcells(BEAMLINE,'Name','S3E*'),length(PS)+1); sps(3)=length(PS); MovePhysicsVarsToPS(sps(2));
-if SextupoleMatch>0
+if SextupoleMatch
   disp('Optimizing Sextupole Strengths...');
+  ss = findcells(BEAMLINE,'Class','SEXT') ;
+  AssignToPS(ss([1:2 15:16]),length(PS)+1); sps(1)=length(PS); MovePhysicsVarsToPS(sps(1));
+  AssignToPS(ss([3:4 13:14]),length(PS)+1); sps(2)=length(PS); MovePhysicsVarsToPS(sps(2));
+  AssignToPS(ss(5:12),length(PS)+1); sps(3)=length(PS); MovePhysicsVarsToPS(sps(2));
   for ips=sps
     PS(ips).Ampl=0; PS(ips).SetPt=0;
   end
   SetTrackFlags('ZMotion',1,1,length(BEAMLINE));
+  if ConfigName == "sfqed"
+    tind=iscr;
+  else
+    tind=ipele;
+  end
   M=Match;
   M.beam=MakeBeam6DGauss(I,1e4,3,1);
   M.iInitial=i1;
@@ -223,16 +247,10 @@ if SextupoleMatch>0
   M.addVariable('PS', sps(1),'Ampl',-2170.6,2170.6); % S1's
   M.addVariable('PS', sps(2),'Ampl',-776.8,776.8); % S2's
   M.addVariable('PS', sps(3),'Ampl',-776.8,776.8); % S3's
-  M.addMatch(ipele,'NEmit_x',0,I.x.NEmit);
-  M.addMatch(ipele,'NEmit_y',0,I.x.NEmit);
-  disp(M);
+  M.addMatch(tind,'NEmit_x',0,I.x.NEmit);
+  M.addMatch(tind,'NEmit_y',0,I.y.NEmit);
   M.doMatch();
   disp(M);
-elseif SextupoleMatch<0
-  disp('Setting Sextupoles to OFF');
-  for ips=sps
-    PS(ips).Ampl=0; PS(ips).SetPt=0;
-  end
 end
 
 % Display matched magnet values and restore database to BEAMLINE
@@ -255,21 +273,22 @@ for ips=1:length(qm)
   iele=findcells(BEAMLINE,'Name',qm{ips});
   fprintf('K%s := %g\n',BEAMLINE{iele(1)}.Name,BEAMLINE{iele(1)}.B/(BEAMLINE{iele(1)}.L*Cb*BEAMLINE{iele(1)}.P));
 end
-bmax=[uval.*10 440 440 440];
+bmax=[44 44 44 44 44 20.3 44 44 44].*10;
 for ips=1:length(qm)
   iele=findcells(BEAMLINE,'Name',qm{ips});
   fprintf('BDES %s := %.1f (BMAX = %.1f) \n',BEAMLINE{iele(1)}.Name,10*sum(arrayfun(@(x) BEAMLINE{x}.B,iele)),bmax(ips));
 end
-if SextupoleMatch>0
-  snames={'S1E','S2E','S3E'};
+if SextupoleMatch
+  ss = findcells(BEAMLINE,'Class','SEXT') ;
+  snames=unique(arrayfun(@(x) BEAMLINE{x}.Name,ss,'UniformOutput',false));
   for isext=1:length(snames)
-    iele=findcells(BEAMLINE,'Name',sprintf('%s*',snames{isext}));
+    iele=findcells(BEAMLINE,'Name',snames{isext});
     fprintf('K%s := %g\n',BEAMLINE{iele(1)}.Name,BEAMLINE{iele(1)}.B/(BEAMLINE{iele(1)}.L*Cb*BEAMLINE{iele(1)}.P));
   end
 end
 % Show FFS magnets in format for import into FFS_magnets.xlsx
 iv=IVB; % current lookup object
-magnames={'Q5FF*' 'Q4FF*' 'Q3FF*' 'Q2FF*' 'Q1FF*' 'Q0FF*' 'Q0D' 'Q1D' 'Q2D'};
+magnames={'Q5FF' 'Q4FF' 'Q3FF' 'Q2FF' 'Q1FF' 'Q0FF' 'Q0D' 'Q1D' 'Q2D'};
 disp(magnames)
 for ips=1:length(magnames)
   iele=findcells(BEAMLINE,'Name',magnames{ips});
@@ -278,8 +297,3 @@ for ips=1:length(magnames)
   fprintf('%g %g ',BDES*10,IDES);
 end
 fprintf('\n');
-
-% Check Tracking
-B=MakeBeam6DGauss(I,1e5,5,1);
-[~,bo]=TrackThru(i1,ipele,B,1,1);
-fprintf('Tracked EMmittance @ IP= %g\n',GetNEmitFromBeam(bo,1));
