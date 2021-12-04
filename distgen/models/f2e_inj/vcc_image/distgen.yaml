@@ -5,7 +5,7 @@ random_type: hammersley
 start:
     type: cathode
     MTE:
-        value: 250
+        value: 414
         units: meV
         
 total_charge:
@@ -26,9 +26,21 @@ t_dist:
         value: 0.8
         units: ''
 
+transforms:
+    order:
+        - tx
+        - ty
+    tx:
+        avg_x:
+            units: mm
+            value: 0
+        type: set_avg x
+    ty:
+        avg_y:
+            units: mm
+            value: 0
+        type: set_avg y
 
-
-    
 
   
 
