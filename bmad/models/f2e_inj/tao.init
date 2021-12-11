@@ -92,7 +92,7 @@
 
 
 &tao_d2_data
-        d2_data%name = 'HTR'
+        d2_data%name = 'MRK0F'
         universe = 1
         n_d1_data = 1
 /
@@ -101,12 +101,12 @@
         ix_d1_data = 1
         default_weight = 1
         d1_data%name = 'begtwiss'
-        datum( 1) =  'beta.a'     '' '' 'HTRUNDF'   'target'  1.1   1e1
-        datum( 2) =  'alpha.a'    '' '' 'HTRUNDF'   'target'  0 1e2
-        datum( 3) =  'beta.b'     '' '' 'HTRUNDF'   'target'  1.1     1e1
-        datum( 4) =  'alpha.b'    '' '' 'HTRUNDF'   'target'  0  1e2
-        datum( 5) =  'eta.x'      '' '' 'HTRUNDF'   'target'   0  1e1
-        datum( 6) =  'etap.x'     '' '' 'HTRUNDF'   'target'   0   1e2
+        datum( 1) =  'beta.a'     '' '' 'MRK0F'   'target'  1.1   1e1
+        datum( 2) =  'alpha.a'    '' '' 'MRK0F'   'target'  0 1e2
+        datum( 3) =  'beta.b'     '' '' 'MRK0F'   'target'  1.1     1e1
+        datum( 4) =  'alpha.b'    '' '' 'MRK0F'   'target'  0  1e2
+        datum( 5) =  'eta.x'      '' '' 'MRK0F'   'target'   0  1e1
+        datum( 6) =  'etap.x'     '' '' 'MRK0F'   'target'   0   1e2
 / 
 
 
@@ -176,10 +176,10 @@
 
 
 &tao_var
-    v1_var%name = 'q.HTR'
+    v1_var%name = 'q.MRK0F'
 	default_step = 1e-4
 	default_attribute = 'K1'
-	var(1:)%ele_name = 'QA10361','QA10371', 'QA10371', 'QE10425', 'QE10425', 'QE10441'
+	var(1:)%ele_name = 'QA10361','QA10371', 'QE10425', 'QE10441', 'QE10511', 'QE10525'
 /
 
 
