@@ -276,51 +276,75 @@ bpm14715[ref] = qm14715
 
   BC14_1 : LINE=(BEGBC14_1,DM20,Q14701_full,DM21a,VV14711,DM21b,QM14715_full,DM22,ENDBC14_1)
 
-BCX14720_full: line = (BCX14720)
-!old:   BCX14720_full : LINE=(BCX14720a,BCX14720b)
+
+
+!Old split line: LINE=(BCX14720a,BCX14720b)
+
+bcx14720_full: line = (bcx14720)
 
 
 !Old split line: LINE=(CQ14738,CQ14738)
 
 cq14738_full: line = (cq14738)
 cq14738[L] = 2*cq14738[L]
-BCX14796_full: line = (BCX14796)
-!old:   BCX14796_full : LINE=(BCX14796a,BCX14796b)
-BCX14808_full: line = (BCX14808)
-!old:   BCX14808_full : LINE=(BCX14808a,BCX14808b)
+
+
+!Old split line: LINE=(BCX14796a,BCX14796b)
+
+bcx14796_full: line = (bcx14796)
+
+
+!Old split line: LINE=(BCX14808a,BCX14808b)
+
+bcx14808_full: line = (bcx14808)
 
 
 !Old split line: LINE=(CQ14866,CQ14866)
 
 cq14866_full: line = (cq14866)
 cq14866[L] = 2*cq14866[L]
-BCX14883_full: line = (BCX14883)
-!old:   BCX14883_full : LINE=(BCX14883a,BCX14883b)
+
+
+!Old split line: LINE=(BCX14883a,BCX14883b)
+
+bcx14883_full: line = (bcx14883)
 
   BC14E : LINE=(BEGBC14E,BCX14720_full,DBQ2A,CQ14738_full,D210B_A,YC14780,D210B1_A,BCX14796_full,DDG0,DDG21,BPM14801,
          DDG22A,DDG22B,DDG23,PR14803,DDG24,DDGA,BCX14808_full,D210B1,CE14815,D210B2,D210B,CQ14866_full,DBQ2B,BCX14883_full,
          ENDBC14E)
 
-BCX141720_full: line = (BCX141720)
-!old:   BCX141720_full : LINE=(BCX141720a,BCX141720b)
+
+
+!Old split line: LINE=(BCX141720a,BCX141720b)
+
+bcx141720_full: line = (bcx141720)
 
 
 !Old split line: LINE=(CQ141738,CQ141738)
 
 cq141738_full: line = (cq141738)
 cq141738[L] = 2*cq141738[L]
-BCX141796_full: line = (BCX141796)
-!old:   BCX141796_full : LINE=(BCX141796a,BCX141796b)
-BCX141808_full: line = (BCX141808)
-!old:   BCX141808_full : LINE=(BCX141808a,BCX141808b)
+
+
+!Old split line: LINE=(BCX141796a,BCX141796b)
+
+bcx141796_full: line = (bcx141796)
+
+
+!Old split line: LINE=(BCX141808a,BCX141808b)
+
+bcx141808_full: line = (bcx141808)
 
 
 !Old split line: LINE=(CQ141866,CQ141866)
 
 cq141866_full: line = (cq141866)
 cq141866[L] = 2*cq141866[L]
-BCX141883_full: line = (BCX141883)
-!old:   BCX141883_full : LINE=(BCX141883a,BCX141883b)
+
+
+!Old split line: LINE=(BCX141883a,BCX141883b)
+
+bcx141883_full: line = (bcx141883)
 
   BC14P : LINE=(BEGBC14P,BCX141720_full,DBQ2A,CQ141738_full,D21OA,BCX141796_full,DDG0,DDG21,BPM141801,DDG22A,DDG22B,
          DDG23,PR141803,DDG24,DDGA,BCX141808_full,D210B1,CE141802,D210B2,YC141820,D210B,CQ141866_full,DBQ2B,BCX141883_full,

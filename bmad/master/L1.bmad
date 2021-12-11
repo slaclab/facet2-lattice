@@ -140,32 +140,24 @@ endl1f: marker
 
   L1c : LINE=(D9,DAQA,QFL1,QFL1,DAQA,D9,DAQA,QDL1,QDL1,DAQA)
 
-!---------------------
-! K11_1B LCAVITY
-K11_1B_full: line = (K11_1B)
-! contains zero length elements:
-    XC11104[superimpose] = T
-    XC11104[ref] = K11_1B
-    XC11104[ref_origin] = beginning
-    XC11104[offset] = 0.453432
-    YC11105[superimpose] = T
-    YC11105[ref] = K11_1B
-    YC11105[ref_origin] = beginning
-    YC11105[offset] = 0.453432
-!old:   K11_1b_full : LINE=(K11_1b1,XC11104,YC11105,K11_1b2)
-!---------------------
-! K11_1C LCAVITY
-K11_1C_full: line = (K11_1C)
-! contains zero length elements:
-    XC11140[superimpose] = T
-    XC11140[ref] = K11_1C
-    XC11140[ref_origin] = beginning
-    XC11140[offset] = 0.6689
-    YC11141[superimpose] = T
-    YC11141[ref] = K11_1C
-    YC11141[ref_origin] = beginning
-    YC11141[offset] = 0.6689
-!old:   K11_1c_full : LINE=(K11_1c1,XC11140,YC11141,K11_1c2)
+
+
+!Old split line: LINE=(K11_1b1,XC11104,YC11105,K11_1b2)
+
+k11_1b_full: line = (k11_1b)
+xc11104[superimpose] = T
+xc11104[ref] = k11_1b
+yc11105[superimpose] = T
+yc11105[ref] = k11_1b
+
+
+!Old split line: LINE=(K11_1c1,XC11140,YC11141,K11_1c2)
+
+k11_1c_full: line = (k11_1c)
+xc11140[superimpose] = T
+xc11140[ref] = k11_1c
+yc11141[superimpose] = T
+yc11141[ref] = k11_1c
   K11_1d_full : LINE=(K11_1d)
 !---------------------
 ! K11_2A LCAVITY
@@ -181,19 +173,15 @@ K11_2A_full: line = (K11_2A)
     YC11203[offset] = 0.6126
 !old:   K11_2a_full : LINE=(K11_2a1,XC11202,K11_2a2,YC11203,K11_2a3)
   K11_2b_full : LINE=(K11_2b)
-!---------------------
-! K11_2C LCAVITY
-K11_2C_full: line = (K11_2C)
-! contains zero length elements:
-    XC11272[superimpose] = T
-    XC11272[ref] = K11_2C
-    XC11272[ref_origin] = beginning
-    XC11272[offset] = 0.5
-    YC11273[superimpose] = T
-    YC11273[ref] = K11_2C
-    YC11273[ref_origin] = beginning
-    YC11273[offset] = 0.5
-!old:   K11_2c_full : LINE=(K11_2c1,XC11272,YC11273,K11_2c2)
+
+
+!Old split line: LINE=(K11_2c1,XC11272,YC11273,K11_2c2)
+
+k11_2c_full: line = (k11_2c)
+xc11272[superimpose] = T
+xc11272[ref] = k11_2c
+yc11273[superimpose] = T
+yc11273[ref] = k11_2c
 !---------------------
 ! L1XF LCAVITY
 L1XF_full: line = (L1XF)

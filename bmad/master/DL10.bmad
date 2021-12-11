@@ -319,10 +319,16 @@ enddl10: marker
 ! BEAMLINEs
 ! ------------------------------------------------------------------------------
 
-BCX10451_full: line = (BCX10451)
-!old:   BCX10451_full : LINE=(BCX10451a,BCX10451b)
-BCX10461_full: line = (BCX10461)
-!old:   BCX10461_full : LINE=(BCX10461a,BCX10461b)
+
+
+!Old split line: LINE=(BCX10451a,BCX10451b)
+
+bcx10451_full: line = (bcx10451)
+
+
+!Old split line: LINE=(BCX10461a,BCX10461b)
+
+bcx10461_full: line = (bcx10461)
 
 
 !Old split line: LINE=(UM10466,HTRUNDF,UM10466)
@@ -331,16 +337,25 @@ um10466_full: line = (um10466)
 um10466[L] = 2*um10466[L]
 htrundf[superimpose] = T
 htrundf[ref] = um10466
-BCX10475_full: line = (BCX10475)
-!old:   BCX10475_full : LINE=(BCX10475a,BCX10475b)
-BCX10481_full: line = (BCX10481)
-!old:   BCX10481_full : LINE=(BCX10481a,BCX10481b)
+
+
+!Old split line: LINE=(BCX10475a,BCX10475b)
+
+bcx10475_full: line = (bcx10475)
+
+
+!Old split line: LINE=(BCX10481a,BCX10481b)
+
+bcx10481_full: line = (bcx10481)
 
   LH10 : LINE=(LH10BEG,BCX10451_full,DH01,BCX10461_full,DH02a,PR10465,DH02b,UM10466_full,DH03a,PR10471,DH03b,
          BCX10475_full,DH04,BCX10481_full,LH10END)
 
-BX10661_full: line = (BX10661)
-!old:   BX10661_full : LINE=(BX10661a,BX10661b)
+
+
+!Old split line: LINE=(BX10661a,BX10661b)
+
+bx10661_full: line = (bx10661)
 
 
 !Old split line: LINE=(QB10731,BPM10731,QB10731)
@@ -349,8 +364,11 @@ qb10731_full: line = (qb10731)
 qb10731[L] = 2*qb10731[L]
 bpm10731[superimpose] = T
 bpm10731[ref] = qb10731
-BX10751_full: line = (BX10751)
-!old:   BX10751_full : LINE=(BX10751a,BX10751b)
+
+
+!Old split line: LINE=(BX10751a,BX10751b)
+
+bx10751_full: line = (bx10751)
 
   BX0F : LINE=(BX0FBEG,BX10661_full,DB00a,PR10711,DB00b,XC10721,YC10722,DB00c,QB10731_full,DB01,BX10751_full,CNT0F,
          BX0FEND)

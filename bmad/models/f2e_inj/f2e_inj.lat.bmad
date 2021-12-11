@@ -16,7 +16,7 @@ parameter[particle] = electron
 !beginning[x_position] = 10.44893
 
 call, file = $FACET2_LATTICE/bmad/master/F2_ELEC.bmad
-
+call, file = $FACET2_LATTICE/bmad/master/FACET2e_devicenames.bmad
 
 ! HTR
 QA10361[K1] = -1.17804244907661779E+001

@@ -12,18 +12,22 @@ parameter[particle] = electron
 ! WOODDOOR should be at:
 ! X Y Z =  0 0  3050.512000
 
-beginning[theta_position] = -35*pi/180
-beginning[z_position] = 3050.512000 - 1032.60052
-beginning[x_position] = 10.44893
+!beginning[theta_position] = -35*pi/180
+!beginning[z_position] = 3050.512000 - 1032.60052
+!beginning[x_position] = 10.44893
+
+beginning[theta_position] = -0.610865238198015
+beginning[x_position] = 10.1951018890928
+beginning[z_position] = 1002.27394413849
 
 call, file = $FACET2_LATTICE/bmad/master/F2_ELEC.bmad
-
+call, file = $FACET2_LATTICE/bmad/master/FACET2e_devicenames.bmad
 
 ! HTR
-QA10361[K1] = -1.17804244907661779E+001
-QA10371[K1] =  1.23092983093509591E+001
-QE10425[K1] = -1.26469059117769405E+001
-QE10441[K1] =  3.47364512286151950E+001
+QA10361[K1] = -1.18994873925241311E+001
+QA10371[K1] =  1.24253208811238558E+001
+QE10425[K1] = -1.26669117048887987E+001
+QE10441[K1] =  3.27749273993446479E+001
 
 ! BC11C
 QM10631[K1] =  1.32472839307280381E+001

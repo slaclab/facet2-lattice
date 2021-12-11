@@ -30,24 +30,24 @@
 /
 
 
-&tao_beam_init
-beam_init%random_engine = 'quasi'
-ix_universe = 1
-beam_saved_at =  "MARKER::*"
-track_start = 'OTR2'
-!track_end = 'DBMARK82'
-!track_end = 'BC1CEND'
-beam_init%position_file = '$LCLS_LATTICE/bmad/beams/OTR2_250pC_rescaleto540um_solGTF1M_flat_scattered_20keV_100k.beam0'
-!beam_init%position_file = 'beam_1.hdf5'
-beam_init%center(1) = 0.0
-beam_init%center(2) = 0.0
-beam_init%center(3) = 0.0
-beam_init%center(4) = 0.0
-beam_init%center(5) = 0.0
-beam_init%center(6) = 0.0
-
-/
-
+! &tao_beam_init
+! beam_init%random_engine = 'quasi'
+! ix_universe = 1
+! beam_saved_at =  "MARKER::*"
+! track_start = 'OTR2'
+! !track_end = 'DBMARK82'
+! !track_end = 'BC1CEND'
+! beam_init%position_file = '$LCLS_LATTICE/bmad/beams/OTR2_250pC_rescaleto540um_solGTF1M_flat_scattered_20keV_100k.beam0'
+! !beam_init%position_file = 'beam_1.hdf5'
+! beam_init%center(1) = 0.0
+! beam_init%center(2) = 0.0
+! beam_init%center(3) = 0.0
+! beam_init%center(4) = 0.0
+! beam_init%center(5) = 0.0
+! beam_init%center(6) = 0.0
+! 
+! /
+! 
 
 
 
@@ -112,6 +112,53 @@ beam_init%center(6) = 0.0
 
 
 
+!-----------------------------------------
+! BPM Orbit
+! Auto-generated BPM datums using: $LCLS_LATTICE/bmad/conversion/tao/create_vars_and_datums.ipynb
+        
+&tao_d2_data
+    d2_data%name = 'orbit'
+    universe = 1
+    n_d1_data = 3
+/    
+    
+&tao_d1_data
+    ix_d1_data = 1
+    default_weight = 1
+    d1_data%name = 'x'
+    default_data_type = 'bpm_orbit.x'
+    default_data_source = 'lat'
+    !search_for_lat_eles = "monitor::bpm*,monitor::rfb*" 
+    datum(1:)%ele_name =  'BPM10221', 'BPM10371', 'BPM10425', 'BPM10511', 'BPM10525',
+     'BPM10581', 'BPM10631', 'BPM10651', 'BPM10731', 'BPM10771', 'BPM10781'
+/
+
+&tao_d1_data
+    ix_d1_data = 2
+    default_weight = 1
+    d1_data%name = 'y'
+    default_data_type = 'bpm_orbit.y'
+    default_data_source = 'lat'
+    !search_for_lat_eles = "monitor::bpm*,monitor::rfb*" 
+    use_same_lat_eles_as = 'orbit.x'
+/
+
+&tao_d1_data
+    ix_d1_data = 3
+    default_weight = 1
+    d1_data%name = 'charge'
+    default_data_type = 'bunch_charge.live'
+    default_data_source = 'beam'
+    !search_for_lat_eles = "monitor::bpm*,monitor::rfb*" 
+    use_same_lat_eles_as = 'orbit.x'
+/
+
+
+
+
+
+!-----------------------------------------
+
 !----------------------------------------
 !----------------------------------------
 
@@ -135,4 +182,28 @@ beam_init%center(6) = 0.0
 	var(1:)%ele_name = 'QA10361','QA10371', 'QA10371', 'QE10425', 'QE10425', 'QE10441'
 /
 
+
+
+!----------------------------------------
+! Correctors
+! Auto-generated corrector datums using: $LCLS_LATTICE/bmad/conversion/tao/create_vars_and_datums.ipynb
+        
+&tao_var
+    v1_var%name = 'xcor'
+    default_step = 1e-2
+    default_attribute = 'bl_kick'
+    var(1:)%ele_name =  'XC10121', 'XC10221', 'XC10311', 'XC10381', 'XC10411',
+     'XC10491', 'XC10521', 'XC10641', 'XC10721', 'XC10761'
+/
+
+
+&tao_var
+    v1_var%name = 'ycor'
+    default_step = 1e-2
+    default_attribute = 'bl_kick'
+    var(1:)%ele_name =  'YC10122', 'YC10222', 'YC10312', 'YC10382', 'YC10412',
+     'YC10492', 'YC10522', 'YC10642', 'YC10722', 'YC10762'
+/
+
+!----------------------------------------
 

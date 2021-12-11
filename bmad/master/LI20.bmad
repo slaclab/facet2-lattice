@@ -960,19 +960,65 @@ pdump: monitor, type = "phosphor" ! dump screen
 xtcavf_full: line = (xtcavf)
 xtcavf[L] = 2*xtcavf[L]
 
-B1LE_full: line = (B1LE)
-!old:   B1LE_full : LINE=(B1LE1,B1LE2)
-B2LE_full: line = (B2LE)
-!old:   B2LE_full : LINE=(B2LE1,XCB2LE,B2LE2)
-B3LE_full: line = (B3LE)
-!old:   B3LE_full : LINE=(B3LE1,XCB3LE,B3LE2)
-B3RE_full: line = (B3RE)
-!old:   B3RE_full : LINE=(B3RE1,XCB3RE,B3RE2)
-B2RE_full: line = (B2RE)
-!old:   B2RE_full : LINE=(B2RE1,XCB2RE,B2RE2)
-B1RE_full: line = (B1RE)
-!old:   B1RE_full : LINE=(B1RE1,B1RE2)
-  WIGE_full : LINE=(WIGE11,WIGE12,DWE,WIGE21,YCWIGE,WIGE22,DWE,WIGE31,WIGE32)
+
+
+!Old split line: LINE=(B1LE1,B1LE2)
+
+b1le_full: line = (b1le)
+
+
+!Old split line: LINE=(B2LE1,XCB2LE,B2LE2)
+
+b2le_full: line = (b2le)
+xcb2le[superimpose] = T
+xcb2le[ref] = b2le
+
+
+!Old split line: LINE=(B3LE1,XCB3LE,B3LE2)
+
+b3le_full: line = (b3le)
+xcb3le[superimpose] = T
+xcb3le[ref] = b3le
+
+
+!Old split line: LINE=(B3RE1,XCB3RE,B3RE2)
+
+b3re_full: line = (b3re)
+xcb3re[superimpose] = T
+xcb3re[ref] = b3re
+
+
+!Old split line: LINE=(B2RE1,XCB2RE,B2RE2)
+
+b2re_full: line = (b2re)
+xcb2re[superimpose] = T
+xcb2re[ref] = b2re
+
+
+!Old split line: LINE=(B1RE1,B1RE2)
+
+b1re_full: line = (b1re)
+
+
+
+
+
+!Old split line: line = (WIGE11,WIGE12)
+
+wige1_full: line = (wige1)
+
+
+!Old split line: line = (WIGE21,YCWIGE,WIGE22)
+
+wige2_full: line = (wige2)
+ycwige[superimpose] = T
+ycwige[ref] = wige2
+
+
+!Old split line: line = (WIGE31,WIGE32)
+
+wige3_full: line = (wige3)
+  WIGE_line : LINE=(WIGE1_full, DWE, WIGE2_full, DWE, WIGE3_full)
 
 
 
@@ -1151,7 +1197,7 @@ as1er[ref] = s1er
   CHICANE2 : LINE=(Q6E,D8E,B3RE_full,CB3RE,D7E2,M7E,DM7Q,Q5ER_full,D6EC2,DYC3E,YC3E,DYC3E,D6EB2,S3ER_1_full,D6EA2,M8E,
          DM8Q,Q4ER_1_full,DQ4E,Q4ER_2_full,DQ4E,Q4ER_3_full,DS3E,S3ER_2_full,D5EC2a,YC2321,D5EC2b,DXC3E,XC3E,DXC3E,D5EB2,MS2ER,
          S2ER_full,D5EA2,Q3ER_1_full,DQ3E,Q3ER_2_full,DM9Q,M9E,D4EB2,S1ER_full,D4EA2,DMQ,Q2ER_full,D3E,MSEP2E,B2RE_full,CB2RE,
-         DB2XC4,DXC4E,XC4E,DXC4E,DXC4TCa,PCTCAV,DXC4TCb,XTCAVF_full,DTCWIG,WIGE_full,DYAGW,sYAG,DYAGQ,Q1ER_full,DM11Q,M11E,DTM11,
+         DB2XC4,DXC4E,XC4E,DXC4E,DXC4TCa,PCTCAV,DXC4TCb,XTCAVF_full,DTCWIG,WIGE_line,DYAGW,sYAG,DYAGQ,Q1ER_full,DM11Q,M11E,DTM11,
          IM2452,D1ET2a,XC2460,D1ET2b,B1RE_full,CB1RE)
 
   CHICANE : LINE=(BEGBC20,B1LE_full,CB1LE,D1ET1a,XC1996,D1ET1b,IM2040,DTPM,PMON,DPMM1,M1E,DM1Q,Q1EL_full,D2EA,CN2069,
@@ -1162,7 +1208,7 @@ as1er[ref] = s1er
          Q5ER_full,D6EC2,DYC3E,YC3E,DYC3E,D6EB2,S3ER_1_full,D6EA2,M8E,DM8Q,Q4ER_1_full,DQ4E,Q4ER_2_full,DQ4E,Q4ER_3_full,DS3E,
          S3ER_2_full,D5EC2a,YC2321,D5EC2b,DXC3E,XC3E,DXC3E,D5EB2,MS2ER,S2ER_full,D5EA2,Q3ER_1_full,DQ3E,Q3ER_2_full,DM9Q,M9E,
          D4EB2,S1ER_full,D4EA2,DMQ,Q2ER_full,D3E,MSEP2E,B2RE_full,CB2RE,DB2XC4,DXC4E,XC4E,DXC4E,DXC4TCa,PCTCAV,DXC4TCb,
-         XTCAVF_full,DTCWIG,WIGE_full,DYAGW,sYAG,DYAGQ,Q1ER_full,DM11Q,M11E,DTM11,IM2452,D1ET2a,XC2460,D1ET2b,B1RE_full,CB1RE,
+         XTCAVF_full,DTCWIG,WIGE_line,DYAGW,sYAG,DYAGQ,Q1ER_full,DM11Q,M11E,DTM11,IM2452,D1ET2a,XC2460,D1ET2b,B1RE_full,CB1RE,
          ENDBC20)
 
 
@@ -1223,7 +1269,11 @@ q1d[L] = 2*q1d[L]
 
 q2d_full: line = (q2d)
 q2d[L] = 2*q2d[L]
-  B5D36_full : LINE=(B5D361,B5D362)
+
+
+!Old split line: LINE=(B5D361,B5D362)
+
+b5d36_full: line = (b5d36)
 
   ! z= 1998.708952
   SPECT : LINE=(BEGSPECT20,DMQ0D,Q0D_full,DM1QEX,M0EX,D1D,WDSOTR,DMQ1D,Q1D_full,DM1QEX,M1EX,D2D,DMQ2D,Q2D_full,DM1QEX,
