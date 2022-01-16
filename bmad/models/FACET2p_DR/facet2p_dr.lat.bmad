@@ -1,0 +1,9 @@
+
+
+
+beginning[x_position] = -1.880948383           
+beginning[y_position] = -0.94072346919 
+beginning[z_position] =  988.6315735
+
+
+call, file = FACET2p_DR.bmad
