@@ -1,5 +1,5 @@
 
-! *** OPTICS=FACET2-18MAY21 ***
+! *** OPTICS=FACET2-08NOV21 ***
 
 ! ==============================================================================
 ! Modification History
@@ -152,6 +152,7 @@
   SINCARGu := 1-ARGu2/6+ARGu4/120-ARGu6/5040 !~sinc(ARGu)=sin(ARGu)/ARGu
   R34u     := Lhun*SINCARGu
 
+ !comment
   UM10466 : MATRIX, TYPE="@0,LHund", L=Lhun,  &
     RM(1,1)=1.0,                              &
     RM(1,2)=Lhun,                             &
@@ -164,6 +165,9 @@
     RM(5,5)=1.0,                              &
     RM(6,6)=1.0 !,                            &
    !RM(5,6)=Lhun/(gami^2)*(1+(K_und^2)/2)
+ !endcomment
+
+ !UM10466 : DRIF, TYPE="LHund", L=Lhun
 
 ! ==============================================================================
 ! QUAD

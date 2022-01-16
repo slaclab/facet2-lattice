@@ -1,8 +1,11 @@
 
-! *** OPTICS=FACET2-18MAY21 ***
+! *** OPTICS=FACET2-08NOV21 ***
 
 ! ==============================================================================
 ! Modification History
+! ------------------------------------------------------------------------------
+! 04-NOV-2021, M. Woodley
+!  * remove unused K15_2d definition
 ! ------------------------------------------------------------------------------
 ! 16-APR-2021, G. White
 !  * 19-8a removed, XC19900 & YC19900 moved to match as-installed
@@ -1578,7 +1581,6 @@
   K15_2a_full : LINE=(K15_2a1,XC15202,K15_2a2,YC15203,K15_2a3)
   K15_2b_full : LINE=(K15_2b)
   K15_2c_full : LINE=(K15_2c)
-  K15_2d_full : LINE=(K15_2d)
   K15_3a_full : LINE=(K15_3a1,XC15302,K15_3a2,YC15303,K15_3a3)
   K15_3b_full : LINE=(K15_3b)
   K15_3c_full : LINE=(K15_3c)

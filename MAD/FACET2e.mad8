@@ -1,6 +1,6 @@
-  TITLE, "FACET2 e- (May 18, 2021)"
+  TITLE, "FACET2 e- (November 8, 2021)"
 
-! *** OPTICS=FACET2-18MAY21 ***
+! *** OPTICS=FACET2-08NOV21 ***
 
   ASSIGN, PRINT="FACET2e.print"
   ASSIGN, ECHO="FACET2e.echo"
@@ -50,14 +50,6 @@
         SIGT=0.738520173493e-3, SIGE=0.186678021326e-3
 
 ! ------------------------------------------------------------------------------
-! match or prepare Oracle upload files
-! ------------------------------------------------------------------------------
-
- !CALL, FILENAME="FACET2e_match.mad8"
- !CALL, FILENAME="RDB/FACET2e_makeSymbols.mad8"
- !STOP
-
-! ------------------------------------------------------------------------------
 ! commands
 ! ------------------------------------------------------------------------------
 
@@ -65,11 +57,15 @@
   SETPLOT, LWIDTH=5, LSCALE=1.5, SSCALE=1.5, RSCALE=1.5, ASCALE=1.5
   OPTION, ECHO
 
+ !CALL, FILENAME="FACET2e_match.mad8"
+ !CALL, FILENAME="RDB/FACET2e_makeSymbols.mad8"
+ !CALL, FILENAME="elegant/FACET2e_makeElegant.mad8"
+
+ !STOP
+
+! ------------------------------------------------------------------------------
+
   COMMENT !for testing the Matlab model
-    BEAM, ENERGY=E0
-    USE, F2_S10AIP
-    PRINT, FULL
-    TWISS, BETA0=TW0, TAPE="S10AIP_twiss.tape"
     BEAM, ENERGY=E0
     USE, F2_ELEC
     PRINT, FULL
@@ -89,54 +85,6 @@
     STOP
   ENDCOMMENT
 
-! ------------------------------------------------------------------------------
-
-  COMMENT
-    BEAM, ENERGY=E0
-    USE, F2_ELEC
-    PRINT, FULL
-    SAVEBETA, TW0a, L0AFend
-    SAVEBETA, TWi,  BEGDL10
-    SAVEBETA, TW11, BC11CEND
-    SAVEBETA, TW14, ENDBC14E
-    SAVEBETA, TW19, MSCAVEXT
-    SAVEBETA, TW20, BEGBC20
-    SAVEBETA, TWip, MIP
-    TWISS, BETA0=TW0, TAPE="FACET2e_twiss.tape" !, COUPLE
-    SHOW, TW0a
-    SHOW, TWi
-    SHOW, TW11
-    SHOW, TW14
-    SHOW, TW19
-    SHOW, TW20
-    SHOW, TWip
-    SURVEY, TAPE="FACET2e_survey.tape", &
-      X0=Xc, Y0=Yc, Z0=Zc, THETA0=THETAc, PHI0=PHIc, PSI0=PSIc
-    STOP
-  ENDCOMMENT
-
-  COMMENT
-    BEAM, ENERGY=Ei
-    USE, FACET2e
-    PRINT, FULL
-    SAVEBETA, TW10, MRK0F
-    SAVEBETA, TW11, BC11CEND
-    SAVEBETA, TW14, ENDBC14E
-    SAVEBETA, TW19, MSCAVEXT
-    SAVEBETA, TW20, BEGBC20
-    SAVEBETA, TWip, PENT
-    TWISS, BETA0=TWi
-    SHOW, TW10
-    SHOW, TW11
-    SHOW, TW14
-    SHOW, TW19
-    SHOW, TW20
-    SHOW, TWip
-    STOP
-  ENDCOMMENT
-
-! ------------------------------------------------------------------------------
-
  !COMMENT
     BEAM, ENERGY=E0
     USE, F2_ELEC
@@ -151,7 +99,7 @@
       SAVEBETA, TW14, ENDBC14E
       SAVEBETA, TW19, MSCAVEXT
       SAVEBETA, TW20, BEGBC20
-      SAVEBETA, TWip, MIP
+      SAVEBETA, TWip, PENT
     endcomment
     TWISS, BETA0=TWi, SAVE, TAPE="FACET2e_twiss.tape"
     comment
@@ -183,19 +131,6 @@
       STYLE=100, -SPLINE, RANGE=ENDBC20/MAINDUMP, FILE="FACET2e", &
       TITLE="Final Focus + Spectrometer"
  !ENDCOMMENT
-
-  COMMENT
-    ASSIGN, PRINT="S10AIP.print"
-    BEAM, ENERGY=E0
-    USE, F2_S10AIP
-    PRINT, FULL
-    SURVEY, TAPE="S10AIP_survey.tape", &
-      X0=Xc, Y0=Yc, Z0=Zc, THETA0=THETAc, PHI0=PHIc, PSI0=PSIc
-    TWISS, COUPLE, BETA0=TW0, SAVE, TAPE="S10AIP_twiss.tape"
-    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=BETX,BETY, &
-      STYLE=100, SPLINE, RANGE=#S/#E, FILE="S10AIP", &
-      TITLE="FACET2 Sector 10 AIP"
-  ENDCOMMENT
 
 ! ------------------------------------------------------------------------------
 

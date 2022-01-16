@@ -1,8 +1,11 @@
 
-! *** OPTICS=FACET2-18MAY21 ***
+! *** OPTICS=FACET2-08NOV21 ***
 
 ! ==============================================================================
 ! Modification History
+! ------------------------------------------------------------------------------
+! 17-DEC-2019, M. Woodley
+!  * define unsplit L0AF and L0BF for Bmad
 ! ------------------------------------------------------------------------------
 ! 23-AUG-2018, M. Woodley
 !  * gradL0A, gradL0B, and L0phase from FACET2e_baseline.mat
@@ -64,6 +67,13 @@
                   L=0.3351400, DELTAE=gradL0B*0.3351400, PHI0=PhiL0
   L0BF__6 : LCAV, FREQ=SbandF, TYPE="DUALFEED",  &
                   L=0.0609190, DELTAE=gradL0B*0.0609190, PHI0=PhiL0
+
+! define unsplit LCAVs for BMAD ... not used by MAD
+
+  L0AF : LCAV, FREQ=SbandF, TYPE="DUALFEED",  &
+               L=LL0acc, DELTAE=gradL0A*LL0acc, PHI0=PhiL0
+  L0BF : LCAV, FREQ=SbandF, TYPE="DUALFEED",  &
+               L=LL0acc, DELTAE=gradL0B*LL0acc, PHI0=PhiL0
 
 ! ==============================================================================
 ! QUAD
@@ -197,12 +207,12 @@
   SC4F : LINE=(XC10381,YC10382)
   SC5F : LINE=(XC10411,YC10412)
 
-  L0AF : LINE=(L0AFbeg,FLNGAF1,&
+  L0AF_full : LINE=(L0AFbeg,FLNGAF1,&
     L0AF__1,DLFDAF,L0AF__2,L0AF__3,SC2F,L0AF__4,L0AFmid,&
     L0AF__5,L0AF__6,OUTCPAF,L0AF__7,FLNGAF2,L0AFwake,&
     L0AFend)
 
-  L0BF : LINE=(L0BFbeg,FLNGBF1,&
+  L0BF_full : LINE=(L0BFbeg,FLNGBF1,&
     L0BF__1,DLFDBF,L0BF__2,SC4F,L0BF__3,L0BFmid,&
     L0BF__4,SC5F,L0BF__5,OUTCPBF,L0BF__6,FLNGBF2,L0BFwake,&
     L0BFend)
@@ -218,10 +228,10 @@
     SOL10111,CATHODEF,DL01a,&
     SOL10121_full,DL01b,VV10155,DL01c,MIR10181,DL01d,VV10215,DL01e,BPM10221,&
       DL01f,SC1F,DL01g,PR10241,DL01h,&
-    L0AF,DL02,&
+    L0AF_full,DL02,&
     QA10361_full,DL03a,PH10365,DL03b,&
     QA10371_full,DL04,&
-    L0BF,&
+    L0BF_full,&
     ENDINJ)
 
   INJS10AIP : LINE=(DL00,LOADLOCKF,BEGINJ,&
