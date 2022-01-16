@@ -1,5 +1,5 @@
 
-! *** OPTICS=FACET2-18MAY21 ***
+! *** OPTICS=FACET2-08NOV21 ***
 
 ! ------------------------------------------------------------------------------
 ! constants and global parameters
@@ -79,7 +79,7 @@ ay14i = 2.016097891765
 
 bxip = 0.5
 axip = 0.0
-byip = 5.0
+byip = 0.5
 ayip = 0.0
 
 ! at BEGBC20 (matched to MIP)
@@ -98,10 +98,10 @@ call, file = BC11.bmad
 call, file = L2.bmad
 call, file = BC14.bmad
 call, file = L3.bmad
-call, file = LI20.bmad !FACET2 Phase 2
+call, file = LI20.bmad
 
-  BC14    : LINE=(BC14_1,BC14P,BC14_2)      !positron side
-  FACET2p : LINE=(BC11_2,L2F,BC14,L3F,S20E) !BC11 exit to LI20 dump
+  BC14    : LINE=(BC14_1,BC14P,BC14_2)          !positron side
+  FACET2p : LINE=(BC11_2,L2F,BC14,L3F,SECTOR20) !BC11 exit to LI20 dump
 
 ! beam paths
 

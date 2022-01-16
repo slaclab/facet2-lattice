@@ -1,5 +1,5 @@
 
-! *** OPTICS=FACET2-18MAY21 ***
+! *** OPTICS=FACET2-08NOV21 ***
 
 ! ==============================================================================
 ! Modification History
@@ -45,9 +45,7 @@ k11_2c2: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 2.5441, voltag
 
 k11_1b: lcavity, rf_frequency = sbandf * 1e6, type = "9.4ft", l = dlwl9, voltage = p50*gradl1*dlwl9 * 1e6, phi0 = phil1
 k11_1c: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*gradl1*dlwl10 * 1e6, phi0 = phil1
-
 k11_2a: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*gradl1*dlwl10 * 1e6, phi0 = phil1
-
 k11_2c: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p50*gradl1*dlwl10 * 1e6, phi0 = phil1
 
 ! ------------------------------------------------------------------------------

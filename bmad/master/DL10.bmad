@@ -1,5 +1,5 @@
 
-! *** OPTICS=FACET2-18MAY21 ***
+! *** OPTICS=FACET2-08NOV21 ***
 
 ! ==============================================================================
 ! Modification History
@@ -136,6 +136,7 @@ argu6 = argu4*argu2
 sincargu = 1-argu2/6+argu4/120-argu6/5040 !~sinc(ARGu)=sin(ARGu)/ARGu
 r34u = lhun*sincargu
 
+ !comment
 
 !------- Laser Heater Undulator for Copper Linac -------
 my_lh_und_k = 0
@@ -153,6 +154,9 @@ um10466[L] = um10466[L]/2 ! Will be doubled in desplitting process.
 !old           tt33 = cos(lhun*sqrt(kqlh)), tt34 = r34u, tt43 = -sin(lhun*sqrt(kqlh))*sqrt(kqlh), tt44 = cos(lhun*sqrt(kqlh)),
 !old           tt55 = 1.0, tt66 = 1.0
    !R56=Lhun/(gami^2)*(1+(K_und^2)/2)
+ !endcomment
+
+ !UM10466 : DRIF, TYPE="LHund", L=Lhun
 
 ! ==============================================================================
 ! QUAD

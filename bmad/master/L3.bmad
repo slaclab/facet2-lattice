@@ -1,8 +1,11 @@
 
-! *** OPTICS=FACET2-18MAY21 ***
+! *** OPTICS=FACET2-08NOV21 ***
 
 ! ==============================================================================
 ! Modification History
+! ------------------------------------------------------------------------------
+! 04-NOV-2021, M. Woodley
+!  * remove unused K15_2d definition
 ! ------------------------------------------------------------------------------
 ! 16-APR-2021, G. White
 !  * 19-8a removed, XC19900 & YC19900 moved to match as-installed
@@ -825,7 +828,6 @@ K15_2A_full: line = (K15_2A)
 !old:   K15_2a_full : LINE=(K15_2a1,XC15202,K15_2a2,YC15203,K15_2a3)
   K15_2b_full : LINE=(K15_2b)
   K15_2c_full : LINE=(K15_2c)
-  K15_2d_full : LINE=(K15_2d)
 !---------------------
 ! K15_3A LCAVITY
 K15_3A_full: line = (K15_3A)
@@ -1757,19 +1759,7 @@ K19_6D_full: line = (K19_6D)
     XC19700[ref_origin] = beginning
     XC19700[offset] = 2.3057
 !old:   K19_6d_full : LINE=(K19_6d1,YC19700,K19_6d2,XC19700,K19_6d3)
-!---------------------
-! K19_8A LCAVITY
-K19_8A_full: line = (K19_8A)
-! contains zero length elements:
-    XC19802[superimpose] = T
-    XC19802[ref] = K19_8A
-    XC19802[ref_origin] = beginning
-    XC19802[offset] = 0.3895
-    YC19803[superimpose] = T
-    YC19803[ref] = K19_8A
-    YC19803[ref_origin] = beginning
-    YC19803[offset] = 0.688
-!old:   K19_8a_full : LINE=(K19_8a1,XC19802,K19_8a2,YC19803,K19_8a3)
+  K19_8a_full : LINE=(K19_8a1,XC19802,K19_8a2,YC19803,K19_8a3)
 
   K19_1 : LINE=(K19_1a_full,K19_1b_full,K19_1c_full,K19_1d_full)
   K19_2 : LINE=(K19_2a_full,K19_2b_full,K19_2c_full,K19_2d_full)

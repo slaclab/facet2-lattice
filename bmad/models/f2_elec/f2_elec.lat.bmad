@@ -20,7 +20,7 @@ beginning[x_position] = 10.1951018890928
 beginning[z_position] = 1002.27394413849
 
 call, file = $FACET2_LATTICE/bmad/master/F2_ELEC.bmad
-call, file = $FACET2_LATTICE/bmad/master/FACET2e_devicenames.bmad
+!call, file = $FACET2_LATTICE/bmad/master/FACET2e_devicenames.bmad
 
 ! MRK0F (near PR10571)
 QA10361[K1] = -1.02555189872557158E+001

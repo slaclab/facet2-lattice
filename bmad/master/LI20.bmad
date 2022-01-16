@@ -1,258 +1,33 @@
 
-! *** OPTICS=FACET2-18MAY21 ***
-
-! *** FACET-II Sector 20  ***
-!  "Phase 2" FFS installation with 0.5m IP beta functions
+! *** OPTICS=FACET2-08NOV21 ***
 
 ! ==============================================================================
 ! FACET e- optics
 ! ------------------------------------------------------------------------------
-! 17-MAY-2021, G. White
-!  * Removed QFF4, inserted Q0FF, Q1FF & Q2FF
-!    - z locations measured by metrology: see FACET elog 05/05/2021
-! 17-APR-2021, G. White
-!  * Fixed as-installed Q0D, Q1D, Q2D locations: measurements by Georg
-!  * Added all current expt table and spectrometer table devices according to
-!    walk-through by Christine: https://docs.google.com/spreadsheets/d/
-!    1Qw85KBUfSJ6Jt8tArqjcGTVlpZCtUz2hDWX8EuCRcb4/edit?usp=sharing
-! 17-JUN-2020, G. White
-!  * Added new beamline components to IP area as per engineering drawing from
-!    D. Storey
-! 30-JAN-2015, M. Woodley
-!  * move experimental area definitions to separate xsif-files
-!  * experimental area modified for hydrogen plasma chamber installation and
-!    spectrometer upgrade (QS0 installation)
-!  * device locations in experimental area and dump table area per S. Green
-!    spreadsheet
+! 17-DEC-2021, M. Woodley
+!  * change WIGE "_full" definitions for Bmad translation per C. Mayes
+! 04-NOV-2021, M. Woodley
+!  * concatenation of BC20W.xsif and FF20H.xsif for fall 2021 operatons
 ! ------------------------------------------------------------------------------
-! 10-APR-2014, M. Woodley
-!  * add separate definitions of experimental area for long oven installation
-!    and short oven installation (comment blocks)
-!  * device locations in experimental area after long oven installation per
-!    C. Clarke, S. Li, and M. Hogan
-! 04-FEB-2013, M. Woodley
-!  * nominal optics: R56=-7mm, 10x100@MIP
-!  * M3167 (BPM) and d/s Be window locations per C. Clarke spreadsheet (version
-!    of 9/27/2013)
-! 07-NOV-2013, M. Woodley
-!  * E201 device locations per C. Clarke (1 cm, 10 cm, and 20 cm samples)
-!  * E213 IP location estimated by I. Tudosa
-!  * dump table devices and locations per E. Adli
-! 18-OCT-2013, M. Woodley
-!  * experimental area device locations per C. Clarke (9/27/2013)
-!  * E200 IP location per K. Marsh ("9_8-focus"-Layer_1.pdf)
-!  * dump table devices moved ~25 cm u/s (per E. Adli ... to be confirmed)
-!  * rematch with FF quads to nominal 0.5x5 optics at MIP
-! 15-MAY-2013, M. Woodley
-!    QFF*, and QS* Z-locations per G.Gassner list (QS12_and_QFF4_6_R1.xlsx)
-! 08-MAY-2013, M. Woodley
-!    E201 IP (sample holder) moved 10 cm d/s of Kraken chamber centerline, per
-!    C. Clarke
-! 05-APR-2013, M. Woodley
-!    Change "XTCAV" to "XTCAVF" per H. Loos; experimental device names and unit
-!    numbers per FACETExperimentalAreaDevicesLocation.xlsx (3/14/2013)
-! 18-MAR-2013, M. Woodley
-!    As-installed locations of XC1996, YC2181, YC2321, and XC2460
-!    per N. Lipkowitz
-! 15-MAR-2013, M. Woodley
-!    As-installed experimental device locations per C. Clarke ... rematch
-! 15-FEB-2013, M. Woodley
-!   * add as-installed yaw to B1L and B1R (per Y. Nosochkov)
-!   * low-beta optics is now nominal (Bx*/By* = 0.5/5.0 m @ MIP)
-! 10-FEB-2013, M. Woodley
-!   * locations of SQ1 and SQ2 per M. Sullivan tape-measurement
-!   * 2013 experimental area layout per C. Clarke email of January 24, 2013
-!     and H. Imfeld survey map of February 6, 2013
-! 02-DEC-2012, M. Woodley
-!    Add (optional/provisional) 2013 experimental area layout per C. Clarke
-! 17-AUG-2012, M. Woodley
-!    Optics version 31
-!   * consolidate common and electron files
-!   * add database MARKer points at experiment IPs
-!   * add measured multipole components
-! 30-JUN-2012, M. Woodley
-!    Add alternate E200 IPs (28 cm Rb oven and 21 cm Rb oven) per S. Li list
-!    of 6/28/2012
-! 28-JUN-2012, M. Woodley
-!    Verify Z-locations of experimental devices with S. Li list of 6/28/2012
-! 21-MAY-2012, M. Woodley
-!    Adjust locations of T203163T and IP201/P203208T per S. Li list
-! 03-MAY-2012, M. Woodley
-!    Adjust locations of devices d/s of M203340T per E. Adli, G. Gassner, S. Li,
-!    and drawing ID-257-500-27
-! 09-MAR-2012, M. Woodley
-!    Locations of notch and jaw collimators, XTCAV, sYAG, and THz cubes per
-!    G. Gassner
-! 16-FEB-2012, M. Woodley
-!   * replace DPC (DRIF) with PC200 (INST)
-!   * complement of experimental area devices and their locations per S. Li and
-!     C. Clarke
-!   * replace nonzero-length split-in-half correctors with zero-length HKICs
-!     and VKICs surrounded by half-corrector-length drifts
-! 05-AUG-2011, Y. Nosochkov
-!    Rematch FF quads for the IP position shifted by +0.2934 m (to Z=1993 m).
-!    Due to QFF2 strength limitation, change the IP x/y beta* to 0.018/0.18 m.
-!    Rematch QS1, QS2 quads in the dump line.
-! 04-AUG-2011, M. Woodley
-!    Device locations on THz and IP tables per S. Li
-! 17-JUN-2011, Y. Nosochkov
-!    Rematch sector 19 quads. In the nominal option, K-values in Li19
-!    do not fit within the booster PS range. Add option where K-values
-!    in Li18-19 are within the booster range at the expense of larger
-!    beta perturbation.
-! 01-JUN-2011, M. Woodley
-!    Add XCOR between QS1 and QS2.
-! 13-MAY-2011, M. Woodley
-!    Device locations per visual inspection.
-! 22-FEB-2011
-!    Change toroid name from T191988T to T201988T.
-! 16-FEB-2011
-!    Shift sector-20 elements downbeam by 50 mm starting from B1L.
-!    Make additional minor adjustment to positions of LAERO2PS, LPS2DUMP.
-! 23-Aug-2010
-!    Rematch quad strengths to make Q5E integral strength the same as in v.26.
-!    Set bending angle in B5D36 dipole to 6 mrad.
-! 05-Aug-2010
-!    Remove negative drifts by slight adjustment of adjacent BPM positions.
-! 03-May-2010
-!    Split dipole correctors in half and adjust their S-positions.
-! 23-APR-2010
-!    Adjust S-positions of some correctors and BPMs per engineering
-!    request.
-! 15-APR-2010
-!    Set strengths of QS1, QS2 dumpline quads for match without plasma.
-! 07-APR-2010
-!    Use 0.762 m long sextupole for S2E. Reverse wiggler polarity
-!    to make upward bending. Use 3D8.8 and 3D4.0 type magnets for
-!    orbit correctors. Use a shorter magnet for QFF6. Update magnet
-!    effective lengths and apertures (from C.Spencer's table).
-!    Remove M2E, M10E BPMs.
-!    Rematch geometry by keeping the IP position unchanged.
-!    Rematch linear optics and sextupoles.
-! 26-Jan-2010
-!    Change definition from MARKER to INSTRUMENT for some diagnostic
-!    devices.
-! 05-Nov-2009
-!    Update database names for BPMs, diagnostics and a few magnets.
-!    Move a profile monitor and beam stopper from upstream to downstream
-!    side of B1E bend.
-! 13-Oct-2009
-!    Include profile monitor and beam stopper in sector-19, two HCOLL and
-!    one VCOLL in sector-20 electron chicane, and toroid in the IP region.
-! 28-Sep-2009
-!    Update element names and remove unneeded markers in the dump line.
-! 18-Sep-2009
-!    Include 3 toroids in sector-20 e- chicane. Include 2 CTR pyro
-!    detectors in the final focus. Include OTR cube and Be window after
-!    the last FF quad. Move the last FF BPM inside the last FF quad.
-!    Include wire scanner at IP.
-! 10-Sep-2009
-!    Include notch collimator in sector-20 e- chicane. Relocate the
-!    e- wiggler to downstream end of the chicane just before Q1E.
-!    Include YAG screen 25 cm after the e- wiggler. Use L=0.25 m S3P
-!    sextupole of the same type as other sextupoles. Add HGAP and FINT
-!    parameters to chicane bend definitions and rematch quads.
-! 22-Jul-2009
-!    Use a different magnet type with L=0.285 m for S3P sextupole.
-!    Update magnet database names. Include BPMs.
-!    Use a shorter wiggler.
-! 04-Jun-2009
-!    Replace most of the L=15 cm correctors with existing L=22.4 cm magnets.
-! 23-Apr-2009
-!    Include optics for experimental dump line (M. Hogan).
-! 22-Apr-2009
-!    Rename magnets using FACET name convention.
-! 24-Mar-2009
-!    Replace the 1.739 m B2E bend magnet with 1.812 m magnet. B2E, B3E
-!    bending angles are slightly adjusted to correct the geometry.
-!    Quads are rematched.
-! 18-Mar-2009
-!    Include X,Y orbit correctors.
-! 11-Dec-2008
-!    Increase length of the "new" bends from 1 m to 1.04 m to decrease
-!    their field below 17 kG. Left edge of the 1st chicane bend is moved
-!    0.02 m upstream.
-! 04-Dec-2008
-!    Increase the path length difference between e+ and e- from 50 to 52.7 mm
-!    by raising the bend field by ~2.7%. Field in the "new" 1 m dipoles exceed
-!    17 kG at 23 GeV -- the dipole length needs to be increased.
-! 13-Nov-2008
-!    Add a 3rd sextupole family to e+ chicane for better chromaticity
-!    correction. Change all sextupole lengths in both chicanes to 0.25 m.
-!    Re-fit geometry (using ~2% higher bend field) and re-match optics.
-! 29-Oct-2008
-!    Include wigglers at the beginning of e- chicane and at the end of
-!    e+ chicane. The wiggler focusing breaks the chicane symmetry, but
-!    since the effect is rather small, the quads have not been rematched.
-!    The wiggler also slightly changes the X-Z projection which has
-!    been corrected by a slight adjustment of adjacent drift.
-! 28-Oct-2008
-!    Change Q4E doublet to a triplet to reduce its gradient below the
-!    existing magnet limit. Use doublet S1P sexupole and doublet S3E
-!    sextupole to reduce their K-values. Assume the new sextupoles are
-!    based on the existing sextupoles, but the aperture is reduced from
-!    20.6 mm to 18 mm for 31% higher K-value.
-! 27-Oct-2008
-!    Replace the magnets used for Q6E and QFF1 which are not currently
-!    available (used for LCLS) with other available existing magnets.
-! 23-Oct-2008
-!    The existing quad positions are optimized for lower strengths and
-!    stronger quad types are used where needed, but still one quad family
-!    (Q4E) is out of existing field range.
-! 03-Oct-2008
-!    Existing quad strengths are optimized, but 6 families remain
-!    out of range.
-! 24-Sep-2008
-!    Use existing SLAC magnets. The "aperture" is specified 2 mm smaller
-!    than the magnet bore aperture in order to leave space for pipe width.
-!    Bending angle is tuned to match the e- and e+ chicane Z-lengths for
-!    a given 50 mm path length difference. Quads are rematched, but some
-!    strengths are out of range. Sextupoles are not matched yet.
-! 31-Jul-2008
-!    Make all 4 e+ sextupoles independent and re-optimize their strength
-!    for minimal sigma-x at IP (using DIMAD tracking).
-! 17-Jul-2008
-!    Adjust magnet positions and lengths for lower initial T566 w/o
-!    sextupoles. Re-match the e- and e+ quad/bend optics.
-!    Optimize 6 e- sextupoles and 4 e+ sextupoles for low W-function,
-!    DDX and |T566|<0.1.
-! 11-Jul-2008
-!    Rearrange and re-optimize e- sextupoles for lower T566.
-!    Use 8 sextupoles (4 families).
-! 30-Jun-2008
-!    Re-optimize e- sextupoles for lower Txx6 2nd order chromatic terms.
-! 26-Jun-2008
-!    Match upstream linac optics and FACET.
-! 19-Jun-2008
-!    Add sextupoles to the chicanes to cancel the 2nd order dispersion.
-!    and reduce W-function at IP. The W-functions need a better correction.
-! 11-Jun-2008
-!    Chicane length is increased by 9.09 m. The bends are split in
-!    shorter magnets and placed at positions where there is no overlap
-!    with another existing beamline in the linac in the beginning of
-!    the chicanes.
-! 05-Jun-2008
-!    Quad K-values in chicanes are reduced to <0.75.
-!    Final focus is not yet re-matched.
+! 25-AUG-2021, M. Woodley
+!  * from LI20.xsif (18MAY21 release): extract W-chicane definitions
+!  * XTCAV moved into Final Focus
 ! ------------------------------------------------------------------------------
+
+! ==============================================================================
+! BC20W
+! ==============================================================================
 
 ! ------------------------------------------------------------------------------
 ! global parameters
 ! ------------------------------------------------------------------------------
 
 wscl = 1 !wiggler field scale (=1 for wiggler ON, =0 for wiggler OFF)
+
 ! Initial parameters at BEGBC20
-parameter[E_tot] = 10 * 1e9
+
+parameter[E_tot] = e20 * 1e9
 parameter[n_part] = 1.2483019e+10
-
-
-! ==============================================================================
-! transverse deflecting structure
-! ------------------------------------------------------------------------------
-
-lxtcav = 40.687*in2m
-
-xtcavf: lcavity, rf_frequency = 11424 * 1e6, type = "TRANS_DEFL", l = lxtcav/2
 
 ! ==============================================================================
 ! BENDs
@@ -343,20 +118,6 @@ wige3: sbend, type = "SLC wiggler", hgap = gwe/2, l = lwe, angle = awe, e1 = awe
 
 ldwe = zdwe/cos(awe)
 
-! spectrometer / dump bend
-
-abd = 0.006
-lbd = 0.9779
-gbd = 0.0635
-
-b5d361: sbend, type = "5D36", l = lbd/2, hgap = gbd/2, angle = abd/2, e1 = abd/2, fint = 0.5, fintx = 0, ref_tilt = pi/2
-b5d362: sbend, type = "5D36", l = lbd/2, hgap = gbd/2, angle = abd/2, fint = 0, e2 = abd/2, fintx = 0.5, ref_tilt = pi/2
-
-! define unsplit SBENs for BMAD ... not used by MAD
-
-b5d36: sbend, type = "5D36", hgap = gbd/2, l = lbd, angle = abd, e1 = abd/2, fint = 0.5, e2 = abd/2, fintx = 0.5,
-          ref_tilt = pi/2
-
 ! ==============================================================================
 ! QUADs
 ! ------------------------------------------------------------------------------
@@ -409,58 +170,11 @@ q3er_2: quadrupole, type = "1.625Q27.3", l = lq3/2, aperture = aq3, k1 = kq3er
 q2er: quadrupole, type = "2.13Q38.31", l = lq2/2, aperture = aq2, k1 = kq2er
 q1er: quadrupole, type = "0.813Q23", l = lq1/2, aperture = aq1, k1 = kq1er
 
-! Final Focus and spectrometer quadrupoles
-
-lqff1 = 0.4609
-aqff1 = 8.325e-3
-lqff2 = 0.4609
-aqff2 = 8.325e-3
-lqff4 = 0.7142
-aqff4 = 18.6375e-3
-lqff5 = 2.0260
-aqff5 = 24.0e-3
-lqff6 = 0.7142
-aqff6 = 18.6375e-3
-lqs0 = 0.46092
-aqs0 = 11.5e-3
-lqs = 1.0
-aqs = 27.0e-3
-
-kqff1 = 0.235988
-kqff2 = -0.269377
-kq2ff = 0.725752
-kq1ff = -1.09179
-kq0ff = 0.4
-kq0d = -0.321363
-kq1d = 0.533683
-kq2d = -0.321363
-
-qff1: quadrupole, type = "0.813Q17.7", l = lqff1/2, aperture = aqff1, k1 = kqff1
-qff2_1: quadrupole, type = "0.813Q17.7", l = lqff2/2, aperture = aqff2, k1 = kqff2
-qff2_2: quadrupole, type = "0.813Q17.7", l = lqff2/2, aperture = aqff2, k1 = kqff2
-qff2_3: quadrupole, type = "0.813Q17.7", l = lqff2/2, aperture = aqff2, k1 = kqff2
-q0ff: quadrupole, k1 = kq0ff, l = 0.3571, aperture = 0.0186, type = "1.625Q27.3"
-q1ff: quadrupole, k1 = kq1ff, l = 0.3571, aperture = 0.0186, type = "1.625Q27.3"
-q2ff: quadrupole, k1 = kq2ff, l = 0.3571, aperture = 0.0186, type = "1.625Q27.3"
-! Q3FF: QUADRUPOLE,K1=KQ3FF,L=0.3571,APERTURE=0.0186,TYPE="1.625Q27.3"
-!  Q4FF: QUADRUPOLE,K1=KQ4FF,L=0.3571,APERTURE=0.0186,TYPE="1.625Q27.3"
-!  Q5FF: QUADRUPOLE,K1=KQ5FF,L=0.2304,APERTURE=0.0083,TYPE="0.813Q17.7"
-
-! spectrometer:
-q0d: quadrupole, k1 = kq0d, l = 0.5, aperture = aqs, type = "2.13Q38.31"
-q1d: quadrupole, k1 = kq1d, l = 0.5, aperture = aqs, type = "2.13Q38.31"
-q2d: quadrupole, k1 = kq0d, l = 0.5, aperture = aqs, type = "2.13Q38.31"
-
-! skew quadrupoles
-
-lsq = 0.3813
-asq = (2.026*in2m)/2
+! skew quadrupole
 
 ksq1 = 0
-ksq2 = 0
 
 sq1: quadrupole, tilt = pi/4, type = "2.026Q14", l = lsq/2, aperture = asq, k1 = ksq1
-sq2: quadrupole, tilt = pi/4, type = "2.026Q14", l = lsq/2, aperture = asq, k1 = ksq2
 
 ! ==============================================================================
 ! SEXTs
@@ -516,7 +230,6 @@ ldm1q = ldmq+0.038489
 ld2ea = 0.917799 !1.144-0.0051
 ldcnhc = 0.417207 !0.25
 ldhcyc1 = 1.554794 !0.35-0.160
-lc260 = 0.260 !3D8.8 corrector effective length
 ldcc = 0.15
 ldyc1xc1 = ldcc-0.036
 ldcb = 0.15
@@ -586,35 +299,6 @@ ldyagq = 0.326737389545 !0.25-0.0051
 ldm11q = ldmq+0.055967
 ldtm11 = ldtm-0.061067
 ld1et2 = ld1em-ldtm
-ldff1 = 0.4-dlb1-0.00515-dsb1o
-ldm1qf = ldmq-0.00515
-ldff2 = 1.87-0.01030
-ldcq = 0.15
-ldff2cm = ldff2-2*lc22-ldcc-ldcq-ldm1qf-0.07865
-lyc1xc1f = ldcc-0.0360
-ldxc1qf = ldcq+0.04265
-ldq2ff = 0.25-0.01030
-ldq2ffm1 = ldq2ff/2-0.026806
-ldq2ffm2 = ldq2ff/2+0.026806
-ldyc2qf = ldcq+0.08885
-lyc2xc2f = ldcc-0.0915345
-ldff5 = 0.55-0.0233
-ldff6 = 0.45+0.11645
-ldq4ff = 0.25-0.0206
-lyc3xc3f = ldcc-0.1132905
-ldxc3qf = ldcq+0.095402
-ldq4ffm1 = ldq4ff/2+0.128072
-ldq4ffm2 = ldq4ff/2+0.137876
-ldff5a = 0.15075
-ldff5b = ldff5-ldff5a-lc136
-ldff6a = (0.45-lc136)/2+0.10535
-ldff6b = ldff6-ldff6a-lc136
-ldm5qf = 0
-ldm1qex = ldmq+0.213360
-ldm2qex = ldmq+0.213430
-lq2bend = 0.5+0.274320-0.03145
-ldmb = 0.1
-ldm3bex = ldmb-0.274320+0.629920-0.03145
 
 d1et1a: drift, l = 2.821013
 d1et1b: drift, l = ld1et1-d1et1a[l]
@@ -672,6 +356,7 @@ db2xc4: drift, l = lb2xc4
 dxc4e: drift, l = lc260/2
 dxc4tca: drift, l = lxc4tca
 dxc4tcb: drift, l = lxc4tcb
+dxtcavf: drift, l = 40.687*in2m
 dtcwig: drift, l = ltcwig
 dwe: drift, l = ldwe
 dyagw: drift, l = ldyagw+0.098819
@@ -680,113 +365,6 @@ dm11q: drift, l = ldm11q+0.022716
 dtm11: drift, l = ldtm11-0.022716
 d1et2a: drift, l = 2.452948
 d1et2b: drift, l = ld1et2-d1et2a[l]
-
-dzqff1 = 0.4826e-3
-dzqff2_1 = 0.254e-3
-dzqff2_2 = 0
-dzqff2_3 = -0.1016e-3
-dzqff4_1 = -0.1016e-3
-dzqff4_2 = 9.652e-3
-dzqff5 = -0.3302e-3
-dzqff6 = -0.4826e-3
-dzqs1 = -0.072e-3
-dzqs2 = 0.044e-3
-
-dff1: drift, l = ldff1+dzqff1
-dm1qf: drift, l = 0.137748
-dff2cm: drift, l = 0.895302
-dff2cma: drift, l = 0.304902-dzqff1
-dff2cmb: drift, l = 0.095348
-dff2cmc: drift, l = 0.113752
-dyc1ff: drift, l = lc260/2
-dyc1xc1f: drift, l = 0.114
-dxc1ff: drift, l = lc260/2
-dxc1qf: drift, l = 0.19265+dzqff2_1
-dq2ffm1: drift, l = 0.115523
-dq2ffm2: drift, l = 0.124177-dzqff2_1
-dq2ff: drift, l = 0.2397+dzqff2_3
-dyc2qf: drift, l = 0.23885-dzqff2_3
-dyc2ff: drift, l = lc260/2
-dyc2xc2f: drift, l = 0.0584655
-dxc2ff: drift, l = lc260
-dxc2pf: drift, l = 0.035534
-dff4p: drift, l = 0.817
-dyc3pf: drift, l = 0.063941
-dyc3ff: drift, l = lc260
-dyc3xc3f: drift, l = 0.0367095
-dxc3ff: drift, l = lc260/2
-dxc3qf: drift, l = 0.245402+dzqff4_1
-dq4ffm1: drift, l = 0.329335
-dq4ffm2: drift, l = 0.166013-dzqff4_1+dzqff4_2
-dff5a: drift, l = 0.15075-dzqff4_2
-dxc4ff: drift, l = lc136/2
-dff5b: drift, l = 0.23995+dzqff5
-dff6a: drift, l = 0.26235-dzqff5
-dyc4ff: drift, l = lc136/2
-dff6b: drift, l = 0.1681+dzqff6
-
-dm1qex: drift, l = 0.286595
-lqsepma: drift, l = 0.579-dzqs1
-dxc1ex: drift, l = 0.35/2
-lqsepmb: drift, l = 2.784289+dzqs2
-lq2bendm: drift, l = lq2bend-ldm2qex+0.021007-dzqs2
-
-dm3bex: drift, l = 0.357498/cos(abd)
-lbpm2win: drift, l = 8.375137/cos(abd)
-laira: drift, l = 0.016/cos(abd)
-lairb: drift, l = 0.044/cos(abd)
-lairc: drift, l = 0.1/cos(abd)
-laird: drift, l = 0.288/cos(abd)
-laire: drift, l = 0.322/cos(abd)
-lairf: drift, l = 0.055/cos(abd)
-lairh: drift, l = 0.482/cos(abd)
-lairi: drift, l = 1.0106/cos(abd)
-lairj: drift, l = 1.67269/cos(abd)
-
-d3ff: drift, l = 2.966226
-d2ff: drift, l = 0.86484
-d1ff: drift, l = 0.8639
-dmq0ff: drift, l = 0.204852
-dmq0d: drift, l = 0.202439
-dmq1d: drift, l = 0.356564
-dmq2d: drift, l = 0.183182
-dffs1: drift, l = 0.5
-dffs2: drift, l = 0.5
-d1d: drift, l = 0.580966
-d2d: drift, l = 0.754657
-d3d: drift, l = 0.056305
-d4d: drift, l = 3.177152733425373
-d5d: drift, l = 1.22355893395943
-d6d: drift, l = 1.36
-d7d: drift, l = 1.13
-d8d: drift, l = 0.5
-d9d: drift, l = 4.26
-d10d: drift, l = 0.05
-d11d: drift, l = 0.23
-d12d: drift, l = 0.09
-d13d: drift, l = 0.590168
-d14d: drift, l = 1.31
-lairg: drift, l = 1.675292936069446
-
-! Experiment table drifts
-dex20_1: drift, l = 0.072982138228781
-dex20_2: drift, l = 0.26
-dex20_3: drift, l = 0.1
-dex20_4: drift, l = 0.06
-dex20_5: drift, l = 0.12
-dex20_6: drift, l = 0.72
-dex20_7: drift, l = 0.4017
-dex20_8: drift, l = 0.052
-dex20_9: drift, l = 0.4663
-dex20_10: drift, l = 0.09
-dex20_10a: drift, l = 0.04
-dex20_11: drift, l = 0.04
-dex20_12: drift, l = 1.13
-dex20_12a: drift, l = 0.05
-dex20_13: drift, l = 0.9
-dex20_14: drift, l = 0.11
-dex20_15: drift, l = 0.05
-dex20_16: drift, l = 0.13
 
 ! ==============================================================================
 ! XCORs
@@ -802,11 +380,6 @@ xc3e: hkicker, type = "3D8.8MK2"     !0.815" gap
 xcb2re: hkicker, type = "bend trim"
 xc4e: hkicker, type = "3D8.8MK2"     !0.815" gap
 xc2460: hkicker, type = "3D8.8MK3"     !2.031" gap
-xc1ff: hkicker, type = "3D8.8MK2"     !0.815" gap
-xc3ff: hkicker, type = "3D8.8MK2"     !0.815" gap
-xc4ff: hkicker, type = "3D8.8MK2"     !0.815" gap
-xc1ex: hkicker, type = "3D4"          !1.181" gap
-
 
 ! ==============================================================================
 ! YCORs
@@ -818,11 +391,6 @@ yc2e: vkicker, type = "3D4"          !1.181" gap
 yc3e: vkicker, type = "3D4"          !1.181" gap
 yc2321: vkicker, type = "3D8.8MK3"     !2.031" gap
 ycwige: vkicker, type = "wiggler trim"
-yc1ff: vkicker, type = "3D8.8MK2"     !0.815" gap
-yc2ff: vkicker, type = "3D8.8MK2"     !0.815" gap
-yc4ff: vkicker, type = "3D4"          !1.181" gap
-
-yc0d: vkicker, type = "3D8.8MK2"
 
 ! ==============================================================================
 ! BPMs
@@ -839,18 +407,6 @@ m8e: monitor, type = "R0"
 ms2er: monitor, type = "R0"
 m9e: monitor, type = "R45"
 m11e: monitor, type = "R45"
-m1ff: monitor, type = "R45"
-m2ff: monitor, type = "R45"
-m3ff: monitor
-m4ff: monitor
-m5ff: monitor
-m0ex: monitor, type = "R45"
-m1ex: monitor, type = "R45"
-m2ex: monitor, type = "R45"
-m3ex: monitor, type = "R45"
-mq0d: monitor
-mq1d: monitor
-mq2d: monitor
 
 ! ==============================================================================
 ! diagnostics, collimators, MARKERs, etc.
@@ -860,43 +416,16 @@ mq2d: monitor
 
 pmon: monitor, type = "phosphor"        !P202042T
 syag: monitor, type = "YAG"             !P202432T
-usthz: monitor, type = "OTR foil/YAG"    ! OTRS:LI20:3070 CAMR:LI20:106
-dsthz: monitor, type = "OTR foil/YAG"    !PD203075
-prdmp: monitor, type = "phosphor"        !P203475T
-elanex: monitor, type = "unknown"         !P203500
-betal: monitor, type = "unknown"         !P203303
-beta1: monitor, type = "unknown"         !P203501
-cnear: monitor, type = "cherenkov wafer" ! CMOS:LI20:3490
-beta2: monitor, type = "unknown"         !P203488
-usotr: monitor, type = "OTR foil/YAG"    ! OTRS:LI20:3158 CAMR:LI20:101
-ipotr1p: monitor, type = "OTR foil/YAG"   ! OTRS:LI20:3175 (in plasma oven)
-ipotr1: monitor, type = "OTR foil/YAG"    ! OTRS:LI20:3180 (in bypass line) CAMR:LI20:102
-ipotr2: monitor, type = "OTR foil/YAG"    ! OTRS:LI20:3202 (in bypass line)
-ipws1: monitor, type = "MARKER"            ! MARKER:LI20:3179 (in bypass line)
-ipws2: monitor, type = "MARKER"            ! MARKER:LI20:3206 (not installed)
-ipws3: monitor, type = "MARKER"            ! MARKER:LI20:3229
-ipotr3: monitor, type = "OTR foil/YAG"
-dsotr: monitor, type = "OTR foil/YAG" ! OTRS:LI20:3206 CAMR:LI20:103
-wdsotr: monitor, type = "OTR" ! OTRS:LI20:3239 CAMR:LI20:104
-dtotr: monitor, type = "OTR"
-pgam1: monitor, type = "phosphor" ! MONITOR:LI20:3500 CMOS:LI20:3490 (Gamma 1 screen)
 
 ! toroids
 
 im2040: marker !T202040T
 im2452: marker !T202452T
-iqmon20: marker ! TORO:LI20:3163 "Resonant charge monitor" in S20 experimental region
-im3255: marker ! TORO:LI20:3255
 
 ! collimators
 
 cn2069: rcollimator, type = "notch"          !notch collimator
 cx2085: rcollimator, type = "horizontal jaw" !horizontal jaw collimator
-pctcav: ecollimator                        !TCAV protection mask
-
-! bunch length monitors
-
-bl20_4: monitor, type = "pyrometer" !FF bunch length monitor
 
 ! sextupole movers
 
@@ -918,47 +447,10 @@ msep2e: marker
 cb2re: marker
 cb1re: marker
 endbc20: marker
-begff20: marker
-mfff: marker !QFF1 entrance
-dbmark67: marker !USTHz
-endff20: marker !QFF6 exit
-begexpt20: marker
-mip: marker ! Default IP location (for optics reference)
-lcube: marker ! Laser Injection Cube
-pic_cent: marker ! Center location of "picnic basket"
-pent: marker ! E300 plasma entrance (Gate valve A)
-pext: marker ! Plasma oven exit (Gate valve B)
-filg: marker ! Filamentation experiment gas target
-fils: marker ! Filamentation experiment solid target
-ecube: marker ! "CUBE"
-dwin: marker ! Valve Diamond Window
-exthole1: marker ! Extension table (first hole)
-bewin1: marker ! 1st Beryllium window
-bewin2: marker ! 2nd Beryllium window
-endexpt20: marker
-
-begspect20: marker
-begpdc: marker ! Upstream end of PDC chamber
-endpdc: marker ! Downstream end of PDC chamber
-begedc: marker ! Upstream end of EDC chamber
-endedc: marker ! Downstream end of EDC chamber
-bflymid: marker ! Middle of Butterfly chamber
-extwin: marker ! Exit window (5mm thick Al)
-maindump: instrument !dump face
-dbmark30: marker
-endspect20: marker
-pdump: monitor, type = "phosphor" ! dump screen
 
 ! ==============================================================================
 ! BEAMLINEs
 ! ------------------------------------------------------------------------------
-
-
-
-!Old split line: LINE=(XTCAVF,XTCAVF)
-
-xtcavf_full: line = (xtcavf)
-xtcavf[L] = 2*xtcavf[L]
 
 
 
@@ -1000,25 +492,22 @@ xcb2re[ref] = b2re
 b1re_full: line = (b1re)
 
 
-
-
-
-!Old split line: line = (WIGE11,WIGE12)
+!Old split line: LINE=(WIGE11,WIGE12)
 
 wige1_full: line = (wige1)
 
 
-!Old split line: line = (WIGE21,YCWIGE,WIGE22)
+!Old split line: LINE=(WIGE21,YCWIGE,WIGE22)
 
 wige2_full: line = (wige2)
 ycwige[superimpose] = T
 ycwige[ref] = wige2
 
 
-!Old split line: line = (WIGE31,WIGE32)
+!Old split line: LINE=(WIGE31,WIGE32)
 
 wige3_full: line = (wige3)
-  WIGE_line : LINE=(WIGE1_full, DWE, WIGE2_full, DWE, WIGE3_full)
+  WIGE_line  : LINE=(WIGE1_full,DWE,WIGE2_full,DWE,WIGE3_full)
 
 
 
@@ -1197,60 +686,321 @@ as1er[ref] = s1er
   CHICANE2 : LINE=(Q6E,D8E,B3RE_full,CB3RE,D7E2,M7E,DM7Q,Q5ER_full,D6EC2,DYC3E,YC3E,DYC3E,D6EB2,S3ER_1_full,D6EA2,M8E,
          DM8Q,Q4ER_1_full,DQ4E,Q4ER_2_full,DQ4E,Q4ER_3_full,DS3E,S3ER_2_full,D5EC2a,YC2321,D5EC2b,DXC3E,XC3E,DXC3E,D5EB2,MS2ER,
          S2ER_full,D5EA2,Q3ER_1_full,DQ3E,Q3ER_2_full,DM9Q,M9E,D4EB2,S1ER_full,D4EA2,DMQ,Q2ER_full,D3E,MSEP2E,B2RE_full,CB2RE,
-         DB2XC4,DXC4E,XC4E,DXC4E,DXC4TCa,PCTCAV,DXC4TCb,XTCAVF_full,DTCWIG,WIGE_line,DYAGW,sYAG,DYAGQ,Q1ER_full,DM11Q,M11E,DTM11,
-         IM2452,D1ET2a,XC2460,D1ET2b,B1RE_full,CB1RE)
+         DB2XC4,DXC4E,XC4E,DXC4E,DXC4TCa,DXC4TCb,DXTCAVF,DTCWIG,WIGE_line,DYAGW,sYAG,DYAGQ,Q1ER_full,DM11Q,M11E,DTM11,IM2452,
+         D1ET2a,XC2460,D1ET2b,B1RE_full,CB1RE)
 
-  CHICANE : LINE=(BEGBC20,B1LE_full,CB1LE,D1ET1a,XC1996,D1ET1b,IM2040,DTPM,PMON,DPMM1,M1E,DM1Q,Q1EL_full,D2EA,CN2069,
+  BC20W : LINE=(BEGBC20,B1LE_full,CB1LE,D1ET1a,XC1996,D1ET1b,IM2040,DTPM,PMON,DPMM1,M1E,DM1Q,Q1EL_full,D2EA,CN2069,
          DCNHC,CX2085,DHCYC1a,SQ1_full,DHCYC1b,DYC1E,YC1E,DYC1E,DYC1XC1,DXC1E,XC1E,DXC1E,DXC1B,B2LE_full,CB2LE,MSEP1E,D3E,
          Q2EL_full,D4EA1,S1EL_full,D4EB1,M3E,DM3Q,Q3EL_1_full,DQ3E,Q3EL_2_full,D5EA1,MS2EL,S2EL_full,D5EB1,DXC2E,XC2E,DXC2E,
          D5EC1a,YC2181,D5EC1b,S3EL_1_full,DS3E,Q4EL_1_full,DQ4E,Q4EL_2_full,DQ4E,Q4EL_3_full,DM4Q,M4E,D6EA1,S3EL_2_full,D6EB1,
          DYC2E,YC2E,DYC2E,D6EC1,Q5EL_full,DM5Q,M5E,D7E1,B3LE_full,CB3LE,D8EM,M6E,DM6Q,Q6E_full,D8E,B3RE_full,CB3RE,D7E2,M7E,DM7Q,
          Q5ER_full,D6EC2,DYC3E,YC3E,DYC3E,D6EB2,S3ER_1_full,D6EA2,M8E,DM8Q,Q4ER_1_full,DQ4E,Q4ER_2_full,DQ4E,Q4ER_3_full,DS3E,
          S3ER_2_full,D5EC2a,YC2321,D5EC2b,DXC3E,XC3E,DXC3E,D5EB2,MS2ER,S2ER_full,D5EA2,Q3ER_1_full,DQ3E,Q3ER_2_full,DM9Q,M9E,
-         D4EB2,S1ER_full,D4EA2,DMQ,Q2ER_full,D3E,MSEP2E,B2RE_full,CB2RE,DB2XC4,DXC4E,XC4E,DXC4E,DXC4TCa,PCTCAV,DXC4TCb,
-         XTCAVF_full,DTCWIG,WIGE_line,DYAGW,sYAG,DYAGQ,Q1ER_full,DM11Q,M11E,DTM11,IM2452,D1ET2a,XC2460,D1ET2b,B1RE_full,CB1RE,
-         ENDBC20)
+         D4EB2,S1ER_full,D4EA2,DMQ,Q2ER_full,D3E,MSEP2E,B2RE_full,CB2RE,DB2XC4,DXC4E,XC4E,DXC4E,DXC4TCa,DXC4TCb,DXTCAVF,DTCWIG,
+         WIGE_line,DYAGW,sYAG,DYAGQ,Q1ER_full,DM11Q,M11E,DTM11,IM2452,D1ET2a,XC2460,D1ET2b,B1RE_full,CB1RE,ENDBC20)
+
+! ------------------------------------------------------------------------------
+
+! ==============================================================================
+! FF20H
+! ==============================================================================
+
+! ==============================================================================
+! FACET e- optics
+! ------------------------------------------------------------------------------
+! 26-AUG-2021, M. Woodley
+!  * Hybrid Final Focus for fall 2021 operation
+! 23-AUG-2021, G. White
+!  * Update to expected as-built condition for full Sector 20 Upgrade
+!  * Removed SQ2, XC1FF, YC1FF, MS2EL, MS2ER
+!  * Added Q5-Q3FF as independent quads
+!  * Added second IMOVN in FFS (IM20FF)
+!  * Merged with changes to master deck to describe existing experimental areas
+! 23-JUN-2021, G. White
+!  * Changed QFF1 & QFF2 -> Q5FF, Q4FF to match SCP
+! 17-MAY-2021, G. White
+!  * Removed QFF4, inserted Q0FF, Q1FF & Q2FF
+!    - z locations measured by metrology: see FACET elog 05/05/2021
+! 17-APR-2021, G. White
+!  * Fixed as-installed Q0D, Q1D, Q2D locations: measurements by Georg
+!  * Added all current expt table and spectrometer table devices according to
+!    walk-through by Christine: https://docs.google.com/spreadsheets/d/
+!    1Qw85KBUfSJ6Jt8tArqjcGTVlpZCtUz2hDWX8EuCRcb4/edit?usp=sharing
+! 17-JUN-2020, G. White
+!  * Added new beamline components to IP area as per engineering drawing from
+!    D. Storey
+! ------------------------------------------------------------------------------
+
+! ==============================================================================
+! transverse deflecting structure
+! ------------------------------------------------------------------------------
+
+lxtcav = 40.687*in2m
+
+xtcavf: lcavity, rf_frequency = 11424 * 1e6, type = "TRANS_DEFL", l = lxtcav/2
+
+! ==============================================================================
+! BENDs
+! ------------------------------------------------------------------------------
+
+! spectrometer / dump bend
+
+abd = 0.006
+lbd = 0.9779
+gbd = 0.0635
+
+b5d361: sbend, type = "5D36", l = lbd/2, hgap = gbd/2, angle = abd/2, e1 = abd/2, fint = 0.5, fintx = 0, ref_tilt = pi/2
+b5d362: sbend, type = "5D36", l = lbd/2, hgap = gbd/2, angle = abd/2, fint = 0, e2 = abd/2, fintx = 0.5, ref_tilt = pi/2
+
+! define unsplit SBENs for BMAD ... not used by MAD
+
+b5d36: sbend, type = "5D36", l = lbd, hgap = gbd/2, angle = abd, e1 = abd/2, fint = 0.5, e2 = abd/2, fintx = 0.5,
+          ref_tilt = pi/2
+
+! ==============================================================================
+! QUADs
+! ------------------------------------------------------------------------------
+
+! Final Focus
+
+kq5ff = -0.453913*(0.2304/0.23045)
+kq4ff = -0.337682
+kq3ff = 0.419544
+kq2ff = 0.523259
+kq1ff = -0.980516
+kq0ff = 0.523259
+
+q5ff: quadrupole, type = "0.813Q17.7", l = 0.23045, aperture = 0.008325, k1 = kq5ff
+q4ff: quadrupole, type = "1.625Q27.3", l = 0.3571, aperture = 0.0186, k1 = kq4ff
+q3ff: quadrupole, type = "1.625Q27.3", l = 0.3571, aperture = 0.0186, k1 = kq3ff
+q2ff: quadrupole, type = "1.625Q27.3", l = 0.3571, aperture = 0.0186, k1 = kq2ff
+q1ff: quadrupole, type = "1.625Q27.3", l = 0.3571, aperture = 0.0186, k1 = kq1ff
+q0ff: quadrupole, type = "1.625Q27.3", l = 0.3571, aperture = 0.0186, k1 = kq0ff
+
+! spectrometer
+
+aqs = 27.0e-3
+kq0d = -0.330432
+kq1d = 0.54533
+kq2d = -0.330432
+
+q0d: quadrupole, type = "2.13Q38.31", l = 0.5, aperture = aqs, k1 = kq0d
+q1d: quadrupole, type = "2.13Q38.31", l = 0.5, aperture = aqs, k1 = kq1d
+q2d: quadrupole, type = "2.13Q38.31", l = 0.5, aperture = aqs, k1 = kq0d
+
+! ==============================================================================
+! DRIFTs
+! ------------------------------------------------------------------------------
+
+! hybrid Final Focus (from git/master/MAD/LI20.xsif)
+
+d11ff: drift, l = 0.383821
+d10ff: drift, l = 0.137748
+d9ff: drift, l = 0.304419
+d8ff: drift, l = 0.894977
+d7ff: drift, l = 0.2057
+d6ff: drift, l = 0.1957
+dkrk1: drift, l = 0.691936
+dkrk2: drift, l = 0.231287
+d4ff: drift, l = 0.484
+d3aff: drift, l = 0.817
+d3ff: drift, l = 0.49065
+dxtc1: drift, l = 0.750525
+dxtc2: drift, l = 1.182251
+d2aff: drift, l = 0.034973
+d2ff: drift, l = 0.829867
+d1aff: drift, l = 0.025933
+d1ff: drift, l = 0.837967
+d0ff: drift, l = 0.027833
+dmq0ff: drift, l = 0.17701988 !0.177019
+
+! experiment table
+
+dex20_1: drift, l = 0.072982138228781
+dex20_2: drift, l = 0.26
+dex20_3: drift, l = 0.1
+dex20_4: drift, l = 0.06
+dex20_5: drift, l = 0.12
+dex20_6: drift, l = 0.72
+dex20_7: drift, l = 0.4017
+dex20_8: drift, l = 0.052
+dex20_9: drift, l = 0.4663
+dex20_10: drift, l = 0.09
+dex20_10a: drift, l = 0.04
+dex20_11: drift, l = 0.04
+dex20_12: drift, l = 1.13
+dex20_12a: drift, l = 0.05
+dex20_13: drift, l = 0.9
+dex20_14: drift, l = 0.11
+dex20_15: drift, l = 0.05
+dex20_16: drift, l = 0.13
+
+! spectrometer
+
+dmq0d: drift, l = 0.202439
+dm1qex: drift, l = 0.286595
+d1d: drift, l = 0.580966
+dmq1d: drift, l = 0.356564
+d2d: drift, l = 0.754657
+dmq2d: drift, l = 0.183182
+d3d: drift, l = 0.056305
+d4d: drift, l = 3.177152733425373
+dm3bex: drift, l = 0.357498/cos(abd)
+d5d: drift, l = 1.22355893395943
+d6d: drift, l = 1.36
+d7d: drift, l = 1.13+1.0e-06
+d8d: drift, l = 0.5
+d9d: drift, l = 4.26-1.0e-06
+d10d: drift, l = 0.05
+d11d: drift, l = 0.23
+d12d: drift, l = 0.09
+d13d: drift, l = 0.590168
+d14d: drift, l = 1.31
+lairg: drift, l = 1.675292943463
+
+! ==============================================================================
+! XCORs
+! ------------------------------------------------------------------------------
+
+xc3ff: hkicker, type = "3D8.8MK2" !0.815" gap
+xc1ex: hkicker, type = "3D4"      !1.181" gap
+
+! ==============================================================================
+! YCORs
+! ------------------------------------------------------------------------------
+
+yc2ff: vkicker, type = "3D8.8MK2" !0.815" gap
+
+! ==============================================================================
+! BPMs
+! ------------------------------------------------------------------------------
+
+m1ff: monitor
+mq4ff: monitor
+m3ff: monitor
+m4ff: monitor
+m5ff: monitor
+m0ex: monitor
+m1ex: monitor
+m2ex: monitor
+m3ex: monitor
+
+! ==============================================================================
+! diagnostics, collimators, MARKERs, etc.
+! ------------------------------------------------------------------------------
+
+! profile monitors
+
+usthz: monitor, type = "OTR foil/YAG"    ! OTRS:LI20:3070 CAMR:LI20:106
+dsthz: monitor, type = "OTR foil/YAG"    !PD203075
+usotr: monitor, type = "OTR foil/YAG"    ! OTRS:LI20:3158 CAMR:LI20:101
+ipotr1p: monitor, type = "OTR foil/YAG"    ! OTRS:LI20:3175 (in plasma oven)
+ipotr1: monitor, type = "OTR foil/YAG"    ! OTRS:LI20:3180 (in bypass line) CAMR:LI20:102
+ipws1: monitor, type = "MARKER"            ! MARKER:LI20:3179 (in bypass line)
+ipotr2: monitor, type = "OTR foil/YAG"    ! OTRS:LI20:3202 (in bypass line)
+ipws3: monitor, type = "MARKER"            ! MARKER:LI20:3229
+dsotr: monitor, type = "OTR foil/YAG"    ! OTRS:LI20:3206 CAMR:LI20:103
+wdsotr: monitor, type = "OTR"             ! OTRS:LI20:3239 CAMR:LI20:104
+dtotr: monitor, type = "OTR"
+pgam1: monitor, type = "phosphor"        ! MONITOR:LI20:3500 CMOS:LI20:3490 (Gamma 1 screen)
+cnear: monitor, type = "cherenkov wafer" ! CMOS:LI20:3490
+pdump: monitor, type = "phosphor"        !P203475T
+
+! toroids
+
+iqmon20: marker ! TORO:LI20:3163 "Resonant charge monitor" in S20 experimental region
+im3255: marker ! TORO:LI20:3255
+
+! bunch length monitors
+
+bl20_4: monitor, type = "pyrometer" !FF bunch length monitor
+
+! other points of interest (INSTs go into Oracle database)
+
+begff20: marker
+mfff: marker !Q5FF entrance
+krk: marker !Kraken chamber focus point
+dbmark67: marker !USTHz
+endff20: marker !Q0FF exit
+
+begexpt20: marker
+exthole1: marker !Extension table (first hole)
+bewin1: marker !1st Beryllium window
+lcube: marker !Laser Injection Cube
+pic_cent: marker !Center location of "picnic basket"
+filg: marker !Filamentation experiment gas target
+fils: marker !Filamentation experiment solid target
+pent: marker !E300 plasma entrance (Gate valve A)
+mip: marker !Default IP location (for optics reference)
+pext: marker !Plasma oven exit (Gate valve B)
+bewin2: marker !2nd Beryllium window
+endexpt20: marker
+
+begspect20: marker
+begpdc: marker !Upstream end of PDC chamber
+endpdc: marker !Downstream end of PDC chamber
+begedc: marker !Upstream end of EDC chamber
+endedc: marker !Downstream end of EDC chamber
+bflymid: marker !Middle of Butterfly chamber
+extwin: marker !Exit window (5mm thick Al)
+maindump: instrument !dump face
+dbmark30: marker
+endspect20: marker
+
+
+! ==============================================================================
+! BEAMLINEs
+! ------------------------------------------------------------------------------
 
 
 
-!Old split line: LINE=(QFF1,QFF1)
+!Old split line: LINE=(XTCAVF,XTCAVF)
 
-qff1_full: line = (qff1)
-qff1[L] = 2*qff1[L]
-
-
-!Old split line: LINE=(SQ2,SQ2)
-
-sq2_full: line = (sq2)
-sq2[L] = 2*sq2[L]
+xtcavf_full: line = (xtcavf)
+xtcavf[L] = 2*xtcavf[L]
 
 
-!Old split line: LINE=(QFF2_1,QFF2_1)
 
-qff2_1_full: line = (qff2_1)
-qff2_1[L] = 2*qff2_1[L]
+!Old split line: LINE=(B5D361,B5D362)
 
-
-!Old split line: LINE=(QFF2_2,QFF2_2)
-
-qff2_2_full: line = (qff2_2)
-qff2_2[L] = 2*qff2_2[L]
+b5d36_full: line = (b5d36)
 
 
-!Old split line: LINE=(QFF2_3,QFF2_3)
 
-qff2_3_full: line = (qff2_3)
-qff2_3[L] = 2*qff2_3[L]
+!Old split line: LINE=(Q5FF,Q5FF)
 
-  FF : LINE=(BEGFF20,DFF1,MFFF,QFF1_full,DM1QF,M1FF,DFF2CMa,BL20_4,DFF2CMb,SQ2_full,DFF2CMc,DYC1FF,YC1FF,DYC1FF,
-         DYC1XC1F,DXC1FF,XC1FF,DXC1FF,DXC1QF,QFF2_1_full,DQ2FFM1,M2FF,DQ2FFM2,QFF2_2_full,DQ2FF,QFF2_3_full,DYC2QF,DYC2FF,YC2FF,
-         DYC2FF,DYC2XC2F,DXC2FF,DXC2PF,USTHz,DBMARK67,DFF4P,DSTHz,DYC3PF,DYC3FF,DYC3XC3F,DXC3FF,XC3FF,D3FF,Q2FF,Q2FF,M3FF,D2FF,
-         Q1FF,Q1FF,M4FF,D1FF,Q0FF,Q0FF,M5FF,DMQ0FF,ENDFF20)
+q5ff_full: line = (q5ff)
+q5ff[L] = 2*q5ff[L]
 
-  EXPT : LINE=(BEGEXPT20,DEX20_1,EXTHOLE1,DEX20_2,USOTR,DEX20_3,IQMON20,DEX20_4,BEWIN1,DEX20_5,LCUBE,DEX20_6,PIC_CENT,
-         DEX20_7,FILG,DEX20_8,FILS,DEX20_9,IPOTR1P,DEX20_10,IPOTR1,DEX20_10a,PENT,MIP,DEX20_11,IPWS1,DEX20_12,PEXT,DEX20_12a,
-         IPOTR2,DEX20_13,IM3255,DEX20_14,BEWIN2,DEX20_15,IPWS3,DEX20_16,DSOTR,ENDEXPT20)
 
+!Old split line: LINE=(Q4FF,Q4FF)
+
+q4ff_full: line = (q4ff)
+q4ff[L] = 2*q4ff[L]
+
+
+!Old split line: LINE=(Q3FF,Q3FF)
+
+q3ff_full: line = (q3ff)
+q3ff[L] = 2*q3ff[L]
+
+
+!Old split line: LINE=(Q2FF,Q2FF)
+
+q2ff_full: line = (q2ff)
+q2ff[L] = 2*q2ff[L]
+
+
+!Old split line: LINE=(Q1FF,Q1FF)
+
+q1ff_full: line = (q1ff)
+q1ff[L] = 2*q1ff[L]
+
+
+!Old split line: LINE=(Q0FF,Q0FF)
+
+q0ff_full: line = (q0ff)
+q0ff[L] = 2*q0ff[L]
 
 
 !Old split line: LINE=(Q0D,Q0D)
@@ -1270,10 +1020,13 @@ q1d[L] = 2*q1d[L]
 q2d_full: line = (q2d)
 q2d[L] = 2*q2d[L]
 
+  FF : LINE=(BEGFF20,D11FF,MFFF,Q5FF_full,D10FF,M1FF,D9FF,BL20_4,D8FF,MQ4FF,D7FF,Q4FF_full,D6FF,Q3FF_full,DKRK1,KRK,
+         DKRK2,YC2FF,D4FF,USTHz,DBMARK67,D3AFF,DSTHz,D3FF,XC3FF,DXTC1,XTCAVF_full,DXTC2,Q2FF_full,D2AFF,M3FF,D2FF,Q1FF_full,
+         D1AFF,M4FF,D1FF,Q0FF_full,D0FF,M5FF,DMQ0FF,ENDFF20)
 
-!Old split line: LINE=(B5D361,B5D362)
-
-b5d36_full: line = (b5d36)
+  EXPT : LINE=(BEGEXPT20,DEX20_1,EXTHOLE1,DEX20_2,USOTR,DEX20_3,IQMON20,DEX20_4,BEWIN1,DEX20_5,LCUBE,DEX20_6,PIC_CENT,
+         DEX20_7,FILG,DEX20_8,FILS,DEX20_9,IPOTR1P,DEX20_10,IPOTR1,DEX20_10a,PENT,MIP,DEX20_11,IPWS1,DEX20_12,PEXT,DEX20_12a,
+         IPOTR2,DEX20_13,IM3255,DEX20_14,BEWIN2,DEX20_15,IPWS3,DEX20_16,DSOTR,ENDEXPT20)
 
   ! z= 1998.708952
   SPECT : LINE=(BEGSPECT20,DMQ0D,Q0D_full,DM1QEX,M0EX,D1D,WDSOTR,DMQ1D,Q1D_full,DM1QEX,M1EX,D2D,DMQ2D,Q2D_full,DM1QEX,
@@ -1281,7 +1034,11 @@ b5d36_full: line = (b5d36)
          EXTWIN,D12D,PGAM1,D13D,CNEAR,D14D,PDUMP,LAIRG,MAINDUMP,DBMARK30,ENDSPECT20)
 
 
-  S20E : LINE=(CHICANE,FF,EXPT,SPECT)
+  FF20 : LINE=(FF,EXPT,SPECT)
+
+! ==============================================================================
+
+  SECTOR20 : LINE=(BC20W,FF20)
 
 ! ------------------------------------------------------------------------------
 
