@@ -1,0 +1,9 @@
+x-s all 0 5 -exact
+vv
+vd
+use dat L0AF.endtwiss[1:4]
+use var begtwiss[1:4]
+
+
+olmdif
+

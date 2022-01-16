@@ -30,24 +30,21 @@
 /
 
 
-! &tao_beam_init
-! beam_init%random_engine = 'quasi'
-! ix_universe = 1
-! beam_saved_at =  "MARKER::*"
-! track_start = 'OTR2'
-! !track_end = 'DBMARK82'
-! !track_end = 'BC1CEND'
-! beam_init%position_file = '$LCLS_LATTICE/bmad/beams/OTR2_250pC_rescaleto540um_solGTF1M_flat_scattered_20keV_100k.beam0'
-! !beam_init%position_file = 'beam_1.hdf5'
-! beam_init%center(1) = 0.0
-! beam_init%center(2) = 0.0
-! beam_init%center(3) = 0.0
-! beam_init%center(4) = 0.0
-! beam_init%center(5) = 0.0
-! beam_init%center(6) = 0.0
-! 
-! /
-! 
+&tao_beam_init
+beam_init%random_engine = 'quasi'
+ix_universe = 1
+beam_saved_at =  "MARKER::*"
+track_start = 'L0AFEND'
+track_end = 'PR10711'
+beam_init%position_file = '$FACET2_LATTICE/bmad/beams/L0AFEND.h5'
+beam_init%center(1) = 0.0
+beam_init%center(2) = 0.0
+beam_init%center(3) = 0.0
+beam_init%center(4) = 0.0
+beam_init%center(5) = 0.0
+beam_init%center(6) = 0.0
+
+/
 
 
 
@@ -72,7 +69,7 @@
 
 
 &tao_d2_data
-        d2_data%name = 'L0BBEG'
+        d2_data%name = 'L0AF'
         universe = 1
         n_d1_data = 1
 /
@@ -80,13 +77,13 @@
 &tao_d1_data
         ix_d1_data = 1
         default_weight = 1
-        d1_data%name = 'begtwiss'
-        datum( 1) =  'beta.a'     '' '' 'L0BBEG'   'target' 1.70256645E+01      1e1   ! Taken from lcls_end_L0a_nominal.beam0
-        datum( 2) =  'alpha.a'    '' '' 'L0BBEG'   'target'  -3.24553454E+00     1e2
-        datum( 3) =  'beta.b'     '' '' 'L0BBEG'   'target' 1.68626004E+01      1e1
-        datum( 4) =  'alpha.b'    '' '' 'L0BBEG'   'target' -3.20070233E+00      1e2
-        datum( 5) =  'eta.x'      '' '' 'L0BBEG'   'target' 0      1e1
-        datum( 6) =  'etap.x'     '' '' 'L0BBEG'   'target' 0      1e2
+        d1_data%name = 'endtwiss'
+        datum( 1) =  'beta.a'     '' '' 'L0AFEND'   'target' 8     1e1   
+        datum( 2) =  'alpha.a'    '' '' 'L0AFEND'   'target' 2     1e2
+        datum( 3) =  'beta.b'     '' '' 'L0AFEND'   'target' 14      1e1
+        datum( 4) =  'alpha.b'    '' '' 'L0AFEND'   'target' 2.6      1e2
+        datum( 5) =  'eta.x'      '' '' 'L0AFEND'   'target' 0      1e1
+        datum( 6) =  'etap.x'     '' '' 'L0AFEND'   'target' 0      1e2
 /  
 
 
