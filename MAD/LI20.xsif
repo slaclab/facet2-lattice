@@ -4,6 +4,10 @@
 ! ==============================================================================
 ! FACET e- optics
 ! ------------------------------------------------------------------------------
+! 01-FEB-2021, G. White
+!  * add XC1FF & YC1FF correctors (X203026 & Y203017), positions according to
+!    measurements by C. Clarke
+!  * MQ4FF -> M2FF for consistent naming, MONI list match spreadsheet by D. Storey
 ! 17-DEC-2021, M. Woodley
 !  * change WIGE "_full" definitions for Bmad translation per C. Mayes
 ! 04-NOV-2021, M. Woodley
@@ -688,7 +692,9 @@
   D11FF  : DRIF, L=0.383821
   D10FF  : DRIF, L=0.137748
   D9FF   : DRIF, L=0.304419
-  D8FF   : DRIF, L=0.894977
+  D8FF   : DRIF, L=0.2694
+  D8AFF  : DRIF, L=0.3877
+  D8BFF  : DRIF, L=0.237877
   D7FF   : DRIF, L=0.2057
   D6FF   : DRIF, L=0.1957
   DKRK1  : DRIF, L=0.691936
@@ -755,11 +761,13 @@
 
   XC3FF  : HKIC, TYPE="3D8.8MK2" !0.815" gap
   XC1EX  : HKIC, TYPE="3D4"      !1.181" gap
+  XC1FF  : HKIC ! X203026
 
 ! ==============================================================================
 ! YCORs
 ! ------------------------------------------------------------------------------
 
+  YC1FF  : VKIC ! Y203017
   YC2FF  : VKIC, TYPE="3D8.8MK2" !0.815" gap
 
 ! ==============================================================================
@@ -767,7 +775,7 @@
 ! ------------------------------------------------------------------------------
 
   M1FF  : MONI
-  MQ4FF : MONI
+  M2FF : MONI
   M3FF  : MONI
   M4FF  : MONI
   M5FF  : MONI
@@ -858,7 +866,7 @@
   Q2D_full  : LINE=(Q2D,Q2D)
 
   FF : LINE=(BEGFF20,D11FF,MFFF,&
-    Q5FF_full,D10FF,M1FF,D9FF,BL20_4,D8FF,MQ4FF,D7FF,&
+    Q5FF_full,D10FF,M1FF,D9FF,BL20_4,D8FF,XC1FF,D8AFF,YC1FF,D8BFF,M2FF,D7FF,&
     Q4FF_full,D6FF,&
     Q3FF_full,DKRK1,KRK,DKRK2,YC2FF,D4FF,USTHz,DBMARK67,&
       D3AFF,DSTHz,D3FF,XC3FF,DXTC1,XTCAVF_full,DXTC2,&
