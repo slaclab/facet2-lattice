@@ -4,6 +4,7 @@
 ! ==============================================================================
 ! Modification History
 ! ------------------------------------------------------------------------------
+! 08-MAR-2022, G. White - put XC11398, YC11399 & SQ11340 back in
 ! 28-FEB-2020, G. White - changes after visual inspection of beamline
 !  * XC11398, YC11399 & SQ11340 devices removed
 !  * BL11357 moved downstream of QM11358 and changed unit # to 359
@@ -93,7 +94,7 @@
 
   QM11312 : QUAD, TYPE="1.085Q4.31", L=LQE/2, APER=rQE, K1=KQM11312      
   CQ11317 : QUAD, TYPE="1.69Q3.4",   L=LQc/2, APER=rQc, K1=KCQ11317      
-!  SQ11340 : QUAD, TYPE="1.69Q3.4",   L=LQc/2, APER=rQc, K1=KSQ11340, TILT - removed Feb-28-2020
+  SQ11340 : QUAD, TYPE="1.69Q3.4",   L=LQc/2, APER=rQc, K1=KSQ11340
   CQ11352 : QUAD, TYPE="1.69Q3.4",   L=LQc/2, APER=rQc, K1=KCQ11352      
 
 ! common
@@ -146,7 +147,7 @@
   D11od  : DRIF, L=LD11d/COS(AB11), TYPE="CSR"
   D11od1 : DRIF, L=0.131230935728, TYPE="CSR"
   D11od2 : DRIF, L=D11od[L]-D11od1[L], TYPE="CSR"
-  D11oe  : DRIF, L=LQc+LD11e/COS(AB11), TYPE="CSR"
+  D11oe  : DRIF, L=LD11e/COS(AB11), TYPE="CSR"
   D11of  : DRIF, L=LD11f/COS(AB11), TYPE="CSR"
   D11og  : DRIF, L=LD11g/COS(AB11), TYPE="CSR"
 
@@ -168,6 +169,8 @@
 
   YC11321 : VKIC, TYPE="type-4"
   YC11365 : VKIC, TYPE="type-4"
+  XC11398 : HKIC, TYPE="type-4"
+  YC11399 : VKIC, TYPE="type-4"
 
 ! ==============================================================================
 ! diagnostics
@@ -216,7 +219,7 @@
   CQ11317_full  : LINE=(CQ11317,CQ11317)
   BCX11331_full : LINE=(BCX11331a,BCX11331b)
   BCX11338_full : LINE=(BCX11338a,BCX11338b)
-!  SQ11340_full  : LINE=(SQ11340,SQ11340) - removed FEB-28-2020
+  SQ11340_full  : LINE=(SQ11340,SQ11340)
   CQ11352_full  : LINE=(CQ11352,CQ11352)
   BCX11355_full : LINE=(BCX11355a,BCX11355b)
 
@@ -225,7 +228,7 @@
     CQ11317_full,D11ob,YC11321,D11oc,&
     BCX11331_full,DDG11,BPM11333,DDG12,DDG13,PR11335,DDG14,&
     BCX11338_full,D11od1,CE11345,D11od2,&
-    D11oe,D11of,&
+    SQ11340_full,D11oe,D11of,&
     CQ11352_full,D11og,&
     BCX11355_full,CNT1B,&
     BC11CEND)
@@ -245,7 +248,7 @@
   BC11_2 : LINE=(BEGBC11_2,DM13a,DM13b,&
     QM11358_full,DM14a,BL11359,IM11360,DM14b,&
     QM11362_full,DM15a,YC11365,DM15b,PR11375,DM15c,TD11390,DM15d,&
-    QM11393_full,DM16a,DM16b,&
+    QM11393_full,DM16a,XC11398,YC11399,DM16b,&
     Q11401_full,DM17,&
     ENDBC11_2)
 
