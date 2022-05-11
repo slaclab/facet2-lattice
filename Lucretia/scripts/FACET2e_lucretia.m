@@ -1,7 +1,7 @@
   % FACET2E_LUCRETIA Parse FACET2 MAD electron deck into Lucretia
 % Run from MAD folder
 
-global BEAMLINE
+global BEAMLINE WF
 % Clear existing beamline database if exists
 if ~isempty(BEAMLINE)
   BEAMLINE={};
@@ -45,7 +45,7 @@ Initial=M.initStruc;
 Initial.SigPUncorrel=0.135*0.1e-2;
 
 % Set default Sector 20 optics
-match_S20(Initial,"pwfa_50cm",1,0);
+match_S20(Initial,"pwfa_50cm",1,1);
 % match_S20(Initial,"pwfa_50cm_r56=10",1,1);
 T=TwissPlot(1,length(BEAMLINE),Initial,[1 1 0]);
 
@@ -81,5 +81,5 @@ for iele=1:length(BEAMLINE)
     for icf=1:length(cf); BEAMLINE{iele}.(cf{icf}) = BLe.(cf{icf}) ; end
   end
 end
-save FACET2e.mat BEAMLINE Initial
+save FACET2e.mat BEAMLINE WF Initial
 
