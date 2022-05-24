@@ -1,0 +1,11 @@
+! Adapted from file: 	elegant/Sz_p5um_10mm_per35mm_cell.sdds
+! Usage: 
+! ele[sr_wake] = call::longitudinal_wakes_sband.bmad
+
+{
+  scale_with_length = T, 
+  longitudinal = {1.0214527206425931e14, 200.737972823806, 0, 0.25, none},
+  longitudinal = {2.0264683145205535e13, 164752.58575866005, 0, 0.25, none},
+  longitudinal = {9.111515497722739e13, 1206.8246815698092, 0, 0.25, none},
+  longitudinal = {4.95817609185586e13, 9050.772842025624, 0, 0.25, none},
+z_max = 0.01}

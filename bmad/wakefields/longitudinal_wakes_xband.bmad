@@ -1,0 +1,11 @@
+! Adapted from file: 	elegant/Sz_20um_25mm_xband.sdds
+! Usage: 
+! ele[sr_wake] = call::longitudinal_wakes_xband.bmad
+
+{
+scale_with_length = T, 
+  longitudinal = {2.7013593155012734e14, 50442.76855889742, 0, 0.25, none},
+  longitudinal = {4.010882097544016e14, 5194.337269346577, 0, 0.25, none},
+  longitudinal = {6.081620209099359e14, 922.0345327058809, 0, 0.25, none},
+  longitudinal = {3.3535019153736575e14, 202.7790417169871, 0, 0.25, none},
+z_max = 0.025}

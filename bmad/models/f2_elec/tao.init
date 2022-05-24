@@ -1,7 +1,7 @@
 &tao_start
   n_universes = 1
-  plot_file   ='$LCLS_LATTICE/bmad/tao/tao_plot.init '
-  startup_file='$LCLS_LATTICE/bmad/tao/tao.startup'
+  plot_file   ='$FACET2_LATTICE/bmad/tao/tao_plot.init '
+  startup_file='$FACET2_LATTICE/bmad/tao/tao.startup'
 /
 
 
@@ -37,7 +37,7 @@ beam_saved_at =  "MARKER::*"
 track_start = 'DE04a'
 !track_end = 'K11_1D'
 !track_end = 'BC1CEND'
-!beam_init%position_file = '$LCLS_LATTICE/bmad/beams/OTR2_250pC_rescaleto540um_solGTF1M_flat_scattered_20keV_100k.beam0'
+!beam_init%position_file = '$FACET2_LATTICE/bmad/beams/OTR2_250pC_rescaleto540um_solGTF1M_flat_scattered_20keV_100k.beam0'
 beam_init%position_file = 'particles.h5'
 beam_init%center(1) = 0.0
 beam_init%center(2) = 0.0
