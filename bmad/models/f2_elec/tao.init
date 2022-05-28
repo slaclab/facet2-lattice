@@ -52,13 +52,13 @@ beam_init%center(6) = 0.0
 
 
 
-&tao_d2_data
+!&tao_d2_data
         d2_data%name = 'floor'
         universe = 1
         n_d1_data = 1
 /
 
-&tao_d1_data
+!&tao_d1_data
         ix_d1_data = 1
         default_weight = 1
         d1_data%name = 'end'
@@ -110,24 +110,6 @@ beam_init%center(6) = 0.0
         datum( 6) =  'etap.x'     '' '' 'MRK0F'   'target'   0   1e2
 / 
 
-&tao_d2_data
-        d2_data%name = 'LI22'
-        universe = 1
-        n_d1_data = 1
-/
-&tao_d1_data
-        ix_d1_data = 1
-        default_weight = 1
-        d1_data%name = 'begtwiss'
-        datum( 1) =  'beta.a'     '' '' 'LI22BEG'   'target' 1.721438409E+01   1e1
-        datum( 2) =  'alpha.a'    '' '' 'LI22BEG'   'target' -6.973054777E-01  1e2
-        datum( 3) =  'beta.b'     '' '' 'LI22BEG'   'target' 3.514977530E+01      1e1
-        datum( 4) =  'alpha.b'    '' '' 'LI22BEG'   'target'  1.459698115E+00  1e2
-        datum( 5) =  'eta.x'      '' '' 'LI22BEG'   'target'   0  1e1
-        datum( 6) =  'etap.x'     '' '' 'LI22BEG'   'target'   0   1e2
-/        
-
-
 
 &tao_d2_data
         d2_data%name = 'BC11C'
@@ -155,14 +137,14 @@ beam_init%center(6) = 0.0
         ix_d1_data = 3
         default_weight = 1
         d1_data%name = 'offset'
-        datum( 1) =  'rel_floor.x'     'BC1CBEG' '' 'BX12'   'target' 0     1e1
+        datum( 1) =  'rel_floor.x'     'BC11CBEG' '' 'CE11345'   'target' 0     1e1
    
  / 
  &tao_d1_data
         ix_d1_data = 4
         default_weight = 1
         d1_data%name = 'r56'
-        datum( 1) =  'r56_compaction'        'BC1CBEG'  '' 'BC1CEND'   'target'  0   
+        datum( 1) =  'r56_compaction'        'BC11CBEG'  '' 'BC11CEND'   'target'  0   
 / 
 
  
@@ -187,16 +169,16 @@ beam_init%center(6) = 0.0
         ix_d1_data = 2
         default_weight = 1
         d1_data%name = 'energy'
-        datum( 1) =  'e_tot_ref'           '' '' 'BEGBC2'   'target'  0   
-        datum( 2) =  'e_tot_ref'           '' '' 'ENDBC2'   'target'  0   
-        datum( 3) =  'orbit.e_tot'     '' '' 'BEGBC2'   'target'  0   
-        datum( 4) =  'orbit.e_tot'     '' '' 'ENDBC2'   'target'  0   
+        datum( 1) =  'e_tot_ref'           '' '' 'BEGBC14E'   'target'  0   
+        datum( 2) =  'e_tot_ref'           '' '' 'ENDBC14E'   'target'  0   
+        datum( 3) =  'orbit.e_tot'     '' '' 'BEGBC14E'   'target'  0   
+        datum( 4) =  'orbit.e_tot'     '' '' 'ENDBC14E'   'target'  0   
  / 
  &tao_d1_data
         ix_d1_data = 3
         default_weight = 1
         d1_data%name = 'offset'
-        datum( 1) =  'rel_floor.x'     'BEGBC2' '' 'BX22'   'target' 0     1e1
+        datum( 1) =  'rel_floor.x'     'BEGBC14E' '' 'BPM14801'   'target' 0     1e1
    
  / 
 
@@ -210,10 +192,10 @@ beam_init%center(6) = 0.0
         ix_d1_data = 1
         default_weight = 1
         d1_data%name = 'energy'
-        datum( 1) =  'e_tot_ref'           '' '' 'BEGL3'   'target'  0   
-        datum( 2) =  'e_tot_ref'           '' '' 'ENDL3'   'target'  0   
-        datum( 3) =  'orbit.e_tot'     '' '' 'BEGL3'   'target'  0   
-        datum( 4) =  'orbit.e_tot'     '' '' 'ENDL3'   'target'  0   
+        datum( 1) =  'e_tot_ref'           '' '' 'BEGL3F_1'   'target'  0   
+        datum( 2) =  'e_tot_ref'           '' '' 'ENDL3F_2'   'target'  0   
+        datum( 3) =  'orbit.e_tot'     '' '' 'BEGL3F_1'   'target'  0   
+        datum( 4) =  'orbit.e_tot'     '' '' 'ENDL3F_2'   'target'  0   
  / 
 
   
@@ -290,25 +272,6 @@ beam_init%center(6) = 0.0
 /
 
 
-
-!----------------------------------------
-! Two L3 Energies LTHU beta match
-&tao_d2_data
-        d2_data%name = 'LTUH_M'
-        universe = 1
-        n_d1_data = 1
-/
-&tao_d1_data
-        ix_d1_data = 1
-        default_weight = 1
-        d1_data%name = 'match_twiss'
-        datum( 1) =  'beta.a'     '' '' 'WS32'   'target' 46.25     1e1
-        datum( 2) =  'alpha.a'    '' '' 'WS32'   'target' -1.083    1e2
-        datum( 3) =  'beta.b'     '' '' 'WS32'   'target' 46.40     1e1
-        datum( 4) =  'alpha.b'    '' '' 'WS32'   'target' 1.078     1e2
-        datum( 5) =  'eta.x'      '' '' 'WS32'   'target' 0    1e1
-        datum( 6) =  'etap.x'     '' '' 'WS32'   'target' 0    1e2
-/
 
 
 !----------------------------------------
