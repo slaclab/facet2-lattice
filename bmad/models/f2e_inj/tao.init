@@ -78,13 +78,13 @@ beam_init%center(6) = 0.0
         ix_d1_data = 1
         default_weight = 1
         d1_data%name = 'endtwiss'
-        datum( 1) =  'beta.a'     '' '' 'L0AFEND'   'target' 8     1e1   
-        datum( 2) =  'alpha.a'    '' '' 'L0AFEND'   'target' 2     1e2
-        datum( 3) =  'beta.b'     '' '' 'L0AFEND'   'target' 14      1e1
-        datum( 4) =  'alpha.b'    '' '' 'L0AFEND'   'target' 2.6      1e2
+        datum( 1) =  'beta.a'     '' '' 'L0AFEND'   'target' 36     1e1
+        datum( 2) =  'alpha.a'    '' '' 'L0AFEND'   'target' -8    1e2
+        datum( 3) =  'beta.b'     '' '' 'L0AFEND'   'target' 36      1e1
+        datum( 4) =  'alpha.b'    '' '' 'L0AFEND'   'target' -8      1e2
         datum( 5) =  'eta.x'      '' '' 'L0AFEND'   'target' 0      1e1
         datum( 6) =  'etap.x'     '' '' 'L0AFEND'   'target' 0      1e2
-/  
+/
 
 
 
