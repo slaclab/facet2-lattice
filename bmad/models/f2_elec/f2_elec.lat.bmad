@@ -58,9 +58,9 @@ Q12401[K1] =  4.77731490086902411E-001
 
 
 ! Cavity wakefields, traveling wave, full sbend
-lcavity::L0*[sr_wake]  = call::$LCLS_LATTICE/bmad/wakefields/longitudinal_wakes_sband.bmad
-lcavity::K*[sr_wake]    = call::$LCLS_LATTICE/bmad/wakefields/longitudinal_wakes_sband.bmad
-lcavity::L1X*[sr_wake]  = call::$LCLS_LATTICE/bmad/wakefields/longitudinal_wakes_xband.bmad
+lcavity::L0*[sr_wake]   = call::$FACET2_LATTICE/bmad/wakefields/longitudinal_wakes_sband.bmad
+lcavity::K*[sr_wake]    = call::$FACET2_LATTICE/bmad/wakefields/longitudinal_wakes_sband.bmad
+lcavity::L1X*[sr_wake]  = call::$FACET2_LATTICE/bmad/wakefields/longitudinal_wakes_xband.bmad
 lcavity::*[cavity_type] = traveling_wave
 sbend::*[fringe_type] = full
 

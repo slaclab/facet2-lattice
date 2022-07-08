@@ -1,8 +1,17 @@
 # facet2-lattice
 Lattice files for the FACET-II accelerator
 
+## Setup 
 
-CHANGELOG:
+Many of the paths will use the `$FACET2_LATTICE` environmental variable, which should point to this repository, as in:
+
+`export FACET2_LATTICE=/path/to/this/repo`
+
+
+
+
+## Changelog 
+
 * Oct-28-2021, G. White: Removed XTCAV from chicane, tweaked FFS & SPECT elements to match as-built reported by D. Storey 9-SEPT-2021 (LI20.xsif modified)
 * Sept-3-2021, G. White: As-built layout for FFS changes in LI20.xsif (all singleton Q5,Q4,Q3,Q2,Q1,Q0FF quads)
 * 05/05/2021, G. White: Added Q0FF, Q1FF, Q2FF, removed QFF4, locations according to metrology mesurements
