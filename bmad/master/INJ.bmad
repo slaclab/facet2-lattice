@@ -1,8 +1,11 @@
 
-! *** OPTICS=FACET2-18MAY21 ***
+! *** OPTICS=FACET2-08NOV21 ***
 
 ! ==============================================================================
 ! Modification History
+! ------------------------------------------------------------------------------
+! 17-DEC-2019, M. Woodley
+!  * define unsplit L0AF and L0BF for Bmad
 ! ------------------------------------------------------------------------------
 ! 23-AUG-2018, M. Woodley
 !  * gradL0A, gradL0B, and L0phase from FACET2e_baseline.mat
@@ -64,6 +67,11 @@ l0bf__5: lcavity, rf_frequency = sbandf * 1e6, type = "DUALFEED", l = 0.3351400,
           phi0 = phil0
 l0bf__6: lcavity, rf_frequency = sbandf * 1e6, type = "DUALFEED", l = 0.0609190, voltage = gradl0b*0.0609190 * 1e6,
           phi0 = phil0
+
+! define unsplit lcavitys for BMAD ... not used by MAD
+
+l0af: lcavity, rf_frequency = sbandf * 1e6, type = "DUALFEED", l = ll0acc, voltage = gradl0a*ll0acc * 1e6, phi0 = phil0
+l0bf: lcavity, rf_frequency = sbandf * 1e6, type = "DUALFEED", l = ll0acc, voltage = gradl0b*ll0acc * 1e6, phi0 = phil0
 
 ! ==============================================================================
 ! QUAD
@@ -197,11 +205,91 @@ endinj: marker
   SC4F : LINE=(XC10381,YC10382)
   SC5F : LINE=(XC10411,YC10412)
 
-  L0AF : LINE=(L0AFbeg,FLNGAF1,L0AF__1,DLFDAF,L0AF__2,L0AF__3,SC2F,L0AF__4,L0AFmid,L0AF__5,L0AF__6,OUTCPAF,L0AF__7,
-         FLNGAF2,L0AFwake,L0AFend)
+!---------------------
+! L0AF LCAVITY
+L0AF_full: line = (L0AF)
+! contains zero length elements:
+    DLFDAF[superimpose] = T
+    DLFDAF[ref] = L0AF
+    DLFDAF[ref_origin] = beginning
+    DLFDAF[offset] = 0.058646
+    XC10311[superimpose] = T
+    XC10311[ref] = L0AF
+    XC10311[ref_origin] = beginning
+    XC10311[offset] = 0.9073198
+    YC10312[superimpose] = T
+    YC10312[ref] = L0AF
+    YC10312[ref_origin] = beginning
+    YC10312[offset] = 0.9073198
+    L0AFMID[superimpose] = T
+    L0AFMID[ref] = L0AF
+    L0AFMID[ref_origin] = beginning
+    L0AFMID[offset] = 1.547622
+    OUTCPAF[superimpose] = T
+    OUTCPAF[ref] = L0AF
+    OUTCPAF[ref_origin] = beginning
+    OUTCPAF[offset] = 3.034325
+    FLNGAF2[superimpose] = T
+    FLNGAF2[ref] = L0AF
+    FLNGAF2[ref_origin] = beginning
+    FLNGAF2[offset] = 3.095244
+    L0AFWAKE[superimpose] = T
+    L0AFWAKE[ref] = L0AF
+    L0AFWAKE[ref_origin] = beginning
+    L0AFWAKE[offset] = 3.095244
+    L0AFEND[superimpose] = T
+    L0AFEND[ref] = L0AF
+    L0AFEND[ref_origin] = beginning
+    L0AFEND[offset] = 3.095244
+!old:   L0AF_full : LINE=(L0AFbeg,FLNGAF1,L0AF__1,DLFDAF,L0AF__2,L0AF__3,SC2F,L0AF__4,L0AFmid,L0AF__5,L0AF__6,OUTCPAF,L0AF__7,
+!old          FLNGAF2,L0AFwake,L0AFend)
 
-  L0BF : LINE=(L0BFbeg,FLNGBF1,L0BF__1,DLFDBF,L0BF__2,SC4F,L0BF__3,L0BFmid,L0BF__4,SC5F,L0BF__5,OUTCPBF,L0BF__6,FLNGBF2,
-         L0BFwake,L0BFend)
+!---------------------
+! L0BF LCAVITY
+L0BF_full: line = (L0BF)
+! contains zero length elements:
+    DLFDBF[superimpose] = T
+    DLFDBF[ref] = L0BF
+    DLFDBF[ref_origin] = beginning
+    DLFDBF[offset] = 0.058646
+    XC10381[superimpose] = T
+    XC10381[ref] = L0BF
+    XC10381[ref_origin] = beginning
+    XC10381[offset] = 0.3957741
+    YC10382[superimpose] = T
+    YC10382[ref] = L0BF
+    YC10382[ref_origin] = beginning
+    YC10382[offset] = 0.3957741
+    L0BFMID[superimpose] = T
+    L0BFMID[ref] = L0BF
+    L0BFMID[ref_origin] = beginning
+    L0BFMID[offset] = 1.547622
+    XC10411[superimpose] = T
+    XC10411[ref] = L0BF
+    XC10411[ref_origin] = beginning
+    XC10411[offset] = 2.699185
+    YC10412[superimpose] = T
+    YC10412[ref] = L0BF
+    YC10412[ref_origin] = beginning
+    YC10412[offset] = 2.699185
+    OUTCPBF[superimpose] = T
+    OUTCPBF[ref] = L0BF
+    OUTCPBF[ref_origin] = beginning
+    OUTCPBF[offset] = 3.034325
+    FLNGBF2[superimpose] = T
+    FLNGBF2[ref] = L0BF
+    FLNGBF2[ref_origin] = beginning
+    FLNGBF2[offset] = 3.095244
+    L0BFWAKE[superimpose] = T
+    L0BFWAKE[ref] = L0BF
+    L0BFWAKE[ref_origin] = beginning
+    L0BFWAKE[offset] = 3.095244
+    L0BFEND[superimpose] = T
+    L0BFEND[ref] = L0BF
+    L0BFEND[ref_origin] = beginning
+    L0BFEND[offset] = 3.095244
+!old:   L0BF_full : LINE=(L0BFbeg,FLNGBF1,L0BF__1,DLFDBF,L0BF__2,SC4F,L0BF__3,L0BFmid,L0BF__4,SC5F,L0BF__5,OUTCPBF,L0BF__6,
+!old          FLNGBF2,L0BFwake,L0BFend)
 
 ! FACET-II configuration with L0A 0.97m from the cathode
 
@@ -236,7 +324,8 @@ sq10122[superimpose] = T
 sq10122[ref] = sol10121
 
   INJ : LINE=(DL00,LOADLOCKF,BEGINJ,SOL10111,CATHODEF,DL01a,SOL10121_full,DL01b,VV10155,DL01c,MIR10181,DL01d,VV10215,
-         DL01e,BPM10221,DL01f,SC1F,DL01g,PR10241,DL01h,L0AF,DL02,QA10361_full,DL03a,PH10365,DL03b,QA10371_full,DL04,L0BF,ENDINJ)
+         DL01e,BPM10221,DL01f,SC1F,DL01g,PR10241,DL01h,L0AF_full,DL02,QA10361_full,DL03a,PH10365,DL03b,QA10371_full,DL04,
+         L0BF_full,ENDINJ)
 
   INJS10AIP : LINE=(DL00,LOADLOCKF,BEGINJ,SOL10111,CATHODEF,DL01a,SOL10121_full,DL01b,VV10155,DL01c,MIR10181,DL01d2,
          SC1F,DL01e2,PR10241,DL01f2,FCUP,ENDINJ)

@@ -1,7 +1,15 @@
-
 ! ==============================================================================
 ! Modification History
 ! ------------------------------------------------------------------------------
+! 08-JUL-2022, G. White - Position and name changes from B. O'Shea
+!  QM11312 z = 1039.1048 -> 1039.1590 (dz = +54.2 mm)
+!  CQ11317 z = 1040.5585 -> 1040.6694 (dz = +110.9 mm)
+!  YC11321 z = 1040.6694 -> 1041.0487 (dz = +373.9 mm)
+!  CE11345 -> CE11334 z = 1043.6915 -> 1044.2771 (dz = +585.6 mm)
+!  CQ11352 z = 1045.0678 -> 1045.0798 (dz = +12.0 mm)
+!  QM11358 z = 1046.547 -> 1046.4623 (dz = -84.7 mm)
+!  BL11359 -> BL11356 z = 1046.8851 -> 1046.7396 (dz = -145.5 mm)
+! 08-MAR-2022, G. White - put XC11398, YC11399 & SQ11340 back in
 ! 22-JAN-2021, G. White - Changes per B. O'Shea for edge radiation equipment
 !  * Move QM11312 27cm d/s
 !  * Move CQ11317 50cm d/s
@@ -98,7 +106,7 @@
 
   QM11312 : QUAD, TYPE="1.085Q4.31", L=LQE/2, APER=rQE, K1=KQM11312      
   CQ11317 : QUAD, TYPE="1.69Q3.4",   L=LQc/2, APER=rQc, K1=KCQ11317      
-!  SQ11340 : QUAD, TYPE="1.69Q3.4",   L=LQc/2, APER=rQc, K1=KSQ11340, TILT - removed Feb-28-2020
+  SQ11340 : QUAD, TYPE="1.69Q3.4",   L=LQc/2, APER=rQc, K1=KSQ11340, TILT
   CQ11352 : QUAD, TYPE="1.69Q3.4",   L=LQc/2, APER=rQc, K1=KCQ11352      
 
 ! common
@@ -130,9 +138,9 @@
 ! LD11g  : "Z" distance between CQ12B and BX14B
 
   LD11   := 2.434899800885
-  LD11a  := 0.900381-ZB11/2-LQc/2 ! 0.400381-ZB11/2-LQc/2
+  LD11a  := 110.9e-3+0.900381-ZB11/2-LQc/2 ! 0.400381-ZB11/2-LQc/2
   LD11cq := LQc*COS(AB11)
-  LD11b  := 0.057096466353 ! 0.557096466353
+  LD11b  := 0.057096466353-110.9e-3 ! 0.557096466353
   LD11c  := LD11-(LD11a+LD11cq+LD11b)
   LD11d  := 0.287185962999 !0.261301
   LD11sq := LQc*COS(AB11)
@@ -140,26 +148,26 @@
   LD11g  := LD11a
   LD11e  := LD11-(LD11d+LD11sq+LD11f+LD11cq+LD11g)
 
-  DM11   : DRIF, L=0.533689514667-0.27 ! 0.533689514667
-  DM12   : DRIF, L=0.128601+0.27       ! 0.128601
+  DM11   : DRIF, L=0.317889
+  DM12   : DRIF, L=0.344401
   D11oa  : DRIF, L=LD11a/COS(AB11), TYPE="CSR"
-  D11ob  : DRIF, L=LD11b/COS(AB11), TYPE="CSR"
-  D11oc  : DRIF, L=LD11c/COS(AB11), TYPE="CSR"
+  D11ob  : DRIF, L=LD11b/COS(AB11)+381e-3, TYPE="CSR"
+  D11oc  : DRIF, L=LD11c/COS(AB11)-381e-3, TYPE="CSR"
   DDG11  : DRIF, L=0.24864, TYPE="CSR"
   DDG12  : DRIF, L=0.16446, TYPE="CSR"
   DDG13  : DRIF, L=0.182606, TYPE="CSR"
   DDG14  : DRIF, L=0.234494, TYPE="CSR"
   D11od  : DRIF, L=LD11d/COS(AB11), TYPE="CSR"
-  D11od1 : DRIF, L=0.131230935728+0.13, TYPE="CSR" ! 0.131230935728
+  D11od1 : DRIF, L=0.131230935728+0.13+588.2e-3, TYPE="CSR" ! 0.131230935728
   D11od2 : DRIF, L=D11od[L]-D11od1[L], TYPE="CSR"
-  D11oe  : DRIF, L=LQc+LD11e/COS(AB11), TYPE="CSR"
-  D11of  : DRIF, L=LD11f/COS(AB11), TYPE="CSR"
-  D11og  : DRIF, L=LD11g/COS(AB11), TYPE="CSR"
+  D11oe  : DRIF, L=LD11e/COS(AB11), TYPE="CSR"
+  D11of  : DRIF, L=LD11f/COS(AB11)+0.1234, TYPE="CSR"
+  D11og  : DRIF, L=LD11g/COS(AB11)-0.1234, TYPE="CSR"
 
   DM13a  : DRIF, L=0.161725, TYPE="CSR"
-  DM13b  : DRIF, L=0.262325, TYPE="CSR"       !0.162325
-  DM14a  : DRIF, L=0.284724, TYPE="CSR"       !0.384724
-  DM14b  : DRIF, L=0.17946475, TYPE="CSR"     !0.17886475
+  DM13b  : DRIF, L=0.262325-84.7e-3, TYPE="CSR"       !0.162325
+  DM14a  : DRIF, L=0.284724+84.7e-3-145.5e-3, TYPE="CSR"       !0.384724
+  DM14b  : DRIF, L=0.17946475+145.5e-3, TYPE="CSR"     !0.17886475
   DM15a  : DRIF, L=0.352146, TYPE="CSR"       !0.351546
   DM15b  : DRIF, L=2.155039035421, TYPE="CSR"
   DM15c  : DRIF, L=1.81845801814, TYPE="CSR"
@@ -174,6 +182,8 @@
 
   YC11321 : VKIC, TYPE="type-4"
   YC11365 : VKIC, TYPE="type-4"
+  XC11398 : HKIC, TYPE="type-4"
+  YC11399 : VKIC, TYPE="type-4"
 
 ! ==============================================================================
 ! diagnostics
@@ -191,7 +201,7 @@
 ! misc
 
   PR11335 : PROF, TYPE="OTR BC"
-  BL11359 : BLMO, TYPE="CSR"
+  BL11356 : BLMO, TYPE="CSR"
   IM11360 : IMON, TYPE="toroid"
   PR11375 : PROF, TYPE="OTR"
   TD11390 : PROF, TYPE="tune-up dump"
@@ -200,7 +210,7 @@
 ! collimators
 ! ------------------------------------------------------------------------------
 
-  CE11345 : RCOL, TYPE="HCOLL" !energy collimator
+  CE11334 : RCOL, TYPE="HCOLL" !energy collimator
 
 ! ==============================================================================
 ! MARK
@@ -222,7 +232,7 @@
   CQ11317_full  : LINE=(CQ11317,CQ11317)
   BCX11331_full : LINE=(BCX11331a,BCX11331b)
   BCX11338_full : LINE=(BCX11338a,BCX11338b)
-!  SQ11340_full  : LINE=(SQ11340,SQ11340) - removed FEB-28-2020
+  SQ11340_full  : LINE=(SQ11340,SQ11340)
   CQ11352_full  : LINE=(CQ11352,CQ11352)
   BCX11355_full : LINE=(BCX11355a,BCX11355b)
 
@@ -230,8 +240,8 @@
     BCX11314_full,D11oa,&
     CQ11317_full,D11ob,YC11321,D11oc,&
     BCX11331_full,DDG11,BPM11333,DDG12,DDG13,PR11335,DDG14,&
-    BCX11338_full,D11od1,CE11345,D11od2,&
-    D11oe,D11of,&
+    BCX11338_full,D11od1,CE11334,D11od2,&
+    SQ11340_full,D11oe,D11of,&
     CQ11352_full,D11og,&
     BCX11355_full,CNT1B,&
     BC11CEND)
@@ -249,9 +259,9 @@
   Q11401_full  : LINE=(Q11401,BPM11401,Q11401)
 
   BC11_2 : LINE=(BEGBC11_2,DM13a,DM13b,&
-    QM11358_full,DM14a,BL11359,IM11360,DM14b,&
+    QM11358_full,DM14a,BL11356,IM11360,DM14b,&
     QM11362_full,DM15a,YC11365,DM15b,PR11375,DM15c,TD11390,DM15d,&
-    QM11393_full,DM16a,DM16b,&
+    QM11393_full,DM16a,XC11398,YC11399,DM16b,&
     Q11401_full,DM17,&
     ENDBC11_2)
 

@@ -1,0 +1,1182 @@
+! ---------
+! Device mapping derived from $LCLS_LATTICE/bmad/conversion/from_oracle/lcls_elements.csv
+! No device listed for: AS1EL
+! No device listed for: AS1ER
+! No device listed for: AS2EL
+! No device listed for: AS2ER
+! No device listed for: B1LE
+! No device listed for: B1RE
+! No device listed for: B2LE
+! No device listed for: B2RE
+! No device listed for: B3LE
+! No device listed for: B3RE
+B5D36[alias]=LI20:BEND:3330
+! No device listed for: BC11CBEG
+! No device listed for: BC11CEND
+BCX10451[alias]=BEND:IN10:451
+BCX10461[alias]=BEND:IN10:461
+BCX10475[alias]=BEND:IN10:475
+BCX10481[alias]=BEND:IN10:481
+BCX11314[alias]=BEND:LI11:314
+BCX11331[alias]=BEND:LI11:331
+BCX11338[alias]=BEND:LI11:338
+BCX11355[alias]=BEND:LI11:355
+BCX14720[alias]=BEND:LI14:720
+BCX14796[alias]=BEND:LI14:796
+BCX14808[alias]=BEND:LI14:808
+BCX14883[alias]=BEND:LI14:883
+! No device listed for: BEGBC11_1
+! No device listed for: BEGBC11_2
+! No device listed for: BEGBC14E
+! No device listed for: BEGBC14_1
+! No device listed for: BEGBC14_2
+! No device listed for: BEGBC20
+! No device listed for: BEGDL10
+! No device listed for: BEGEDC
+! No device listed for: BEGEXPT20
+! No device listed for: BEGFF20
+! No device listed for: BEGINJ
+! No device listed for: BEGINNING
+! No device listed for: BEGL1F
+! No device listed for: BEGL2F
+! No device listed for: BEGL3F_1
+! No device listed for: BEGL3F_2
+! No device listed for: BEGPDC
+! No device listed for: BEGSPECT20
+! No device listed for: BEWIN1
+! No device listed for: BEWIN2
+! No device listed for: BFLYMID
+BL11359[alias]=BLEN:LI11:359
+BL14888[alias]=BLEN:LI14:888
+BL18900[alias]=BLEN:LI18:900
+BL20_4[alias]=BLEN:LI20:3014
+BPM10221[alias]=BPMS:IN10:221
+BPM10371[alias]=BPMS:IN10:371
+BPM10425[alias]=BPMS:IN10:425
+BPM10511[alias]=BPMS:IN10:511
+BPM10525[alias]=BPMS:IN10:525
+BPM10581[alias]=BPMS:IN10:581
+BPM10631[alias]=BPMS:IN10:631
+BPM10651[alias]=BPMS:IN10:651
+BPM10731[alias]=BPMS:IN10:731
+BPM10771[alias]=BPMS:IN10:771
+BPM10781[alias]=BPMS:IN10:781
+BPM11132[alias]=BPMS:LI11:132
+BPM11201[alias]=BPMS:LI11:201
+BPM11265[alias]=BPMS:LI11:265
+BPM11301[alias]=BPMS:LI11:301
+BPM11312[alias]=BPMS:LI11:312
+BPM11333[alias]=BPMS:LI11:333
+BPM11358[alias]=BPMS:LI11:358
+BPM11362[alias]=BPMS:LI11:362
+BPM11393[alias]=BPMS:LI11:393
+BPM11401[alias]=LI11:BPMS:401
+BPM11501[alias]=LI11:BPMS:501
+BPM11601[alias]=LI11:BPMS:601
+BPM11701[alias]=LI11:BPMS:701
+BPM11801[alias]=LI11:BPMS:801
+BPM11901[alias]=LI11:BPMS:901
+BPM12201[alias]=LI12:BPMS:201
+BPM12301[alias]=LI12:BPMS:301
+BPM12401[alias]=LI12:BPMS:401
+BPM12501[alias]=LI12:BPMS:501
+BPM12601[alias]=LI12:BPMS:601
+BPM12701[alias]=LI12:BPMS:701
+BPM12801[alias]=LI12:BPMS:801
+BPM12901[alias]=LI12:BPMS:901
+BPM13201[alias]=LI13:BPMS:201
+BPM13301[alias]=LI13:BPMS:303
+BPM13401[alias]=LI13:BPMS:401
+BPM13501[alias]=LI13:BPMS:501
+BPM13601[alias]=LI13:BPMS:601
+BPM13701[alias]=LI13:BPMS:701
+BPM13801[alias]=LI13:BPMS:801
+BPM13901[alias]=LI13:BPMS:901
+BPM14201[alias]=LI14:BPMS:201
+BPM14301[alias]=LI14:BPMS:301
+BPM14401[alias]=LI14:BPMS:401
+BPM14501[alias]=LI14:BPMS:501
+BPM14601[alias]=LI14:BPMS:601
+BPM14701[alias]=LI14:BPMS:701
+BPM14715[alias]=BPMS:LI14:715
+BPM14801[alias]=BPMS:LI14:801
+BPM14891[alias]=BPMS:LI14:891
+BPM14901[alias]=LI14:BPMS:901
+BPM15201[alias]=LI15:BPMS:201
+BPM15301[alias]=LI15:BPMS:301
+BPM15401[alias]=LI15:BPMS:401
+BPM15501[alias]=LI15:BPMS:501
+BPM15601[alias]=LI15:BPMS:601
+BPM15701[alias]=LI15:BPMS:701
+BPM15801[alias]=LI15:BPMS:801
+BPM15901[alias]=LI15:BPMS:901
+BPM16201[alias]=LI16:BPMS:201
+BPM16301[alias]=LI16:BPMS:301
+BPM16401[alias]=LI16:BPMS:401
+BPM16501[alias]=LI16:BPMS:501
+BPM16601[alias]=LI16:BPMS:601
+BPM16701[alias]=LI16:BPMS:701
+BPM16801[alias]=LI16:BPMS:801
+BPM16901[alias]=LI16:BPMS:901
+BPM17201[alias]=LI17:BPMS:201
+BPM17301[alias]=LI17:BPMS:301
+BPM17401[alias]=LI17:BPMS:401
+BPM17501[alias]=LI17:BPMS:501
+BPM17601[alias]=LI17:BPMS:601
+BPM17701[alias]=LI17:BPMS:701
+BPM17801[alias]=LI17:BPMS:801
+BPM17901[alias]=LI17:BPMS:901
+BPM18201[alias]=LI18:BPMS:201
+BPM18301[alias]=LI18:BPMS:301
+BPM18401[alias]=LI18:BPMS:401
+BPM18501[alias]=LI18:BPMS:501
+BPM18601[alias]=LI18:BPMS:601
+BPM18701[alias]=LI18:BPMS:701
+BPM18801[alias]=LI18:BPMS:801
+BPM18901[alias]=LI18:BPMS:901
+BPM19201[alias]=LI19:BPMS:201
+BPM19301[alias]=LI19:BPMS:301
+BPM19401[alias]=LI19:BPMS:401
+BPM19801[alias]=LI19:BPMS:801
+BPM19851[alias]=LI19:BPMS:851
+BPM19871[alias]=LI19:BPMS:871
+! No device listed for: BX0FBEG
+! No device listed for: BX0FEND
+BX10661[alias]=BEND:IN10:661
+BX10751[alias]=BEND:IN10:751
+BZ10596[alias]=BLEN:IN10:596
+CATHODEF[alias]=CATH:IN10:111
+! No device listed for: CB1LE
+! No device listed for: CB1RE
+! No device listed for: CB2LE
+! No device listed for: CB2RE
+! No device listed for: CB3LE
+! No device listed for: CB3RE
+CE11345[alias]=COLL:LI11:345
+CE14815[alias]=COLL:LI14:815
+! No device listed for: CN2069
+! No device listed for: CNEAR
+! No device listed for: CNT0F
+! No device listed for: CNT1B
+! No device listed for: CNT2B
+CQ10121[alias]=QUAD:IN10:121
+CQ11317[alias]=QUAD:LI11:317
+CQ11352[alias]=QUAD:LI11:352
+CQ14738[alias]=QUAD:LI14:738
+CQ14866[alias]=QUAD:LI14:866
+CX18960[alias]=COLL:LI18:960:X
+! No device listed for: CX2085
+CY18960[alias]=COLL:LI18:960:Y
+! No device listed for: D0FF
+! No device listed for: D10
+! No device listed for: D10A
+! No device listed for: D10B
+! No device listed for: D10D
+! No device listed for: D10FF
+! No device listed for: D11D
+! No device listed for: D11FF
+! No device listed for: D11OA
+! No device listed for: D11OB
+! No device listed for: D11OC
+! No device listed for: D11OD1
+! No device listed for: D11OD2
+! No device listed for: D11OE
+! No device listed for: D11OF
+! No device listed for: D11OG
+! No device listed for: D12D
+! No device listed for: D13D
+! No device listed for: D14D
+! No device listed for: D152DA
+! No device listed for: D152DB
+! No device listed for: D199A
+! No device listed for: D199A1
+! No device listed for: D199A2
+! No device listed for: D199B
+! No device listed for: D199C
+! No device listed for: D199D
+! No device listed for: D1AFF
+! No device listed for: D1D
+! No device listed for: D1ET1A
+! No device listed for: D1ET1B
+! No device listed for: D1ET2A
+! No device listed for: D1ET2B
+! No device listed for: D1FF
+! No device listed for: D210B
+! No device listed for: D210B1
+! No device listed for: D210B1_A
+! No device listed for: D210B2
+! No device listed for: D210B_A
+! No device listed for: D2AFF
+! No device listed for: D2D
+! No device listed for: D2EA
+! No device listed for: D2FF
+! No device listed for: D3AFF
+! No device listed for: D3D
+! No device listed for: D3E
+! No device listed for: D3FF
+! No device listed for: D4D
+! No device listed for: D4EA1
+! No device listed for: D4EA2
+! No device listed for: D4EB1
+! No device listed for: D4EB2
+! No device listed for: D4FF
+! No device listed for: D5D
+! No device listed for: D5EA1
+! No device listed for: D5EA2
+! No device listed for: D5EB1
+! No device listed for: D5EB2
+! No device listed for: D5EC1A
+! No device listed for: D5EC1B
+! No device listed for: D5EC2A
+! No device listed for: D5EC2B
+! No device listed for: D6D
+! No device listed for: D6EA1
+! No device listed for: D6EA2
+! No device listed for: D6EB1
+! No device listed for: D6EB2
+! No device listed for: D6EC1
+! No device listed for: D6EC2
+! No device listed for: D6FF
+! No device listed for: D7D
+! No device listed for: D7E1
+! No device listed for: D7E2
+! No device listed for: D7FF
+! No device listed for: D8D
+! No device listed for: D8E
+! No device listed for: D8EM
+! No device listed for: D8FF
+! No device listed for: D9D
+! No device listed for: D9FF
+! No device listed for: DAA7
+! No device listed for: DAA7A
+! No device listed for: DAA7B
+! No device listed for: DAA7C
+! No device listed for: DAA7D
+! No device listed for: DAA7E
+! No device listed for: DAA7F
+! No device listed for: DAA7G
+! No device listed for: DAA7H
+! No device listed for: DAA7L
+! No device listed for: DAA7M
+! No device listed for: DAQ1
+! No device listed for: DAQ2
+! No device listed for: DAQ3
+! No device listed for: DAQ4
+! No device listed for: DAQ4A
+! No device listed for: DAQ4B
+! No device listed for: DAQ4C
+! No device listed for: DAQ4D
+! No device listed for: DAQ4E
+! No device listed for: DAQ4K
+! No device listed for: DAQ4L
+! No device listed for: DAQ4M
+! No device listed for: DAQ4N
+! No device listed for: DAQ5A
+! No device listed for: DAQ5B
+! No device listed for: DAQA1
+! No device listed for: DAQA2
+! No device listed for: DAQA3
+! No device listed for: DAQA4
+! No device listed for: DAQA5
+! No device listed for: DAQA6
+! No device listed for: DB00A
+! No device listed for: DB00B
+! No device listed for: DB00C
+! No device listed for: DB01
+! No device listed for: DB2XC4
+! No device listed for: DBKY170
+! No device listed for: DBMARK30
+! No device listed for: DBMARK67
+! No device listed for: DBQ2A
+! No device listed for: DBQ2B
+! No device listed for: DCNHC
+! No device listed for: DDG0
+! No device listed for: DDG11
+! No device listed for: DDG12
+! No device listed for: DDG13
+! No device listed for: DDG14
+! No device listed for: DDG21
+! No device listed for: DDG22A
+! No device listed for: DDG22B
+! No device listed for: DDG23
+! No device listed for: DDG24
+! No device listed for: DDGA
+! No device listed for: DE00
+! No device listed for: DE01A
+! No device listed for: DE01B
+! No device listed for: DE01C
+! No device listed for: DE03A
+! No device listed for: DE03B
+! No device listed for: DE04A
+! No device listed for: DE04B
+! No device listed for: DE05A
+! No device listed for: DE05B
+! No device listed for: DE05C1
+! No device listed for: DE05C2
+! No device listed for: DE05D
+! No device listed for: DE05E
+! No device listed for: DE05F
+! No device listed for: DE05G
+! No device listed for: DE06A
+! No device listed for: DE06B
+! No device listed for: DE07
+! No device listed for: DEX20_1
+! No device listed for: DEX20_10
+! No device listed for: DEX20_10A
+! No device listed for: DEX20_11
+! No device listed for: DEX20_12
+! No device listed for: DEX20_12A
+! No device listed for: DEX20_13
+! No device listed for: DEX20_14
+! No device listed for: DEX20_15
+! No device listed for: DEX20_16
+! No device listed for: DEX20_2
+! No device listed for: DEX20_3
+! No device listed for: DEX20_4
+! No device listed for: DEX20_5
+! No device listed for: DEX20_6
+! No device listed for: DEX20_7
+! No device listed for: DEX20_8
+! No device listed for: DEX20_9
+! No device listed for: DH00
+! No device listed for: DH01
+! No device listed for: DH02A
+! No device listed for: DH02B
+! No device listed for: DH03A
+! No device listed for: DH03B
+! No device listed for: DH04
+! No device listed for: DH05A
+! No device listed for: DH05B
+! No device listed for: DHCYC1A
+! No device listed for: DHCYC1B
+! No device listed for: DKRK1
+! No device listed for: DKRK2
+! No device listed for: DL00
+! No device listed for: DL01A
+! No device listed for: DL01B
+! No device listed for: DL01C
+! No device listed for: DL01D
+! No device listed for: DL01E
+! No device listed for: DL01F
+! No device listed for: DL01G
+! No device listed for: DL01H
+! No device listed for: DL02
+! No device listed for: DL03A
+! No device listed for: DL03B
+! No device listed for: DL04
+! No device listed for: DL1X
+! No device listed for: DLFDAF
+! No device listed for: DLFDBF
+! No device listed for: DM00A
+! No device listed for: DM00B
+! No device listed for: DM01
+! No device listed for: DM02A
+! No device listed for: DM02B
+! No device listed for: DM02C
+! No device listed for: DM10A
+! No device listed for: DM11
+! No device listed for: DM11Q
+! No device listed for: DM12
+! No device listed for: DM13A
+! No device listed for: DM13B
+! No device listed for: DM14A
+! No device listed for: DM14B
+! No device listed for: DM15A
+! No device listed for: DM15B
+! No device listed for: DM15C
+! No device listed for: DM15D
+! No device listed for: DM16A
+! No device listed for: DM16B
+! No device listed for: DM17
+! No device listed for: DM1Q
+! No device listed for: DM1QEX
+! No device listed for: DM20
+! No device listed for: DM21A
+! No device listed for: DM21B
+! No device listed for: DM22
+! No device listed for: DM23A
+! No device listed for: DM23B
+! No device listed for: DM23C
+! No device listed for: DM24A
+! No device listed for: DM24B
+! No device listed for: DM25
+! No device listed for: DM3BEX
+! No device listed for: DM3Q
+! No device listed for: DM4Q
+! No device listed for: DM5Q
+! No device listed for: DM6Q
+! No device listed for: DM7Q
+! No device listed for: DM8Q
+! No device listed for: DM9Q
+! No device listed for: DMQ
+! No device listed for: DMQ0D
+! No device listed for: DMQ0FF
+! No device listed for: DMQ1D
+! No device listed for: DMQ2D
+! No device listed for: DPMM1
+! No device listed for: DQ3E
+! No device listed for: DQ4E
+! No device listed for: DS3E
+! No device listed for: DSOTR
+! No device listed for: DSTHZ
+! No device listed for: DTCWIG
+! No device listed for: DTM11
+! No device listed for: DTOTR
+! No device listed for: DTPM
+! No device listed for: DWE
+! No device listed for: DXC1B
+! No device listed for: DXC1E
+! No device listed for: DXC2E
+! No device listed for: DXC3E
+! No device listed for: DXC4E
+! No device listed for: DXC4TCA
+! No device listed for: DXC4TCB
+! No device listed for: DXTC1
+! No device listed for: DXTC2
+! No device listed for: DXTCAVF
+! No device listed for: DYAGQ
+! No device listed for: DYAGW
+! No device listed for: DYC1E
+! No device listed for: DYC1XC1
+! No device listed for: DYC2E
+! No device listed for: DYC3E
+! No device listed for: END
+! No device listed for: ENDBC11_1
+! No device listed for: ENDBC11_2
+! No device listed for: ENDBC14E
+! No device listed for: ENDBC14_1
+! No device listed for: ENDBC14_2
+! No device listed for: ENDBC20
+! No device listed for: ENDDL10
+! No device listed for: ENDEDC
+! No device listed for: ENDEXPT20
+! No device listed for: ENDFF20
+! No device listed for: ENDINJ
+! No device listed for: ENDL1F
+! No device listed for: ENDL2F
+! No device listed for: ENDL3F_1
+! No device listed for: ENDL3F_2
+! No device listed for: ENDPDC
+! No device listed for: ENDSPECT20
+! No device listed for: EXTHOLE1
+! No device listed for: EXTWIN
+! No device listed for: FILG
+! No device listed for: FILS
+! No device listed for: FLNGAF2
+! No device listed for: FLNGBF2
+! No device listed for: HLAM
+! No device listed for: HTRUNDF
+IM10431[alias]=TORO:IN10:362
+IM10591[alias]=TORO:IN10:591
+IM10791[alias]=TORO:IN10:791
+IM11360[alias]=TORO:LI11:360
+IM14895[alias]=TORO:LI14:895
+IM1988[alias]=LI20:TORO:1988
+IM2040[alias]=LI20:TORO:2040
+IM2452[alias]=LI20:TORO:2452
+! No device listed for: IM3255
+! No device listed for: IN10WALL
+! No device listed for: IPOTR1
+! No device listed for: IPOTR1P
+! No device listed for: IPOTR2
+IPWS1[alias]=WIRE:LI20:3179
+IPWS3[alias]=WIRE:LI20:3229
+! No device listed for: IQMON20
+K11_1B[alias]=KLYS:LI11:11
+K11_1C[alias]=KLYS:LI11:11
+K11_1D[alias]=KLYS:LI11:11
+K11_2A[alias]=KLYS:LI11:21
+K11_2B[alias]=KLYS:LI11:21
+K11_2C[alias]=KLYS:LI11:21
+K11_4A[alias]=KLYS:LI11:41
+K11_4B[alias]=KLYS:LI11:41
+K11_4C[alias]=KLYS:LI11:41
+K11_4D[alias]=KLYS:LI11:41
+K11_5A[alias]=KLYS:LI11:51
+K11_5B[alias]=KLYS:LI11:51
+K11_5C[alias]=KLYS:LI11:51
+K11_5D[alias]=KLYS:LI11:51
+K11_6A[alias]=KLYS:LI11:61
+K11_6B[alias]=KLYS:LI11:61
+K11_6C[alias]=KLYS:LI11:61
+K11_6D[alias]=KLYS:LI11:61
+K11_7A[alias]=KLYS:LI11:71
+K11_7B[alias]=KLYS:LI11:71
+K11_7C[alias]=KLYS:LI11:71
+K11_7D[alias]=KLYS:LI11:71
+K11_8A[alias]=KLYS:LI11:81
+K11_8B[alias]=KLYS:LI11:81
+K11_8C[alias]=KLYS:LI11:81
+K11_8D[alias]=KLYS:LI11:81
+K12_1A[alias]=LI12:KLYS:11
+K12_1B[alias]=LI12:KLYS:11
+K12_1C[alias]=LI12:KLYS:11
+K12_1D[alias]=LI12:KLYS:11
+K12_2A[alias]=LI12:KLYS:21
+K12_2B[alias]=LI12:KLYS:21
+K12_2C[alias]=LI12:KLYS:21
+K12_2D[alias]=LI12:KLYS:21
+K12_3A[alias]=LI12:KLYS:3
+K12_3B[alias]=LI12:KLYS:31
+K12_3C[alias]=LI12:KLYS:31
+K12_3D[alias]=LI12:KLYS:31
+K12_4A[alias]=LI12:KLYS:41
+K12_4B[alias]=LI12:KLYS:41
+K12_4C[alias]=LI12:KLYS:41
+K12_4D[alias]=LI12:KLYS:41
+K12_5A[alias]=LI12:KLYS:51
+K12_5B[alias]=LI12:KLYS:51
+K12_5C[alias]=LI12:KLYS:51
+K12_5D[alias]=LI12:KLYS:51
+K12_6A[alias]=LI12:KLYS:61
+K12_6B[alias]=LI12:KLYS:61
+K12_6C[alias]=LI12:KLYS:61
+K12_6D[alias]=LI12:KLYS:61
+K12_7A[alias]=LI12:KLYS:71
+K12_7B[alias]=LI12:KLYS:71
+K12_7C[alias]=LI12:KLYS:71
+K12_7D[alias]=LI12:KLYS:71
+K12_8A[alias]=LI12:KLYS:81
+K12_8B[alias]=LI12:KLYS:81
+K12_8C[alias]=LI12:KLYS:81
+K12_8D[alias]=LI12:KLYS:81
+K13_1A[alias]=LI13:KLYS:11
+K13_1B[alias]=LI13:KLYS:11
+K13_1C[alias]=LI13:KLYS:11
+K13_1D[alias]=LI13:KLYS:11
+K13_2A[alias]=LI13:KLYS:303
+K13_2B[alias]=LI13:KLYS:303
+K13_2C[alias]=LI13:KLYS:303
+K13_2D[alias]=LI13:KLYS:303
+K13_3A[alias]=LI13:KLYS:31
+K13_3B[alias]=LI13:KLYS:31
+K13_3C[alias]=LI13:KLYS:31
+K13_3D[alias]=LI13:KLYS:31
+K13_4A[alias]=LI13:KLYS:41
+K13_4B[alias]=LI13:KLYS:41
+K13_4C[alias]=LI13:KLYS:41
+K13_4D[alias]=LI13:KLYS:41
+K13_5A[alias]=LI13:KLYS:51
+K13_5B[alias]=LI13:KLYS:51
+K13_5C[alias]=LI13:KLYS:51
+K13_5D[alias]=LI13:KLYS:51
+K13_6A[alias]=LI13:KLYS:61
+K13_6B[alias]=LI13:KLYS:61
+K13_6C[alias]=LI13:KLYS:61
+K13_6D[alias]=LI13:KLYS:61
+K13_7A[alias]=LI13:KLYS:71
+K13_7B[alias]=LI13:KLYS:71
+K13_7C[alias]=LI13:KLYS:71
+K13_7D[alias]=LI13:KLYS:71
+K13_8A[alias]=LI13:KLYS:81
+K13_8B[alias]=LI13:KLYS:81
+K13_8C[alias]=LI13:KLYS:81
+K13_8D[alias]=LI13:KLYS:81
+K14_1A[alias]=LI14:KLYS:11
+K14_1B[alias]=LI14:KLYS:11
+K14_1C[alias]=LI14:KLYS:11
+K14_1D[alias]=LI14:KLYS:11
+K14_2A[alias]=LI14:KLYS:21
+K14_2B[alias]=LI14:KLYS:21
+K14_2C[alias]=LI14:KLYS:21
+K14_2D[alias]=LI14:KLYS:21
+K14_3A[alias]=LI14:KLYS:31
+K14_3B[alias]=LI14:KLYS:31
+K14_3C[alias]=LI14:KLYS:31
+K14_3D[alias]=LI14:KLYS:31
+K14_4A[alias]=LI14:KLYS:41
+K14_4B[alias]=LI14:KLYS:41
+K14_4C[alias]=LI14:KLYS:41
+K14_4D[alias]=LI14:KLYS:41
+K14_5A[alias]=LI14:KLYS:51
+K14_5B[alias]=LI14:KLYS:51
+K14_5C[alias]=LI14:KLYS:51
+K14_5D[alias]=LI14:KLYS:51
+K14_6A[alias]=LI14:KLYS:61
+K14_6B[alias]=LI14:KLYS:61
+K14_6C[alias]=LI14:KLYS:61
+K14_6D[alias]=LI14:KLYS:61
+K15_1A[alias]=LI15:KLYS:11
+K15_1B[alias]=LI15:KLYS:11
+K15_1C[alias]=LI15:KLYS:11
+K15_1D[alias]=LI15:KLYS:11
+K15_2A[alias]=LI15:KLYS:21
+K15_2B[alias]=LI15:KLYS:21
+K15_2C[alias]=LI15:KLYS:21
+K15_3A[alias]=LI15:KLYS:31
+K15_3B[alias]=LI15:KLYS:31
+K15_3C[alias]=LI15:KLYS:31
+K15_3D[alias]=LI15:KLYS:31
+K15_4A[alias]=LI15:KLYS:41
+K15_4B[alias]=LI15:KLYS:41
+K15_4C[alias]=LI15:KLYS:41
+K15_4D[alias]=LI15:KLYS:41
+K15_5A[alias]=LI15:KLYS:51
+K15_5B[alias]=LI15:KLYS:51
+K15_5C[alias]=LI15:KLYS:51
+K15_5D[alias]=LI15:KLYS:51
+K15_6A[alias]=LI15:KLYS:61
+K15_6B[alias]=LI15:KLYS:61
+K15_6C[alias]=LI15:KLYS:61
+K15_6D[alias]=LI15:KLYS:61
+K15_7A[alias]=LI15:KLYS:71
+K15_7B[alias]=LI15:KLYS:71
+K15_7C[alias]=LI15:KLYS:71
+K15_7D[alias]=LI15:KLYS:71
+K15_8A[alias]=LI15:KLYS:81
+K15_8B[alias]=LI15:KLYS:81
+K15_8C[alias]=LI15:KLYS:81
+K15_8D[alias]=LI15:KLYS:81
+K16_1A[alias]=LI16:KLYS:11
+K16_1B[alias]=LI16:KLYS:11
+K16_1C[alias]=LI16:KLYS:11
+K16_1D[alias]=LI16:KLYS:11
+K16_2A[alias]=LI16:KLYS:21
+K16_2B[alias]=LI16:KLYS:21
+K16_2C[alias]=LI16:KLYS:21
+K16_2D[alias]=LI16:KLYS:21
+K16_3A[alias]=LI16:KLYS:31
+K16_3B[alias]=LI16:KLYS:31
+K16_3C[alias]=LI16:KLYS:31
+K16_3D[alias]=LI16:KLYS:31
+K16_4A[alias]=LI16:KLYS:41
+K16_4B[alias]=LI16:KLYS:41
+K16_4C[alias]=LI16:KLYS:41
+K16_4D[alias]=LI16:KLYS:41
+K16_5A[alias]=LI16:KLYS:51
+K16_5B[alias]=LI16:KLYS:51
+K16_5C[alias]=LI16:KLYS:51
+K16_5D[alias]=LI16:KLYS:51
+K16_6A[alias]=LI16:KLYS:61
+K16_6B[alias]=LI16:KLYS:61
+K16_6C[alias]=LI16:KLYS:61
+K16_6D[alias]=LI16:KLYS:61
+K16_7A[alias]=LI16:KLYS:71
+K16_7B[alias]=LI16:KLYS:71
+K16_7C[alias]=LI16:KLYS:71
+K16_7D[alias]=LI16:KLYS:71
+K16_8A[alias]=LI16:KLYS:81
+K16_8B[alias]=LI16:KLYS:81
+K16_8C[alias]=LI16:KLYS:81
+K16_8D[alias]=LI16:KLYS:81
+K17_1A[alias]=LI17:KLYS:11
+K17_1B[alias]=LI17:KLYS:11
+K17_1C[alias]=LI17:KLYS:11
+K17_1D[alias]=LI17:KLYS:11
+K17_2A[alias]=LI17:KLYS:21
+K17_2B[alias]=LI17:KLYS:21
+K17_2C[alias]=LI17:KLYS:21
+K17_2D[alias]=LI17:KLYS:21
+K17_3A[alias]=LI17:KLYS:31
+K17_3B[alias]=LI17:KLYS:31
+K17_3C[alias]=LI17:KLYS:31
+K17_3D[alias]=LI17:KLYS:31
+K17_4A[alias]=LI17:KLYS:41
+K17_4B[alias]=LI17:KLYS:41
+K17_4C[alias]=LI17:KLYS:41
+K17_4D[alias]=LI17:KLYS:41
+K17_5A[alias]=LI17:KLYS:51
+K17_5B[alias]=LI17:KLYS:51
+K17_5C[alias]=LI17:KLYS:51
+K17_5D[alias]=LI17:KLYS:51
+K17_6A[alias]=LI17:KLYS:61
+K17_6B[alias]=LI17:KLYS:61
+K17_6C[alias]=LI17:KLYS:61
+K17_6D[alias]=LI17:KLYS:61
+K17_7A[alias]=LI17:KLYS:71
+K17_7B[alias]=LI17:KLYS:71
+K17_7C[alias]=LI17:KLYS:71
+K17_7D[alias]=LI17:KLYS:71
+K17_8A[alias]=LI17:KLYS:81
+K17_8B[alias]=LI17:KLYS:81
+K17_8C[alias]=LI17:KLYS:18
+K17_8D[alias]=LI17:KLYS:81
+K18_1A[alias]=LI18:KLYS:11
+K18_1B[alias]=LI18:KLYS:11
+K18_1C[alias]=LI18:KLYS:11
+K18_1D[alias]=LI18:KLYS:11
+K18_2A[alias]=LI18:KLYS:21
+K18_2B[alias]=LI18:KLYS:21
+K18_2C[alias]=LI18:KLYS:21
+K18_2D[alias]=LI18:KLYS:21
+K18_3A[alias]=LI18:KLYS:31
+K18_3B[alias]=LI18:KLYS:31
+K18_3C[alias]=LI18:KLYS:31
+K18_3D[alias]=LI18:KLYS:31
+K18_4A[alias]=LI18:KLYS:41
+K18_4B[alias]=LI18:KLYS:41
+K18_4C[alias]=LI18:KLYS:41
+K18_4D[alias]=LI18:KLYS:41
+K18_5A[alias]=LI18:KLYS:51
+K18_5B[alias]=LI18:KLYS:51
+K18_5C[alias]=LI18:KLYS:51
+K18_5D[alias]=LI18:KLYS:51
+K18_6A[alias]=LI18:KLYS:61
+K18_6B[alias]=LI18:KLYS:61
+K18_6C[alias]=LI18:KLYS:61
+K18_6D[alias]=LI18:KLYS:61
+K18_7A[alias]=LI18:KLYS:71
+K18_7B[alias]=LI18:KLYS:71
+K18_7C[alias]=LI18:KLYS:71
+K18_7D[alias]=LI18:KLYS:71
+K18_8A[alias]=LI18:KLYS:81
+K18_8B[alias]=LI18:KLYS:81
+K18_8C[alias]=LI18:KLYS:81
+K18_8D[alias]=LI18:KLYS:81
+K19_1A[alias]=LI19:KLYS:11
+K19_1B[alias]=LI19:KLYS:11
+K19_1C[alias]=LI19:KLYS:11
+K19_1D[alias]=LI19:KLYS:11
+K19_2A[alias]=LI19:KLYS:21
+K19_2B[alias]=LI19:KLYS:21
+K19_2C[alias]=LI19:KLYS:21
+K19_2D[alias]=LI19:KLYS:21
+K19_3A[alias]=LI19:KLYS:31
+K19_3B[alias]=LI19:KLYS:31
+K19_3C[alias]=LI19:KLYS:31
+K19_3D[alias]=LI19:KLYS:31
+K19_4A[alias]=LI19:KLYS:41
+K19_4B[alias]=LI19:KLYS:41
+K19_4C[alias]=LI19:KLYS:41
+K19_4D[alias]=LI19:KLYS:41
+K19_5A[alias]=LI19:KLYS:51
+K19_5B[alias]=LI19:KLYS:51
+K19_5C[alias]=LI19:KLYS:51
+K19_5D[alias]=LI19:KLYS:51
+K19_6A[alias]=LI19:KLYS:61
+K19_6B[alias]=LI19:KLYS:61
+K19_6C[alias]=LI19:KLYS:61
+K19_6D[alias]=LI19:KLYS:61
+! No device listed for: KRK
+L0AF[alias]=ACCL:IN10:300
+! No device listed for: L0AFEND
+! No device listed for: L0AFMID
+! No device listed for: L0AFWAKE
+L0BF[alias]=ACCL:IN10:400
+! No device listed for: L0BFEND
+! No device listed for: L0BFMID
+! No device listed for: L0BFWAKE
+L1XF[alias]=ACCL:LI11:180
+! No device listed for: L1XFEND
+! No device listed for: LAIRG
+! No device listed for: LCUBE
+! No device listed for: LH10BEG
+! No device listed for: LH10END
+! No device listed for: LI11END
+! No device listed for: LI11STRT
+! No device listed for: LI12BEG
+! No device listed for: LI12END
+! No device listed for: LI13BEG
+! No device listed for: LI13END
+! No device listed for: LI14BEG
+! No device listed for: LI14TERM
+! No device listed for: LI15BEG
+! No device listed for: LI15END
+! No device listed for: LI16BEG
+! No device listed for: LI16END
+! No device listed for: LI17BEG
+! No device listed for: LI17END
+! No device listed for: LI18BEG
+! No device listed for: LI18END
+! No device listed for: LI19BEG
+! No device listed for: LI19TERM
+! No device listed for: LOADLOCKF
+M0EX[alias]=BPMS:LI20:3218
+! No device listed for: M11E
+! No device listed for: M1E
+! No device listed for: M1EX
+! No device listed for: M1FF
+! No device listed for: M2EX
+! No device listed for: M3E
+! No device listed for: M3EX
+! No device listed for: M3FF
+! No device listed for: M4E
+! No device listed for: M4FF
+! No device listed for: M5E
+! No device listed for: M5FF
+! No device listed for: M6E
+! No device listed for: M7E
+! No device listed for: M8E
+! No device listed for: M9E
+! No device listed for: MAINDUMP
+! No device listed for: MCE
+! No device listed for: MFFF
+! No device listed for: MIP
+MIR10181[alias]=MIRR:IN10:181
+! No device listed for: MQ4FF
+! No device listed for: MRK0F
+! No device listed for: MS2EL
+! No device listed for: MS2ER
+! No device listed for: MSCAVEXT
+! No device listed for: MSEP1E
+! No device listed for: MSEP2E
+! No device listed for: OUTCPAF
+! No device listed for: OUTCPBF
+! No device listed for: PDUMP
+! No device listed for: PENT
+! No device listed for: PEXT
+! No device listed for: PGAM1
+PH10365[alias]=PCAV:IN10:365
+! No device listed for: PIC_CENT
+! No device listed for: PMON
+PR10241[alias]=YAGS:IN10:241
+PR10465[alias]=OTRS:IN10:465
+PR10471[alias]=OTRS:IN10:471
+PR10571[alias]=OTRS:IN10:571
+PR10711[alias]=OTRS:IN10:711
+PR11335[alias]=OTRS:LI11:335
+PR11375[alias]=OTRS:LI11:375
+PR14803[alias]=OTRS:LI14:803
+PR15944[alias]=BPMS:LI15:944
+Q0D[alias]=LI20:LGPS:3204
+Q0FF[alias]=LI20:LGPS:3151
+Q11201[alias]=QUAD:LI11:201
+Q11301[alias]=QUAD:LI11:301
+Q11401[alias]=LI11:QUAD:401
+Q11501[alias]=LI11:QUAD:501
+Q11601[alias]=LI11:QUAD:601
+Q11701[alias]=LI11:QUAD:701
+Q11801[alias]=LI11:QUAD:801
+Q11901[alias]=LI11:QUAD:901
+Q12201[alias]=LI12:QUAD:201
+Q12301[alias]=LI12:QUAD:301
+Q12401[alias]=LI12:QUAD:401
+Q12501[alias]=LI12:QUAD:501
+Q12601[alias]=LI12:QUAD:601
+Q12701[alias]=LI12:QUAD:701
+Q12801[alias]=LI12:QUAD:801
+Q12901[alias]=LI12:QUAD:901
+Q13201[alias]=LI13:QUAD:201
+Q13301[alias]=LI13:QUAD:301
+Q13401[alias]=LI13:QUAD:401
+Q13501[alias]=LI13:QUAD:501
+Q13601[alias]=LI13:QUAD:601
+Q13701[alias]=LI13:QUAD:701
+Q13801[alias]=LI13:QUAD:801
+Q13901[alias]=LI13:QUAD:901
+Q14201[alias]=LI14:QUAD:201
+Q14301[alias]=LI14:QUAD:301
+Q14401[alias]=LI14:QUAD:401
+Q14501[alias]=LI14:QUAD:501
+Q14601[alias]=LI14:QUAD:601
+Q14701[alias]=QUAD:LI14:701
+Q14901[alias]=QUAD:LI14:901
+Q15201[alias]=LI15:QUAD:201
+Q15301[alias]=LI15:QUAD:301
+Q15401[alias]=LI15:QUAD:401
+Q15501[alias]=LI15:QUAD:501
+Q15601[alias]=LI15:QUAD:601
+Q15701[alias]=LI15:QUAD:701
+Q15801[alias]=LI15:QUAD:801
+Q15901[alias]=LI15:QUAD:901
+Q16201[alias]=LI16:QUAD:201
+Q16301[alias]=LI16:QUAD:301
+Q16401[alias]=LI16:QUAD:401
+Q16501[alias]=LI16:QUAD:501
+Q16601[alias]=LI16:QUAD:601
+Q16701[alias]=LI16:QUAD:701
+Q16801[alias]=LI16:QUAD:801
+Q16901[alias]=LI16:QUAD:901
+Q17201[alias]=LI17:QUAD:201
+Q17301[alias]=LI17:QUAD:301
+Q17401[alias]=LI17:QUAD:401
+Q17501[alias]=LI17:QUAD:501
+Q17601[alias]=LI17:QUAD:601
+Q17701[alias]=LI17:QUAD:701
+Q17801[alias]=LI17:QUAD:801
+Q17901[alias]=LI17:QUAD:901
+Q18201[alias]=LI18:QUAD:201
+Q18301[alias]=LI18:QUAD:301
+Q18401[alias]=LI18:QUAD:401
+Q18501[alias]=LI18:QUAD:501
+Q18601[alias]=LI18:QUAD:601
+Q18701[alias]=LI18:QUAD:701
+Q18801[alias]=LI18:QUAD:801
+Q18901[alias]=LI18:QUAD:901
+Q19201[alias]=LI19:QUAD:201
+Q19301[alias]=LI19:QUAD:301
+Q19401[alias]=LI19:QUAD:401
+Q19501[alias]=LI19:QUAD:501
+Q19601[alias]=LI19:QUAD:601
+Q19701[alias]=LI19:QUAD:701
+Q19801[alias]=LI19:QUAD:801
+Q19851[alias]=QUAD:LI19:851
+Q19871[alias]=QUAD:LI19:871
+Q1D[alias]=LI20:LGPS:3261
+! No device listed for: Q1EL
+! No device listed for: Q1ER
+Q1FF[alias]=LI20:LGPS:3141
+Q2D[alias]=LI20:LGPS:3311
+! No device listed for: Q2EL
+! No device listed for: Q2ER
+Q2FF[alias]=LI20:LGPS:3091
+! No device listed for: Q3EL_1
+! No device listed for: Q3EL_2
+! No device listed for: Q3ER_1
+! No device listed for: Q3ER_2
+! No device listed for: Q3FF
+! No device listed for: Q4EL_1
+! No device listed for: Q4EL_2
+! No device listed for: Q4EL_3
+! No device listed for: Q4ER_1
+! No device listed for: Q4ER_2
+! No device listed for: Q4ER_3
+! No device listed for: Q4FF
+! No device listed for: Q5EL
+! No device listed for: Q5ER
+! No device listed for: Q5FF
+Q6E[alias]=LI20:LGPS:2251
+QA10361[alias]=QUAD:IN10:361
+QA10371[alias]=QUAD:IN10:371
+QA11132[alias]=QUAD:LI11:132
+QA11265[alias]=QUAD:LI11:265
+QB10731[alias]=QUAD:IN10:731
+QE10425[alias]=QUAD:IN10:425
+QE10441[alias]=QUAD:IN10:441
+QE10511[alias]=QUAD:IN10:511
+QE10525[alias]=QUAD:IN10:525
+QM10631[alias]=QUAD:IN10:631
+QM10651[alias]=QUAD:IN10:651
+QM10771[alias]=QUAD:IN10:771
+QM10781[alias]=QUAD:IN10:781
+QM11312[alias]=QUAD:LI11:312
+QM11358[alias]=QUAD:LI11:358
+QM11362[alias]=QUAD:LI11:362
+QM11393[alias]=QUAD:LI11:393
+QM14715[alias]=QUAD:LI14:715
+QM14891[alias]=QUAD:LI14:891
+RST10551[alias]=STPR:IN10:551
+! No device listed for: S1EL
+! No device listed for: S1ER
+! No device listed for: S2EL
+! No device listed for: S2ER
+! No device listed for: S3EL_1
+! No device listed for: S3EL_2
+! No device listed for: S3ER_1
+! No device listed for: S3ER_2
+SOL10111[alias]=SOLN:IN10:111
+SOL10121[alias]=SOLN:IN10:121
+SQ1[alias]=LI20:QUAD:2086
+SQ10122[alias]=QUAD:IN10:122
+! No device listed for: SYAG
+TCY10490[alias]=TCAV:IN10:490
+TCY15280[alias]=LI15:ACCL:280
+TD11390[alias]=PROF:LI12:390
+UM10466[alias]=USEG:IN10:466
+! No device listed for: USOTR
+! No device listed for: USTHZ
+VV10155[alias]=VVPG:IN10:155
+VV10215[alias]=VVPG:IN10:215
+VV10435[alias]=VVPG:IN10:435
+VV10545[alias]=VVPG:IN10:545
+VV10795[alias]=VVPG:IN10:795
+VV11302[alias]=VVPG:LI11:302
+VV11308[alias]=VVPG:LI11:398
+VV14711[alias]=LI14:VVPG:711
+VV14885[alias]=VV:LI14:885
+! No device listed for: WALLBEG
+! No device listed for: WALLEND
+WDSOTR[alias]=CAMR:LI20:3230
+! No device listed for: WIGE1
+! No device listed for: WIGE2
+! No device listed for: WIGE3
+WS10561[alias]=WIRE:IN10:561
+WS11444[alias]=WIRE:LI11:444
+WS11614[alias]=WIRE:LI11:614
+WS11744[alias]=WIRE:LI11:744
+WS12214[alias]=WIRE:LI12:214
+WS18944[alias]=WIRE:LI18:944
+WS19144[alias]=WIRE:LI19:144
+WS19244[alias]=WIRE:LI19:244
+WS19344[alias]=WIRE:LI19:344
+XC10121[alias]=XCOR:IN10:121
+XC10221[alias]=XCOR:IN10:221
+XC10311[alias]=XCOR:IN10:311
+XC10381[alias]=XCOR:IN10:381
+XC10411[alias]=XCOR:IN10:411
+XC10491[alias]=XCOR:IN10:491
+XC10521[alias]=XCOR:IN10:521
+XC10641[alias]=XCOR:IN10:641
+XC10721[alias]=XCOR:IN10:721
+XC10761[alias]=XCOR:IN10:761
+XC11104[alias]=XCOR:LI11:104
+XC11140[alias]=XCOR:LI11:140
+XC11202[alias]=XCOR:LI11:202
+XC11272[alias]=XCOR:LI11:272
+XC11304[alias]=XCOR:LI11:304
+XC11402[alias]=LI11:XCOR:402
+XC11502[alias]=LI11:XCOR:502
+XC11602[alias]=LI11:XCOR:602
+XC11702[alias]=LI11:XCOR:702
+XC11802[alias]=LI11:XCOR:802
+XC11900[alias]=LI11:XCOR:900
+XC12202[alias]=LI12:XCOR:202
+XC12302[alias]=LI12:XCOR:302
+XC12402[alias]=LI12:XCOR:402
+XC12502[alias]=LI12:XCOR:502
+XC12602[alias]=LI12:XCOR:602
+XC12702[alias]=LI12:XCOR:702
+XC12802[alias]=LI12:XCOR:802
+XC12900[alias]=LI12:XCOR:900
+XC13202[alias]=LI13:XCOR:202
+XC13302[alias]=LI13:XCOR:302
+XC13402[alias]=LI13:XCOR:402
+XC13502[alias]=LI13:XCOR:502
+XC13602[alias]=LI13:XCOR:602
+XC13702[alias]=LI13:XCOR:702
+XC13802[alias]=LI13:XCOR:802
+XC13900[alias]=LI13:XCOR:900
+XC14202[alias]=LI14:XCOR:202
+XC14302[alias]=LI14:XCOR:302
+XC14402[alias]=LI14:XCOR:402
+XC14502[alias]=LI14:XCOR:502
+XC14602[alias]=LI14:XCOR:602
+XC14702[alias]=LI14:XCOR:702
+XC14900[alias]=LI14:XCOR:900
+XC15202[alias]=LI15:XCOR:202
+XC15302[alias]=LI15:XCOR:302
+XC15402[alias]=LI15:XCOR:402
+XC15502[alias]=LI15:XCOR:502
+XC15602[alias]=LI15:XCOR:602
+XC15702[alias]=LI15:XCOR:702
+XC15802[alias]=LI15:XCOR:802
+XC15900[alias]=LI15:XCOR:900
+XC16202[alias]=LI16:XCOR:202
+XC16302[alias]=LI16:XCOR:302
+XC16402[alias]=LI16:XCOR:402
+XC16502[alias]=LI16:XCOR:502
+XC16602[alias]=LI16:XCOR:602
+XC16702[alias]=LI16:XCOR:702
+XC16802[alias]=LI16:XCOR:802
+XC16900[alias]=LI16:XCOR:900
+XC17202[alias]=LI17:XCOR:202
+XC17302[alias]=LI17:XCOR:302
+XC17402[alias]=LI17:XCOR:402
+XC17502[alias]=LI17:XCOR:502
+XC17602[alias]=LI17:XCOR:602
+XC17702[alias]=LI17:XCOR:702
+XC17802[alias]=LI17:XCOR:802
+XC17900[alias]=LI17:XCOR:900
+XC18202[alias]=LI18:XCOR:202
+XC18302[alias]=LI18:XCOR:302
+XC18402[alias]=LI18:XCOR:402
+XC18502[alias]=LI18:XCOR:502
+XC18602[alias]=LI18:XCOR:602
+XC18702[alias]=LI18:XCOR:702
+XC18802[alias]=LI18:XCOR:802
+XC18900[alias]=LI18:XCOR:900
+XC19202[alias]=LI19:XCOR:202
+XC19302[alias]=LI19:XCOR:302
+XC19402[alias]=LI19:XCOR:402
+XC19502[alias]=LI19:XCOR:502
+XC19602[alias]=LI19:XCOR:602
+XC19700[alias]=LI19:XCOR:700
+XC19900[alias]=LI19:XCOR:900
+XC1996[alias]=LI20:XCOR:1996
+! No device listed for: XC1E
+! No device listed for: XC1EX
+! No device listed for: XC2460
+! No device listed for: XC2E
+! No device listed for: XC3E
+! No device listed for: XC3FF
+! No device listed for: XC4E
+! No device listed for: XCB2LE
+! No device listed for: XCB2RE
+! No device listed for: XCB3LE
+! No device listed for: XCB3RE
+XTCAVF[alias]=TCAV:LI20:2400
+YC10122[alias]=YCOR:IN10:122
+YC10222[alias]=YCOR:IN10:222
+YC10312[alias]=YCOR:IN10:312
+YC10382[alias]=YCOR:IN10:382
+YC10412[alias]=YCOR:IN10:412
+YC10492[alias]=YCOR:IN10:492
+YC10522[alias]=YCOR:IN10:522
+YC10642[alias]=YCOR:IN10:642
+YC10722[alias]=YCOR:IN10:722
+YC10762[alias]=YCOR:IN10:762
+YC11105[alias]=YCOR:LI11:105
+YC11141[alias]=YCOR:LI11:141
+YC11203[alias]=YCOR:LI11:203
+YC11273[alias]=YCOR:LI11:273
+YC11305[alias]=YCOR:LI11:305
+YC11321[alias]=YCOR:LI11:321
+YC11365[alias]=YCOR:LI11:365
+YC11403[alias]=LI11:YCOR:403
+YC11503[alias]=LI11:YCOR:503
+YC11603[alias]=LI11:YCOR:603
+YC11703[alias]=LI11:YCOR:703
+YC11803[alias]=LI11:YCOR:803
+YC11900[alias]=LI11:YCOR:900
+YC12203[alias]=LI12:YCOR:203
+YC12303[alias]=LI12:YCOR:303
+YC12403[alias]=LI12:YCOR:403
+YC12503[alias]=LI12:YCOR:503
+YC12603[alias]=LI12:YCOR:603
+YC12703[alias]=LI12:YCOR:703
+YC12803[alias]=LI12:YCOR:803
+YC12900[alias]=LI12:YCOR:900
+YC13203[alias]=LI13:YCOR:203
+YC13303[alias]=LI13:YCOR:303
+YC13403[alias]=LI13:YCOR:403
+YC13503[alias]=LI13:YCOR:503
+YC13603[alias]=LI13:YCOR:603
+YC13703[alias]=LI13:YCOR:703
+YC13803[alias]=LI13:YCOR:803
+YC13900[alias]=LI13:YCOR:900
+YC14203[alias]=LI14:YCOR:203
+YC14303[alias]=LI14:YCOR:303
+YC14403[alias]=LI14:YCOR:403
+YC14503[alias]=LI14:YCOR:503
+YC14603[alias]=LI14:YCOR:603
+YC14703[alias]=LI14:YCOR:703
+YC14780[alias]=YCOR:LI14:780
+YC14900[alias]=LI14:YCOR:900
+YC15203[alias]=LI15:YCOR:203
+YC15303[alias]=LI15:YCOR:303
+YC15403[alias]=LI15:YCOR:403
+YC15503[alias]=LI15:YCOR:503
+YC15603[alias]=LI15:YCOR:603
+YC15703[alias]=LI15:YCOR:703
+YC15803[alias]=LI15:YCOR:803
+YC15900[alias]=LI15:YCOR:900
+YC16203[alias]=LI16:YCOR:203
+YC16303[alias]=LI16:YCOR:303
+YC16403[alias]=LI16:YCOR:403
+YC16503[alias]=LI16:YCOR:503
+YC16603[alias]=LI16:YCOR:603
+YC16703[alias]=LI16:YCOR:703
+YC16803[alias]=LI16:YCOR:803
+YC16900[alias]=LI16:YCOR:900
+YC17203[alias]=LI17:YCOR:203
+YC17303[alias]=LI17:YCOR:303
+YC17403[alias]=LI17:YCOR:403
+YC17503[alias]=LI17:YCOR:503
+YC17603[alias]=LI17:YCOR:603
+YC17703[alias]=LI17:YCOR:703
+YC17803[alias]=LI17:YCOR:803
+YC17900[alias]=LI17:YCOR:900
+YC18203[alias]=LI18:YCOR:203
+YC18303[alias]=LI18:YCOR:303
+YC18403[alias]=LI18:YCOR:403
+YC18503[alias]=LI18:YCOR:503
+YC18603[alias]=LI18:YCOR:603
+YC18703[alias]=LI18:YCOR:703
+YC18803[alias]=LI18:YCOR:803
+YC18900[alias]=LI18:YCOR:900
+YC19203[alias]=LI19:YCOR:203
+YC19303[alias]=LI19:YCOR:303
+YC19403[alias]=LI19:YCOR:403
+YC19503[alias]=LI19:YCOR:503
+YC19603[alias]=LI19:YCOR:603
+YC19700[alias]=LI19:YCOR:700
+YC19900[alias]=LI19:YCOR:900
+! No device listed for: YC1E
+! No device listed for: YC2181
+! No device listed for: YC2321
+! No device listed for: YC2E
+! No device listed for: YC2FF
+! No device listed for: YC3E
+YC57145[alias]=LI19:YCOR:7145
+YC57146[alias]=LI19:YCOR:7146
+! No device listed for: YCWIGE

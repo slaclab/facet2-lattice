@@ -1,5 +1,5 @@
 
-! *** OPTICS=FACET2-18MAY21 ***
+! *** OPTICS=FACET2-08NOV21 ***
 
 ! ------------------------------------------------------------------------------
 ! constants and global parameters (from FACET2e_baseline.mat)
@@ -114,7 +114,7 @@
 
   BXip := 0.5
   AXip := 0.0
-  BYip := 5.0
+  BYip := 0.5
   AYip := 0.0
 
 ! at BEGBC20 (matched to BXip/AXip/BYip/AYip)
@@ -144,12 +144,15 @@
   CALL, FILENAME="L2.xsif"
   CALL, FILENAME="BC14.xsif"
   CALL, FILENAME="L3.xsif"
-  CALL, FILENAME="LI20.xsif" !FACET2 Phase 2
+ !CALL, FILENAME="BC20W.xsif"  !FACET "W" chicane
+ !CALL, FILENAME="BC20E.xsif"  !FACET2 Sector 20 upgrade
+ !CALL, FILENAME="FF20.xsif"   !FACET2 Sector 20 upgrade ("FF20E")
+  CALL, FILENAME="LI20.xsif"   !mix-n-match BC20/FF20 (BC20W+FF20H)
   CALL, FILENAME="SCAV.xsif"
 
-  BC14    : LINE=(BC14_1,BC14E,BC14_2) !electron side
-  FACET2e : LINE=(DL10,L1F,BC11,L2F,BC14,L3F,S20E)
-  FACET2s : LINE=(DL10,L1F,BC11,L2F,BC14,L3F_1,SCAV)
+  BC14     : LINE=(BC14_1,BC14E,BC14_2) !electron side
+  FACET2e  : LINE=(DL10,L1F,BC11,L2F,BC14,L3F,SECTOR20)
+  FACET2s  : LINE=(DL10,L1F,BC11,L2F,BC14,L3F_1,SCAV)
 
 ! beam path definitions
 

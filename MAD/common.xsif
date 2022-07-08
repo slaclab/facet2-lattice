@@ -1,5 +1,5 @@
 
-! *** OPTICS=FACET2-18MAY21 ***
+! *** OPTICS=FACET2-08NOV21 ***
 
 ! FACET2 common parameters
 
@@ -25,6 +25,10 @@
   LQE  := 0.1068 ; rQE  := 1.085*IN2M/2 !GLmax= 106 kG @ 220 A
   LQc  := 0.108  ; rQc  := 0.043/2      !GLmax= 2.1 kG @ 12 A
   LQc2 := 0.1759 ; rQc2 := 2.1*IN2M/2   !GLmax=   4 kG @ 8.67 A
+
+  LSQ := 0.3813  ; ASQ  := 2.026*IN2M/2
+
+  LC260 := 0.260 !3D8.8 corrector effective length
 
 ! LI19 scavenger kicker
 

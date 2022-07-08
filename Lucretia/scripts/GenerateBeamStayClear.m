@@ -13,15 +13,15 @@ global BEAMLINE
 
 % Stay-clear defined as Naper X beta size + NaperE * rms dispersive size
 Nbeta=10; % # sigma apertures to define (Naper * rms beam size determined from Twiss parameters)
-minclear=1/sqrt(2)*5*1e-3; % Minimum clearance to use (in x and y)
-nemit=20e-6; % Max expected operating normalized transverse emittance
+minclear=1/sqrt(2)*2.25*1e-3; % Minimum clearance to use (in x and y)
+nemit=5e-6; % Max expected operating normalized transverse emittance
 % Include TCAV streaked images for stay-clear in relevant sections
 tcavname={'TCY10490' 'TCY15280' 'XTCAVF'};
 tcavendname={'ENDBC11_2' 'ENDL3F_1' 'MAINDUMP'}; % Considered end section for each streak diagnostic
 tcavsz=[2.5e-3 2e-3 200e-6]; % Largest longitudinal offset to consider for streaked beam (from 2-bunch compression profile)
-tcavV=[3 10 25]; % max tcav operating voltage / MV
+tcavV=[3 10 20]; % max tcav operating voltage / MV
 tcavF=[2.8560e+09 2.8560e+09 11.424e9]; % TCAV frequencies / Hz
-tcavdim=[2 1 2]; % 1=horizontal streaking, 2=vertical streaking
+tcavdim=[2 1 1]; % 1=horizontal streaking, 2=vertical streaking
 tcavind=zeros(1,length(tcavname)); tcavendind=tcavind;
 for itcav=1:length(tcavname)
   ind = findcells(BEAMLINE,'Name',tcavname{itcav});
@@ -91,8 +91,8 @@ for iele=1:length(BEAMLINE)
     end
   end
   
-  StayClear_x(iele).all = sqrt( StayClear_x(iele).beta^2 + StayClear_x(iele).eta^2 + StayClear_x(iele).tcav^2 ) ;
-  StayClear_y(iele).all = sqrt( StayClear_y(iele).beta^2 + StayClear_y(iele).eta^2 + StayClear_y(iele).tcav^2 ) ;
+  StayClear_x(iele).all = max( [StayClear_x(iele).beta StayClear_x(iele).eta StayClear_x(iele).tcav ] ) ;
+  StayClear_y(iele).all = max( [StayClear_y(iele).beta StayClear_y(iele).eta StayClear_y(iele).tcav ] ) ;
   StayClear_x(iele).all = max([StayClear_x(iele).all minclear]) ;
   StayClear_y(iele).all = max([StayClear_y(iele).all minclear]) ;
   StayClear_r(iele).all = sqrt( StayClear_x(iele).all.^2 + StayClear_y(iele).all^2 ) ;
@@ -102,6 +102,25 @@ close all
 plot(S,[StayClear_r(:).beta].*1e3,S,[StayClear_r(:).eta].*1e3,S,[StayClear_r(:).tcav].*1e3,S,[StayClear_r(:).all].*1e3,'--');
 legend({'Betatron stay-clear' 'Dispersive stay-clear' 'TCAV streak stay-clear' 'Overall stay-clear'});
 xlabel('S [m]'); ylabel('Stay-Clear Radius [mm]');
+% -- add apertures
+q2ff = findcells(BEAMLINE,'Name','Q2FF');
+q1ff = findcells(BEAMLINE,'Name','Q1FF');
+q0ff = findcells(BEAMLINE,'Name','Q0FF');
+q0d = findcells(BEAMLINE,'Name','Q0D');
+q1d = findcells(BEAMLINE,'Name','Q1D');
+q2d = findcells(BEAMLINE,'Name','Q2D');
+usStrawBeg = findcells(BEAMLINE,'Name','LCUBE');
+dsStrawEnd = findcells(BEAMLINE,'Name','IM3255');
+S_Ap = [BEAMLINE{q2ff(1)}.S+[-.1 .6] 0 BEAMLINE{q1ff(1)}.S+[-.1 .6]  0 BEAMLINE{q0ff(1)}.S+[-.1 .6] 0 ...
+        BEAMLINE{usStrawBeg}.S+[0 .1] 0 BEAMLINE{dsStrawEnd}.S+[-.1 0] 0 ...
+        BEAMLINE{q0d(1)}.S+[0 1] 0 BEAMLINE{q1d(1)}.S+[0 1] 0 BEAMLINE{q2d(1)}.S+[0 1]];
+ 
+Ap = [9 9 NaN 9 9 NaN 9 9 NaN ...
+      2.5 2.5 NaN 2.5 2.5 NaN ...
+      24 24 NaN 24 24 NaN 24 24]; % mm
+hold on
+plot(S_Ap,Ap, 'k-','LineWidth',5);
+hold off
 AddMagnetPlot(1,length(BEAMLINE));
 vnames={'BeamlineIndex' 'S' 'x_all' 'x_beta' 'x_eta' 'x_tcav' 'y_all' 'y_beta' 'y_eta' 'y_tcav' 'r_all' 'r_beta' 'r_eta' 'r_tcav'};
 StayClearTable=table((1:length(BEAMLINE))',S(:),...

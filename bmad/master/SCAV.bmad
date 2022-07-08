@@ -1,5 +1,5 @@
 
-! *** OPTICS=FACET2-18MAY21 ***
+! *** OPTICS=FACET2-08NOV21 ***
 
 ! ==============================================================================
 ! Modification History
@@ -312,8 +312,11 @@ endscav: marker
 ! BEAMLINEs
 ! ------------------------------------------------------------------------------
 
-BKY170_full: line = (BKY170)
-!old:   BKY170_full  : LINE=(BKY170a,BKY170b)
+
+
+!Old split line: LINE=(BKY170a,BKY170b)
+
+bky170_full: line = (bky170)
 
 
 !Old split line: LINE=(Q19501x,BPM19501,Q19501x)
@@ -342,28 +345,77 @@ bpm19701[ref] = q19701x
   SCAV19X : LINE=(BEGSCAV,BKY170_full,DAA7m,DAQ1,Q19501x_full,DAQ2,K19_5x,DAQ1,Q19601x_full,DAQ2,K19_6x,DAQ1,
          Q19701x_full,MSCAV)
 
-BLX57172_full: line = (BLX57172)
-!old:   BLX57172_full : LINE=(BLX57172a,BLX57172b)
-BLY57174_full: line = (BLY57174)
-!old:   BLY57174_full : LINE=(BLY57174a,BLY57174b)
-BY57202_full: line = (BY57202)
-!old:   BY57202_full  : LINE=(BY57202a,BY57202b)
-BX57205_full: line = (BX57205)
-!old:   BX57205_full  : LINE=(BX57205a,XC57205,BX57205b)
-BX57215_full: line = (BX57215)
-!old:   BX57215_full  : LINE=(BX57215a,XC57215,BX57215b)
-BX57225_full: line = (BX57225)
-!old:   BX57225_full  : LINE=(BX57225a,XC57225,BX57225b)
-BX57235_full: line = (BX57235)
-!old:   BX57235_full  : LINE=(BX57235a,XC57235,BX57235b)
-BX57245_full: line = (BX57245)
-!old:   BX57245_full  : LINE=(BX57245a,XC57245,BX57245b)
-BX57255_full: line = (BX57255)
-!old:   BX57255_full  : LINE=(BX57255a,XC57255,BX57255b)
-BX57265_full: line = (BX57265)
-!old:   BX57265_full  : LINE=(BX57265a,XC57265,BX57265b)
-BX57275_full: line = (BX57275)
-!old:   BX57275_full  : LINE=(BX57275a,XC57275,BX57275b)
+
+
+!Old split line: LINE=(BLX57172a,BLX57172b)
+
+blx57172_full: line = (blx57172)
+
+
+!Old split line: LINE=(BLY57174a,BLY57174b)
+
+bly57174_full: line = (bly57174)
+
+
+!Old split line: LINE=(BY57202a,BY57202b)
+
+by57202_full: line = (by57202)
+
+
+!Old split line: LINE=(BX57205a,XC57205,BX57205b)
+
+bx57205_full: line = (bx57205)
+xc57205[superimpose] = T
+xc57205[ref] = bx57205
+
+
+!Old split line: LINE=(BX57215a,XC57215,BX57215b)
+
+bx57215_full: line = (bx57215)
+xc57215[superimpose] = T
+xc57215[ref] = bx57215
+
+
+!Old split line: LINE=(BX57225a,XC57225,BX57225b)
+
+bx57225_full: line = (bx57225)
+xc57225[superimpose] = T
+xc57225[ref] = bx57225
+
+
+!Old split line: LINE=(BX57235a,XC57235,BX57235b)
+
+bx57235_full: line = (bx57235)
+xc57235[superimpose] = T
+xc57235[ref] = bx57235
+
+
+!Old split line: LINE=(BX57245a,XC57245,BX57245b)
+
+bx57245_full: line = (bx57245)
+xc57245[superimpose] = T
+xc57245[ref] = bx57245
+
+
+!Old split line: LINE=(BX57255a,XC57255,BX57255b)
+
+bx57255_full: line = (bx57255)
+xc57255[superimpose] = T
+xc57255[ref] = bx57255
+
+
+!Old split line: LINE=(BX57265a,XC57265,BX57265b)
+
+bx57265_full: line = (bx57265)
+xc57265[superimpose] = T
+xc57265[ref] = bx57265
+
+
+!Old split line: LINE=(BX57275a,XC57275,BX57275b)
+
+bx57275_full: line = (bx57275)
+xc57275[superimpose] = T
+xc57275[ref] = bx57275
 
 
 

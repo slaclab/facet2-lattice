@@ -1,5 +1,5 @@
 
-! *** OPTICS=FACET2-18MAY21 ***
+! *** OPTICS=FACET2-08NOV21 ***
 
 ! ==============================================================================
 ! Modification History
@@ -539,15 +539,13 @@ K11_4A_full: line = (K11_4A)
   K11_4b_full : LINE=(K11_4b)
   K11_4c_full : LINE=(K11_4c)
   K11_4d_full : LINE=(K11_4d)
-!---------------------
-! K11_5A LCAVITY
-K11_5A_full: line = (K11_5A)
-! contains zero length elements:
-    YC11503[superimpose] = T
-    YC11503[ref] = K11_5A
-    YC11503[ref_origin] = beginning
-    YC11503[offset] = 0.6689
-!old:   K11_5a_full : LINE=(K11_5a1,YC11503,K11_5a2)
+
+
+!Old split line: LINE=(K11_5a1,YC11503,K11_5a2)
+
+k11_5a_full: line = (k11_5a)
+yc11503[superimpose] = T
+yc11503[ref] = k11_5a
   K11_5b_full : LINE=(K11_5b)
   K11_5c_full : LINE=(K11_5c)
   K11_5d_full : LINE=(K11_5d)
@@ -571,15 +569,13 @@ K11_6A_full: line = (K11_6A)
   K11_7b_full : LINE=(K11_7b)
   K11_7c_full : LINE=(K11_7c)
   K11_7d_full : LINE=(K11_7d)
-!---------------------
-! K11_8A LCAVITY
-K11_8A_full: line = (K11_8A)
-! contains zero length elements:
-    YC11803[superimpose] = T
-    YC11803[ref] = K11_8A
-    YC11803[ref_origin] = beginning
-    YC11803[offset] = 0.38633
-!old:   K11_8a_full : LINE=(K11_8a1,YC11803,K11_8a2)
+
+
+!Old split line: LINE=(K11_8a1,YC11803,K11_8a2)
+
+k11_8a_full: line = (k11_8a)
+yc11803[superimpose] = T
+yc11803[ref] = k11_8a
   K11_8b_full : LINE=(K11_8b)
   K11_8c_full : LINE=(K11_8c)
   K11_8d_full : LINE=(K11_8d)

@@ -1,5 +1,5 @@
 
-! *** OPTICS=FACET2-18MAY21 ***
+! *** OPTICS=FACET2-08NOV21 ***
 
 ! ==============================================================================
 ! Modification History
@@ -58,7 +58,7 @@
   MLI20 : SUBROUTINE
     BEAM, ENERGY=E11
     USE, FACET2p
-    FACET2p_patch
+    MFACET2p
     VALUE, KQ19201,KQ19301,KQ19401,KQ19501,KQ19601,KQ19701,KQ19801,&
            KQ19851,KQ19871
     MATCH, BETA0=TW11 !LI19: Ibulk=47.696A, Iboost<14A
@@ -71,7 +71,7 @@
       VARY, KQ19801, STEP=1.E-6, LOWER= 0.749016, UPPER= 1.002140
       VARY, KQ19851, STEP=1.E-6, LOWER=-2.5, UPPER= 0
       VARY, KQ19871, STEP=1.E-6, LOWER= 0  , UPPER=+2.5
-      CONSTR, MIP, BETX=BXip, ALFX=AXip, BETY=BYip, ALFY=AYip
+      CONSTR, PENT, BETX=BXip, ALFX=AXip, BETY=BYip, ALFY=AYip
       CONSTR, #E, X=0, PX=0, Y=0, PY=0
       WEIGHT, BETX=1.E-3, BETY=1.E-3
       CONSTR, Q19301[1], BETY<45

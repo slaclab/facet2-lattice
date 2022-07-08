@@ -1,0 +1,53 @@
+&tao_start
+  n_universes = 1
+  plot_file   ='$LCLS_LATTICE/bmad/tao/tao_plot.init '
+  startup_file='$LCLS_LATTICE/bmad/tao/tao.startup'
+/
+
+
+
+
+!--------------------------------------------------------
+&tao_design_lattice
+  !unique_name_suffix="*::_##?"
+  design_lattice(1)%file= 'facet2p_dr.lat.bmad'
+!  combine_consecutive_elements_of_like_name = T
+/
+
+!------------------------------------------------------------------------
+&tao_params
+  !global%plot_on = T
+  global%track_type = 'single'
+  global%beam_timer_on = T
+  global%random_engine = 'pseudo' ! or: 'quasi'
+  global%de_lm_step_ratio = 1500
+  global%optimizer = 'lmdif'
+  global%n_opti_cycles = 100
+  !---Bmad---
+  bmad_com%radiation_damping_on = F
+  bmad_com%radiation_fluctuations_on = T
+/
+
+
+
+
+&tao_d2_data
+        d2_data%name = 'floor'
+        universe = 1
+        n_d1_data = 1
+/
+
+&tao_d1_data
+        ix_d1_data = 1
+        default_weight = 1
+        d1_data%name = 'end'
+        datum( 1) =  'floor.x'     '' '' 'OTR2'   'target' 0     1e1 
+        datum( 2) =  'floor.y'     '' '' 'OTR2'   'target' 0     1e1 
+        datum( 3) =  'floor.z'     '' '' 'OTR2'   'target' 0     1e1 
+        datum( 4) =  'floor.theta'     '' '' 'OTR2'   'target' 0     1e1 
+        datum( 5) =  's_position'  '' '' 'OTR2'   'target' 0     1e1 
+/
+
+
+
+

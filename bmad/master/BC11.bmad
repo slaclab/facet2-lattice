@@ -1,5 +1,5 @@
 
-! *** OPTICS=FACET2-18MAY21 ***
+! *** OPTICS=FACET2-08NOV21 ***
 
 ! ==============================================================================
 ! Modification History
@@ -204,18 +204,27 @@ endbc11_2: marker
 ! BEAMLINEs
 ! ------------------------------------------------------------------------------
 
-BCX11314_full: line = (BCX11314)
-!old:   BCX11314_full : LINE=(BCX11314a,BCX11314b)
+
+
+!Old split line: LINE=(BCX11314a,BCX11314b)
+
+bcx11314_full: line = (bcx11314)
 
 
 !Old split line: LINE=(CQ11317,CQ11317)
 
 cq11317_full: line = (cq11317)
 cq11317[L] = 2*cq11317[L]
-BCX11331_full: line = (BCX11331)
-!old:   BCX11331_full : LINE=(BCX11331a,BCX11331b)
-BCX11338_full: line = (BCX11338)
-!old:   BCX11338_full : LINE=(BCX11338a,BCX11338b)
+
+
+!Old split line: LINE=(BCX11331a,BCX11331b)
+
+bcx11331_full: line = (bcx11331)
+
+
+!Old split line: LINE=(BCX11338a,BCX11338b)
+
+bcx11338_full: line = (bcx11338)
 !  SQ11340_full  : LINE=(SQ11340,SQ11340) - removed FEB-28-2020
 
 
@@ -223,8 +232,11 @@ BCX11338_full: line = (BCX11338)
 
 cq11352_full: line = (cq11352)
 cq11352[L] = 2*cq11352[L]
-BCX11355_full: line = (BCX11355)
-!old:   BCX11355_full : LINE=(BCX11355a,BCX11355b)
+
+
+!Old split line: LINE=(BCX11355a,BCX11355b)
+
+bcx11355_full: line = (bcx11355)
 
   BC11C : LINE=(BC11CBEG,BCX11314_full,D11oa,CQ11317_full,D11ob,YC11321,D11oc,BCX11331_full,DDG11,BPM11333,DDG12,DDG13,
          PR11335,DDG14,BCX11338_full,D11od1,CE11345,D11od2,D11oe,D11of,CQ11352_full,D11og,BCX11355_full,CNT1B,BC11CEND)

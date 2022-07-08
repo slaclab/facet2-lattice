@@ -1,5 +1,5 @@
 
-! *** OPTICS=FACET2-18MAY21 ***
+! *** OPTICS=FACET2-08NOV21 ***
 
 ! ==============================================================================
 ! Modification History
@@ -82,12 +82,10 @@
                  L=DLWL10, DELTAE=P25*gradL1*DLWL10, PHI0=phiL1, &
                  ELOSS=KlossL1*DLWL10, &
                  LFILE="sband_l.dat", TFILE="sband_t.dat"
-
   K11_2a : LCAV, FREQ=SbandF, TYPE="10ft", &
                  L=DLWL10, DELTAE=P25*gradL1*DLWL10, PHI0=phiL1, &
                  ELOSS=KlossL1*DLWL10, &
                  LFILE="sband_l.dat", TFILE="sband_t.dat"
-
   K11_2c : LCAV, FREQ=SbandF, TYPE="10ft", &
                  L=DLWL10, DELTAE=P50*gradL1*DLWL10, PHI0=phiL1, &
                  ELOSS=KlossL1*DLWL10, &

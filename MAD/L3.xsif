@@ -1,8 +1,13 @@
 
-! *** OPTICS=FACET2-18MAY21 ***
+! *** OPTICS=FACET2-08NOV21 ***
 
 ! ==============================================================================
 ! Modification History
+! ------------------------------------------------------------------------------
+! 02-MAY-2022, G. White
+!  * moved XC19900 & YC19900 to reflect in-tunnel measurements by L. ALsburg
+! 04-NOV-2021, M. Woodley
+!  * remove unused K15_2d definition
 ! ------------------------------------------------------------------------------
 ! 16-APR-2021, G. White
 !  * 19-8a removed, XC19900 & YC19900 moved to match as-installed
@@ -1365,10 +1370,10 @@
 
   Lmdw := 25.801374683414 !Q19701 exit to ENDL3F (from FACET v35)
 
-  D199a1 : DRIF, L=0.8016
-  D199a2 : DRIF, L=0.32
-  D199a : DRIF, L=5.4757-0.32
-  D199b : DRIF, L=2.0867 !26238214
+  D199b1 : DRIF, L=0.343
+  D199b2 : DRIF, L=1.016
+  D199a : DRIF, L=6.2773
+  D199b : DRIF, L=0.7277
   D199c : DRIF, L=4.570884
   D199d : DRIF, L=Lmdw-(DAQ2[L]+4*DLWL10+DAQ1[L]+LQE+DAQ2[L]+&
                   DLWL10+3.2062+LQE+2.0867+LQE+D199c[L])
@@ -1578,7 +1583,6 @@
   K15_2a_full : LINE=(K15_2a1,XC15202,K15_2a2,YC15203,K15_2a3)
   K15_2b_full : LINE=(K15_2b)
   K15_2c_full : LINE=(K15_2c)
-  K15_2d_full : LINE=(K15_2d)
   K15_3a_full : LINE=(K15_3a1,XC15302,K15_3a2,YC15303,K15_3a3)
   K15_3b_full : LINE=(K15_3b)
   K15_3c_full : LINE=(K15_3c)
@@ -1887,8 +1891,8 @@
     K19_6,DAQ1,Q19701_full)
 
   LI19c : LINE=(DAQ2,&
-    D19_7,DAQ1,Q19801_full,D199a1,XC19900,D199a2,&
-    YC19900,D199a,Q19851_full,D199b,&
+    D19_7,DAQ1,Q19801_full,D199a,Q19851_full,D199b,XC19900,&
+    D199b1,YC19900,D199b2,&
     Q19871_full,D199c,IM1988,D199d,&
     LI19term)
 
