@@ -84,7 +84,7 @@ switch ConfigName
     ipbeta=[1 1];
   case "tcav"
     ipbeta=[0.05 0.05];
-    ipname='DWIN';
+    ipname='DSOTR';
   case "sfqed"
     psno=2:5;
     ipbeta=[10 10];
