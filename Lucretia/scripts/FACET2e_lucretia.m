@@ -1,4 +1,4 @@
-  % FACET2E_LUCRETIA Parse FACET2 MAD electron deck into Lucretia
+% FACET2E_LUCRETIA Parse FACET2 MAD electron deck into Lucretia
 % Run from MAD folder
 
 global BEAMLINE WF
@@ -45,8 +45,8 @@ Initial=M.initStruc;
 Initial.SigPUncorrel=0.135*0.1e-2;
 
 % Set default Sector 20 optics
-match_S20(Initial,"pwfa_5cm",1,0);
-% match_S20(Initial,"pwfa_50cm_r56=10",1,1);
+% match_S20(Initial,"filamentation_solid",1,0);
+match_S20(Initial,"pwfa_50cm_r56=10",1,1);
 T=TwissPlot(1,length(BEAMLINE),Initial,[1 1 0]);
 
 % S-band structure apertures
