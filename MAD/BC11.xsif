@@ -1,6 +1,11 @@
 ! ==============================================================================
 ! Modification History
 ! ------------------------------------------------------------------------------
+! 17-OCT-2022, G. White - Survey co-ordinates for BC11 from Georg
+!  All previous changes verified, other than the following:
+!  BPM11333 z=1042.6467 -> 1042.549
+!  SQ11340 z=1043.7724 -> 1044.804
+!   - XLS sheet with data stored in doc directory
 ! 08-JUL-2022, G. White - Position and name changes from B. O'Shea
 !  QM11312 z = 1039.1048 -> 1039.1590 (dz = +54.2 mm)
 !  CQ11317 z = 1040.5585 -> 1040.6694 (dz = +110.9 mm)
@@ -153,14 +158,14 @@
   D11oa  : DRIF, L=LD11a/COS(AB11), TYPE="CSR"
   D11ob  : DRIF, L=LD11b/COS(AB11)+381e-3, TYPE="CSR"
   D11oc  : DRIF, L=LD11c/COS(AB11)-381e-3, TYPE="CSR"
-  DDG11  : DRIF, L=0.24864, TYPE="CSR"
-  DDG12  : DRIF, L=0.16446, TYPE="CSR"
+  DDG11  : DRIF, L=0.24864-0.0977, TYPE="CSR"
+  DDG12  : DRIF, L=0.16446+0.0977, TYPE="CSR"
   DDG13  : DRIF, L=0.182606, TYPE="CSR"
   DDG14  : DRIF, L=0.234494, TYPE="CSR"
   D11od  : DRIF, L=LD11d/COS(AB11), TYPE="CSR"
   D11od1 : DRIF, L=0.131230935728+0.13+588.2e-3, TYPE="CSR" ! 0.131230935728
-  D11od2 : DRIF, L=D11od[L]-D11od1[L], TYPE="CSR"
-  D11oe  : DRIF, L=LD11e/COS(AB11), TYPE="CSR"
+  D11od2 : DRIF, L=D11od[L]-D11od1[L]+1.0316/COS(AB11), TYPE="CSR"
+  D11oe  : DRIF, L=LD11e/COS(AB11)-1.0316/COS(AB11), TYPE="CSR"
   D11of  : DRIF, L=LD11f/COS(AB11)+0.1234, TYPE="CSR"
   D11og  : DRIF, L=LD11g/COS(AB11)-0.1234, TYPE="CSR"
 
