@@ -282,8 +282,9 @@ if ~startsWith(ConfigName,"kraken")
   M.optim='lsqnonlin';
   M.optimDisplay=odisp;
   if ConfigName == "sfqed"
-    M.addMatch(iscr,'R',0,1e-14,'11');
-    M.addMatch(iscr,'R',0,1e-14,'33');
+%     M.addMatch(iscr,'R',0,1e-14,'11');
+%     M.addMatch(iscr,'R',0,1e-14,'33');
+    M.addMatch(iscr,'beta_x',0,ipbeta(1));
     M.addMatch(iscr,'beta_y',0,ipbeta(2));
   else
     M.addMatch(iscr,'R',0,1e-9,'12');

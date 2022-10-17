@@ -34,11 +34,11 @@
 beam_init%random_engine = 'quasi'
 ix_universe = 1
 beam_saved_at =  "MARKER::*"
-track_start = 'DE04a'
+track_start = 'L0AFEND'
 !track_end = 'K11_1D'
+!track_end = 'PR10711'
 !track_end = 'BC1CEND'
-!beam_init%position_file = '$FACET2_LATTICE/bmad/beams/OTR2_250pC_rescaleto540um_solGTF1M_flat_scattered_20keV_100k.beam0'
-beam_init%position_file = 'particles.h5'
+beam_init%position_file = '$FACET2_LATTICE/bmad/beams/L0AFEND.h5'
 beam_init%center(1) = 0.0
 beam_init%center(2) = 0.0
 beam_init%center(3) = 0.0

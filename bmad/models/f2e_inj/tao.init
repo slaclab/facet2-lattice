@@ -49,13 +49,13 @@ beam_init%center(6) = 0.0
 
 
 
-&tao_d2_data
+!&tao_d2_data
         d2_data%name = 'floor'
         universe = 1
         n_d1_data = 1
 /
 
-&tao_d1_data
+!&tao_d1_data
         ix_d1_data = 1
         default_weight = 1
         d1_data%name = 'end'
@@ -78,13 +78,13 @@ beam_init%center(6) = 0.0
         ix_d1_data = 1
         default_weight = 1
         d1_data%name = 'endtwiss'
-        datum( 1) =  'beta.a'     '' '' 'L0AFEND'   'target' 8     1e1   
-        datum( 2) =  'alpha.a'    '' '' 'L0AFEND'   'target' 2     1e2
-        datum( 3) =  'beta.b'     '' '' 'L0AFEND'   'target' 14      1e1
-        datum( 4) =  'alpha.b'    '' '' 'L0AFEND'   'target' 2.6      1e2
+        datum( 1) =  'beta.a'     '' '' 'L0AFEND'   'target' 36     1e1
+        datum( 2) =  'alpha.a'    '' '' 'L0AFEND'   'target' -8    1e2
+        datum( 3) =  'beta.b'     '' '' 'L0AFEND'   'target' 36      1e1
+        datum( 4) =  'alpha.b'    '' '' 'L0AFEND'   'target' -8      1e2
         datum( 5) =  'eta.x'      '' '' 'L0AFEND'   'target' 0      1e1
         datum( 6) =  'etap.x'     '' '' 'L0AFEND'   'target' 0      1e2
-/  
+/
 
 
 
@@ -128,6 +128,7 @@ beam_init%center(6) = 0.0
     !search_for_lat_eles = "monitor::bpm*,monitor::rfb*" 
     datum(1:)%ele_name =  'BPM10221', 'BPM10371', 'BPM10425', 'BPM10511', 'BPM10525',
      'BPM10581', 'BPM10631', 'BPM10651', 'BPM10731', 'BPM10771', 'BPM10781'
+    datum(1:)%meas = 0
 /
 
 &tao_d1_data
@@ -138,6 +139,7 @@ beam_init%center(6) = 0.0
     default_data_source = 'lat'
     !search_for_lat_eles = "monitor::bpm*,monitor::rfb*" 
     use_same_lat_eles_as = 'orbit.x'
+    datum(1:)%meas = 0
 /
 
 &tao_d1_data
