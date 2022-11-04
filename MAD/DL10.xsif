@@ -55,7 +55,7 @@
 
   GBH      := 0.03
   ZBH      := 0.1244
-  ABH      := 0 !0.1316410831
+  ABH      := 0.1316410831
   ABH_2    := ABH*ABH
   ABH_4    := ABH_2*ABH_2
   ABH_6    := ABH_4*ABH_2
@@ -153,21 +153,21 @@
   R34u     := Lhun*SINCARGu
 
  !comment
-  UM10466 : MATRIX, TYPE="@0,LHund", L=Lhun,  &
-    RM(1,1)=1.0,                              &
-    RM(1,2)=Lhun,                             &
-    RM(2,1)=0.0,                              &
-    RM(2,2)=1.0,                              &
-    RM(3,3)=cos(Lhun*sqrt(kqlh)),             &
-    RM(3,4)=R34u,                             &
-    RM(4,3)=-sin(Lhun*sqrt(kqlh))*sqrt(kqlh), &
-    RM(4,4)=cos(Lhun*sqrt(kqlh)),             &
-    RM(5,5)=1.0,                              &
-    RM(6,6)=1.0 !,                            &
-   !RM(5,6)=Lhun/(gami^2)*(1+(K_und^2)/2)
+ ! UM10466 : MATRIX, TYPE="@0,LHund", L=Lhun,  &
+ !   RM(1,1)=1.0,                              &
+ !   RM(1,2)=Lhun,                             &
+ !   RM(2,1)=0.0,                              &
+ !   RM(2,2)=1.0,                              &
+ !   RM(3,3)=cos(Lhun*sqrt(kqlh)),             &
+ !   RM(3,4)=R34u,                             &
+ !   RM(4,3)=-sin(Lhun*sqrt(kqlh))*sqrt(kqlh), &
+ !   RM(4,4)=cos(Lhun*sqrt(kqlh)),             &
+ !   RM(5,5)=1.0,                              &
+ !   RM(6,6)=1.0 !,                            &
+ !  !RM(5,6)=Lhun/(gami^2)*(1+(K_und^2)/2)
  !endcomment
 
- !UM10466 : DRIF, TYPE="LHund", L=Lhun
+ UM10466 : DRIF, TYPE="LHund", L=Lhun
 
 ! ==============================================================================
 ! QUAD
