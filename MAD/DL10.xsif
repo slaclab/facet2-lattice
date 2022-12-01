@@ -138,7 +138,7 @@
 
   lam   := 0.054
   lamr  := 758E-9
-  gami  := Ei/EMASS
+  gami  := 244.62
   K_und := 0 !sqrt(2*(lamr*2*gami^2/lam-1))
   Lhun  := 0.506263/2
   kqlh  := (K_und*2*pi/lam/sqrt(2)/gami)^2

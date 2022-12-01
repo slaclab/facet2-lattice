@@ -1,9 +1,9 @@
 
-! *** OPTICS=FACET2-08NOV21 ***
-
 ! ==============================================================================
 ! Modification History
 ! ------------------------------------------------------------------------------
+! 01-DEC-2022, G. White
+!  * re-matched QM14891 - Q15601 to keep S15 strengths on quad strings more equal
 ! 28-FEB-2020, G. White - changes after visual inspection of beamline
 !  * Moved YC14820 upstream of BCX14796 and changed unit number to 780
 !  * Moved IM14890 toroid to between QM14891 & Q14901 and changed unit # to 895
@@ -120,8 +120,12 @@
 
   KQ14701  := -1.665165076061
   KQM14715 :=  1.569247133195
-  KQM14891 :=  1.301762842142
-  KQ14901  := -1.723170615654
+
+  KQM14891 := 1.54788
+  KQ14901 := -1.954
+
+  !KQM14891 :=  1.301762842142
+  !KQ14901  := -1.723170615654
 
   Q14701  : QUAD, TYPE="1.085Q4.31", L=LQE/2, APER=rQE, K1=Qsign*(KQ14701)
   QM14715 : QUAD, TYPE="1.085Q4.31", L=LQE/2, APER=rQE, K1=Qsign*(KQM14715)
