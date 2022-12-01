@@ -42,7 +42,7 @@ M.addMatch(ENDBC11,'alpha_y',0,1e-5);
 M.doMatch;
 display(M)
 Initial=M.initStruc;
-Initial.SigPUncorrel=0.135*0.1e-2;
+Initial.SigPUncorrel=0.125*0.1e-2;
 
 % Set default Sector 20 optics
 % match_S20(Initial,"filamentation_solid",1,0);
