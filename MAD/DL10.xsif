@@ -1,8 +1,9 @@
 
-! *** OPTICS=FACET2-09DEC22 ***
-
 ! ==============================================================================
 ! Modification History
+! ------------------------------------------------------------------------------
+! 17-JAN-2023, G. White
+!  * add laser heater undulator with measured k=1.17
 ! ------------------------------------------------------------------------------
 ! 20-OCT-2022, M. Woodley
 !  * undefer laser heater chicane dipoles ... rematch (undulator still deferred)
@@ -145,7 +146,7 @@
   lam   := 0.053855 ! 0.054 -> changed to reflect K=1.17 measurememnt data
   lamr  := 758E-9
   gami  := Ei/EMASS
-  K_und := 0 ! sqrt(2*(lamr*2*gami^2/lam-1))
+  K_und := sqrt(2*(lamr*2*gami^2/lam-1))
   Lhun  := 0.506263/2
   kqlh  := (K_und*2*pi/lam/sqrt(2)/gami)^2
 
