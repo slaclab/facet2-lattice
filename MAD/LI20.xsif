@@ -1,13 +1,9 @@
 
-! *** OPTICS=FACET2-08NOV21 ***
+! *** OPTICS=FACET2-09DEC22 ***
 
 ! ==============================================================================
 ! FACET e- optics
 ! ------------------------------------------------------------------------------
-! 01-FEB-2021, G. White
-!  * add XC1FF & YC1FF correctors (X203026 & Y203017), positions according to
-!    measurements by C. Clarke
-!  * MQ4FF -> M2FF for consistent naming, MONI list match spreadsheet by D. Storey
 ! 17-DEC-2021, M. Woodley
 !  * change WIGE "_full" definitions for Bmad translation per C. Mayes
 ! 04-NOV-2021, M. Woodley
@@ -211,11 +207,9 @@
   LS3 := 0.250 !x2 magnets
   AS  := 18.6375e-3
 
-! from G. White's optics2013.xlsx
-
-  KS1E :=  15.0782
-  KS2E := -11.5893
-  KS3E := -13.793
+  KS1E :=   9.651480658753
+  KS2E :=  -8.071951521311
+  KS3E := -12.323982001624
 
   S1EL   : SEXT, TYPE="1.625S9.06", L=LS1/2, APER=AS, K2=KS1E
   S2EL   : SEXT, TYPE="1.625S29.2", L=LS2/2, APER=AS, K2=KS2E
@@ -592,14 +586,17 @@
     B1RE_full,CB1RE,&
     ENDBC20)
 
-! ------------------------------------------------------------------------------
-
 ! ==============================================================================
 ! FF20H
 ! ==============================================================================
 
 ! ==============================================================================
 ! FACET e- optics
+! ------------------------------------------------------------------------------
+! 01-FEB-2022, G. White
+!  * add XC1FF & YC1FF correctors (X203026 & Y203017), positions according to
+!    measurements by C. Clarke
+!  * MQ4FF -> M2FF for consistent naming, MONI list match spreadsheet by D. Storey
 ! ------------------------------------------------------------------------------
 ! 26-AUG-2021, M. Woodley
 !  * Hybrid Final Focus for fall 2021 operation
@@ -658,12 +655,12 @@
 
 ! Final Focus
 
-  KQ5FF := -0.453913*(0.2304/0.23045)
-  KQ4FF := -0.337682
-  KQ3FF :=  0.419544
-  KQ2FF :=  0.523259
-  KQ1FF := -0.980516
-  KQ0FF :=  0.523259
+  KQ5FF := -0.463098562206
+  KQ4FF := -0.339078008494
+  KQ3FF :=  0.416587964132
+  KQ2FF :=  0.530758516141
+  KQ1FF := -0.98611038998
+  KQ0FF :=  0.530758516141
 
   Q5FF : QUAD, TYPE="0.813Q17.7", L=0.23045, APER=0.008325, K1=KQ5FF
   Q4FF : QUAD, TYPE="1.625Q27.3", L=0.3571,  APER=0.0186,   K1=KQ4FF
@@ -675,9 +672,9 @@
 ! spectrometer
 
   AQS  := 27.0e-3
-  KQ0D := -0.330432
-  KQ1D :=  0.54533
-  KQ2D := -0.330432
+  KQ0D := -0.329107391408
+  KQ1D :=  0.541027630271
+  KQ2D := -0.329107391408
 
   Q0D : QUAD, TYPE="2.13Q38.31", L=0.5, APER=AQS, K1=KQ0D
   Q1D : QUAD, TYPE="2.13Q38.31", L=0.5, APER=AQS, K1=KQ1D
@@ -759,30 +756,30 @@
 ! XCORs
 ! ------------------------------------------------------------------------------
 
-  XC3FF  : HKIC, TYPE="3D8.8MK2" !0.815" gap
-  XC1EX  : HKIC, TYPE="3D4"      !1.181" gap
-  XC1FF  : HKIC ! X203026
+  XC1FF : HKIC                  !X203026
+  XC3FF : HKIC, TYPE="3D8.8MK2" !0.815" gap
+  XC1EX : HKIC, TYPE="3D4"      !1.181" gap
 
 ! ==============================================================================
 ! YCORs
 ! ------------------------------------------------------------------------------
 
-  YC1FF  : VKIC ! Y203017
+  YC1FF  : VKIC                  !Y203017
   YC2FF  : VKIC, TYPE="3D8.8MK2" !0.815" gap
 
 ! ==============================================================================
 ! BPMs
 ! ------------------------------------------------------------------------------
 
-  M1FF  : MONI
-  M2FF : MONI
-  M3FF  : MONI
-  M4FF  : MONI
-  M5FF  : MONI
-  M0EX  : MONI
-  M1EX  : MONI
-  M2EX  : MONI
-  M3EX  : MONI
+  M1FF  : MONI, TYPE="SA25840356"
+  M2FF  : MONI, TYPE="SA23650350"
+  M3FF  : MONI, TYPE="DSG000014571"
+  M4FF  : MONI, TYPE="DSG000014571"
+  M5FF  : MONI, TYPE="DSG000014571"
+  M0EX  : MONI, TYPE="SA23650350"
+  M1EX  : MONI, TYPE="SA23650301"
+  M2EX  : MONI, TYPE="SA23650301"
+  M3EX  : MONI, TYPE="SA23650301"
 
 ! ==============================================================================
 ! diagnostics, collimators, MARKERs, etc.
@@ -790,25 +787,25 @@
 
 ! profile monitors
 
-  USTHz   : PROF, TYPE="OTR foil/YAG"    ! OTRS:LI20:3070 CAMR:LI20:106
+  USTHz   : PROF, TYPE="OTR foil/YAG"    !OTRS:LI20:3070 CAMR:LI20:106
   DSTHz   : PROF, TYPE="OTR foil/YAG"    !PD203075
-  USOTR   : PROF, TYPE="OTR foil/YAG"    ! OTRS:LI20:3158 CAMR:LI20:101
-  IPOTR1P : PROF, TYPE="OTR foil/YAG"    ! OTRS:LI20:3175 (in plasma oven)
-  IPOTR1  : PROF, TYPE="OTR foil/YAG"    ! OTRS:LI20:3180 (in bypass line) CAMR:LI20:102
-  IPWS1   : PROF, TYPE="WIRE"            ! WIRE:LI20:3179 (in bypass line)
-  IPOTR2  : PROF, TYPE="OTR foil/YAG"    ! OTRS:LI20:3202 (in bypass line)
-  IPWS3   : PROF, TYPE="WIRE"            ! WIRE:LI20:3229
-  DSOTR   : PROF, TYPE="OTR foil/YAG"    ! OTRS:LI20:3206 CAMR:LI20:103
-  WDSOTR  : PROF, TYPE="OTR"             ! OTRS:LI20:3239 CAMR:LI20:104
+  USOTR   : PROF, TYPE="OTR foil/YAG"    !OTRS:LI20:3158 CAMR:LI20:101
+  IPOTR1P : PROF, TYPE="OTR foil/YAG"    !OTRS:LI20:3175 (in plasma oven)
+  IPOTR1  : PROF, TYPE="OTR foil/YAG"    !OTRS:LI20:3180 (in bypass line) CAMR:LI20:102
+  IPWS1   : PROF, TYPE="WIRE"            !WIRE:LI20:3179 (in bypass line)
+  IPOTR2  : PROF, TYPE="OTR foil/YAG"    !OTRS:LI20:3202 (in bypass line)
+  IPWS3   : PROF, TYPE="WIRE"            !WIRE:LI20:3229
+  DSOTR   : PROF, TYPE="OTR foil/YAG"    !OTRS:LI20:3206 CAMR:LI20:103
+  WDSOTR  : PROF, TYPE="OTR"             !OTRS:LI20:3239 CAMR:LI20:104
   DTOTR   : PROF, TYPE="OTR"
-  PGAM1   : PROF, TYPE="phosphor"        ! PROF:LI20:3500 CMOS:LI20:3490 (Gamma 1 screen)
-  CNEAR   : PROF, TYPE="cherenkov wafer" ! CMOS:LI20:3490
+  PGAM1   : PROF, TYPE="phosphor"        !PROF:LI20:3500 CMOS:LI20:3490 (Gamma 1 screen)
+  CNEAR   : PROF, TYPE="cherenkov wafer" !CMOS:LI20:3490
   PDUMP   : PROF, TYPE="phosphor"        !P203475T
 
 ! toroids
 
-  IQMON20 : IMON ! TORO:LI20:3163 "Resonant charge monitor" in S20 experimental region
-  IM3255  : IMON ! TORO:LI20:3255
+  IQMON20 : IMON !TORO:LI20:3163 "Resonant charge monitor" in S20 experimental region
+  IM3255  : IMON !TORO:LI20:3255
 
 ! bunch length monitors
 
@@ -845,7 +842,6 @@
   MAINDUMP   : INST !dump face
   DBMARK30   : MARK
   ENDSPECT20 : MARK
-  
 
 ! ==============================================================================
 ! BEAMLINEs
@@ -894,11 +890,11 @@
     ENDSPECT20)
 
 
-  FF20 : LINE=(FF,EXPT,SPECT)
+  FF20H : LINE=(FF,EXPT,SPECT)
 
 ! ==============================================================================
 
-  SECTOR20 : LINE=(BC20W,FF20)
+  SECTOR20 : LINE=(BC20W,FF20H)
 
 ! ------------------------------------------------------------------------------
 

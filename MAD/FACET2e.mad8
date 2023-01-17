@@ -1,6 +1,6 @@
-  TITLE, "FACET2 e- (November 8, 2021)"
+  TITLE, "FACET2 e- (December 9, 2022)"
 
-! *** OPTICS=FACET2-08NOV21 ***
+! *** OPTICS=FACET2-09DEC22 ***
 
   ASSIGN, PRINT="FACET2e.print"
   ASSIGN, ECHO="FACET2e.echo"
@@ -85,7 +85,9 @@
     STOP
   ENDCOMMENT
 
- !COMMENT
+! ------------------------------------------------------------------------------
+
+ !COMMENT !standard output
     BEAM, ENERGY=E0
     USE, F2_ELEC
     PRINT, FULL
@@ -95,15 +97,17 @@
     USE, FACET2e
     PRINT, FULL
     comment
-      SAVEBETA, TW11, BC11CEND
-      SAVEBETA, TW14, ENDBC14E
-      SAVEBETA, TW19, MSCAVEXT
-      SAVEBETA, TW20, BEGBC20
-      SAVEBETA, TWip, PENT
+      SAVEBETA, TW11,  BC11CEND
+      SAVEBETA, TW14i, BEGBC14E
+      SAVEBETA, TW14,  ENDBC14E
+      SAVEBETA, TW19,  MSCAVEXT
+      SAVEBETA, TW20,  BEGBC20
+      SAVEBETA, TWip,  MIP
     endcomment
     TWISS, BETA0=TWi, SAVE, TAPE="FACET2e_twiss.tape"
     comment
       SHOW, TW11
+      SHOW, TW14i
       SHOW, TW14
       SHOW, TW19
       SHOW, TW20

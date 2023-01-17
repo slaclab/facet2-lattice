@@ -1,5 +1,5 @@
 
-! *** OPTICS=FACET2-08NOV21 ***
+! *** OPTICS=FACET2-09DEC22 ***
 
 ! ==============================================================================
 ! Modification History
@@ -82,8 +82,8 @@
       CONSTR, Q19801[1], BETX<55
       WEIGHT, BETY=1.E-6
       CONSTR, Q19851[1], BETY<70
-     !LMDIF, TOL=1.E-20, CALLS=10000
-     !MIGRAD, TOL=1.E-20, CALLS=10000
+      LMDIF, TOL=1.E-20, CALLS=10000
+      MIGRAD, TOL=1.E-20, CALLS=10000
     ENDMATCH
     VALUE, KQ19201,KQ19301,KQ19401,KQ19501,KQ19601,KQ19701,KQ19801,&
            KQ19851,KQ19871
@@ -103,7 +103,7 @@
 
  !MGEO
  !MBC14
- !MLI20
+  MLI20
   
 ! ------------------------------------------------------------------------------
   

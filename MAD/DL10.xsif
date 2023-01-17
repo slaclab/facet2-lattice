@@ -1,8 +1,11 @@
 
-! *** OPTICS=FACET2-08NOV21 ***
+! *** OPTICS=FACET2-09DEC22 ***
 
 ! ==============================================================================
 ! Modification History
+! ------------------------------------------------------------------------------
+! 20-OCT-2022, M. Woodley
+!  * undefer laser heater chicane dipoles ... rematch (undulator still deferred)
 ! ------------------------------------------------------------------------------
 ! 19-FEB-2021, M. Woodley
 !  * remove IN10 ACMs (IM10607 and IM10618)
@@ -41,11 +44,12 @@
 ! SBEN
 ! ------------------------------------------------------------------------------
 
-! laser heater chicane
+! laser heater chicane (1.18D3.17 dipoles)
 ! - use series approximation for sinc(x)=sin(x)/x to allow BBh=0
 
-! GBH   : 5D3.9 gap height (m)
-! ZBH   : 5D3.9 "Z" length (m)
+! GBH   : gap height (m)
+! ZBH   : "Z" length (m)
+! FBH   : measured fringe field integral (1)
 ! ABH   : chicane bend angle (rad)
 ! LBH   : chicane bend path length (m)
 ! ABHs  : "short" half chicane bend angle (rad)
@@ -55,6 +59,7 @@
 
   GBH      := 0.03
   ZBH      := 0.1244
+  FBH      := 0.3997
   ABH      := 0.1316410831
   ABH_2    := ABH*ABH
   ABH_4    := ABH_2*ABH_2
@@ -70,63 +75,64 @@
   ABHl     := ABH-ABHs
   LBHl     := LBH-LBHs
 
-  BCX10451a : SBEN, TYPE="@0,5D3.9", L=LBHs, ANGLE=-ABHs, HGAP=GBH/2, &
-                    E1=0, FINT=0.400, FINTX=0
-  BCX10451b : SBEN, TYPE="@0,5D3.9", L=LBHl, ANGLE=-ABHl, HGAP=GBH/2, &
-                    FINT=0, E2=-ABH, FINTX=0.400
-  BCX10461a : SBEN, TYPE="@0,5D3.9", L=LBHl, ANGLE=+ABHl, HGAP=GBH/2, &
-                    E1=+ABH, FINT=0.400, FINTX=0
-  BCX10461b : SBEN, TYPE="@0,5D3.9", L=LBHs, ANGLE=+ABHs, HGAP=GBH/2, &
-                    FINT=0, E2=0, FINTX=0.400
-  BCX10475a : SBEN, TYPE="@0,5D3.9", L=LBHs, ANGLE=+ABHs, HGAP=GBH/2, &
-                    E1=0, FINT=0.400, FINTX=0
-  BCX10475b : SBEN, TYPE="@0,5D3.9", L=LBHl, ANGLE=+ABHl, HGAP=GBH/2, &
-                    FINT=0, E2=+ABH, FINTX=0.400
-  BCX10481a : SBEN, TYPE="@0,5D3.9", L=LBHl, ANGLE=-ABHl, HGAP=GBH/2, &
-                    E1=-ABH, FINT=0.400, FINTX=0
-  BCX10481b : SBEN, TYPE="@0,5D3.9", L=LBHs, ANGLE=-ABHs, HGAP=GBH/2, &
-                    FINT=0, E2=0, FINTX=0.400
+  BCX10451a : SBEN, TYPE="1.18D3.17", L=LBHs, ANGLE=-ABHs, HGAP=GBH/2, &
+                    E1=0, FINT=FBH, FINTX=0
+  BCX10451b : SBEN, TYPE="1.18D3.17", L=LBHl, ANGLE=-ABHl, HGAP=GBH/2, &
+                    FINT=0, E2=-ABH, FINTX=FBH
+  BCX10461a : SBEN, TYPE="1.18D3.17", L=LBHl, ANGLE=+ABHl, HGAP=GBH/2, &
+                    E1=+ABH, FINT=FBH, FINTX=0
+  BCX10461b : SBEN, TYPE="1.18D3.17", L=LBHs, ANGLE=+ABHs, HGAP=GBH/2, &
+                    FINT=0, E2=0, FINTX=FBH
+  BCX10475a : SBEN, TYPE="1.18D3.17", L=LBHs, ANGLE=+ABHs, HGAP=GBH/2, &
+                    E1=0, FINT=FBH, FINTX=0
+  BCX10475b : SBEN, TYPE="1.18D3.17", L=LBHl, ANGLE=+ABHl, HGAP=GBH/2, &
+                    FINT=0, E2=+ABH, FINTX=FBH
+  BCX10481a : SBEN, TYPE="1.18D3.17", L=LBHl, ANGLE=-ABHl, HGAP=GBH/2, &
+                    E1=-ABH, FINT=FBH, FINTX=0
+  BCX10481b : SBEN, TYPE="1.18D3.17", L=LBHs, ANGLE=-ABHs, HGAP=GBH/2, &
+                    FINT=0, E2=0, FINTX=FBH
 
 ! define unsplit SBENs for BMAD ... not used by MAD
 
 
-  BCX10451 : SBEN, TYPE="@0,5D3.9", L=LBH, HGAP=GBH/2, ANGLE=-ABH, &
-                   E1=0, FINT=0.400, E2=-ABH, FINTX=0.400
-  BCX10461 : SBEN, TYPE="@0,5D3.9", L=LBH, HGAP=GBH/2, ANGLE=+ABH, &
-                   E1=+ABH, FINT=0.400, E2=0, FINTX=0.400
-  BCX10475 : SBEN, TYPE="@0,5D3.9", L=LBH, HGAP=GBH/2, ANGLE=+ABH, &
-                   E1=0, FINT=0.400, E2=+ABH, FINTX=0.400
-  BCX10481 : SBEN, TYPE="@0,5D3.9", L=LBH, HGAP=GBH/2, ANGLE=-ABH, &
-                   E1=-ABH, FINT=0.400, E2=0, FINTX=0.400
+  BCX10451 : SBEN, TYPE="1.18D3.17", L=LBH, HGAP=GBH/2, ANGLE=-ABH, &
+                   E1=0, FINT=FBH, E2=-ABH, FINTX=FBH
+  BCX10461 : SBEN, TYPE="1.18D3.17", L=LBH, HGAP=GBH/2, ANGLE=+ABH, &
+                   E1=+ABH, FINT=FBH, E2=0, FINTX=FBH
+  BCX10475 : SBEN, TYPE="1.18D3.17", L=LBH, HGAP=GBH/2, ANGLE=+ABH, &
+                   E1=0, FINT=FBH, E2=+ABH, FINTX=FBH
+  BCX10481 : SBEN, TYPE="1.18D3.17", L=LBH, HGAP=GBH/2, ANGLE=-ABH, &
+                   E1=-ABH, FINT=FBH, E2=0, FINTX=FBH
 
-! dogleg
+! dogleg (1.182D6.82T dipoles)
 
   GB0 := 0.03                   !gap height (m)
   ZB0 := 0.2032                 !full "Z" length (m)
+  FB0 := 0.45                   !measured fringe field integral (1)
   AB0 := ADL1/2                 !full bend angle (rad)
   LB0 := ZB0*AB0/(2*SIN(AB0/2)) !full bend path length (m)
 
   BX10661a : SBEN, TYPE="1.182D6.82T", L=LB0/2, HGAP=GB0/2, ANGLE=AB0/2, &
-                   E1=AB0/2, FINT=0.45, FINTX=0
+                   E1=AB0/2, FINT=FB0, FINTX=0
   BX10661b : SBEN, TYPE="1.182D6.82T", L=LB0/2, HGAP=GB0/2, ANGLE=AB0/2, &
-                   E2=AB0/2, FINT=0, FINTX=0.45
+                   E2=AB0/2, FINT=0, FINTX=FB0
   BX10751a : SBEN, TYPE="1.182D6.82T", L=LB0/2, HGAP=GB0/2, ANGLE=AB0/2, &
-                   E1=AB0/2, FINT=0.45, FINTX=0
+                   E1=AB0/2, FINT=FB0, FINTX=0
   BX10751b : SBEN, TYPE="1.182D6.82T", L=LB0/2, HGAP=GB0/2, ANGLE=AB0/2, &
-                   E2=AB0/2, FINT=0, FINTX=0.45
+                   E2=AB0/2, FINT=0, FINTX=FB0
 
 ! define unsplit SBENs for BMAD ... not used by MAD
 
   BX10661 : SBEN, TYPE="1.182D6.82T", HGAP=GB0/2, L=LB0, ANGLE=AB0, &
-                  E1=AB0/2, FINT=0.45, E2=AB0/2, FINTX=0.45
+                  E1=AB0/2, FINT=FB0, E2=AB0/2, FINTX=FB0
   BX10751 : SBEN, TYPE="1.182D6.82T", HGAP=GB0/2, L=LB0, ANGLE=AB0, &
-                  E1=AB0/2, FINT=0.45, E2=AB0/2, FINTX=0.45
+                  E1=AB0/2, FINT=FB0, E2=AB0/2, FINTX=FB0
 
 ! ==============================================================================
 ! MATR
 ! ------------------------------------------------------------------------------
 
-! laser heater undulator
+! laser heater undulator (deferred)
 ! - half-undulator modeled as R-matrix to include vertical natural focusing
 
 ! lam   : laser-heater undulator period [m]
@@ -136,10 +142,10 @@
 ! Lhun  : half-length of laser-heater undulator (5 periods) [m]
 ! kqlh  : natural undulator focusing "k" in y-plane [1/m2]
 
-  lam   := 0.054
+  lam   := 0.053855 ! 0.054 -> changed to reflect K=1.17 measurememnt data
   lamr  := 758E-9
-  gami  := 244.62
-  K_und := 0 !sqrt(2*(lamr*2*gami^2/lam-1))
+  gami  := Ei/EMASS
+  K_und := 0 ! sqrt(2*(lamr*2*gami^2/lam-1))
   Lhun  := 0.506263/2
   kqlh  := (K_und*2*pi/lam/sqrt(2)/gami)^2
 
@@ -152,41 +158,37 @@
   SINCARGu := 1-ARGu2/6+ARGu4/120-ARGu6/5040 !~sinc(ARGu)=sin(ARGu)/ARGu
   R34u     := Lhun*SINCARGu
 
- !comment
- ! UM10466 : MATRIX, TYPE="@0,LHund", L=Lhun,  &
- !   RM(1,1)=1.0,                              &
- !   RM(1,2)=Lhun,                             &
- !   RM(2,1)=0.0,                              &
- !   RM(2,2)=1.0,                              &
- !   RM(3,3)=cos(Lhun*sqrt(kqlh)),             &
- !   RM(3,4)=R34u,                             &
- !   RM(4,3)=-sin(Lhun*sqrt(kqlh))*sqrt(kqlh), &
- !   RM(4,4)=cos(Lhun*sqrt(kqlh)),             &
- !   RM(5,5)=1.0,                              &
- !   RM(6,6)=1.0 !,                            &
- !  !RM(5,6)=Lhun/(gami^2)*(1+(K_und^2)/2)
- !endcomment
-
- UM10466 : DRIF, TYPE="LHund", L=Lhun
+  UM10466 : MATRIX, TYPE="@0,LHund", L=Lhun,  &
+    RM(1,1)=1.0,                              &
+    RM(1,2)=Lhun,                             &
+    RM(2,1)=0.0,                              &
+    RM(2,2)=1.0,                              &
+    RM(3,3)=cos(Lhun*sqrt(kqlh)),             &
+    RM(3,4)=R34u,                             &
+    RM(4,3)=-sin(Lhun*sqrt(kqlh))*sqrt(kqlh), &
+    RM(4,4)=cos(Lhun*sqrt(kqlh)),             &
+    RM(5,5)=1.0,                              &
+    RM(6,6)=1.0 !,                            &
+   !RM(5,6)=Lhun/(gami^2)*(1+(K_und^2)/2)
 
 ! ==============================================================================
 ! QUAD
 ! ------------------------------------------------------------------------------
 
-! match around laser heater (not installed)
+! match around laser heater (undulator not installed)
 
-  KQE10425 := -15.201903779328
-  KQE10441 :=  14.620018144249
-  KQE10511 :=  10.3685858706
-  KQE10525 := -10.475280419976
+  KQE10425 := -14.668430126161 !-15.201903779328 
+  KQE10441 :=  14.806390407403 ! 14.620018144249 
+  KQE10511 :=   9.68649424695  ! 10.3685858706 
+  KQE10525 :=  -9.76597438543  !-10.475280419976 
 
 ! match to BC11CEND (X-band not installed)
 
-  KQM10631 :=  11.990887883552
-  KQM10651 := -11.233494237683
+  KQM10631 :=  11.73009425186  ! 11.990887883552
+  KQM10651 := -11.379711206572 !-11.233494237683
   KQB10731 :=  22.169701529671
-  KQM10771 :=  -7.123593114848
-  KQM10781 :=  11.698487496707
+  KQM10771 :=  -8.143967775774 ! -7.123593114848
+  KQM10781 :=  12.275640217878 ! 11.698487496707
 
   QE10425 : QUAD, TYPE="1.26Q3.5",   L=LQx/2, APER=rQx, K1=KQE10425
   QE10441 : QUAD, TYPE="1.26Q3.5",   L=LQx/2, APER=rQx, K1=KQE10441

@@ -45,7 +45,6 @@ Initial=M.initStruc;
 Initial.SigPUncorrel=0.125*0.1e-2;
 
 % Set default Sector 20 optics
-% match_S20(Initial,"filamentation_solid",1,0);
 match_S20(Initial,"pwfa_50cm",1,1);
 T=TwissPlot(1,length(BEAMLINE),Initial,[1 1 0]);
 

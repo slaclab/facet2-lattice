@@ -1,6 +1,6 @@
-  TITLE, "FACET2 scavenger e- (November 8, 2021)"
+  TITLE, "FACET2 scavenger e- (December 9, 2022)"
 
-! *** OPTICS=FACET2-08NOV21 ***
+! *** OPTICS=FACET2-09DEC22 ***
 
   ASSIGN, PRINT="FACET2s.print"
   ASSIGN, ECHO="FACET2s.echo"

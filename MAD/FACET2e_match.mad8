@@ -1,5 +1,5 @@
 
-! *** OPTICS=FACET2-08NOV21 ***
+! *** OPTICS=FACET2-09DEC22 ***
 
 ! ==============================================================================
 ! Modification History
@@ -46,8 +46,8 @@
       VARY, fL1, STEP=1.E-6
       WEIGHT, ENERGY=1
       CONSTR, ENDL1F, ENERGY=E11
-      LMDIF, TOL=1.E-20
-      MIGRAD, TOL=1.E-20
+     !LMDIF, TOL=1.E-20
+     !MIGRAD, TOL=1.E-20
     ENDMATCH
     VALUE, fL1
  !endcomment
@@ -117,33 +117,7 @@
 
 ! ------------------------------------------------------------------------------
 
-  MTWi : SUBROUTINE
-    BEAM, ENERGY=Ei
-    USE, DL10
-    VALUE, BXi,AXi,BYi,AYi
-    MATCH, BETA0=TWi
-      VARY, BXi, STEP=1.E-6
-      VARY, AXi, STEP=1.E-6
-      VARY, BYi, STEP=1.E-6
-      VARY, AYi, STEP=1.E-6
-      CONSTR, MRK0F, BETX=BX10, ALFX=AX10, BETY=BY10, ALFY=AY10
-     !LMDIF, TOL=1.E-20
-     !MIGRAD, TOL=1.E-20
-    ENDMATCH
-    VALUE, BXi,AXi,BYi,AYi
-    BEAM, ENERGY=Ei
-    USE, DL10
-    PRINT, FULL
-    TWISS, BETA0=TWi, SAVE
-    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=BETX,BETY, &
-      STYLE=100, SPLINE, RANGE=#S/MRK0F, FILE="match"
-    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=DX,DY, &
-      STYLE=100, SPLINE, RANGE=#S/MRK0F, FILE="match"
-    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=BETX,BETY, &
-      STYLE=100, SPLINE, FILE="match"
-    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=DX,DY, &
-      STYLE=100, SPLINE, FILE="match"
-  ENDSUBROUTINE
+! MTWi : BXi, AXi, BYi, and AYi come from Lucretia
 
 ! ------------------------------------------------------------------------------
 
@@ -184,7 +158,7 @@
       VARY, KQE10441, STEP=1.E-6, LOWER=0
       VARY, KQE10511, STEP=1.E-6, LOWER=0
       VARY, KQE10525, STEP=1.E-6, UPPER=0
-      CONSTR, MRK0F, BETX=BX10, ALFX=AX10, BETY=BY10, ALFY=AY10
+      CONSTR, PR10571, BETX=BX10, ALFX=AX10, BETY=BY10, ALFY=AY10
      !LMDIF, TOL=1.E-20, CALLS=10000
      !MIGRAD, TOL=1.E-20, CALLS=10000
     ENDMATCH
@@ -435,6 +409,37 @@
 
 ! ------------------------------------------------------------------------------
 
+  ML2BC14 : SUBROUTINE
+    BEAM, ENERGY=Ei
+    USE, FACET2e
+    VALUE, KQ14301,KQ14401,KQ14501,KQ14601,KQ14701,KQM14715
+    MATCH, BETA0=TWi
+      VARY, KQ14301,  STEP=1.E-6, UPPER=0
+      VARY, KQ14401,  STEP=1.E-6, LOWER=0
+      VARY, KQ14501,  STEP=1.E-6, UPPER=0
+      VARY, KQ14601,  STEP=1.E-6, LOWER=0
+      VARY, KQ14701,  STEP=1.E-6, UPPER=0
+      VARY, KQM14715, STEP=1.E-6, LOWER=0
+      CONSTR, Q14401[1], BETX<BmaxL2
+      CONSTR, Q14601[1], BETX<BmaxL2
+      CONSTR, Q14701[1], BETY<120
+      CONSTR, ENDBC14E, BETX=BX14, ALFX=AX14, BETY=BY14, ALFY=AY14
+     !LMDIF, TOL=1.E-20, CALLS=10000
+     !MIGRAD, TOL=1.E-20, CALLS=10000
+    ENDMATCH
+    VALUE, KQ14301,KQ14401,KQ14501,KQ14601,KQ14701,KQM14715
+    BEAM, ENERGY=Ei
+    USE, FACET2e
+    PRINT, FULL
+    TWISS, BETA0=TWi, SAVE, TAPE="FACET2e_twiss.tape"
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=BETX,BETY, &
+      STYLE=100, SPLINE, RANGE=BEGL2F/ENDBC14E, FILE="match"
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=BETX,BETY, &
+      STYLE=100, SPLINE, RANGE=LI14BEG/ENDBC14E, FILE="match"
+  ENDSUBROUTINE
+
+! ------------------------------------------------------------------------------
+
   ML3fodo : SUBROUTINE
     BEAM, ENERGY=E14
     USE, L3c
@@ -585,7 +590,7 @@
 
   MLI20ip : SUBROUTINE
     BEAM, ENERGY=E20
-    USE, S20E
+    USE, SECTOR20
     VALUE, BX20,AX20,BY20,AY20
     MATCH, BETX=BX20, ALFX=AX20, BETY=BY20, ALFY=AY20
       VARY, BX20, STEP=1.E-6
@@ -628,11 +633,11 @@
       CONSTR, Q19301[1], BETY<45
       CONSTR, Q19401[1], BETX<45
       CONSTR, Q19501[1], BETY<45
-      CONSTR, Q19601[1], BETX<50
+      CONSTR, Q19601[1], BETX<55
       CONSTR, Q19701[1], BETY<50
       CONSTR, Q19801[1], BETX<55
       WEIGHT, BETY=1.E-6
-      CONSTR, Q19851[1], BETY<70
+      CONSTR, Q19851[1], BETY<80
      !LMDIF, TOL=1.E-20, CALLS=10000
      !MIGRAD, TOL=1.E-20, CALLS=10000
     ENDMATCH
@@ -674,6 +679,7 @@
 
 ! ------------------------------------------------------------------------------
 
+  comment
   MSPECT : SUBROUTINE
     BEAM, ENERGY=Ei
     USE, FACET2e
@@ -697,6 +703,7 @@
     PLOT, TABLE=TWISS, HAXIS=S, VAXIS=DX,DY, &
       STYLE=100, SPLINE, RANGE=BEGFF/ENDSPECT, FILE="match"
   ENDSUBROUTINE
+  endcomment
 
 ! ------------------------------------------------------------------------------
 
@@ -705,7 +712,6 @@
  !ME11
  !ME14
  !ME20
- !MTWi
  !MTW0
  !MHTR
  !MBX0
@@ -713,6 +719,7 @@
  !MBC14
  !ML2fodo
  !ML2
+ !ML2BC14
  !ML3fodo
  !ML3
  !MLI20ip

@@ -1,4 +1,6 @@
 
+! *** OPTICS=FACET2-09DEC22 ***
+
 ! ------------------------------------------------------------------------------
 ! constants and global parameters (from FACET2e_baseline.mat)
 ! ------------------------------------------------------------------------------
@@ -59,68 +61,68 @@
 ! Twiss
 ! ------------------------------------------------------------------------------
 
-! at BEGDL10 (matched to MRK0F without laser heater chicane or undulator)
+! at BEGDL10 (from Lucretia/FACET2e.mat)
 
-  BXi :=  0.236614127043
-  AXi := -1.250649355877
-  BYi := 16.692771188262
-  AYi := -9.828485442506
+  BXi :=  0.285174483425
+  AXi := -1.368470580839
+  BYi :=  6.079984539031
+  AYi := -3.961843526245
 
 ! at CATHODEF (matched to BXi/AXi/BYi/AYi)
 
-  BX0 := 11.916867305095
-  AX0 :=  7.509605493741
-  BY0 :=  3.135655821534
-  AY0 := -7.047857298284
+  BX0 :=  9.963866768775 ! 9.963866768184
+  AX0 :=  6.849229620156 ! 6.849229620112
+  BY0 :=  1.215911313288 ! 1.215911313342
+  AY0 := -3.157985388206 !-3.157985388292
 
-! at MRK0F (treaty values)
+! at PR10571 (treaty values)
 
-  BX10 := 1.1
-  AX10 := 0.0
-  BY10 := 1.1
-  AY10 := 0.0
+  BX10 := 1.5 ! 1.134087662708
+  AX10 := 0.0 !-0.329220263305
+  BY10 := 1.5 ! 1.872572065525
+  AY10 := 0.0 !-0.210412720984
 
 ! at BC11CEND (treaty values)
 
-  BX11 := 3.0
-  AX11 := 0.0
-  BY11 := 3.0
-  AY11 := 0.0
+  BX11 := 3.0 ! 3.000000000002
+  AX11 := 0.0 ! 0.128869137583E-12
+  BY11 := 3.0 ! 2.999999310614
+  AY11 := 0.0 !-0.44932546156E-8
 
-! at ENDBC14E (treaty values)
+! at BEGBC14E (not matched)
 
-  BX14 := 10.0
-  AX14 :=  0.0
-  BY14 := 10.0
-  AY14 :=  0.0
+  BX14i := 70.229235512537 !70.146899622949
+  AX14i :=  2.506814383299 ! 2.507307974109
+  BY14i := 65.681264447817 !65.60218937018
+  AY14i :=  2.363168510978 ! 2.359600850166
 
-! at BEGBC14E (matched to ENDBC14E)
+! at ENDBC14E (treaty values ... not enforced)
 
-  BX14i := 61.708537004857
-  AX14i :=  2.092975812122
-  BY14i := 58.069608228684
-  AY14i :=  2.016097891765
+  BX14 := 10.0 ! 8.391756131701
+  AX14 :=  0.0 !-0.768162441735E-2
+  BY14 := 10.0 ! 8.683370834736
+  AY14 :=  0.0 ! 0.027643695395
 
 ! at MSCAVEXT (not matched)
 
-  BX19 := 13.83816884323
-  AX19 :=  0.728326391783
-  BY19 := 31.332109322064
-  AY19 := -1.578833231189
+  BX19 := 14.214130497222 !14.968533255281
+  AX19 :=  0.658279961049 ! 0.628675805114
+  BY19 := 37.221157725651 !35.962959515675
+  AY19 := -1.81620095891  !-1.766449812668
+
+! at BEGBC20 (not matched)
+
+  BX20 := 10.367425922245 !10.367402263686
+  AX20 :=  0.602480917401 ! 0.602517687696
+  BY20 := 24.704147738326 !24.70413566535
+  AY20 :=  1.175380441057 ! 1.17538749202
 
 ! at MIP (treaty values)
 
-  BXip := 0.5
-  AXip := 0.0
-  BYip := 0.5
-  AYip := 0.0
-
-! at BEGBC20 (matched to BXip/AXip/BYip/AYip)
-
-  BX20 := 12.250937647116
-  AX20 :=  0.668477303563
-  BY20 := 22.386928496206
-  AY20 :=  1.165718758102
+  BXip := 0.5 ! 0.500019001887
+  AXip := 0.0 !-0.399373167219E-5
+  BYip := 0.5 ! 0.499996184337
+  AYip := 0.0 ! 0.384378057286E-6
 
 ! ------------------------------------------------------------------------------
 ! misc
@@ -143,8 +145,10 @@
   CALL, FILENAME="BC14.xsif"
   CALL, FILENAME="L3.xsif"
  !CALL, FILENAME="BC20W.xsif"  !FACET "W" chicane
+ !CALL, FILENAME="FF20W.xsif"  !FACET FF/EXPT/SPECT
  !CALL, FILENAME="BC20E.xsif"  !FACET2 Sector 20 upgrade
- !CALL, FILENAME="FF20.xsif"   !FACET2 Sector 20 upgrade ("FF20E")
+ !CALL, FILENAME="FF20E.xsif"  !FACET2 Sector 20 upgrade
+ !CALL, FILENAME="FF20H.xsif"  !FACET2 "hybrid"
   CALL, FILENAME="LI20.xsif"   !mix-n-match BC20/FF20 (BC20W+FF20H)
   CALL, FILENAME="SCAV.xsif"
 

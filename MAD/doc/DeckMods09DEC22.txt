@@ -1,0 +1,64 @@
+
+! *** OPTICS=FACET2-2022next ***
+
+================================================================================
+MAD deck changes
+================================================================================
+
+general
+* defer laser heater undulator
+* defer L1 X-band (do not defer wraparound correctors)
+* BXip=0.5, AXip=0, BYip=0.5, AYip=0 (MIP)
+
+FACET2e.mad8
+
+FACET2e_match.mad8
+* comment out SUBROUTINE MSPECT (needs replacement)
+
+FACET2e_master.mad8
+* redefine BXi/AXi/BYi/AYi per Lucretia/FACET2e.mat
+* rematch BX0/AX0/BY0/AY0
+
+FACET2p.mad8
+
+FACET2p_match.mad8
+
+FACET2p_master.mad8
+
+FACET2s.mad8
+
+common.xsif
+
+INJ.xsif
+
+DL10.xsif
+* undefer laser heater chicane dipoles ... rematch (undulator still deferred)
+
+L1.xsif
+* increase fL1 (gradL1) value for 125 MeV out of L0 per G. White
+
+BC11.xsif
+* latest changes from git repository (17OCT22)
+* add 4 "Edge Rad Camera" PROFs per B. O'Shea
+
+L2.xsif
+
+BC14.xsif
+
+L3.xsif
+
+LI20.xsif
+* FF quadrupoles rematched to 0.5 m waists at MIP
+* SPECT quadrupoles set to Lucretia values
+
+SCAV.xsif
+
+================================================================================
+
+Oracle upload
+- 
+
+================================================================================
+
+PRDs/ESDs/IDCs
+- 
