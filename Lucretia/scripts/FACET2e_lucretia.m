@@ -10,8 +10,16 @@ close all
 
 % Read in deck from mad8 definitions
 DT=DeckTool('XSIF');
-Initial=DT.ReadDeck('FACET2e.mad8','F2_ELEC','TW0','BEAM0');
-Initial.x.NEmit=4e-6; Initial.y.NEmit=4e-6;
+DT.ReadDeck('FACET2e.mad8','F2_ELEC','TW0','BEAM0');
+
+% Beam defnition and inital match from GPT tracking simulation
+load ../Lucretia/beams/FACET2e_op.mat Beam Qmatch Initial % 30-deg schottky phase, current operational gun params
+for iquad=1:length(Qmatch.Quads)
+  ele=findcells(BEAMLINE,'Name',char(Qmatch.Quads(iquad)));
+  for iele=ele
+    BEAMLINE{iele}.B=Qmatch.B(iquad)/2;
+  end
+end
 
 % Set survey coordinates
 L0a=findcells(BEAMLINE,'Name','L0AF__1');
@@ -80,5 +88,5 @@ for iele=1:length(BEAMLINE)
     for icf=1:length(cf); BEAMLINE{iele}.(cf{icf}) = BLe.(cf{icf}) ; end
   end
 end
-save FACET2e.mat BEAMLINE WF Initial
+save FACET2e.mat BEAMLINE WF Initial Beam
 
