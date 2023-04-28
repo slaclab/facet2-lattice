@@ -13,7 +13,8 @@ DT=DeckTool('XSIF');
 DT.ReadDeck('FACET2e.mad8','F2_ELEC','TW0','BEAM0');
 
 % Beam defnition and inital match from GPT tracking simulation
-load ../Lucretia/beams/FACET2e_op.mat Beam Qmatch Initial % 30-deg schottky phase, current operational gun params
+% load ../Lucretia/beams/FACET2e_op.mat Beam Qmatch Initial % 30-deg schottky phase, current operational gun params
+load ../Lucretia/beams/FACET2e_2bunch_op.mat Beam Qmatch Initial % 30-deg schottky phase, current operational gun params for double-pulse on cathode
 for iquad=1:length(Qmatch.Quads)
   ele=findcells(BEAMLINE,'Name',char(Qmatch.Quads(iquad)));
   for iele=ele
