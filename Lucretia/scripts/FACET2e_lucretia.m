@@ -36,7 +36,7 @@ M.beam=MakeBeam6DGauss(Initial,1e3,3,1);
 M.iInitial=1;
 M.initStruc=Initial;
 M.verbose=false; % see optimizer output or not
-M.optim='lsqnonlin';
+M.optim='fminsearch';
 M.optimDisplay='off';
 M.useParallel=false;
 M.addVariable('INITIAL',1,'betax',0.1,150);
@@ -54,7 +54,7 @@ Initial=M.initStruc;
 Initial.SigPUncorrel=0.125*0.1e-2;
 
 % Set default Sector 20 optics
-match_S20(Initial,"pwfa_50cm",1,1);
+match_S20(Initial,"pwfa_50cm",1,0);
 T=TwissPlot(1,length(BEAMLINE),Initial,[1 1 0]);
 
 % S-band structure apertures
