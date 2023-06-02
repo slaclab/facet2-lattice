@@ -291,14 +291,14 @@ beam_init%center(6) = 0.0
 
 
 &tao_var
-    v1_var%name = 'q.MRK0F'
+    v1_var%name = 'q_MRK0F'
 	default_step = 1e-4
 	default_attribute = 'K1'
 	var(1:)%ele_name = 'QA10361','QA10371', 'QE10425', 'QE10441', 'QE10511', 'QE10525'
 /
 
 &tao_var
-    v1_var%name = 'q.BC11C'
+    v1_var%name = 'q_BC11C'
 	default_step = 1e-4
 	default_attribute = 'K1'
 	var(1:)%ele_name = 'QM10631', 'QM10651', 'QM10771', 'QM10781', 'QA11132', 'Q11201', 'Q11301', 'QM11312'
@@ -309,7 +309,7 @@ beam_init%center(6) = 0.0
 
 
 &tao_var
-    v1_var%name = 'q.BC14E'
+    v1_var%name = 'q_BC14E'
 	default_step = 1e-4
 	default_attribute = 'K1'
 	var(1:)%ele_name =  'Q11401', 'Q11501', 'Q11601', 'Q11701', 'Q11801', 'Q11901', 'Q12201', 'Q12301', 'Q12401'
@@ -340,7 +340,7 @@ beam_init%center(6) = 0.0
 
 
 &tao_var
-    v1_var%name = 'qm.LTUH'
+    v1_var%name = 'qm_LTUH'
         default_step = 1e-4
         default_attribute = 'K1'
         var(1:)%ele_name =  'Q50Q3','Q4','Q5', 'Q6', 'QA0', 'QEM1', 'QEM2', 'QEM3', 'QEM4'

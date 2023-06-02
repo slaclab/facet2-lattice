@@ -2,6 +2,6 @@ x-s all 50 400
 vv
 vd
 use dat BC14E.endtwiss[1:4]
-use var q.BC14E
+use var q_BC14E
 olmdif
 

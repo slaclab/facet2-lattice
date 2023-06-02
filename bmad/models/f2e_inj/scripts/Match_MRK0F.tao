@@ -2,11 +2,11 @@ x-s all 4 15 -exact
 vv
 vd
 use dat MRK0F.begtwiss[1:4]
-use var q.MRK0F[1:6]
+use var q_MRK0F[1:6]
 
 set var *|key_bound = F
-set var q.MRK0F|key_bound = T
-set var q.MRK0F|key_delta = 0.1
+set var q_MRK0F|key_bound = T
+set var q_MRK0F|key_delta = 0.1
 
 olmdif
 
