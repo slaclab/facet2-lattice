@@ -175,7 +175,7 @@ beam_init%center(6) = 0.0
 
 
 &tao_var
-    v1_var%name = 'q.MRK0F'
+    v1_var%name = 'q_MRK0F'
 	default_step = 1e-4
 	default_attribute = 'K1'
 	var(1:)%ele_name = 'QA10361','QA10371', 'QE10425', 'QE10441', 'QE10511', 'QE10525'
