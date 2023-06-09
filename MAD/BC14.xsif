@@ -2,6 +2,22 @@
 ! ==============================================================================
 ! Modification History
 ! ------------------------------------------------------------------------------
+! 26-APR-2023, G. White
+!  * From measurements by Georg:
+!   * YC14780 dz +0.0841m
+!   * BPM14801 dz -0.0188m
+!   * PR14803 dz -0.2212m
+!   * CE14815 dz +0.863m
+!   * CQ14866 dz +0.0651m
+! 13-APR-2023, G. White
+!  * Changes according to tunnel inspection by L. Alsburg & G. White:
+!   * VV14885 -> VV14887 dS = +0.0759m
+!   * BL14888 dS = +0.1524m
+!   * IM14895 -> IM14890 to match controls IM14890 S + 0.1095m
+!   * QM14891 S + 0.0472m
+!   * Q14901 S - 0.2048m
+!   * Add in PR14892 (non-functional, mystery PROF device)
+!   * Add VV14940 SLC fast valve
 ! 01-DEC-2022, G. White
 !  * re-matched QM14891 - Q15601 to keep S15 strengths on quad strings more equal
 ! 28-FEB-2020, G. White - changes after visual inspection of beamline
@@ -124,9 +140,6 @@
   KQM14891 := 1.54788
   KQ14901 := -1.954
 
-  !KQM14891 :=  1.301762842142
-  !KQ14901  := -1.723170615654
-
   Q14701  : QUAD, TYPE="1.085Q4.31", L=LQE/2, APER=rQE, K1=Qsign*(KQ14701)
   QM14715 : QUAD, TYPE="1.085Q4.31", L=LQE/2, APER=rQE, K1=Qsign*(KQM14715)
   QM14891 : QUAD, TYPE="1.085Q4.31", L=LQE/2, APER=rQE, K1=Qsign*(KQM14891)
@@ -171,26 +184,27 @@
   DBQ2A  : DRIF, L=ZDBQ2A/COS(AB14),  TYPE="CSR"
   D21OA  : DRIF, L=ZD21OA/COS(AB14),  TYPE="CSR"
   DDG0   : DRIF, L=0.131153711244,    TYPE="CSR" !0.131185
-  DDG21  : DRIF, L=0.24864,           TYPE="CSR"
-  DDG22A : DRIF, L=0.08223,           TYPE="CSR"
-  DDG22B : DRIF, L=0.08223,           TYPE="CSR"
-  DDG23  : DRIF, L=0.182606,          TYPE="CSR"
-  DDG24  : DRIF, L=0.234494,          TYPE="CSR"
+  DDG21  : DRIF, L=0.24864-0.0188,           TYPE="CSR"
+  DDG22A : DRIF, L=0.08223+0.0188,           TYPE="CSR"
+  DDG22B : DRIF, L=0.08223-0.0386,           TYPE="CSR"
+  DDG24  : DRIF, L=0.234494+0.2212,          TYPE="CSR"
   DDGA   : DRIF, L=0.13118372,        TYPE="CSR" !0.131215
-  D210B1 : DRIF, L=ZD210B1/COS(AB14), TYPE="CSR"
-  D210B1_A : DRIF, L=ZD210B1_A/COS(AB14), TYPE="CSR"
-  D210B2 : DRIF, L=ZD210B2/COS(AB14), TYPE="CSR"
-  D210B  : DRIF, L=ZD210B/COS(AB14),  TYPE="CSR"
-  D210B_A  : DRIF, L=ZD210B_A/COS(AB14),  TYPE="CSR"
-  DBQ2B  : DRIF, L=ZDBQ2B/COS(AB14),  TYPE="CSR"
+  D210B1 : DRIF, L=(ZD210B1+0.863)/COS(AB14), TYPE="CSR"
+  D210B1_A : DRIF, L=(ZD210B1_A-0.0841)/COS(AB14), TYPE="CSR"
+  D210B2 : DRIF, L=(ZD210B2-0.863)/COS(AB14), TYPE="CSR"
+  D210B  : DRIF, L=(ZD210B+0.0651)/COS(AB14),  TYPE="CSR"
+  D210B_A  : DRIF, L=(ZD210B_A+0.0841)/COS(AB14),  TYPE="CSR"
+  DBQ2B  : DRIF, L=(ZDBQ2B-0.0651)/COS(AB14),  TYPE="CSR"
 
-  DM23A : DRIF, L=0.513165382243 !0.304465382243+0.2087
-  DM23B : DRIF, L=0.114235
-  DM23C : DRIF, L=0.227465
-  DM24  : DRIF, L=0.5552 !0.3065+0.178+0.0707
-  DM24a : DRIF, L=0.3065
-  DM24b : DRIF, L=DM24[L]-DM24a[L]
-  DM25  : DRIF, L=0.3735
+  DM23A : DRIF, L=0.589065382243
+  DM23B : DRIF, L=0.152434617756996
+  DM23C : DRIF, L=0.160565382243004
+  DM24  : DRIF, L=0.5552
+  DM24a : DRIF, L=0.1498
+  DM24b : DRIF, L=0.1534
+  DM25  : DRIF, L=0.0446
+  DM25A : DRIF, L=0.254
+  DM25B : DRIF, L=0.2797
 
 ! ==============================================================================
 ! XCORs and YCORs
@@ -230,11 +244,12 @@
 ! common
 
   BL14888 : BLMO, TYPE="CSR"
-  IM14895 : IMON, TYPE="toroid"
+  IM14890 : IMON, TYPE="toroid"
 
 ! electron
 
   PR14803 : PROF, TYPE="OTR BC"
+  PR14892 : PROF, TYPE="MYSTERY" ! NON-FUNCTIONAL
 
 ! positron
 
@@ -257,7 +272,8 @@
 ! ------------------------------------------------------------------------------
 
   VV14711 : INST !BC14 upstream vacuum valve
-  VV14885 : INST !BC14 downstream vacuum valve
+  VV14887 : INST !BC14 downstream vacuum valve
+  VV14940 : MARK ! SLC fast-valve
 
 ! ==============================================================================
 ! MARK
@@ -295,7 +311,7 @@
   BC14E : LINE=(BEGBC14E,&
     BCX14720_full,DBQ2A,&
     CQ14738_full,D210B_A,YC14780,D210B1_A,&
-    BCX14796_full,DDG0,DDG21,BPM14801,DDG22A,DDG22B,DDG23,PR14803,&
+    BCX14796_full,DDG0,DDG21,BPM14801,DDG22A,DDG22B,PR14803,&
       DDG24,DDGA,&
     BCX14808_full,D210B1,CE14815,D210B2,D210B,&
     CQ14866_full,DBQ2B,&
@@ -322,9 +338,9 @@
   QM14891_full : LINE=(QM14891,BPM14891,QM14891)
   Q14901_full  : LINE=(Q14901,BPM14901,Q14901)
 
-  BC14_2 : LINE=(BEGBC14_2,CNT2B,DM23A,VV14885,BL14888,DM23B,DM23C,&
-    QM14891_full,DM24a,IM14895,DM24b,&
-    Q14901_full,DM25,&
+  BC14_2 : LINE=(BEGBC14_2,CNT2B,DM23A,VV14887,DM23B,BL14888,DM23C,&
+    QM14891_full,DM24a,IM14890,DM24b,&
+    Q14901_full,DM25,PR14892,DM25A,VV14940,DM25B,&
     ENDBC14_2)
 
 ! ==============================================================================

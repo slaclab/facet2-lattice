@@ -1,9 +1,11 @@
 
-! *** OPTICS=FACET2-09DEC22 ***
-
 ! ==============================================================================
 ! Modification History
 ! ------------------------------------------------------------------------------
+! 26-APR-2023, G. White
+!  * moved elements to reflect measurements from Georg:
+!   * XC14900 dz +0.0993m
+!   * YC14900 dz +0.1642m
 ! 02-MAY-2022, G. White
 !  * moved XC19900 & YC19900 to reflect in-tunnel measurements by L. Alsburg
 ! 04-NOV-2021, M. Woodley
@@ -64,16 +66,16 @@
   g19_5 := gradFB3 ; g19_6 := gradFB3
 
   K15_1a1 : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=0.33, DELTAE=P25*g15_1*0.33, PHI0=phiL3, &
-                  ELOSS=KlossL3*0.33, &
+                  L=0.4293, DELTAE=P25*g15_1*0.4293, PHI0=phiL3, &
+                  ELOSS=KlossL3*0.4293, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K15_1a2 : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=0.25, DELTAE=P25*g15_1*0.25, PHI0=phiL3, &
-                  ELOSS=KlossL3*0.25, &
+                  L=0.3149, DELTAE=P25*g15_1*0.3149, PHI0=phiL3, &
+                  ELOSS=KlossL3*0.3149, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K15_1a3 : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=2.4641, DELTAE=P25*g15_1*2.4641, PHI0=phiL3, &
-                  ELOSS=KlossL3*2.4641, &
+                  L=2.2999, DELTAE=P25*g15_1*2.2999, PHI0=phiL3, &
+                  ELOSS=KlossL3*2.2999, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K15_1b  : LCAV, FREQ=SbandF, TYPE="10ft", &
                   L=DLWL10, DELTAE=P25*g15_1*DLWL10, PHI0=phiL3, &

@@ -1,9 +1,9 @@
-
-! *** OPTICS=FACET2-09DEC22 ***
-
 ! ==============================================================================
 ! Modification History
 ! ------------------------------------------------------------------------------
+! 26-APR-2023, G. White
+!  * XC14702 dz -0.1352m as per Georg measurements, also:
+!  * YC14703 dz -0.0158m 
 ! 23-AUG-2018, M. Woodley
 !  * gradL2, phiL1, gradFB2, and phiFB2 values from FACET2e_baseline.mat;
 !    set KlossL2=0
@@ -683,16 +683,16 @@
                   ELOSS=KlossL2*DLWL10, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K14_6d1 : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=2.3321, DELTAE=P25*g14_6*2.3321, PHI0=phiL2, &
-                  ELOSS=KlossL2*2.3321, &
+                  L=2.1969, DELTAE=P25*g14_6*2.1969, PHI0=phiL2, &
+                  ELOSS=KlossL2*2.1969, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K14_6d2 : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=0.3048, DELTAE=P25*g14_6*0.3048, PHI0=phiL2, &
-                  ELOSS=KlossL2*0.3048, &
+                  L=0.4242, DELTAE=P25*g14_6*0.4242, PHI0=phiL2, &
+                  ELOSS=KlossL2*0.4242, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
   K14_6d3 : LCAV, FREQ=SbandF, TYPE="10ft", &
-                  L=0.4072, DELTAE=P25*g14_6*0.4072, PHI0=phiL2, &
-                  ELOSS=KlossL2*0.4072, &
+                  L=0.423, DELTAE=P25*g14_6*0.423, PHI0=phiL2, &
+                  ELOSS=KlossL2*0.423, &
                   LFILE="sband_l.dat", TFILE="sband_t.dat"
 
 ! define unsplit LCAVs for BMAD ... not used by MAD
