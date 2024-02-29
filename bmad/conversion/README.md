@@ -23,3 +23,13 @@
 7. Within jupyter notebook cd to bmad/conversion and open facet2_slac_to_bmad.ipynb
   - Check hard-coded paths in slac_to_bmad.ipynb match facet2-lattice repo conversion branch.
   - Run all cells in facet2_slac_to_bmad.ipynb
+8. Within jupyter nodebook cd to bmad/conversion/device_mapping and open device_mapping.ipynb
+  - Check LCLS_LATTICE environment variable points to conversion branch of lcls-lattice repo.
+  - Run all cells.
+  - This generates the lcls-lattice/bmad/master/*_devicenames.bmad files
+7. Within jupyter nodebook cd to bmad/conversion/device_mapping and open device_mapping.ipynb
+  - Check LCLS_LATTICE environment variable points to conversion branch of lcls-lattice repo.
+  - Run all cells.
+  - This generates the lcls-lattice/bmad/master/*_devicenames.bmad files
+  - If tao fails to start, it may be necessary to comment out the call to FACET2e_devicenames from f2_elec.lat.bmad
+    
