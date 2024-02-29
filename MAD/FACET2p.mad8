@@ -1,6 +1,6 @@
-  TITLE, "FACET2 e+ (December 9, 2022)"
+  TITLE, "FACET2 e+ (February 16, 2024)"
 
-! *** OPTICS=FACET2-09DEC22 ***
+! *** OPTICS=FACET2-16FEB24 ***
 
   ASSIGN, PRINT="FACET2p.print"
   ASSIGN, ECHO="FACET2p.echo"
@@ -29,22 +29,22 @@
   TW11: BETA0, BETX=BX11, ALFX=AX11, BETY=BY11, ALFY=AY11
 
 ! ------------------------------------------------------------------------------
-! patch & match
+! match
 ! ------------------------------------------------------------------------------
 
   MFACET2p : SUBROUTINE
 
   ! LI19 bulk (201-801) I = 47.011 A, max boost < 14 A
 
-    SET, KQ19201,  0.825690832317
-    SET, KQ19301, -0.966508766392
-    SET, KQ19401,  0.913731761538
-    SET, KQ19501, -1.000960217295
-    SET, KQ19601,  0.757340710662
-    SET, KQ19701, -0.861890239111
-    SET, KQ19801,  0.965395733986
-    SET, KQ19851, -1.841190625661
-    SET, KQ19871,  1.176660446336
+    SET, KQ19201,  0.830309665322
+    SET, KQ19301, -0.957992680017
+    SET, KQ19401,  0.911819057822
+    SET, KQ19501, -0.99324573669
+    SET, KQ19601,  0.763474646882
+    SET, KQ19701, -0.864211071507
+    SET, KQ19801,  0.963956419261
+    SET, KQ19851, -1.843805759451
+    SET, KQ19871,  1.164313396055
   ENDSUBROUTINE
 
 ! ------------------------------------------------------------------------------
@@ -84,8 +84,8 @@
     PRINT, FULL
     comment
       SAVEBETA, TW14, ENDBC14P !end of BC14 chicane
-      SAVEBETA, TW20, ENDL3    !start of BC20 chicane
-      SAVEBETA, TWip, PENT !IP
+      SAVEBETA, TW20, BEGBC20  !start of BC20 chicane
+      SAVEBETA, TWip, MIP      !IP
     endcomment
     TWISS, BETA0=TW11, SAVE, TAPE="FACET2p_twiss.tape"
     comment
@@ -103,6 +103,9 @@
       STYLE=100, -SPLINE, RANGE=#S/BEGBC20, FILE="FACET2p", &
       TITLE="Linac"
     PLOT, TABLE=TWISS, HAXIS=S, VAXIS=BETX,BETY, &
+      STYLE=100, SPLINE, RANGE=LI18beg/MAINDUMP, FILE="FACET2p", &
+      TITLE="LI18/19/20"
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=BETX,BETY, &
       STYLE=100, SPLINE, RANGE=BEGBC20/ENDBC20, FILE="FACET2p", &
       TITLE="BC20"
     PLOT, TABLE=TWISS, HAXIS=S, VAXIS=DX,DY, &
@@ -114,6 +117,8 @@
     PLOT, TABLE=TWISS, HAXIS=S, VAXIS=DX,DY, &
       STYLE=100, -SPLINE, RANGE=ENDBC20/MAINDUMP, FILE="FACET2p", &
       TITLE="Final Focus + Spectrometer"
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=BETX,BETY, &
+      STYLE=100, SPLINE, RANGE=#S/#E, FILE="FACET2p"
  !ENDCOMMENT
 
 ! ------------------------------------------------------------------------------

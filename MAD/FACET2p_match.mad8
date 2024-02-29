@@ -1,5 +1,5 @@
 
-! *** OPTICS=FACET2-09DEC22 ***
+! *** OPTICS=FACET2-16FEB24 ***
 
 ! ==============================================================================
 ! Modification History
@@ -82,8 +82,8 @@
       CONSTR, Q19801[1], BETX<55
       WEIGHT, BETY=1.E-6
       CONSTR, Q19851[1], BETY<70
-      LMDIF, TOL=1.E-20, CALLS=10000
-      MIGRAD, TOL=1.E-20, CALLS=10000
+     !LMDIF, TOL=1.E-20, CALLS=10000
+     !MIGRAD, TOL=1.E-20, CALLS=10000
     ENDMATCH
     VALUE, KQ19201,KQ19301,KQ19401,KQ19501,KQ19601,KQ19701,KQ19801,&
            KQ19851,KQ19871
@@ -99,11 +99,36 @@
 
 ! ------------------------------------------------------------------------------
 
+  MLI20ip : SUBROUTINE
+    BEAM, ENERGY=E20
+    USE, SECTOR20
+    VALUE, BX20,AX20,BY20,AY20
+    MATCH, BETX=BX20, ALFX=AX20, BETY=BY20, ALFY=AY20
+      VARY, BX20, STEP=1.E-6
+      VARY, AX20, STEP=1.E-6
+      VARY, BY20, STEP=1.E-6
+      VARY, AY20, STEP=1.E-6
+      CONSTR, MIP, BETX=BXip, ALFX=AXip, BETY=BYip, ALFY=AYip
+     !LMDIF, TOL=1.E-20, CALLS=10000
+     !MIGRAD, TOL=1.E-20, CALLS=10000
+    ENDMATCH
+    VALUE, BX20,AX20,BY20,AY20
+    PRINT, FULL
+    TWISS, BETX=BX20, ALFX=AX20, BETY=BY20, ALFY=AY20, SAVE
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=BETX,BETY, &
+      STYLE=100, SPLINE, RANGE=#S/MIP, FILE="match"
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=DX,DY, &
+      STYLE=100, SPLINE, RANGE=#S/MIP, FILE="match"
+  ENDSUBROUTINE
+
+! ------------------------------------------------------------------------------
+
 ! match
 
  !MGEO
  !MBC14
-  MLI20
+ !MLI20
+ !MLI20ip
   
 ! ------------------------------------------------------------------------------
   

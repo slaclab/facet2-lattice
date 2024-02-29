@@ -1,5 +1,5 @@
 
-! *** OPTICS=FACET2-09DEC22 ***
+! *** OPTICS=FACET2-16FEB24 ***
 
 ! ==============================================================================
 ! Modification History
@@ -8,7 +8,8 @@
 !  * file created
 ! ------------------------------------------------------------------------------
 
-  TMm : BETA0
+  TMm  : BETA0
+  Bmax := 200
 
 ! ------------------------------------------------------------------------------
 
@@ -69,6 +70,7 @@
   MTWs : SUBROUTINE !match scavenger extraction line Twiss
     BEAM0s
     USE, SCAV
+    MFACET2s
     VALUE, KQ57186,KQ57190,KQ57204,KQ57210,KQ57220,KQ57280
     MATCH, BETA0=TWs
       VARY, KQ57186, STEP=1.E-3, LOWER=0
@@ -86,18 +88,18 @@
       WEIGHT, BETX=0, ALFX=0, DPX=0, BETY=0, ALFY=0, DY=0, DPY=0, T=0, PT=0
       COUPLE, Q57220[1]/Q57240[1]
       COUPLE, Q57220[1]/Q57260[1]
-      WEIGHT, BETX=1.E-7, BETY=1.E-7, DX=1.E-3, DY=1.e-3
-      CONSTR, Q57204[1], BETX<200, BETY<200, DX>-0.52, DX<0, DY>-0.15, DY<0.15
-      CONSTR, Q57210[1], BETX<200, BETY<200, DX>-0.52, DX<0, DY>-0.15, DY<0.15
-      CONSTR, Q57220[1], BETX<200, BETY<200, DX>-0.52, DX<0, DY>-0.15, DY<0.15
-      CONSTR, Q57230[1], BETX<200, BETY<200, DX>-0.52, DX<0, DY>-0.15, DY<0.15
-      CONSTR, Q57240[1], BETX<200, BETY<200, DX>-0.52, DX<0, DY>-0.15, DY<0.15
-      CONSTR, Q57250[1], BETX<200, BETY<200, DX>-0.52, DX<0, DY>-0.15, DY<0.15
-      CONSTR, Q57260[1], BETX<200, BETY<200, DX>-0.52, DX<0, DY>-0.15, DY<0.15
-      CONSTR, Q57270[1], BETX<200, BETY<200, DX>-0.52, DX<0, DY>-0.15, DY<0.15
-      CONSTR, Q57280[1], BETX<200, BETY<200, DX>-0.52, DX<0, DY>-0.15, DY<0.15
-      LMDIF, TOL=1.E-20, CALLS=10000
-      MIGRAD, TOL=1.E-20, CALLS=10000
+      WEIGHT, BETX=1.E-7, BETY=1.E-7, DX=1.E-3, DY=1.E-3
+      CONSTR, Q57204[1], BETX<Bmax, BETY<Bmax, DX>-0.52, DX<0, DY>-0.15, DY<0.15
+      CONSTR, Q57210[1], BETX<Bmax, BETY<Bmax, DX>-0.52, DX<0, DY>-0.15, DY<0.15
+      CONSTR, Q57220[1], BETX<Bmax, BETY<Bmax, DX>-0.52, DX<0, DY>-0.15, DY<0.15
+      CONSTR, Q57230[1], BETX<Bmax, BETY<Bmax, DX>-0.52, DX<0, DY>-0.15, DY<0.15
+      CONSTR, Q57240[1], BETX<Bmax, BETY<Bmax, DX>-0.52, DX<0, DY>-0.15, DY<0.15
+      CONSTR, Q57250[1], BETX<Bmax, BETY<Bmax, DX>-0.52, DX<0, DY>-0.15, DY<0.15
+      CONSTR, Q57260[1], BETX<Bmax, BETY<Bmax, DX>-0.52, DX<0, DY>-0.15, DY<0.15
+      CONSTR, Q57270[1], BETX<Bmax, BETY<Bmax, DX>-0.52, DX<0, DY>-0.15, DY<0.15
+      CONSTR, Q57280[1], BETX<Bmax, BETY<Bmax, DX>-0.52, DX<0, DY>-0.15, DY<0.15
+     !LMDIF, TOL=1.E-20, CALLS=10000
+     !MIGRAD, TOL=1.E-20, CALLS=10000
     ENDMATCH
     VALUE, KQ57186,KQ57190,KQ57204,KQ57210,KQ57220,KQ57280
     BEAM0s
@@ -116,7 +118,7 @@
 
  !MGEO1
  !MGEO2
-  MTWs
+ !MTWs
 
 ! ------------------------------------------------------------------------------
 
