@@ -1,5 +1,5 @@
 
-! *** OPTICS=FACET2-09DEC22 ***
+! *** OPTICS=FACET2-16FEB24 ***
 
 ! ==============================================================================
 ! Modification History
@@ -117,7 +117,33 @@
 
 ! ------------------------------------------------------------------------------
 
-! MTWi : BXi, AXi, BYi, and AYi come from Lucretia
+  MTWi : SUBROUTINE
+    BEAM, ENERGY=Ei
+    USE, DL10
+    VALUE, BXi,AXi,BYi,AYi
+    MATCH, BETA0=TWi
+      VARY, BXi, STEP=1.E-6
+      VARY, AXi, STEP=1.E-6
+      VARY, BYi, STEP=1.E-6
+      VARY, AYi, STEP=1.E-6
+      CONSTR, MRK0F, BETX=BX10, ALFX=AX10, BETY=BY10, ALFY=AY10
+     !LMDIF, TOL=1.E-20
+     !MIGRAD, TOL=1.E-20
+    ENDMATCH
+    VALUE, BXi,AXi,BYi,AYi
+    BEAM, ENERGY=Ei
+    USE, DL10
+    PRINT, FULL
+    TWISS, BETA0=TWi, SAVE
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=BETX,BETY, &
+      STYLE=100, SPLINE, RANGE=#S/MRK0F, FILE="match"
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=DX,DY, &
+      STYLE=100, SPLINE, RANGE=#S/MRK0F, FILE="match"
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=BETX,BETY, &
+      STYLE=100, SPLINE, FILE="match"
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=DX,DY, &
+      STYLE=100, SPLINE, FILE="match"
+  ENDSUBROUTINE
 
 ! ------------------------------------------------------------------------------
 
@@ -158,7 +184,7 @@
       VARY, KQE10441, STEP=1.E-6, LOWER=0
       VARY, KQE10511, STEP=1.E-6, LOWER=0
       VARY, KQE10525, STEP=1.E-6, UPPER=0
-      CONSTR, PR10571, BETX=BX10, ALFX=AX10, BETY=BY10, ALFY=AY10
+      CONSTR, MRK0F, BETX=BX10, ALFX=AX10, BETY=BY10, ALFY=AY10
      !LMDIF, TOL=1.E-20, CALLS=10000
      !MIGRAD, TOL=1.E-20, CALLS=10000
     ENDMATCH
@@ -409,37 +435,6 @@
 
 ! ------------------------------------------------------------------------------
 
-  ML2BC14 : SUBROUTINE
-    BEAM, ENERGY=Ei
-    USE, FACET2e
-    VALUE, KQ14301,KQ14401,KQ14501,KQ14601,KQ14701,KQM14715
-    MATCH, BETA0=TWi
-      VARY, KQ14301,  STEP=1.E-6, UPPER=0
-      VARY, KQ14401,  STEP=1.E-6, LOWER=0
-      VARY, KQ14501,  STEP=1.E-6, UPPER=0
-      VARY, KQ14601,  STEP=1.E-6, LOWER=0
-      VARY, KQ14701,  STEP=1.E-6, UPPER=0
-      VARY, KQM14715, STEP=1.E-6, LOWER=0
-      CONSTR, Q14401[1], BETX<BmaxL2
-      CONSTR, Q14601[1], BETX<BmaxL2
-      CONSTR, Q14701[1], BETY<120
-      CONSTR, ENDBC14E, BETX=BX14, ALFX=AX14, BETY=BY14, ALFY=AY14
-     !LMDIF, TOL=1.E-20, CALLS=10000
-     !MIGRAD, TOL=1.E-20, CALLS=10000
-    ENDMATCH
-    VALUE, KQ14301,KQ14401,KQ14501,KQ14601,KQ14701,KQM14715
-    BEAM, ENERGY=Ei
-    USE, FACET2e
-    PRINT, FULL
-    TWISS, BETA0=TWi, SAVE, TAPE="FACET2e_twiss.tape"
-    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=BETX,BETY, &
-      STYLE=100, SPLINE, RANGE=BEGL2F/ENDBC14E, FILE="match"
-    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=BETX,BETY, &
-      STYLE=100, SPLINE, RANGE=LI14BEG/ENDBC14E, FILE="match"
-  ENDSUBROUTINE
-
-! ------------------------------------------------------------------------------
-
   ML3fodo : SUBROUTINE
     BEAM, ENERGY=E14
     USE, L3c
@@ -598,8 +593,8 @@
       VARY, BY20, STEP=1.E-6
       VARY, AY20, STEP=1.E-6
       CONSTR, MIP, BETX=BXip, ALFX=AXip, BETY=BYip, ALFY=AYip
-     !LMDIF, TOL=1.E-20, CALLS=10000
-     !MIGRAD, TOL=1.E-20, CALLS=10000
+      LMDIF, TOL=1.E-20, CALLS=10000
+      MIGRAD, TOL=1.E-20, CALLS=10000
     ENDMATCH
     VALUE, BX20,AX20,BY20,AY20
     PRINT, FULL
@@ -633,13 +628,13 @@
       CONSTR, Q19301[1], BETY<45
       CONSTR, Q19401[1], BETX<45
       CONSTR, Q19501[1], BETY<45
-      CONSTR, Q19601[1], BETX<55
+      CONSTR, Q19601[1], BETX<50
       CONSTR, Q19701[1], BETY<50
       CONSTR, Q19801[1], BETX<55
       WEIGHT, BETY=1.E-6
-      CONSTR, Q19851[1], BETY<80
-     !LMDIF, TOL=1.E-20, CALLS=10000
-     !MIGRAD, TOL=1.E-20, CALLS=10000
+      CONSTR, Q19851[1], BETY<70
+      LMDIF, TOL=1.E-20, CALLS=10000
+      MIGRAD, TOL=1.E-20, CALLS=10000
     ENDMATCH
     VALUE, KQ19201,KQ19301,KQ19401,KQ19501,KQ19601,KQ19701,KQ19801,&
            KQ19851,KQ19871
@@ -647,12 +642,43 @@
     USE, FACET2e
     PRINT, FULL
     SAVEBETA, TW19, MSCAVEXT
+    SAVEBETA, TW20, BEGBC20
     TWISS, BETA0=TWi, SAVE, TAPE="twiss.tape"
     SHOW, TW19
+    SHOW, TW20
     PLOT, TABLE=TWISS, HAXIS=S, VAXIS=BETX,BETY, &
       STYLE=100, SPLINE, RANGE=LI18beg/LI19term, FILE="match"
     PLOT, TABLE=TWISS, HAXIS=S, VAXIS=BETX,BETY, &
-      STYLE=100, SPLINE, RANGE=#S/LI19term, FILE="match"
+      STYLE=100, SPLINE, RANGE=LI18beg/MAINDUMP, FILE="match"
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=BETX,BETY, &
+      STYLE=100, SPLINE, RANGE=#S/#E, FILE="match"
+  ENDSUBROUTINE
+
+! ------------------------------------------------------------------------------
+
+  MFFip : SUBROUTINE
+    BEAM, ENERGY=Ei
+    USE, FACET2e
+    VALUE, KQ5FF,KQ4FF,KQ3FF,KQ2FF,KQ1FF,KQ0FF
+    MATCH, BETA0=TWi
+      VARY, KQ5FF, STEP=1.E-6, UPPER=0
+      VARY, KQ4FF, STEP=1.E-6, UPPER=0
+      VARY, KQ3FF, STEP=1.E-6, LOWER=0
+      VARY, KQ2FF, STEP=1.E-6, LOWER=0
+      VARY, KQ1FF, STEP=1.E-6, UPPER=0
+     !VARY, KQ0FF, STEP=1.E-6, LOWER=0
+      CONSTR, MIP, BETX=BXip, ALFX=AXip, BETY=BYip, ALFY=AYip
+      CONSTR, #E, X=0, PX=0, Y=0, PY=0
+     !LMDIF, TOL=1.E-20, CALLS=10000
+     !MIGRAD, TOL=1.E-20, CALLS=10000
+    ENDMATCH
+    VALUE, KQ5FF,KQ4FF,KQ3FF,KQ2FF,KQ1FF,KQ0FF
+    BEAM, ENERGY=Ei
+    USE, FACET2e
+    PRINT, FULL
+    TWISS, BETA0=TWi, SAVE, TAPE="twiss.tape"
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=BETX,BETY, &
+      STYLE=100, SPLINE, RANGE=BEGFF/MAINDUMP, FILE="match"
   ENDSUBROUTINE
 
 ! ------------------------------------------------------------------------------
@@ -679,21 +705,21 @@
 
 ! ------------------------------------------------------------------------------
 
-  comment
   MSPECT : SUBROUTINE
     BEAM, ENERGY=Ei
     USE, FACET2e
-    VALUE, KQS1,KQS2
+    VALUE, KQ0D,KQ1D
     MATCH, BETA0=TWi
-      VARY, KQS1, STEP=1.E-6, LOWER= 0  , UPPER=+2.5
-      VARY, KQS2, STEP=1.E-6, LOWER=-2.5, UPPER= 0
-      RMATRIX, MIP/AEROGEL, &
-        RM(1,2)=0, WEIGHT(1,2)=1, &
-        RM(3,4)=0, WEIGHT(3,4)=1
+      VARY, KQ0D, STEP=1.E-6, LOWER=-2.5, UPPER= 0
+      VARY, KQ1D, STEP=1.E-6, LOWER= 0  , UPPER=+2.5
+     !RMATRIX, MIP/AEROGEL, &
+     !  RM(1,2)=0, WEIGHT(1,2)=1, &
+     !  RM(3,4)=0, WEIGHT(3,4)=1
+      CONSTR, MAINDUMP, BETX=BXd, ALFX=AXd, BETY=BYd, ALFY=AYd
      !LMDIF, TOL=1.E-20
      !MIGRAD, TOL=1.E-20
     ENDMATCH
-    VALUE, KQS1,KQS2
+    VALUE, KQ0D,KQ1D
     BEAM, ENERGY=Ei
     USE, FACET2e
     PRINT, FULL
@@ -703,7 +729,6 @@
     PLOT, TABLE=TWISS, HAXIS=S, VAXIS=DX,DY, &
       STYLE=100, SPLINE, RANGE=BEGFF/ENDSPECT, FILE="match"
   ENDSUBROUTINE
-  endcomment
 
 ! ------------------------------------------------------------------------------
 
@@ -712,6 +737,7 @@
  !ME11
  !ME14
  !ME20
+ !MTWi
  !MTW0
  !MHTR
  !MBX0
@@ -719,11 +745,11 @@
  !MBC14
  !ML2fodo
  !ML2
- !ML2BC14
  !ML3fodo
  !ML3
  !MLI20ip
  !MLI20
+ !MFFip
  !MB5DZ
  !MSPECT
 

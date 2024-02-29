@@ -1,5 +1,5 @@
 
-! *** OPTICS=FACET2-09DEC22 ***
+! *** OPTICS=FACET2-16FEB24 ***
 
 ! ==============================================================================
 ! Modification History
@@ -85,11 +85,8 @@
   CQ10121 : MULT, TYPE="2.90SO8.209", APER=0.0475/2, K1L=0     !solenoid trim
   SQ10122 : MULT, TYPE="2.90SO8.209", APER=0.0475/2, K1L=0, T1 !solenoid trim
 
-  KQA10361 := -10.5044
-  KQA10371 := 12.1043
-  
-!  KQA10361 := -10.3565
-!  KQA10371 :=  12.2142
+  KQA10361 := -11.288886255557
+  KQA10371 :=  11.405472211446
 
   QA10361 : QUAD, TYPE="1.26Q3.5", L=LQx/2, APER=rQx, K1=KQA10361
   QA10371 : QUAD, TYPE="1.26Q3.5", L=LQx/2, APER=rQx, K1=KQA10371

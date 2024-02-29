@@ -1,6 +1,6 @@
 % FACET2E_LUCRETIA Parse FACET2 MAD electron deck into Lucretia
 % Run from MAD folder
-
+cd('/sdf/group/facet/dcesar/facet2-lattice/Lucretia/scripts/')
 global BEAMLINE WF
 % Clear existing beamline database if exists
 if ~isempty(BEAMLINE)
@@ -10,11 +10,11 @@ close all
 
 % Read in deck from mad8 definitions
 DT=DeckTool('XSIF');
-DT.ReadDeck('FACET2e.mad8','F2_ELEC','TW0','BEAM0');
+DT.ReadDeck('../../MAD/FACET2e.mad8','F2_ELEC','TW0','BEAM0');
 
 % Beam defnition and inital match from GPT tracking simulation
-% load ../Lucretia/beams/FACET2e_op.mat Beam Qmatch Initial % 30-deg schottky phase, current operational gun params
-load ../Lucretia/beams/FACET2e_2bunch_op.mat Beam Qmatch Initial % 30-deg schottky phase, current operational gun params for double-pulse on cathode
+ load ../../Lucretia/beams/FACET2e_op.mat Beam Qmatch Initial % 30-deg schottky phase, current operational gun params
+%load ../Lucretia/beams/FACET2e_2bunch_op.mat Beam Qmatch Initial % 30-deg schottky phase, current operational gun params for double-pulse on cathode
 for iquad=1:length(Qmatch.Quads)
   ele=findcells(BEAMLINE,'Name',char(Qmatch.Quads(iquad)));
   for iele=ele

@@ -1,5 +1,5 @@
 
-! *** OPTICS=FACET2-09DEC22 ***
+! *** OPTICS=FACET2-16FEB24 ***
 
 ! ==============================================================================
 ! FACET e- optics
@@ -191,7 +191,7 @@
 
 ! skew quadrupole
 
-  KSQ1  := 0
+  KSQ1 := 0
 
   SQ1 : QUAD, TYPE="2.026Q14", L=LSQ/2, APER=ASQ, TILT, K1=KSQ1
 
@@ -207,9 +207,11 @@
   LS3 := 0.250 !x2 magnets
   AS  := 18.6375e-3
 
-  KS1E :=   9.651480658753
-  KS2E :=  -8.071951521311
-  KS3E := -12.323982001624
+! from G. White's optics2013.xlsx
+
+  KS1E :=   9.651773976528
+  KS2E :=  -8.063275568009
+  KS3E := -12.223414013976
 
   S1EL   : SEXT, TYPE="1.625S9.06", L=LS1/2, APER=AS, K2=KS1E
   S2EL   : SEXT, TYPE="1.625S29.2", L=LS2/2, APER=AS, K2=KS2E
@@ -655,12 +657,12 @@
 
 ! Final Focus
 
-  KQ5FF := -0.463098562206
-  KQ4FF := -0.339078008494
-  KQ3FF :=  0.416587964132
-  KQ2FF :=  0.530758516141
-  KQ1FF := -0.98611038998
-  KQ0FF :=  0.530758516141
+  KQ5FF := -0.467268800263
+  KQ4FF := -0.34106223812
+  KQ3FF :=  0.416509781058
+  KQ2FF :=  0.53037956706
+  KQ1FF := -0.987354552247
+  KQ0FF :=  KQ2FF
 
   Q5FF : QUAD, TYPE="0.813Q17.7", L=0.23045, APER=0.008325, K1=KQ5FF
   Q4FF : QUAD, TYPE="1.625Q27.3", L=0.3571,  APER=0.0186,   K1=KQ4FF
@@ -672,13 +674,13 @@
 ! spectrometer
 
   AQS  := 27.0e-3
-  KQ0D := -0.329107391408
-  KQ1D :=  0.541027630271
-  KQ2D := -0.329107391408
+  KQ0D := -0.328856645709
+  KQ1D :=  0.542213589911
+  KQ2D :=  KQ0D
 
   Q0D : QUAD, TYPE="2.13Q38.31", L=0.5, APER=AQS, K1=KQ0D
   Q1D : QUAD, TYPE="2.13Q38.31", L=0.5, APER=AQS, K1=KQ1D
-  Q2D : QUAD, TYPE="2.13Q38.31", L=0.5, APER=AQS, K1=KQ0D
+  Q2D : QUAD, TYPE="2.13Q38.31", L=0.5, APER=AQS, K1=KQ2D
 
 ! ==============================================================================
 ! DRIFTs

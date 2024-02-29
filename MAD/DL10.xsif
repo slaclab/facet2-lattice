@@ -1,9 +1,11 @@
 
+! *** OPTICS=FACET2-16FEB24 ***
+
 ! ==============================================================================
 ! Modification History
 ! ------------------------------------------------------------------------------
-! 17-JAN-2023, G. White
-!  * add laser heater undulator with measured k=1.17
+! 05-SEP-2023, M. Woodley
+!  * undefer laser heater undulator
 ! ------------------------------------------------------------------------------
 ! 20-OCT-2022, M. Woodley
 !  * undefer laser heater chicane dipoles ... rematch (undulator still deferred)
@@ -133,7 +135,7 @@
 ! MATR
 ! ------------------------------------------------------------------------------
 
-! laser heater undulator (deferred)
+! laser heater undulator
 ! - half-undulator modeled as R-matrix to include vertical natural focusing
 
 ! lam   : laser-heater undulator period [m]
@@ -159,7 +161,8 @@
   SINCARGu := 1-ARGu2/6+ARGu4/120-ARGu6/5040 !~sinc(ARGu)=sin(ARGu)/ARGu
   R34u     := Lhun*SINCARGu
 
-  UM10466 : MATRIX, TYPE="@0,LHund", L=Lhun,  &
+ !comment
+  UM10466 : MATRIX, TYPE="LHund", L=Lhun,     &
     RM(1,1)=1.0,                              &
     RM(1,2)=Lhun,                             &
     RM(2,1)=0.0,                              &
@@ -171,34 +174,30 @@
     RM(5,5)=1.0,                              &
     RM(6,6)=1.0 !,                            &
    !RM(5,6)=Lhun/(gami^2)*(1+(K_und^2)/2)
+ !endcomment
+
+ !UM10466 : DRIF, TYPE="LHund", L=Lhun
 
 ! ==============================================================================
 ! QUAD
 ! ------------------------------------------------------------------------------
 
-! match around laser heater
+! match around laser heater (installed)
 
-  KQE10425 := -17.6854
-  KQE10441 := 22.0462
-  KQE10511 := 12.1393
+!                heater ON      
+!             ----------------  
+  KQE10425 := -19.483733913907
+  KQE10441 :=  22.738480699594
+  KQE10511 :=  12.1393
   KQE10525 := -10.9134
-
-!  KQE10425 := -14.668430126161 !-15.201903779328 
-!  KQE10441 :=  14.806390407403 ! 14.620018144249 
-!  KQE10511 :=   9.68649424695  ! 10.3685858706 
-!  KQE10525 :=  -9.76597438543  !-10.475280419976 
 
 ! match to BC11CEND (X-band not installed)
 
-  KQM10631 := 11.3442
+  KQM10631 :=  11.3442
   KQM10651 := -11.5137
-  KQM10771 := -11.071
-  
-!  KQM10631 :=  11.73009425186  ! 11.990887883552
-!  KQM10651 := -11.379711206572 !-11.233494237683
   KQB10731 :=  22.169701529671
-!  KQM10771 :=  -8.143967775774 ! -7.123593114848
-  KQM10781 :=  12.275640217878 ! 11.698487496707
+  KQM10771 := -11.071
+  KQM10781 :=  12.275640217878
 
   QE10425 : QUAD, TYPE="1.26Q3.5",   L=LQx/2, APER=rQx, K1=KQE10425
   QE10441 : QUAD, TYPE="1.26Q3.5",   L=LQx/2, APER=rQx, K1=KQE10441
