@@ -1,5 +1,5 @@
 
-! *** OPTICS=FACET2-08NOV21 ***
+! *** OPTICS=FACET2-16FEB24 ***
 
 ! ==============================================================================
 ! FACET e- optics
@@ -26,8 +26,12 @@ wscl = 1 !wiggler field scale (=1 for wiggler ON, =0 for wiggler OFF)
 
 ! Initial parameters at BEGBC20
 
-parameter[E_tot] = e20 * 1e9
-parameter[n_part] = 1.2483019e+10
+!beginning[beta_a] = 12.2509
+!beginning[beta_b] = 22.3869
+!beginning[alpha_a] = 0.6685
+!beginning[alpha_b] = 1.1657
+!parameter[E_tot] = e20 * 1e9
+!parameter[n_part] = 1.2483019e+10
 
 ! ==============================================================================
 ! BENDs
@@ -190,9 +194,9 @@ as = 18.6375e-3
 
 ! from G. White's optics2013.xlsx
 
-ks1e = 15.0782
-ks2e = -11.5893
-ks3e = -13.793
+ks1e = 9.651773976528
+ks2e = -8.063275568009
+ks3e = -12.223414013976
 
 s1el: sextupole, type = "1.625S9.06", l = ls1/2, aperture = as, k2 = ks1e
 s2el: sextupole, type = "1.625S29.2", l = ls2/2, aperture = as, k2 = ks2e
@@ -454,118 +458,118 @@ endbc20: marker
 
 
 
-!Old split line: LINE=(B1LE1,B1LE2)
+!Old split line:  B1LE_full  : LINE=(B1LE1,B1LE2)
 
 b1le_full: line = (b1le)
 
 
-!Old split line: LINE=(B2LE1,XCB2LE,B2LE2)
+!Old split line:  B2LE_full  : LINE=(B2LE1,XCB2LE,B2LE2)
 
 b2le_full: line = (b2le)
 xcb2le[superimpose] = T
 xcb2le[ref] = b2le
 
 
-!Old split line: LINE=(B3LE1,XCB3LE,B3LE2)
+!Old split line:  B3LE_full  : LINE=(B3LE1,XCB3LE,B3LE2)
 
 b3le_full: line = (b3le)
 xcb3le[superimpose] = T
 xcb3le[ref] = b3le
 
 
-!Old split line: LINE=(B3RE1,XCB3RE,B3RE2)
+!Old split line:  B3RE_full  : LINE=(B3RE1,XCB3RE,B3RE2)
 
 b3re_full: line = (b3re)
 xcb3re[superimpose] = T
 xcb3re[ref] = b3re
 
 
-!Old split line: LINE=(B2RE1,XCB2RE,B2RE2)
+!Old split line:  B2RE_full  : LINE=(B2RE1,XCB2RE,B2RE2)
 
 b2re_full: line = (b2re)
 xcb2re[superimpose] = T
 xcb2re[ref] = b2re
 
 
-!Old split line: LINE=(B1RE1,B1RE2)
+!Old split line:  B1RE_full  : LINE=(B1RE1,B1RE2)
 
 b1re_full: line = (b1re)
 
 
-!Old split line: LINE=(WIGE11,WIGE12)
+!Old split line:  WIGE1_full : LINE=(WIGE11,WIGE12)
 
 wige1_full: line = (wige1)
 
 
-!Old split line: LINE=(WIGE21,YCWIGE,WIGE22)
+!Old split line:  WIGE2_full : LINE=(WIGE21,YCWIGE,WIGE22)
 
 wige2_full: line = (wige2)
 ycwige[superimpose] = T
 ycwige[ref] = wige2
 
 
-!Old split line: LINE=(WIGE31,WIGE32)
+!Old split line:  WIGE3_full : LINE=(WIGE31,WIGE32)
 
 wige3_full: line = (wige3)
   WIGE_line  : LINE=(WIGE1_full,DWE,WIGE2_full,DWE,WIGE3_full)
 
 
 
-!Old split line: LINE=(Q1EL,Q1EL)
+!Old split line:  Q1EL_full   : LINE=(Q1EL,Q1EL)
 
 q1el_full: line = (q1el)
 q1el[L] = 2*q1el[L]
 
 
-!Old split line: LINE=(SQ1,SQ1)
+!Old split line:  SQ1_full    : LINE=(SQ1,SQ1)
 
 sq1_full: line = (sq1)
 sq1[L] = 2*sq1[L]
 
 
-!Old split line: LINE=(Q2EL,Q2EL)
+!Old split line:  Q2EL_full   : LINE=(Q2EL,Q2EL)
 
 q2el_full: line = (q2el)
 q2el[L] = 2*q2el[L]
 
 
-!Old split line: LINE=(Q3EL_1,Q3EL_1)
+!Old split line:  Q3EL_1_full : LINE=(Q3EL_1,Q3EL_1)
 
 q3el_1_full: line = (q3el_1)
 q3el_1[L] = 2*q3el_1[L]
 
 
-!Old split line: LINE=(Q3EL_2,Q3EL_2)
+!Old split line:  Q3EL_2_full : LINE=(Q3EL_2,Q3EL_2)
 
 q3el_2_full: line = (q3el_2)
 q3el_2[L] = 2*q3el_2[L]
 
 
-!Old split line: LINE=(Q4EL_1,Q4EL_1)
+!Old split line:  Q4EL_1_full : LINE=(Q4EL_1,Q4EL_1)
 
 q4el_1_full: line = (q4el_1)
 q4el_1[L] = 2*q4el_1[L]
 
 
-!Old split line: LINE=(Q4EL_2,Q4EL_2)
+!Old split line:  Q4EL_2_full : LINE=(Q4EL_2,Q4EL_2)
 
 q4el_2_full: line = (q4el_2)
 q4el_2[L] = 2*q4el_2[L]
 
 
-!Old split line: LINE=(Q4EL_3,Q4EL_3)
+!Old split line:  Q4EL_3_full : LINE=(Q4EL_3,Q4EL_3)
 
 q4el_3_full: line = (q4el_3)
 q4el_3[L] = 2*q4el_3[L]
 
 
-!Old split line: LINE=(Q5EL,Q5EL)
+!Old split line:  Q5EL_full   : LINE=(Q5EL,Q5EL)
 
 q5el_full: line = (q5el)
 q5el[L] = 2*q5el[L]
 
 
-!Old split line: LINE=(Q6E,MCE,Q6E)
+!Old split line:  Q6E_full    : LINE=(Q6E,MCE,Q6E)
 
 q6e_full: line = (q6e)
 q6e[L] = 2*q6e[L]
@@ -573,56 +577,56 @@ mce[superimpose] = T
 mce[ref] = q6e
 
 
-!Old split line: LINE=(Q5ER,Q5ER)
+!Old split line:  Q5ER_full   : LINE=(Q5ER,Q5ER)
 
 q5er_full: line = (q5er)
 q5er[L] = 2*q5er[L]
 
 
-!Old split line: LINE=(Q4ER_1,Q4ER_1)
+!Old split line:  Q4ER_1_full : LINE=(Q4ER_1,Q4ER_1)
 
 q4er_1_full: line = (q4er_1)
 q4er_1[L] = 2*q4er_1[L]
 
 
-!Old split line: LINE=(Q4ER_2,Q4ER_2)
+!Old split line:  Q4ER_2_full : LINE=(Q4ER_2,Q4ER_2)
 
 q4er_2_full: line = (q4er_2)
 q4er_2[L] = 2*q4er_2[L]
 
 
-!Old split line: LINE=(Q4ER_3,Q4ER_3)
+!Old split line:  Q4ER_3_full : LINE=(Q4ER_3,Q4ER_3)
 
 q4er_3_full: line = (q4er_3)
 q4er_3[L] = 2*q4er_3[L]
 
 
-!Old split line: LINE=(Q3ER_1,Q3ER_1)
+!Old split line:  Q3ER_1_full : LINE=(Q3ER_1,Q3ER_1)
 
 q3er_1_full: line = (q3er_1)
 q3er_1[L] = 2*q3er_1[L]
 
 
-!Old split line: LINE=(Q3ER_2,Q3ER_2)
+!Old split line:  Q3ER_2_full : LINE=(Q3ER_2,Q3ER_2)
 
 q3er_2_full: line = (q3er_2)
 q3er_2[L] = 2*q3er_2[L]
 
 
-!Old split line: LINE=(Q2ER,Q2ER)
+!Old split line:  Q2ER_full   : LINE=(Q2ER,Q2ER)
 
 q2er_full: line = (q2er)
 q2er[L] = 2*q2er[L]
 
 
-!Old split line: LINE=(Q1ER,Q1ER)
+!Old split line:  Q1ER_full   : LINE=(Q1ER,Q1ER)
 
 q1er_full: line = (q1er)
 q1er[L] = 2*q1er[L]
 
 
 
-!Old split line: LINE=(S1EL,AS1EL,S1EL)
+!Old split line:  S1EL_full   : LINE=(S1EL,AS1EL,S1EL)
 
 s1el_full: line = (s1el)
 s1el[L] = 2*s1el[L]
@@ -630,7 +634,7 @@ as1el[superimpose] = T
 as1el[ref] = s1el
 
 
-!Old split line: LINE=(S2EL,AS2EL,S2EL)
+!Old split line:  S2EL_full   : LINE=(S2EL,AS2EL,S2EL)
 
 s2el_full: line = (s2el)
 s2el[L] = 2*s2el[L]
@@ -638,31 +642,31 @@ as2el[superimpose] = T
 as2el[ref] = s2el
 
 
-!Old split line: LINE=(S3EL_1,S3EL_1)
+!Old split line:  S3EL_1_full : LINE=(S3EL_1,S3EL_1)
 
 s3el_1_full: line = (s3el_1)
 s3el_1[L] = 2*s3el_1[L]
 
 
-!Old split line: LINE=(S3EL_2,S3EL_2)
+!Old split line:  S3EL_2_full : LINE=(S3EL_2,S3EL_2)
 
 s3el_2_full: line = (s3el_2)
 s3el_2[L] = 2*s3el_2[L]
 
 
-!Old split line: LINE=(S3ER_1,S3ER_1)
+!Old split line:  S3ER_1_full : LINE=(S3ER_1,S3ER_1)
 
 s3er_1_full: line = (s3er_1)
 s3er_1[L] = 2*s3er_1[L]
 
 
-!Old split line: LINE=(S3ER_2,S3ER_2)
+!Old split line:  S3ER_2_full : LINE=(S3ER_2,S3ER_2)
 
 s3er_2_full: line = (s3er_2)
 s3er_2[L] = 2*s3er_2[L]
 
 
-!Old split line: LINE=(S2ER,AS2ER,S2ER)
+!Old split line:  S2ER_full   : LINE=(S2ER,AS2ER,S2ER)
 
 s2er_full: line = (s2er)
 s2er[L] = 2*s2er[L]
@@ -670,7 +674,7 @@ as2er[superimpose] = T
 as2er[ref] = s2er
 
 
-!Old split line: LINE=(S1ER,AS1ER,S1ER)
+!Old split line:  S1ER_full   : LINE=(S1ER,AS1ER,S1ER)
 
 s1er_full: line = (s1er)
 s1er[L] = 2*s1er[L]
@@ -699,14 +703,17 @@ as1er[ref] = s1er
          D4EB2,S1ER_full,D4EA2,DMQ,Q2ER_full,D3E,MSEP2E,B2RE_full,CB2RE,DB2XC4,DXC4E,XC4E,DXC4E,DXC4TCa,DXC4TCb,DXTCAVF,DTCWIG,
          WIGE_line,DYAGW,sYAG,DYAGQ,Q1ER_full,DM11Q,M11E,DTM11,IM2452,D1ET2a,XC2460,D1ET2b,B1RE_full,CB1RE,ENDBC20)
 
-! ------------------------------------------------------------------------------
-
 ! ==============================================================================
 ! FF20H
 ! ==============================================================================
 
 ! ==============================================================================
 ! FACET e- optics
+! ------------------------------------------------------------------------------
+! 01-FEB-2022, G. White
+!  * add XC1FF & YC1FF correctors (X203026 & Y203017), positions according to
+!    measurements by C. Clarke
+!  * MQ4FF -> M2FF for consistent naming, MONI list match spreadsheet by D. Storey
 ! ------------------------------------------------------------------------------
 ! 26-AUG-2021, M. Woodley
 !  * Hybrid Final Focus for fall 2021 operation
@@ -763,12 +770,12 @@ b5d36: sbend, type = "5D36", l = lbd, hgap = gbd/2, angle = abd, e1 = abd/2, fin
 
 ! Final Focus
 
-kq5ff = -0.453913*(0.2304/0.23045)
-kq4ff = -0.337682
-kq3ff = 0.419544
-kq2ff = 0.523259
-kq1ff = -0.980516
-kq0ff = 0.523259
+kq5ff = -0.467268800263
+kq4ff = -0.34106223812
+kq3ff = 0.416509781058
+kq2ff = 0.53037956706
+kq1ff = -0.987354552247
+kq0ff = kq2ff
 
 q5ff: quadrupole, type = "0.813Q17.7", l = 0.23045, aperture = 0.008325, k1 = kq5ff
 q4ff: quadrupole, type = "1.625Q27.3", l = 0.3571, aperture = 0.0186, k1 = kq4ff
@@ -780,13 +787,13 @@ q0ff: quadrupole, type = "1.625Q27.3", l = 0.3571, aperture = 0.0186, k1 = kq0ff
 ! spectrometer
 
 aqs = 27.0e-3
-kq0d = -0.330432
-kq1d = 0.54533
-kq2d = -0.330432
+kq0d = -0.328856645709
+kq1d = 0.542213589911
+kq2d = kq0d
 
 q0d: quadrupole, type = "2.13Q38.31", l = 0.5, aperture = aqs, k1 = kq0d
 q1d: quadrupole, type = "2.13Q38.31", l = 0.5, aperture = aqs, k1 = kq1d
-q2d: quadrupole, type = "2.13Q38.31", l = 0.5, aperture = aqs, k1 = kq0d
+q2d: quadrupole, type = "2.13Q38.31", l = 0.5, aperture = aqs, k1 = kq2d
 
 ! ==============================================================================
 ! DRIFTs
@@ -797,7 +804,9 @@ q2d: quadrupole, type = "2.13Q38.31", l = 0.5, aperture = aqs, k1 = kq0d
 d11ff: drift, l = 0.383821
 d10ff: drift, l = 0.137748
 d9ff: drift, l = 0.304419
-d8ff: drift, l = 0.894977
+d8ff: drift, l = 0.2694
+d8aff: drift, l = 0.3877
+d8bff: drift, l = 0.237877
 d7ff: drift, l = 0.2057
 d6ff: drift, l = 0.1957
 dkrk1: drift, l = 0.691936
@@ -862,6 +871,7 @@ lairg: drift, l = 1.675292943463
 ! XCORs
 ! ------------------------------------------------------------------------------
 
+xc1ff: hkicker                  !X203026
 xc3ff: hkicker, type = "3D8.8MK2" !0.815" gap
 xc1ex: hkicker, type = "3D4"      !1.181" gap
 
@@ -869,21 +879,22 @@ xc1ex: hkicker, type = "3D4"      !1.181" gap
 ! YCORs
 ! ------------------------------------------------------------------------------
 
+yc1ff: vkicker                  !Y203017
 yc2ff: vkicker, type = "3D8.8MK2" !0.815" gap
 
 ! ==============================================================================
 ! BPMs
 ! ------------------------------------------------------------------------------
 
-m1ff: monitor
-mq4ff: monitor
-m3ff: monitor
-m4ff: monitor
-m5ff: monitor
-m0ex: monitor
-m1ex: monitor
-m2ex: monitor
-m3ex: monitor
+m1ff: monitor, type = "SA25840356"
+m2ff: monitor, type = "SA23650350"
+m3ff: monitor, type = "DSG000014571"
+m4ff: monitor, type = "DSG000014571"
+m5ff: monitor, type = "DSG000014571"
+m0ex: monitor, type = "SA23650350"
+m1ex: monitor, type = "SA23650301"
+m2ex: monitor, type = "SA23650301"
+m3ex: monitor, type = "SA23650301"
 
 ! ==============================================================================
 ! diagnostics, collimators, MARKERs, etc.
@@ -891,25 +902,25 @@ m3ex: monitor
 
 ! profile monitors
 
-usthz: monitor, type = "OTR foil/YAG"    ! OTRS:LI20:3070 CAMR:LI20:106
+usthz: monitor, type = "OTR foil/YAG"    !OTRS:LI20:3070 CAMR:LI20:106
 dsthz: monitor, type = "OTR foil/YAG"    !PD203075
-usotr: monitor, type = "OTR foil/YAG"    ! OTRS:LI20:3158 CAMR:LI20:101
-ipotr1p: monitor, type = "OTR foil/YAG"    ! OTRS:LI20:3175 (in plasma oven)
-ipotr1: monitor, type = "OTR foil/YAG"    ! OTRS:LI20:3180 (in bypass line) CAMR:LI20:102
-ipws1: monitor, type = "MARKER"            ! MARKER:LI20:3179 (in bypass line)
-ipotr2: monitor, type = "OTR foil/YAG"    ! OTRS:LI20:3202 (in bypass line)
-ipws3: monitor, type = "MARKER"            ! MARKER:LI20:3229
-dsotr: monitor, type = "OTR foil/YAG"    ! OTRS:LI20:3206 CAMR:LI20:103
-wdsotr: monitor, type = "OTR"             ! OTRS:LI20:3239 CAMR:LI20:104
+usotr: monitor, type = "OTR foil/YAG"    !OTRS:LI20:3158 CAMR:LI20:101
+ipotr1p: monitor, type = "OTR foil/YAG"    !OTRS:LI20:3175 (in plasma oven)
+ipotr1: monitor, type = "OTR foil/YAG"    !OTRS:LI20:3180 (in bypass line) CAMR:LI20:102
+ipws1: monitor, type = "MARKER"            !MARKER:LI20:3179 (in bypass line)
+ipotr2: monitor, type = "OTR foil/YAG"    !OTRS:LI20:3202 (in bypass line)
+ipws3: monitor, type = "MARKER"            !MARKER:LI20:3229
+dsotr: monitor, type = "OTR foil/YAG"    !OTRS:LI20:3206 CAMR:LI20:103
+wdsotr: monitor, type = "OTR"             !OTRS:LI20:3239 CAMR:LI20:104
 dtotr: monitor, type = "OTR"
-pgam1: monitor, type = "phosphor"        ! MONITOR:LI20:3500 CMOS:LI20:3490 (Gamma 1 screen)
-cnear: monitor, type = "cherenkov wafer" ! CMOS:LI20:3490
+pgam1: monitor, type = "phosphor"        !MONITOR:LI20:3500 CMOS:LI20:3490 (Gamma 1 screen)
+cnear: monitor, type = "cherenkov wafer" !CMOS:LI20:3490
 pdump: monitor, type = "phosphor"        !P203475T
 
 ! toroids
 
-iqmon20: marker ! TORO:LI20:3163 "Resonant charge monitor" in S20 experimental region
-im3255: marker ! TORO:LI20:3255
+iqmon20: marker !TORO:LI20:3163 "Resonant charge monitor" in S20 experimental region
+im3255: marker !TORO:LI20:3255
 
 ! bunch length monitors
 
@@ -947,82 +958,81 @@ maindump: instrument !dump face
 dbmark30: marker
 endspect20: marker
 
-
 ! ==============================================================================
 ! BEAMLINEs
 ! ------------------------------------------------------------------------------
 
 
 
-!Old split line: LINE=(XTCAVF,XTCAVF)
+!Old split line:  XTCAVF_full : LINE=(XTCAVF,XTCAVF)
 
 xtcavf_full: line = (xtcavf)
 xtcavf[L] = 2*xtcavf[L]
 
 
 
-!Old split line: LINE=(B5D361,B5D362)
+!Old split line:  B5D36_full : LINE=(B5D361,B5D362)
 
 b5d36_full: line = (b5d36)
 
 
 
-!Old split line: LINE=(Q5FF,Q5FF)
+!Old split line:  Q5FF_full : LINE=(Q5FF,Q5FF)
 
 q5ff_full: line = (q5ff)
 q5ff[L] = 2*q5ff[L]
 
 
-!Old split line: LINE=(Q4FF,Q4FF)
+!Old split line:  Q4FF_full : LINE=(Q4FF,Q4FF)
 
 q4ff_full: line = (q4ff)
 q4ff[L] = 2*q4ff[L]
 
 
-!Old split line: LINE=(Q3FF,Q3FF)
+!Old split line:  Q3FF_full : LINE=(Q3FF,Q3FF)
 
 q3ff_full: line = (q3ff)
 q3ff[L] = 2*q3ff[L]
 
 
-!Old split line: LINE=(Q2FF,Q2FF)
+!Old split line:  Q2FF_full : LINE=(Q2FF,Q2FF)
 
 q2ff_full: line = (q2ff)
 q2ff[L] = 2*q2ff[L]
 
 
-!Old split line: LINE=(Q1FF,Q1FF)
+!Old split line:  Q1FF_full : LINE=(Q1FF,Q1FF)
 
 q1ff_full: line = (q1ff)
 q1ff[L] = 2*q1ff[L]
 
 
-!Old split line: LINE=(Q0FF,Q0FF)
+!Old split line:  Q0FF_full : LINE=(Q0FF,Q0FF)
 
 q0ff_full: line = (q0ff)
 q0ff[L] = 2*q0ff[L]
 
 
-!Old split line: LINE=(Q0D,Q0D)
+!Old split line:  Q0D_full  : LINE=(Q0D,Q0D)
 
 q0d_full: line = (q0d)
 q0d[L] = 2*q0d[L]
 
 
-!Old split line: LINE=(Q1D,Q1D)
+!Old split line:  Q1D_full  : LINE=(Q1D,Q1D)
 
 q1d_full: line = (q1d)
 q1d[L] = 2*q1d[L]
 
 
-!Old split line: LINE=(Q2D,Q2D)
+!Old split line:  Q2D_full  : LINE=(Q2D,Q2D)
 
 q2d_full: line = (q2d)
 q2d[L] = 2*q2d[L]
 
-  FF : LINE=(BEGFF20,D11FF,MFFF,Q5FF_full,D10FF,M1FF,D9FF,BL20_4,D8FF,MQ4FF,D7FF,Q4FF_full,D6FF,Q3FF_full,DKRK1,KRK,
-         DKRK2,YC2FF,D4FF,USTHz,DBMARK67,D3AFF,DSTHz,D3FF,XC3FF,DXTC1,XTCAVF_full,DXTC2,Q2FF_full,D2AFF,M3FF,D2FF,Q1FF_full,
-         D1AFF,M4FF,D1FF,Q0FF_full,D0FF,M5FF,DMQ0FF,ENDFF20)
+  FF : LINE=(BEGFF20,D11FF,MFFF,Q5FF_full,D10FF,M1FF,D9FF,BL20_4,D8FF,XC1FF,D8AFF,YC1FF,D8BFF,M2FF,D7FF,Q4FF_full,D6FF,
+         Q3FF_full,DKRK1,KRK,DKRK2,YC2FF,D4FF,USTHz,DBMARK67,D3AFF,DSTHz,D3FF,XC3FF,DXTC1,XTCAVF_full,DXTC2,Q2FF_full,D2AFF,M3FF,
+         D2FF,Q1FF_full,D1AFF,M4FF,D1FF,Q0FF_full,D0FF,M5FF,DMQ0FF,ENDFF20)
 
   EXPT : LINE=(BEGEXPT20,DEX20_1,EXTHOLE1,DEX20_2,USOTR,DEX20_3,IQMON20,DEX20_4,BEWIN1,DEX20_5,LCUBE,DEX20_6,PIC_CENT,
          DEX20_7,FILG,DEX20_8,FILS,DEX20_9,IPOTR1P,DEX20_10,IPOTR1,DEX20_10a,PENT,MIP,DEX20_11,IPWS1,DEX20_12,PEXT,DEX20_12a,
@@ -1034,11 +1044,11 @@ q2d[L] = 2*q2d[L]
          EXTWIN,D12D,PGAM1,D13D,CNEAR,D14D,PDUMP,LAIRG,MAINDUMP,DBMARK30,ENDSPECT20)
 
 
-  FF20 : LINE=(FF,EXPT,SPECT)
+  FF20H : LINE=(FF,EXPT,SPECT)
 
 ! ==============================================================================
 
-  SECTOR20 : LINE=(BC20W,FF20)
+  SECTOR20 : LINE=(BC20W,FF20H)
 
 ! ------------------------------------------------------------------------------
 

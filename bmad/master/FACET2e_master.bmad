@@ -1,5 +1,5 @@
 
-! *** OPTICS=FACET2-08NOV21 ***
+! *** OPTICS=FACET2-16FEB24 ***
 
 ! ------------------------------------------------------------------------------
 ! constants and global parameters (from FACET2e_baseline.mat)
@@ -35,10 +35,10 @@ qsign = +1 !electron=+1; positron=-1
 
 e0 = 0.006
 e0a = 0.064
-ei = 0.135
+ei = 0.125
 e11 = 0.335
 e14 = 4.5
-e19 = 9.781010844799 !at MSCAVEXT
+e19 = 9.778986367937 !at MSCAVEXT
 e20 = 10.0
 
 ! BC14 parameters
@@ -58,29 +58,29 @@ r34p = r12e
 r43p = r21e
 
 ! ------------------------------------------------------------------------------
-! Twiss
+! Twiss (from Lucretia/FACET2e.mat unless otherwise noted)
 ! ------------------------------------------------------------------------------
 
-! at BEGDL10 (matched to MRK0F without laser heater chicane or undulator)
+! at BEGDL10
 
-bxi = 0.236614127043
-axi = -1.250649355877
-byi = 16.692771188262
-ayi = -9.828485442506
+bxi = 0.137761791898
+axi = 0.620280308601
+byi = 7.063979455311
+ayi = -5.750562653636
 
 ! at CATHODEF (matched to BXi/AXi/BYi/AYi)
 
-bx0 = 11.916867305095
-ax0 = 7.509605493741
-by0 = 3.135655821534
-ay0 = -7.047857298284
+bx0 = 0.132923615689 !  0.132923615646
+ax0 = 0.896770130014 !  0.896770129714
+by0 = 0.365931285843 !  0.36593128579
+ay0 = 1.863967282833 !  1.863967282674
 
-! at MRK0F (treaty values)
+! at MRK0F
 
-bx10 = 1.1
-ax10 = 0.0
-by10 = 1.1
-ay10 = 0.0
+bx10 = 5.285886040780
+ax10 = -2.039021010174
+by10 = 2.581889827366
+ay10 = 0.052047744707
 
 ! at BC11CEND (treaty values)
 
@@ -89,26 +89,33 @@ ax11 = 0.0
 by11 = 3.0
 ay11 = 0.0
 
-! at ENDBC14E (treaty values)
+! at BEGBC14E
 
-bx14 = 10.0
-ax14 = 0.0
-by14 = 10.0
-ay14 = 0.0
+bx14i = 70.22929918739
+ax14i = 2.506815398918
+by14i = 65.681299785911
+ay14i = 2.363169950675
 
-! at BEGBC14E (matched to ENDBC14E)
+! at ENDBC14E
 
-bx14i = 61.708537004857
-ax14i = 2.092975812122
-by14i = 58.069608228684
-ay14i = 2.016097891765
+bx14 = 8.400776344096
+ax14 = -0.004252878348
+by14 = 8.671895574182
+ay14 = 0.027909144552
 
-! at MSCAVEXT (not matched)
+! at MSCAVEXT
 
-bx19 = 13.83816884323
-ax19 = 0.728326391783
-by19 = 31.332109322064
-ay19 = -1.578833231189
+bx19 = 13.114920013535
+ax19 = 0.678453219664
+by19 = 41.689116108638
+ay19 = -1.989996071505
+
+! at BEGBC20
+
+bx20 = 11.502858236938
+ax20 = 0.704134099969
+by20 = 27.275402080101
+ay20 = 1.224927250207
 
 ! at MIP (treaty values)
 
@@ -117,12 +124,12 @@ axip = 0.0
 byip = 0.5
 ayip = 0.0
 
-! at BEGBC20 (matched to BXip/AXip/BYip/AYip)
+! at MAINDUMP
 
-bx20 = 12.250937647116
-ax20 = 0.668477303563
-by20 = 22.386928496206
-ay20 = 1.165718758102
+bxd = 40.758986780294
+axd = -3.969312435200
+byd = 3.127601194552
+ayd = 0.128435821760
 
 ! ------------------------------------------------------------------------------
 ! misc
@@ -145,8 +152,10 @@ call, file = L2.bmad
 call, file = BC14.bmad
 call, file = L3.bmad
  !CALL, FILENAME="BC20W.xsif"  !FACET "W" chicane
+ !CALL, FILENAME="FF20W.xsif"  !FACET FF/EXPT/SPECT
  !CALL, FILENAME="BC20E.xsif"  !FACET2 Sector 20 upgrade
- !CALL, FILENAME="FF20.xsif"   !FACET2 Sector 20 upgrade ("FF20E")
+ !CALL, FILENAME="FF20E.xsif"  !FACET2 Sector 20 upgrade
+ !CALL, FILENAME="FF20H.xsif"  !FACET2 "hybrid"
 call, file = LI20.bmad   !mix-n-match BC20/FF20 (BC20W+FF20H)
 call, file = SCAV.bmad
 

@@ -1,5 +1,5 @@
 
-! *** OPTICS=FACET2-08NOV21 ***
+! *** OPTICS=FACET2-16FEB24 ***
 
 ! ------------------------------------------------------------------------------
 ! constants and global parameters
@@ -25,9 +25,10 @@ q0p = 2.0e-9 !C
 
 ! energy profile (treaty values)
 
-e11 = 0.335 !GeV
-e14 = 4.5   !GeV
-e20 = 10.0   !GeV
+e11 = 0.335       !GeV
+e14 = 4.5         !GeV
+e19 = 9.778986368 !GeV (at MSCAVEXT)
+e20 = 10.0         !GeV
 
 r56_bc14 = 0.036021 !m
 r56_bc20 = 0
@@ -51,29 +52,43 @@ r34p = r12e
 r43p = r21e
 
 ! ------------------------------------------------------------------------------
-! Twiss
+! Twiss (from FACET2p MAD output unless otherwise noted)
 ! ------------------------------------------------------------------------------
 
-! at BC11CEND (treaty values)
+! at BC11CEND/BEGBC11_2 (treaty values)
 
 bx11 = 3.0
 ax11 = 0.0
 by11 = 3.0
 ay11 = 0.0
 
-! at ENDBC14P (treaty values)
+! at BEGBC14P
 
-bx14 = 10.0
-ax14 = 0.0
-by14 = 10.0
-ay14 = 0.0
+bx14i = 65.68332808
+ax14i = 2.363226275
+by14i = 70.22675138
+ay14i = 2.506745054
 
-! at BEGBC14P (matched to ENDBC14P)
+! at ENDBC14P
 
-bx14i = 61.708537004857
-ax14i = 2.092975812122
-by14i = 58.069608228684
-ay14i = 2.016097891765
+bx14 = 8.776291895
+ax14 = -0.05986817961
+by14 = 8.385416145
+ay14 = 0.08699112226
+
+! at MSCAVEXT
+
+bx19 = 40.47427926
+ax19 = -1.970010485
+by19 = 10.40065291
+ay19 = 0.5846983174
+
+! at BEGBC20
+
+bx20 = 11.50294373
+ax20 = 0.7041041376
+by20 = 27.27633435
+ay20 = 1.224950185
 
 ! at MIP (treaty values)
 
@@ -82,12 +97,12 @@ axip = 0.0
 byip = 0.5
 ayip = 0.0
 
-! at BEGBC20 (matched to MIP)
+! at MAINDUMP
 
-bx20 = 3.177187837459
-ax20 = 0.756131989204
-by20 = 4.00034745322
-ay20 = 0.7699709686
+bxd = 40.75942885
+axd = -3.969389783
+byd = 3.127712615
+ayd = 0.1284564473
 
 ! ------------------------------------------------------------------------------
 ! load lattice definitions

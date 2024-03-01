@@ -1,6 +1,6 @@
-  TITLE, "FACET2 e- (December 9, 2022)"
+  TITLE, "FACET2 e- (February 16, 2024)"
 
-! *** OPTICS=FACET2-09DEC22 ***
+! *** OPTICS=FACET2-16FEB24 ***
 
   ASSIGN, PRINT="FACET2e.print"
   ASSIGN, ECHO="FACET2e.echo"
@@ -8,6 +8,10 @@
 
 ! ==============================================================================
 ! Modification History
+! ------------------------------------------------------------------------------
+! 06-SEP-2023, M. Woodley
+!  * fix BC14E/P drifts
+!  * set all QUAD's and SEXT's to Lucretia values
 ! ------------------------------------------------------------------------------
 ! 18-MAY-2021, G. White
 !  * fixed LI19 corrector locations, removed 19-8a and updated S20 experiment
@@ -97,17 +101,19 @@
     USE, FACET2e
     PRINT, FULL
     comment
-      SAVEBETA, TW11,  BC11CEND
-      SAVEBETA, TW14i, BEGBC14E
-      SAVEBETA, TW14,  ENDBC14E
-      SAVEBETA, TW19,  MSCAVEXT
-      SAVEBETA, TW20,  BEGBC20
-      SAVEBETA, TWip,  MIP
+      SAVEBETA, TWLH, HTRUNDF
+      SAVEBETA, TW10, PR10571
+      SAVEBETA, TW11, BC11CEND
+      SAVEBETA, TW14, ENDBC14E
+      SAVEBETA, TW19, MSCAVEXT
+      SAVEBETA, TW20, BEGBC20
+      SAVEBETA, TWip, MIP
     endcomment
     TWISS, BETA0=TWi, SAVE, TAPE="FACET2e_twiss.tape"
     comment
+      SHOW, TWLH
+      SHOW, TW10
       SHOW, TW11
-      SHOW, TW14i
       SHOW, TW14
       SHOW, TW19
       SHOW, TW20
@@ -134,7 +140,50 @@
     PLOT, TABLE=TWISS, HAXIS=S, VAXIS=DX,DY, &
       STYLE=100, -SPLINE, RANGE=ENDBC20/MAINDUMP, FILE="FACET2e", &
       TITLE="Final Focus + Spectrometer"
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=BETX,BETY, &
+      STYLE=100, SPLINE, RANGE=#S/#E, FILE="FACET2e"
  !ENDCOMMENT
+
+! ------------------------------------------------------------------------------
+
+  STOP
+
+! ------------------------------------------------------------------------------
+! FACET2e working stuff
+! ------------------------------------------------------------------------------
+
+  COMMENT !standard output
+    BEAM, ENERGY=E0
+    USE, F2_ELEC
+   !VALUE, DM23A[L]
+   !VALUE, DM23B[L]
+   !VALUE, DM23C[L]
+   !VALUE, DM24A[L]
+    VALUE, DM24B[L]
+    MATCH, SURVEY, XS=Xc, YS=Yc, ZS=Zc, THETAS=THETAc, PHIS=PHIc, PSIS=PSIc
+     !VARY, DM23A[L], STEP=1.E-6
+     !VARY, DM23B[L], STEP=1.E-6
+     !VARY, DM23C[L], STEP=1.E-6
+     !VARY, DM24A[L], STEP=1.E-6
+      VARY, DM24B[L], STEP=1.E-6
+      WEIGHT, ZS=1
+     !CONSTR, VV14887,  ZS=1420.916000+0.0759
+     !CONSTR, BL14888,  ZS=1421.030235+0.1524
+     !CONSTR, BPM14891, ZS=1421.311100+0.0472
+     !CONSTR, IM14890,  ZS=1421.671000-0.1095
+      CONSTR, BPM14901, ZS=1421.973100-0.2048
+      LMDIF, TOL=1.E-20
+      MIGRAD, TOL=1.E-20
+    ENDMATCH
+   !VALUE, DM23A[L]
+   !VALUE, DM23B[L]
+   !VALUE, DM23C[L]
+   !VALUE, DM24A[L]
+    VALUE, DM24B[L]
+    PRINT, FULL
+    SURVEY, TAPE="FACET2e_survey.tape", &
+      X0=Xc, Y0=Yc, Z0=Zc, THETA0=THETAc, PHI0=PHIc, PSI0=PSIc
+  ENDCOMMENT
 
 ! ------------------------------------------------------------------------------
 

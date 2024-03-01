@@ -1,6 +1,25 @@
 
+! *** OPTICS=FACET2-16FEB24 ***
+
 ! ==============================================================================
 ! Modification History
+! ------------------------------------------------------------------------------
+! 14-JAN-2024, M. Woodley
+!  * restore changed element names per K. Luchini
+!    > CE141802 -> CE141815
+!    > YC141820 -> YC141780
+!    > VV14885  -> VV14887 
+!    > IM14895  -> IM14890 
+! ------------------------------------------------------------------------------
+! 19-OCT-2023, M. Woodley
+!  * restore element names that were changed per K. Luchini
+!   * CE141815 -> CE141802
+!   * YC141780 -> YC141820
+!   * VV14887  -> VV14885
+!   * IM14890  -> IM14895
+! 01-SEP-2023, M. Woodley
+!  * rename/redefine BC14E drift lengths (see G. White comments below)
+!  * make BC14P equivalent to BC14E (same complement/Z-locations of devices)
 ! ------------------------------------------------------------------------------
 ! 26-APR-2023, G. White
 !  * From measurements by Georg:
@@ -13,11 +32,12 @@
 !  * Changes according to tunnel inspection by L. Alsburg & G. White:
 !   * VV14885 -> VV14887 dS = +0.0759m
 !   * BL14888 dS = +0.1524m
-!   * IM14895 -> IM14890 to match controls IM14890 S + 0.1095m
-!   * QM14891 S + 0.0472m
-!   * Q14901 S - 0.2048m
+!   * QM14891 dS = 0.0472m
+!   * IM14895 -> IM14890 to match controls IM14890 dS = -0.1095m
+!   * Q14901 dS = -0.2048m
 !   * Add in PR14892 (non-functional, mystery PROF device)
 !   * Add VV14940 SLC fast valve
+! ------------------------------------------------------------------------------
 ! 01-DEC-2022, G. White
 !  * re-matched QM14891 - Q15601 to keep S15 strengths on quad strings more equal
 ! 28-FEB-2020, G. White - changes after visual inspection of beamline
@@ -136,9 +156,8 @@
 
   KQ14701  := -1.665165076061
   KQM14715 :=  1.569247133195
-
-  KQM14891 := 1.54788
-  KQ14901 := -1.954
+  KQM14891 :=  1.54788
+  KQ14901  := -1.954
 
   Q14701  : QUAD, TYPE="1.085Q4.31", L=LQE/2, APER=rQE, K1=Qsign*(KQ14701)
   QM14715 : QUAD, TYPE="1.085Q4.31", L=LQE/2, APER=rQE, K1=Qsign*(KQM14715)
@@ -172,33 +191,26 @@
   DM21b : DRIF, L=DM21[L]-DM21a[L]
   DM22  : DRIF, L=0.509664791 !0.316596+0.193068791
 
-  ZDBQ2A  := 1.92668935*COS(0.04192)
-  ZD21OA  := 7.76834831*COS(0.04192)
-  ZD210B1_A := 0.9379       *COS(0.04192)
-  ZD210B1 := 0.1       *COS(0.04192)
-  ZD210B2 := 0.1       *COS(0.04192)
-  ZD210B  := 7.56834831*COS(0.04192)
-  ZD210B_A  := 6.83044831*COS(0.04192)
-  ZDBQ2B  := 1.92668935*COS(0.04192)
+  ZDBQ2A  := 1.924996725395
+  ZD210A1 := 6.908547661855
+  ZD210A2 := 0.852976041214
+  ZD210B1 := 0.962912148546
+  ZD210B2 := 6.863711554523
+  ZDBQ2B  := 1.859896725395
 
-  DBQ2A  : DRIF, L=ZDBQ2A/COS(AB14),  TYPE="CSR"
-  D21OA  : DRIF, L=ZD21OA/COS(AB14),  TYPE="CSR"
-  DDG0   : DRIF, L=0.131153711244,    TYPE="CSR" !0.131185
-  DDG21  : DRIF, L=0.24864-0.0188,           TYPE="CSR"
-  DDG22A : DRIF, L=0.08223+0.0188,           TYPE="CSR"
-  DDG22B : DRIF, L=0.08223-0.0386,           TYPE="CSR"
-  DDG24  : DRIF, L=0.234494+0.2212,          TYPE="CSR"
-  DDGA   : DRIF, L=0.13118372,        TYPE="CSR" !0.131215
-  D210B1 : DRIF, L=(ZD210B1+0.863)/COS(AB14), TYPE="CSR"
-  D210B1_A : DRIF, L=(ZD210B1_A-0.0841)/COS(AB14), TYPE="CSR"
-  D210B2 : DRIF, L=(ZD210B2-0.863)/COS(AB14), TYPE="CSR"
-  D210B  : DRIF, L=(ZD210B+0.0651)/COS(AB14),  TYPE="CSR"
-  D210B_A  : DRIF, L=(ZD210B_A+0.0841)/COS(AB14),  TYPE="CSR"
-  DBQ2B  : DRIF, L=(ZDBQ2B-0.0651)/COS(AB14),  TYPE="CSR"
+  DBQ2A  : DRIF, L=ZDBQ2A /COS(AB14), TYPE="CSR"
+  D210A1 : DRIF, L=ZD210A1/COS(AB14), TYPE="CSR"
+  D210A2 : DRIF, L=ZD210A2/COS(AB14), TYPE="CSR"
+  DDG21  : DRIF, L=0.360994711244,    TYPE="CSR"
+  DDG22  : DRIF, L=0.144666,          TYPE="CSR"
+  DDG23  : DRIF, L=0.58687672,        TYPE="CSR"
+  D210B1 : DRIF, L=ZD210B1/COS(AB14), TYPE="CSR"
+  D210B2 : DRIF, L=ZD210B2/COS(AB14), TYPE="CSR"
+  DBQ2B  : DRIF, L=ZDBQ2B /COS(AB14), TYPE="CSR"
 
-  DM23A : DRIF, L=0.589065382243
-  DM23B : DRIF, L=0.152434617756996
-  DM23C : DRIF, L=0.160565382243004
+  DM23A : DRIF, L=0.589065836686 !0.589065382243
+  DM23B : DRIF, L=0.190735       !0.152434617756996
+  DM23C : DRIF, L=0.122265       !0.160565382243004
   DM24  : DRIF, L=0.5552
   DM24a : DRIF, L=0.1498
   DM24b : DRIF, L=0.1534
@@ -216,7 +228,7 @@
 
 ! positron
 
-  YC141820 : VKIC, TYPE="type-4"
+  YC141780 : VKIC, TYPE="type-4"
 
 ! ==============================================================================
 ! diagnostics
@@ -265,7 +277,7 @@
 
 ! positron
 
-  CE141802 : RCOL, TYPE="HCOLL" !energy collimator
+  CE141815 : RCOL, TYPE="HCOLL" !energy collimator
 
 ! ==============================================================================
 ! vacuum valves
@@ -273,7 +285,7 @@
 
   VV14711 : INST !BC14 upstream vacuum valve
   VV14887 : INST !BC14 downstream vacuum valve
-  VV14940 : MARK ! SLC fast-valve
+  VV14940 : MARK !SLC fast-valve
 
 ! ==============================================================================
 ! MARK
@@ -310,10 +322,9 @@
 
   BC14E : LINE=(BEGBC14E,&
     BCX14720_full,DBQ2A,&
-    CQ14738_full,D210B_A,YC14780,D210B1_A,&
-    BCX14796_full,DDG0,DDG21,BPM14801,DDG22A,DDG22B,PR14803,&
-      DDG24,DDGA,&
-    BCX14808_full,D210B1,CE14815,D210B2,D210B,&
+    CQ14738_full,D210A1,YC14780,D210A2,&
+    BCX14796_full,DDG21,BPM14801,DDG22,PR14803,DDG23,&
+    BCX14808_full,D210B1,CE14815,D210B2,&
     CQ14866_full,DBQ2B,&
     BCX14883_full,&
     ENDBC14E)
@@ -327,10 +338,9 @@
 
   BC14P : LINE=(BEGBC14P,&
     BCX141720_full,DBQ2A,&
-    CQ141738_full,D21OA,&
-    BCX141796_full,DDG0,DDG21,BPM141801,DDG22A,DDG22B,DDG23,PR141803,&
-      DDG24,DDGA,&
-    BCX141808_full,D210B1,CE141802,D210B2,YC141820,D210B,&
+    CQ141738_full,D210A1,YC141780,D210A2,&
+    BCX141796_full,DDG21,BPM141801,DDG22,PR141803,DDG23,&
+    BCX141808_full,D210B1,CE141815,D210B2,&
     CQ141866_full,DBQ2B,&
     BCX141883_full,&
     ENDBC14P)

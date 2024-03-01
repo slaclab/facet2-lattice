@@ -102,10 +102,10 @@ beam_init%center(6) = 0.0
         ix_d1_data = 1
         default_weight = 1
         d1_data%name = 'begtwiss'
-        datum( 1) =  'beta.a'     '' '' 'MRK0F'   'target'  5.286   1e1
-        datum( 2) =  'alpha.a'    '' '' 'MRK0F'   'target'  -2.039 1e2
-        datum( 3) =  'beta.b'     '' '' 'MRK0F'   'target'  2.582     1e1
-        datum( 4) =  'alpha.b'    '' '' 'MRK0F'   'target'  0.052  1e2
+        datum( 1) =  'beta.a'     '' '' 'MRK0F'   'target'  1.1   1e1
+        datum( 2) =  'alpha.a'    '' '' 'MRK0F'   'target'  0 1e2
+        datum( 3) =  'beta.b'     '' '' 'MRK0F'   'target'  1.1     1e1
+        datum( 4) =  'alpha.b'    '' '' 'MRK0F'   'target'  0  1e2
         datum( 5) =  'eta.x'      '' '' 'MRK0F'   'target'   0  1e1
         datum( 6) =  'etap.x'     '' '' 'MRK0F'   'target'   0   1e2
 / 

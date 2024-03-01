@@ -1,8 +1,14 @@
 
-! *** OPTICS=FACET2-08NOV21 ***
+! *** OPTICS=FACET2-16FEB24 ***
 
 ! ==============================================================================
 ! Modification History
+! ------------------------------------------------------------------------------
+! 05-SEP-2023, M. Woodley
+!  * undefer laser heater undulator
+! ------------------------------------------------------------------------------
+! 20-OCT-2022, M. Woodley
+!  * undefer laser heater chicane dipoles ... rematch (undulator still deferred)
 ! ------------------------------------------------------------------------------
 ! 19-FEB-2021, M. Woodley
 !  * remove IN10 ACMs (IM10607 and IM10618)
@@ -41,11 +47,12 @@ tcy10490: lcavity, rf_frequency = sbandf * 1e6, type = "short TCAV", l = 0.66802
 ! SBEN
 ! ------------------------------------------------------------------------------
 
-! laser heater chicane
+! laser heater chicane (1.18D3.17 dipoles)
 ! - use series approximation for sinc(x)=sin(x)/x to allow BBh=0
 
-! GBH   : 5D3.9 gap height (m)
-! ZBH   : 5D3.9 "Z" length (m)
+! GBH   : gap height (m)
+! ZBH   : "Z" length (m)
+! FBH   : measured fringe field integral (1)
 ! ABH   : chicane bend angle (rad)
 ! LBH   : chicane bend path length (m)
 ! ABHs  : "short" half chicane bend angle (rad)
@@ -55,7 +62,8 @@ tcy10490: lcavity, rf_frequency = sbandf * 1e6, type = "short TCAV", l = 0.66802
 
 gbh = 0.03
 zbh = 0.1244
-abh = 0 !0.1316410831
+fbh = 0.3997
+abh = 0.1316410831
 abh_2 = abh*abh
 abh_4 = abh_2*abh_2
 abh_6 = abh_4*abh_2
@@ -70,41 +78,40 @@ lbhs = (zbh/2)/sincabhs
 abhl = abh-abhs
 lbhl = lbh-lbhs
 
-bcx10451a: sbend, type = "@0,5D3.9", l = lbhs, angle = -abhs, hgap = gbh/2, e1 = 0, fint = 0.400, fintx = 0
-bcx10451b: sbend, type = "@0,5D3.9", l = lbhl, angle = -abhl, hgap = gbh/2, fint = 0, e2 = -abh, fintx = 0.400
-bcx10461a: sbend, type = "@0,5D3.9", l = lbhl, angle = +abhl, hgap = gbh/2, e1 = +abh, fint = 0.400, fintx = 0
-bcx10461b: sbend, type = "@0,5D3.9", l = lbhs, angle = +abhs, hgap = gbh/2, fint = 0, e2 = 0, fintx = 0.400
-bcx10475a: sbend, type = "@0,5D3.9", l = lbhs, angle = +abhs, hgap = gbh/2, e1 = 0, fint = 0.400, fintx = 0
-bcx10475b: sbend, type = "@0,5D3.9", l = lbhl, angle = +abhl, hgap = gbh/2, fint = 0, e2 = +abh, fintx = 0.400
-bcx10481a: sbend, type = "@0,5D3.9", l = lbhl, angle = -abhl, hgap = gbh/2, e1 = -abh, fint = 0.400, fintx = 0
-bcx10481b: sbend, type = "@0,5D3.9", l = lbhs, angle = -abhs, hgap = gbh/2, fint = 0, e2 = 0, fintx = 0.400
+bcx10451a: sbend, type = "1.18D3.17", l = lbhs, angle = -abhs, hgap = gbh/2, e1 = 0, fint = fbh, fintx = 0
+bcx10451b: sbend, type = "1.18D3.17", l = lbhl, angle = -abhl, hgap = gbh/2, fint = 0, e2 = -abh, fintx = fbh
+bcx10461a: sbend, type = "1.18D3.17", l = lbhl, angle = +abhl, hgap = gbh/2, e1 = +abh, fint = fbh, fintx = 0
+bcx10461b: sbend, type = "1.18D3.17", l = lbhs, angle = +abhs, hgap = gbh/2, fint = 0, e2 = 0, fintx = fbh
+bcx10475a: sbend, type = "1.18D3.17", l = lbhs, angle = +abhs, hgap = gbh/2, e1 = 0, fint = fbh, fintx = 0
+bcx10475b: sbend, type = "1.18D3.17", l = lbhl, angle = +abhl, hgap = gbh/2, fint = 0, e2 = +abh, fintx = fbh
+bcx10481a: sbend, type = "1.18D3.17", l = lbhl, angle = -abhl, hgap = gbh/2, e1 = -abh, fint = fbh, fintx = 0
+bcx10481b: sbend, type = "1.18D3.17", l = lbhs, angle = -abhs, hgap = gbh/2, fint = 0, e2 = 0, fintx = fbh
 
 ! define unsplit SBENs for BMAD ... not used by MAD
 
 
-bcx10451: sbend, type = "@0,5D3.9", l = lbh, hgap = gbh/2, angle = -abh, e1 = 0, fint = 0.400, e2 = -abh, fintx = 0.400
-bcx10461: sbend, type = "@0,5D3.9", l = lbh, hgap = gbh/2, angle = +abh, e1 = +abh, fint = 0.400, e2 = 0, fintx = 0.400
-bcx10475: sbend, type = "@0,5D3.9", l = lbh, hgap = gbh/2, angle = +abh, e1 = 0, fint = 0.400, e2 = +abh, fintx = 0.400
-bcx10481: sbend, type = "@0,5D3.9", l = lbh, hgap = gbh/2, angle = -abh, e1 = -abh, fint = 0.400, e2 = 0, fintx = 0.400
+bcx10451: sbend, type = "1.18D3.17", l = lbh, hgap = gbh/2, angle = -abh, e1 = 0, fint = fbh, e2 = -abh, fintx = fbh
+bcx10461: sbend, type = "1.18D3.17", l = lbh, hgap = gbh/2, angle = +abh, e1 = +abh, fint = fbh, e2 = 0, fintx = fbh
+bcx10475: sbend, type = "1.18D3.17", l = lbh, hgap = gbh/2, angle = +abh, e1 = 0, fint = fbh, e2 = +abh, fintx = fbh
+bcx10481: sbend, type = "1.18D3.17", l = lbh, hgap = gbh/2, angle = -abh, e1 = -abh, fint = fbh, e2 = 0, fintx = fbh
 
-! dogleg
+! dogleg (1.182D6.82T dipoles)
 
 gb0 = 0.03                   !gap height (m)
 zb0 = 0.2032                 !full "Z" length (m)
+fb0 = 0.45                   !measured fringe field integral (1)
 ab0 = adl1/2                 !full bend angle (rad)
 lb0 = zb0*ab0/(2*sin(ab0/2)) !full bend path length (m)
 
-bx10661a: sbend, type = "1.182D6.82T", l = lb0/2, hgap = gb0/2, angle = ab0/2, e1 = ab0/2, fint = 0.45, fintx = 0
-bx10661b: sbend, type = "1.182D6.82T", l = lb0/2, hgap = gb0/2, angle = ab0/2, e2 = ab0/2, fint = 0, fintx = 0.45
-bx10751a: sbend, type = "1.182D6.82T", l = lb0/2, hgap = gb0/2, angle = ab0/2, e1 = ab0/2, fint = 0.45, fintx = 0
-bx10751b: sbend, type = "1.182D6.82T", l = lb0/2, hgap = gb0/2, angle = ab0/2, e2 = ab0/2, fint = 0, fintx = 0.45
+bx10661a: sbend, type = "1.182D6.82T", l = lb0/2, hgap = gb0/2, angle = ab0/2, e1 = ab0/2, fint = fb0, fintx = 0
+bx10661b: sbend, type = "1.182D6.82T", l = lb0/2, hgap = gb0/2, angle = ab0/2, e2 = ab0/2, fint = 0, fintx = fb0
+bx10751a: sbend, type = "1.182D6.82T", l = lb0/2, hgap = gb0/2, angle = ab0/2, e1 = ab0/2, fint = fb0, fintx = 0
+bx10751b: sbend, type = "1.182D6.82T", l = lb0/2, hgap = gb0/2, angle = ab0/2, e2 = ab0/2, fint = 0, fintx = fb0
 
 ! define unsplit SBENs for BMAD ... not used by MAD
 
-bx10661: sbend, type = "1.182D6.82T", hgap = gb0/2, l = lb0, angle = ab0, e1 = ab0/2, fint = 0.45, e2 = ab0/2,
-          fintx = 0.45
-bx10751: sbend, type = "1.182D6.82T", hgap = gb0/2, l = lb0, angle = ab0, e1 = ab0/2, fint = 0.45, e2 = ab0/2,
-          fintx = 0.45
+bx10661: sbend, type = "1.182D6.82T", hgap = gb0/2, l = lb0, angle = ab0, e1 = ab0/2, fint = fb0, e2 = ab0/2, fintx = fb0
+bx10751: sbend, type = "1.182D6.82T", hgap = gb0/2, l = lb0, angle = ab0, e1 = ab0/2, fint = fb0, e2 = ab0/2, fintx = fb0
 
 ! ==============================================================================
 ! MATR
@@ -120,10 +127,10 @@ bx10751: sbend, type = "1.182D6.82T", hgap = gb0/2, l = lb0, angle = ab0, e1 = a
 ! Lhun  : half-length of laser-heater undulator (5 periods) [m]
 ! kqlh  : natural undulator focusing "k" in y-plane [1/m2]
 
-lam = 0.054
+lam = 0.053855 ! 0.054 -> changed to reflect K=1.17 measurememnt data
 lamr = 758e-9
 gami = ei/emass
-k_und = 0 !sqrt(2*(lamr*2*gami^2/lam-1))
+k_und = sqrt(2*(lamr*2*gami^2/lam-1))
 lhun = 0.506263/2
 kqlh = (k_und*2*pi/lam/sqrt(2)/gami)^2
 
@@ -150,9 +157,8 @@ um10466: wiggler,
         
 um10466[L] = um10466[L]/2 ! Will be doubled in desplitting process. 
 !--------------------------------- !,                            &
-!old: um10466: taylor, type = "@0,LHund", l = lhun, tt11 = 1.0, tt12 = lhun, tt21 = 0, tt22 = 1.0,
-!old           tt33 = cos(lhun*sqrt(kqlh)), tt34 = r34u, tt43 = -sin(lhun*sqrt(kqlh))*sqrt(kqlh), tt44 = cos(lhun*sqrt(kqlh)),
-!old           tt55 = 1.0, tt66 = 1.0
+!old: um10466: taylor, type = "LHund", l = lhun, tt11 = 1.0, tt12 = lhun, tt21 = 0, tt22 = 1.0, tt33 = cos(lhun*sqrt(kqlh)),
+!old           tt34 = r34u, tt43 = -sin(lhun*sqrt(kqlh))*sqrt(kqlh), tt44 = cos(lhun*sqrt(kqlh)), tt55 = 1.0, tt66 = 1.0
    !R56=Lhun/(gami^2)*(1+(K_und^2)/2)
  !endcomment
 
@@ -162,20 +168,22 @@ um10466[L] = um10466[L]/2 ! Will be doubled in desplitting process.
 ! QUAD
 ! ------------------------------------------------------------------------------
 
-! match around laser heater (not installed)
+! match around laser heater (installed)
 
-kqe10425 = -15.201903779328
-kqe10441 = 14.620018144249
-kqe10511 = 10.3685858706
-kqe10525 = -10.475280419976
+!                heater ON
+!             ----------------
+kqe10425 = -19.483733913907
+kqe10441 = 22.738480699594
+kqe10511 = 12.1393
+kqe10525 = -10.9134
 
 ! match to BC11CEND (X-band not installed)
 
-kqm10631 = 11.990887883552
-kqm10651 = -11.233494237683
+kqm10631 = 11.3442
+kqm10651 = -11.5137
 kqb10731 = 22.169701529671
-kqm10771 = -7.123593114848
-kqm10781 = 11.698487496707
+kqm10771 = -11.071
+kqm10781 = 12.275640217878
 
 qe10425: quadrupole, type = "1.26Q3.5", l = lqx/2, aperture = rqx, k1 = kqe10425
 qe10441: quadrupole, type = "1.26Q3.5", l = lqx/2, aperture = rqx, k1 = kqe10441
@@ -325,17 +333,17 @@ enddl10: marker
 
 
 
-!Old split line: LINE=(BCX10451a,BCX10451b)
+!Old split line:  BCX10451_full : LINE=(BCX10451a,BCX10451b)
 
 bcx10451_full: line = (bcx10451)
 
 
-!Old split line: LINE=(BCX10461a,BCX10461b)
+!Old split line:  BCX10461_full : LINE=(BCX10461a,BCX10461b)
 
 bcx10461_full: line = (bcx10461)
 
 
-!Old split line: LINE=(UM10466,HTRUNDF,UM10466)
+!Old split line:  UM10466_full  : LINE=(UM10466,HTRUNDF,UM10466)
 
 um10466_full: line = (um10466)
 um10466[L] = 2*um10466[L]
@@ -343,12 +351,12 @@ htrundf[superimpose] = T
 htrundf[ref] = um10466
 
 
-!Old split line: LINE=(BCX10475a,BCX10475b)
+!Old split line:  BCX10475_full : LINE=(BCX10475a,BCX10475b)
 
 bcx10475_full: line = (bcx10475)
 
 
-!Old split line: LINE=(BCX10481a,BCX10481b)
+!Old split line:  BCX10481_full : LINE=(BCX10481a,BCX10481b)
 
 bcx10481_full: line = (bcx10481)
 
@@ -357,12 +365,12 @@ bcx10481_full: line = (bcx10481)
 
 
 
-!Old split line: LINE=(BX10661a,BX10661b)
+!Old split line:  BX10661_full : LINE=(BX10661a,BX10661b)
 
 bx10661_full: line = (bx10661)
 
 
-!Old split line: LINE=(QB10731,BPM10731,QB10731)
+!Old split line:  QB10731_full : LINE=(QB10731,BPM10731,QB10731)
 
 qb10731_full: line = (qb10731)
 qb10731[L] = 2*qb10731[L]
@@ -370,7 +378,7 @@ bpm10731[superimpose] = T
 bpm10731[ref] = qb10731
 
 
-!Old split line: LINE=(BX10751a,BX10751b)
+!Old split line:  BX10751_full : LINE=(BX10751a,BX10751b)
 
 bx10751_full: line = (bx10751)
 
@@ -379,7 +387,7 @@ bx10751_full: line = (bx10751)
 
 
 
-!Old split line: LINE=(TCY10490,XC10491,YC10492,TCY10490)
+!Old split line:  TCY10490_full : LINE=(TCY10490,XC10491,YC10492,TCY10490)
 
 tcy10490_full: line = (tcy10490)
 tcy10490[L] = 2*tcy10490[L]
@@ -390,7 +398,7 @@ yc10492[ref] = tcy10490
 
 
 
-!Old split line: LINE=(QE10425,BPM10425,QE10425)
+!Old split line:  QE10425_full : LINE=(QE10425,BPM10425,QE10425)
 
 qe10425_full: line = (qe10425)
 qe10425[L] = 2*qe10425[L]
@@ -398,13 +406,13 @@ bpm10425[superimpose] = T
 bpm10425[ref] = qe10425
 
 
-!Old split line: LINE=(QE10441,QE10441)
+!Old split line:  QE10441_full : LINE=(QE10441,QE10441)
 
 qe10441_full: line = (qe10441)
 qe10441[L] = 2*qe10441[L]
 
 
-!Old split line: LINE=(QE10511,BPM10511,QE10511)
+!Old split line:  QE10511_full : LINE=(QE10511,BPM10511,QE10511)
 
 qe10511_full: line = (qe10511)
 qe10511[L] = 2*qe10511[L]
@@ -412,7 +420,7 @@ bpm10511[superimpose] = T
 bpm10511[ref] = qe10511
 
 
-!Old split line: LINE=(QE10525,BPM10525,QE10525)
+!Old split line:  QE10525_full : LINE=(QE10525,BPM10525,QE10525)
 
 qe10525_full: line = (qe10525)
 qe10525[L] = 2*qe10525[L]
@@ -420,7 +428,7 @@ bpm10525[superimpose] = T
 bpm10525[ref] = qe10525
 
 
-!Old split line: LINE=(QM10631,BPM10631,QM10631)
+!Old split line:  QM10631_full : LINE=(QM10631,BPM10631,QM10631)
 
 qm10631_full: line = (qm10631)
 qm10631[L] = 2*qm10631[L]
@@ -428,7 +436,7 @@ bpm10631[superimpose] = T
 bpm10631[ref] = qm10631
 
 
-!Old split line: LINE=(QM10651,BPM10651,QM10651)
+!Old split line:  QM10651_full : LINE=(QM10651,BPM10651,QM10651)
 
 qm10651_full: line = (qm10651)
 qm10651[L] = 2*qm10651[L]
@@ -436,7 +444,7 @@ bpm10651[superimpose] = T
 bpm10651[ref] = qm10651
 
 
-!Old split line: LINE=(QM10771,BPM10771,QM10771)
+!Old split line:  QM10771_full : LINE=(QM10771,BPM10771,QM10771)
 
 qm10771_full: line = (qm10771)
 qm10771[L] = 2*qm10771[L]
@@ -444,7 +452,7 @@ bpm10771[superimpose] = T
 bpm10771[ref] = qm10771
 
 
-!Old split line: LINE=(QM10781,BPM10781,QM10781)
+!Old split line:  QM10781_full : LINE=(QM10781,BPM10781,QM10781)
 
 qm10781_full: line = (qm10781)
 qm10781[L] = 2*qm10781[L]

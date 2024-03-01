@@ -1,5 +1,5 @@
 
-! *** OPTICS=FACET2-08NOV21 ***
+! *** OPTICS=FACET2-16FEB24 ***
 
 ! ==============================================================================
 ! Modification History
@@ -151,11 +151,25 @@ akq501 = -0.697627545e-5
 akq601 = +0.1010490572e-3
 akq701 = -0.339144696197e-3 !-0.3388633894E-3
 
+ !comment
 q19501x: sbend, type = "1.085Q4.31", l = q19501[l], k1 = -q19501[k1], angle = akq501, ref_tilt = pi/2
 
 q19601x: sbend, type = "1.085Q4.31", l = q19601[l], k1 = -q19601[k1], angle = akq601, ref_tilt = pi/2
 
 q19701x: sbend, type = "1.085Q4.31", l = q19701[l], k1 = -q19701[k1], angle = akq701, ref_tilt = pi/2
+ !endcomment
+
+!=!  comment
+!=!  comment
+!=!  Q19501x : SBEN, TYPE="1.085Q4.31", L=LQE/2, K1=-Qsign*(KQ19501), &
+!=!                  ANGLE=AKQ501, TILT
+!=!
+!=!  Q19601x : SBEN, TYPE="1.085Q4.31", L=LQE/2, K1=-Qsign*(KQ19601), &
+!=!                  ANGLE=AKQ601, TILT
+!=!
+!=!  Q19701x : SBEN, TYPE="1.085Q4.31", L=LQE/2, K1=-Qsign*(KQ19701), &
+!=!                  ANGLE=AKQ701, TILT
+!=!  endcomment
 
 ! ==============================================================================
 ! QUAD
@@ -314,12 +328,12 @@ endscav: marker
 
 
 
-!Old split line: LINE=(BKY170a,BKY170b)
+!Old split line:  BKY170_full  : LINE=(BKY170a,BKY170b)
 
 bky170_full: line = (bky170)
 
 
-!Old split line: LINE=(Q19501x,BPM19501,Q19501x)
+!Old split line:  Q19501x_full : LINE=(Q19501x,BPM19501,Q19501x)
 
 q19501x_full: line = (q19501x)
 q19501x[L] = 2*q19501x[L]
@@ -327,7 +341,7 @@ bpm19501[superimpose] = T
 bpm19501[ref] = q19501x
 
 
-!Old split line: LINE=(Q19601x,BPM19601,Q19601x)
+!Old split line:  Q19601x_full : LINE=(Q19601x,BPM19601,Q19601x)
 
 q19601x_full: line = (q19601x)
 q19601x[L] = 2*q19601x[L]
@@ -335,7 +349,7 @@ bpm19601[superimpose] = T
 bpm19601[ref] = q19601x
 
 
-!Old split line: LINE=(Q19701x,BPM19701,Q19701x)
+!Old split line:  Q19701x_full : LINE=(Q19701x,BPM19701,Q19701x)
 
 q19701x_full: line = (q19701x)
 q19701x[L] = 2*q19701x[L]
@@ -347,71 +361,71 @@ bpm19701[ref] = q19701x
 
 
 
-!Old split line: LINE=(BLX57172a,BLX57172b)
+!Old split line:  BLX57172_full : LINE=(BLX57172a,BLX57172b)
 
 blx57172_full: line = (blx57172)
 
 
-!Old split line: LINE=(BLY57174a,BLY57174b)
+!Old split line:  BLY57174_full : LINE=(BLY57174a,BLY57174b)
 
 bly57174_full: line = (bly57174)
 
 
-!Old split line: LINE=(BY57202a,BY57202b)
+!Old split line:  BY57202_full  : LINE=(BY57202a,BY57202b)
 
 by57202_full: line = (by57202)
 
 
-!Old split line: LINE=(BX57205a,XC57205,BX57205b)
+!Old split line:  BX57205_full  : LINE=(BX57205a,XC57205,BX57205b)
 
 bx57205_full: line = (bx57205)
 xc57205[superimpose] = T
 xc57205[ref] = bx57205
 
 
-!Old split line: LINE=(BX57215a,XC57215,BX57215b)
+!Old split line:  BX57215_full  : LINE=(BX57215a,XC57215,BX57215b)
 
 bx57215_full: line = (bx57215)
 xc57215[superimpose] = T
 xc57215[ref] = bx57215
 
 
-!Old split line: LINE=(BX57225a,XC57225,BX57225b)
+!Old split line:  BX57225_full  : LINE=(BX57225a,XC57225,BX57225b)
 
 bx57225_full: line = (bx57225)
 xc57225[superimpose] = T
 xc57225[ref] = bx57225
 
 
-!Old split line: LINE=(BX57235a,XC57235,BX57235b)
+!Old split line:  BX57235_full  : LINE=(BX57235a,XC57235,BX57235b)
 
 bx57235_full: line = (bx57235)
 xc57235[superimpose] = T
 xc57235[ref] = bx57235
 
 
-!Old split line: LINE=(BX57245a,XC57245,BX57245b)
+!Old split line:  BX57245_full  : LINE=(BX57245a,XC57245,BX57245b)
 
 bx57245_full: line = (bx57245)
 xc57245[superimpose] = T
 xc57245[ref] = bx57245
 
 
-!Old split line: LINE=(BX57255a,XC57255,BX57255b)
+!Old split line:  BX57255_full  : LINE=(BX57255a,XC57255,BX57255b)
 
 bx57255_full: line = (bx57255)
 xc57255[superimpose] = T
 xc57255[ref] = bx57255
 
 
-!Old split line: LINE=(BX57265a,XC57265,BX57265b)
+!Old split line:  BX57265_full  : LINE=(BX57265a,XC57265,BX57265b)
 
 bx57265_full: line = (bx57265)
 xc57265[superimpose] = T
 xc57265[ref] = bx57265
 
 
-!Old split line: LINE=(BX57275a,XC57275,BX57275b)
+!Old split line:  BX57275_full  : LINE=(BX57275a,XC57275,BX57275b)
 
 bx57275_full: line = (bx57275)
 xc57275[superimpose] = T
@@ -419,25 +433,25 @@ xc57275[ref] = bx57275
 
 
 
-!Old split line: LINE=(Q57186,Q57186)
+!Old split line:  Q57186_full  : LINE=(Q57186,Q57186)
 
 q57186_full: line = (q57186)
 q57186[L] = 2*q57186[L]
 
 
-!Old split line: LINE=(Q57190,Q57190)
+!Old split line:  Q57190_full  : LINE=(Q57190,Q57190)
 
 q57190_full: line = (q57190)
 q57190[L] = 2*q57190[L]
 
 
-!Old split line: LINE=(Q57204,Q57204)
+!Old split line:  Q57204_full  : LINE=(Q57204,Q57204)
 
 q57204_full: line = (q57204)
 q57204[L] = 2*q57204[L]
 
 
-!Old split line: LINE=(Q57210,YC57210,Q57210)
+!Old split line:  Q57210_full  : LINE=(Q57210,YC57210,Q57210)
 
 q57210_full: line = (q57210)
 q57210[L] = 2*q57210[L]
@@ -445,7 +459,7 @@ yc57210[superimpose] = T
 yc57210[ref] = q57210
 
 
-!Old split line: LINE=(Q57220,YC57220,Q57220)
+!Old split line:  Q57220_full  : LINE=(Q57220,YC57220,Q57220)
 
 q57220_full: line = (q57220)
 q57220[L] = 2*q57220[L]
@@ -453,7 +467,7 @@ yc57220[superimpose] = T
 yc57220[ref] = q57220
 
 
-!Old split line: LINE=(Q57230,YC57230,Q57230)
+!Old split line:  Q57230_full  : LINE=(Q57230,YC57230,Q57230)
 
 q57230_full: line = (q57230)
 q57230[L] = 2*q57230[L]
@@ -461,7 +475,7 @@ yc57230[superimpose] = T
 yc57230[ref] = q57230
 
 
-!Old split line: LINE=(Q57240,YC57240,Q57240)
+!Old split line:  Q57240_full  : LINE=(Q57240,YC57240,Q57240)
 
 q57240_full: line = (q57240)
 q57240[L] = 2*q57240[L]
@@ -469,7 +483,7 @@ yc57240[superimpose] = T
 yc57240[ref] = q57240
 
 
-!Old split line: LINE=(Q57250,YC57250,Q57250)
+!Old split line:  Q57250_full  : LINE=(Q57250,YC57250,Q57250)
 
 q57250_full: line = (q57250)
 q57250[L] = 2*q57250[L]
@@ -477,7 +491,7 @@ yc57250[superimpose] = T
 yc57250[ref] = q57250
 
 
-!Old split line: LINE=(Q57260,YC57260,Q57260)
+!Old split line:  Q57260_full  : LINE=(Q57260,YC57260,Q57260)
 
 q57260_full: line = (q57260)
 q57260[L] = 2*q57260[L]
@@ -485,7 +499,7 @@ yc57260[superimpose] = T
 yc57260[ref] = q57260
 
 
-!Old split line: LINE=(Q57270,YC57270,Q57270)
+!Old split line:  Q57270_full  : LINE=(Q57270,YC57270,Q57270)
 
 q57270_full: line = (q57270)
 q57270[L] = 2*q57270[L]
@@ -493,7 +507,7 @@ yc57270[superimpose] = T
 yc57270[ref] = q57270
 
 
-!Old split line: LINE=(Q57280,YC57280,Q57280)
+!Old split line:  Q57280_full  : LINE=(Q57280,YC57280,Q57280)
 
 q57280_full: line = (q57280)
 q57280[L] = 2*q57280[L]
