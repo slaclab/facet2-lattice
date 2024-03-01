@@ -1,9 +1,18 @@
 
-! *** OPTICS=FACET2-08NOV21 ***
+! *** OPTICS=FACET2-16FEB24 ***
 
 ! ==============================================================================
 ! Modification History
 ! ------------------------------------------------------------------------------
+! 15-FEB-2024, M. Woodley
+!  * restore 19-8a 10' structure (unpowered), along with XC19802 and YC19803
+! ------------------------------------------------------------------------------
+! 26-APR-2023, G. White
+!  * moved elements to reflect measurements from Georg:
+!   * XC14900 dz +0.0993m
+!   * YC14900 dz +0.1642m
+! 02-MAY-2022, G. White
+!  * moved XC19900 & YC19900 to reflect in-tunnel measurements by L. Alsburg
 ! 04-NOV-2021, M. Woodley
 !  * remove unused K15_2d definition
 ! ------------------------------------------------------------------------------
@@ -89,9 +98,9 @@ g19_4 = gradfb3
 g19_5 = gradfb3
 g19_6 = gradfb3
 
-k15_1a1: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.33, voltage = p25*g15_1*0.33 * 1e6, phi0 = phil3
-k15_1a2: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.25, voltage = p25*g15_1*0.25 * 1e6, phi0 = phil3
-k15_1a3: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 2.4641, voltage = p25*g15_1*2.4641 * 1e6, phi0 = phil3
+k15_1a1: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.4293, voltage = p25*g15_1*0.4293 * 1e6, phi0 = phil3
+k15_1a2: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 0.3149, voltage = p25*g15_1*0.3149 * 1e6, phi0 = phil3
+k15_1a3: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = 2.2999, voltage = p25*g15_1*2.2999 * 1e6, phi0 = phil3
 k15_1b: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g15_1*dlwl10 * 1e6, phi0 = phil3
 k15_1c: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g15_1*dlwl10 * 1e6, phi0 = phil3
 k15_1d: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10, voltage = p25*g15_1*dlwl10 * 1e6, phi0 = phil3
@@ -475,11 +484,11 @@ kql3 = 0.81745071251 !65 degree cells
 qfl3: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = +kql3
 qdl3: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = -kql3
 
-kq15201 = 0.683413636633
-kq15301 = -0.845262147155
-kq15401 = 0.675642032342
-kq15501 = -0.364291147505
-kq15601 = 0.338793929142
+kq15201 = 0.854425
+kq15301 = -0.833455
+kq15401 = 0.635191
+kq15501 = -0.443457
+kq15601 = 0.547422
 kq15701 = -0.623667834891
 kq15801 = 0.791763004861
 kq15901 = -0.801101447545
@@ -510,15 +519,15 @@ kq18901 = -0.818176454295
 
 ! LI19 bulk (201-801) I = 47.018 A, max boost < 15 A
 
-kq19201 = 0.836411275054
-kq19301 = -0.933653738427
-kq19401 = 0.833761518539
-kq19501 = -1.022643707024 !-0.77122157 ... scavenger extraction
-kq19601 = 0.757743409798 ! 0.77143041 ... scavenger extraction
-kq19701 = -0.749406010373 !-0.7786437  ... scavenger extraction
-kq19801 = 1.000000914904
-kq19851 = -1.749500861406 !new
-kq19871 = 1.174163314925 !new
+kq19201 = 0.824748618649
+kq19301 = -0.927074994776
+kq19401 = 0.84178984371
+kq19501 = -1.024647998816 !-0.77122157 ... scavenger extraction
+kq19601 = 0.773964264856 ! 0.77143041 ... scavenger extraction
+kq19701 = -0.749016000184 !-0.7786437  ... scavenger extraction
+kq19801 = 1.002139999604
+kq19851 = -1.799181572264
+kq19871 = 1.261375590325
 
 q15201: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = qsign*(kq15201)
 q15301: quadrupole, type = "1.085Q4.31", l = lqe/2, aperture = rqe, k1 = qsign*(kq15301)
@@ -592,12 +601,15 @@ d10b: drift, l = d10[l]-d10a[l]
 
 lmdw = 25.801374683414 !Q19701 exit to ENDL3F (from FACET v35)
 
-d199a1: drift, l = 0.8016
-d199a2: drift, l = 0.32
-d199a: drift, l = 5.4757-0.32
-d199b: drift, l = 2.0867 !26238214
+d199a: drift, l = 3.2062 !6.2773
+d199b: drift, l = 2.0867
+d199b1: drift, l = 0.7277
+d199b2: drift, l = 0.343
+d199b3: drift, l = d199b[l]-d199b1[l]-d199b2[l] !1.016
 d199c: drift, l = 4.570884
-d199d: drift, l = lmdw-(daq2[l]+4*dlwl10+daq1[l]+lqe+daq2[l]+dlwl10+3.2062+lqe+2.0867+lqe+d199c[l])
+ !D199d  : DRIF, L=Lmdw-(DAQ2[L]+4*DLWL10+DAQ1[L]+LQE+DAQ2[L]+&
+ !                 DLWL10+3.2062+LQE+2.0867+LQE+D199c[L])
+d199d: drift, l = lmdw-(daq2[l]+4*dlwl10+daq1[l]+lqe+daq2[l]+dlwl10+d199a[l]+lqe+d199b[l]+lqe+d199c[l])
 
 ! ==============================================================================
 ! XCORs and YCORs
@@ -939,7 +951,7 @@ K15_8D_full: line = (K15_8D)
 
 
 
-!Old split line: LINE=(TCY15280,TCY15280)
+!Old split line:  TCY15280_full : LINE=(TCY15280,TCY15280)
 
 tcy15280_full: line = (tcy15280)
 tcy15280[L] = 2*tcy15280[L]
@@ -955,7 +967,7 @@ tcy15280[L] = 2*tcy15280[L]
 
 
 
-!Old split line: LINE=(Q15201,BPM15201,Q15201)
+!Old split line:  Q15201_full : LINE=(Q15201,BPM15201,Q15201)
 
 q15201_full: line = (q15201)
 q15201[L] = 2*q15201[L]
@@ -963,7 +975,7 @@ bpm15201[superimpose] = T
 bpm15201[ref] = q15201
 
 
-!Old split line: LINE=(Q15301,BPM15301,Q15301)
+!Old split line:  Q15301_full : LINE=(Q15301,BPM15301,Q15301)
 
 q15301_full: line = (q15301)
 q15301[L] = 2*q15301[L]
@@ -971,7 +983,7 @@ bpm15301[superimpose] = T
 bpm15301[ref] = q15301
 
 
-!Old split line: LINE=(Q15401,BPM15401,Q15401)
+!Old split line:  Q15401_full : LINE=(Q15401,BPM15401,Q15401)
 
 q15401_full: line = (q15401)
 q15401[L] = 2*q15401[L]
@@ -979,7 +991,7 @@ bpm15401[superimpose] = T
 bpm15401[ref] = q15401
 
 
-!Old split line: LINE=(Q15501,BPM15501,Q15501)
+!Old split line:  Q15501_full : LINE=(Q15501,BPM15501,Q15501)
 
 q15501_full: line = (q15501)
 q15501[L] = 2*q15501[L]
@@ -987,7 +999,7 @@ bpm15501[superimpose] = T
 bpm15501[ref] = q15501
 
 
-!Old split line: LINE=(Q15601,BPM15601,Q15601)
+!Old split line:  Q15601_full : LINE=(Q15601,BPM15601,Q15601)
 
 q15601_full: line = (q15601)
 q15601[L] = 2*q15601[L]
@@ -995,7 +1007,7 @@ bpm15601[superimpose] = T
 bpm15601[ref] = q15601
 
 
-!Old split line: LINE=(Q15701,BPM15701,Q15701)
+!Old split line:  Q15701_full : LINE=(Q15701,BPM15701,Q15701)
 
 q15701_full: line = (q15701)
 q15701[L] = 2*q15701[L]
@@ -1003,7 +1015,7 @@ bpm15701[superimpose] = T
 bpm15701[ref] = q15701
 
 
-!Old split line: LINE=(Q15801,BPM15801,Q15801)
+!Old split line:  Q15801_full : LINE=(Q15801,BPM15801,Q15801)
 
 q15801_full: line = (q15801)
 q15801[L] = 2*q15801[L]
@@ -1011,7 +1023,7 @@ bpm15801[superimpose] = T
 bpm15801[ref] = q15801
 
 
-!Old split line: LINE=(Q15901,BPM15901,Q15901)
+!Old split line:  Q15901_full : LINE=(Q15901,BPM15901,Q15901)
 
 q15901_full: line = (q15901)
 q15901[L] = 2*q15901[L]
@@ -1164,7 +1176,7 @@ K16_8D_full: line = (K16_8D)
 
 
 
-!Old split line: LINE=(Q16201,BPM16201,Q16201)
+!Old split line:  Q16201_full : LINE=(Q16201,BPM16201,Q16201)
 
 q16201_full: line = (q16201)
 q16201[L] = 2*q16201[L]
@@ -1172,7 +1184,7 @@ bpm16201[superimpose] = T
 bpm16201[ref] = q16201
 
 
-!Old split line: LINE=(Q16301,BPM16301,Q16301)
+!Old split line:  Q16301_full : LINE=(Q16301,BPM16301,Q16301)
 
 q16301_full: line = (q16301)
 q16301[L] = 2*q16301[L]
@@ -1180,7 +1192,7 @@ bpm16301[superimpose] = T
 bpm16301[ref] = q16301
 
 
-!Old split line: LINE=(Q16401,BPM16401,Q16401)
+!Old split line:  Q16401_full : LINE=(Q16401,BPM16401,Q16401)
 
 q16401_full: line = (q16401)
 q16401[L] = 2*q16401[L]
@@ -1188,7 +1200,7 @@ bpm16401[superimpose] = T
 bpm16401[ref] = q16401
 
 
-!Old split line: LINE=(Q16501,BPM16501,Q16501)
+!Old split line:  Q16501_full : LINE=(Q16501,BPM16501,Q16501)
 
 q16501_full: line = (q16501)
 q16501[L] = 2*q16501[L]
@@ -1196,7 +1208,7 @@ bpm16501[superimpose] = T
 bpm16501[ref] = q16501
 
 
-!Old split line: LINE=(Q16601,BPM16601,Q16601)
+!Old split line:  Q16601_full : LINE=(Q16601,BPM16601,Q16601)
 
 q16601_full: line = (q16601)
 q16601[L] = 2*q16601[L]
@@ -1204,7 +1216,7 @@ bpm16601[superimpose] = T
 bpm16601[ref] = q16601
 
 
-!Old split line: LINE=(Q16701,BPM16701,Q16701)
+!Old split line:  Q16701_full : LINE=(Q16701,BPM16701,Q16701)
 
 q16701_full: line = (q16701)
 q16701[L] = 2*q16701[L]
@@ -1212,7 +1224,7 @@ bpm16701[superimpose] = T
 bpm16701[ref] = q16701
 
 
-!Old split line: LINE=(Q16801,BPM16801,Q16801)
+!Old split line:  Q16801_full : LINE=(Q16801,BPM16801,Q16801)
 
 q16801_full: line = (q16801)
 q16801[L] = 2*q16801[L]
@@ -1220,7 +1232,7 @@ bpm16801[superimpose] = T
 bpm16801[ref] = q16801
 
 
-!Old split line: LINE=(Q16901,BPM16901,Q16901)
+!Old split line:  Q16901_full : LINE=(Q16901,BPM16901,Q16901)
 
 q16901_full: line = (q16901)
 q16901[L] = 2*q16901[L]
@@ -1373,7 +1385,7 @@ K17_8D_full: line = (K17_8D)
 
 
 
-!Old split line: LINE=(Q17201,BPM17201,Q17201)
+!Old split line:  Q17201_full : LINE=(Q17201,BPM17201,Q17201)
 
 q17201_full: line = (q17201)
 q17201[L] = 2*q17201[L]
@@ -1381,7 +1393,7 @@ bpm17201[superimpose] = T
 bpm17201[ref] = q17201
 
 
-!Old split line: LINE=(Q17301,BPM17301,Q17301)
+!Old split line:  Q17301_full : LINE=(Q17301,BPM17301,Q17301)
 
 q17301_full: line = (q17301)
 q17301[L] = 2*q17301[L]
@@ -1389,7 +1401,7 @@ bpm17301[superimpose] = T
 bpm17301[ref] = q17301
 
 
-!Old split line: LINE=(Q17401,BPM17401,Q17401)
+!Old split line:  Q17401_full : LINE=(Q17401,BPM17401,Q17401)
 
 q17401_full: line = (q17401)
 q17401[L] = 2*q17401[L]
@@ -1397,7 +1409,7 @@ bpm17401[superimpose] = T
 bpm17401[ref] = q17401
 
 
-!Old split line: LINE=(Q17501,BPM17501,Q17501)
+!Old split line:  Q17501_full : LINE=(Q17501,BPM17501,Q17501)
 
 q17501_full: line = (q17501)
 q17501[L] = 2*q17501[L]
@@ -1405,7 +1417,7 @@ bpm17501[superimpose] = T
 bpm17501[ref] = q17501
 
 
-!Old split line: LINE=(Q17601,BPM17601,Q17601)
+!Old split line:  Q17601_full : LINE=(Q17601,BPM17601,Q17601)
 
 q17601_full: line = (q17601)
 q17601[L] = 2*q17601[L]
@@ -1413,7 +1425,7 @@ bpm17601[superimpose] = T
 bpm17601[ref] = q17601
 
 
-!Old split line: LINE=(Q17701,BPM17701,Q17701)
+!Old split line:  Q17701_full : LINE=(Q17701,BPM17701,Q17701)
 
 q17701_full: line = (q17701)
 q17701[L] = 2*q17701[L]
@@ -1421,7 +1433,7 @@ bpm17701[superimpose] = T
 bpm17701[ref] = q17701
 
 
-!Old split line: LINE=(Q17801,BPM17801,Q17801)
+!Old split line:  Q17801_full : LINE=(Q17801,BPM17801,Q17801)
 
 q17801_full: line = (q17801)
 q17801[L] = 2*q17801[L]
@@ -1429,7 +1441,7 @@ bpm17801[superimpose] = T
 bpm17801[ref] = q17801
 
 
-!Old split line: LINE=(Q17901,BPM17901,Q17901)
+!Old split line:  Q17901_full : LINE=(Q17901,BPM17901,Q17901)
 
 q17901_full: line = (q17901)
 q17901[L] = 2*q17901[L]
@@ -1582,7 +1594,7 @@ K18_8D_full: line = (K18_8D)
 
 
 
-!Old split line: LINE=(Q18201,BPM18201,Q18201)
+!Old split line:  Q18201_full : LINE=(Q18201,BPM18201,Q18201)
 
 q18201_full: line = (q18201)
 q18201[L] = 2*q18201[L]
@@ -1590,7 +1602,7 @@ bpm18201[superimpose] = T
 bpm18201[ref] = q18201
 
 
-!Old split line: LINE=(Q18301,BPM18301,Q18301)
+!Old split line:  Q18301_full : LINE=(Q18301,BPM18301,Q18301)
 
 q18301_full: line = (q18301)
 q18301[L] = 2*q18301[L]
@@ -1598,7 +1610,7 @@ bpm18301[superimpose] = T
 bpm18301[ref] = q18301
 
 
-!Old split line: LINE=(Q18401,BPM18401,Q18401)
+!Old split line:  Q18401_full : LINE=(Q18401,BPM18401,Q18401)
 
 q18401_full: line = (q18401)
 q18401[L] = 2*q18401[L]
@@ -1606,7 +1618,7 @@ bpm18401[superimpose] = T
 bpm18401[ref] = q18401
 
 
-!Old split line: LINE=(Q18501,BPM18501,Q18501)
+!Old split line:  Q18501_full : LINE=(Q18501,BPM18501,Q18501)
 
 q18501_full: line = (q18501)
 q18501[L] = 2*q18501[L]
@@ -1614,7 +1626,7 @@ bpm18501[superimpose] = T
 bpm18501[ref] = q18501
 
 
-!Old split line: LINE=(Q18601,BPM18601,Q18601)
+!Old split line:  Q18601_full : LINE=(Q18601,BPM18601,Q18601)
 
 q18601_full: line = (q18601)
 q18601[L] = 2*q18601[L]
@@ -1622,7 +1634,7 @@ bpm18601[superimpose] = T
 bpm18601[ref] = q18601
 
 
-!Old split line: LINE=(Q18701,BPM18701,Q18701)
+!Old split line:  Q18701_full : LINE=(Q18701,BPM18701,Q18701)
 
 q18701_full: line = (q18701)
 q18701[L] = 2*q18701[L]
@@ -1630,7 +1642,7 @@ bpm18701[superimpose] = T
 bpm18701[ref] = q18701
 
 
-!Old split line: LINE=(Q18801,BPM18801,Q18801)
+!Old split line:  Q18801_full : LINE=(Q18801,BPM18801,Q18801)
 
 q18801_full: line = (q18801)
 q18801[L] = 2*q18801[L]
@@ -1638,7 +1650,7 @@ bpm18801[superimpose] = T
 bpm18801[ref] = q18801
 
 
-!Old split line: LINE=(Q18901,BPM18901,Q18901)
+!Old split line:  Q18901_full : LINE=(Q18901,BPM18901,Q18901)
 
 q18901_full: line = (q18901)
 q18901[L] = 2*q18901[L]
@@ -1772,7 +1784,7 @@ K19_6D_full: line = (K19_6D)
 
 
 
-!Old split line: LINE=(Q19201,BPM19201,Q19201)
+!Old split line:  Q19201_full : LINE=(Q19201,BPM19201,Q19201)
 
 q19201_full: line = (q19201)
 q19201[L] = 2*q19201[L]
@@ -1780,7 +1792,7 @@ bpm19201[superimpose] = T
 bpm19201[ref] = q19201
 
 
-!Old split line: LINE=(Q19301,BPM19301,Q19301)
+!Old split line:  Q19301_full : LINE=(Q19301,BPM19301,Q19301)
 
 q19301_full: line = (q19301)
 q19301[L] = 2*q19301[L]
@@ -1788,7 +1800,7 @@ bpm19301[superimpose] = T
 bpm19301[ref] = q19301
 
 
-!Old split line: LINE=(Q19401,BPM19401,Q19401)
+!Old split line:  Q19401_full : LINE=(Q19401,BPM19401,Q19401)
 
 q19401_full: line = (q19401)
 q19401[L] = 2*q19401[L]
@@ -1796,7 +1808,7 @@ bpm19401[superimpose] = T
 bpm19401[ref] = q19401
 
 
-!Old split line: LINE=(Q19501,BPM19501,Q19501)
+!Old split line:  Q19501_full : LINE=(Q19501,BPM19501,Q19501)
 
 q19501_full: line = (q19501)
 q19501[L] = 2*q19501[L]
@@ -1804,7 +1816,7 @@ bpm19501[superimpose] = T
 bpm19501[ref] = q19501
 
 
-!Old split line: LINE=(Q19601,BPM19601,Q19601)
+!Old split line:  Q19601_full : LINE=(Q19601,BPM19601,Q19601)
 
 q19601_full: line = (q19601)
 q19601[L] = 2*q19601[L]
@@ -1812,7 +1824,7 @@ bpm19601[superimpose] = T
 bpm19601[ref] = q19601
 
 
-!Old split line: LINE=(Q19701,BPM19701,Q19701)
+!Old split line:  Q19701_full : LINE=(Q19701,BPM19701,Q19701)
 
 q19701_full: line = (q19701)
 q19701[L] = 2*q19701[L]
@@ -1820,7 +1832,7 @@ bpm19701[superimpose] = T
 bpm19701[ref] = q19701
 
 
-!Old split line: LINE=(Q19801,BPM19801,Q19801)
+!Old split line:  Q19801_full : LINE=(Q19801,BPM19801,Q19801)
 
 q19801_full: line = (q19801)
 q19801[L] = 2*q19801[L]
@@ -1828,7 +1840,7 @@ bpm19801[superimpose] = T
 bpm19801[ref] = q19801
 
 
-!Old split line: LINE=(Q19851,BPM19851,Q19851)
+!Old split line:  Q19851_full : LINE=(Q19851,BPM19851,Q19851)
 
 q19851_full: line = (q19851)
 q19851[L] = 2*q19851[L]
@@ -1836,7 +1848,7 @@ bpm19851[superimpose] = T
 bpm19851[ref] = q19851
 
 
-!Old split line: LINE=(Q19871,BPM19871,Q19871)
+!Old split line:  Q19871_full : LINE=(Q19871,BPM19871,Q19871)
 
 q19871_full: line = (q19871)
 q19871[L] = 2*q19871[L]
@@ -1848,8 +1860,8 @@ bpm19871[ref] = q19871
 
   LI19b : LINE=(DBKY170,DBKY170,DAA7m,DAQ1,Q19501_full,DAQ2,K19_5,DAQ1,Q19601_full,DAQ2,K19_6,DAQ1,Q19701_full)
 
-  LI19c : LINE=(DAQ2,D19_7,DAQ1,Q19801_full,D199a1,XC19900,D199a2,YC19900,D199a,Q19851_full,D199b,Q19871_full,D199c,
-         IM1988,D199d,LI19term)
+  LI19c : LINE=(DAQ2,D19_7,DAQ1,Q19801_full,DAQ2,K19_8,D199a,Q19851_full,D199b1,XC19900,D199b2,YC19900,D199b3,
+         Q19871_full,D199c,IM1988,D199d,LI19term)
 
   LI19 : LINE=(LI19a,LI19b,LI19c)
 

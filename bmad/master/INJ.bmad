@@ -1,5 +1,5 @@
 
-! *** OPTICS=FACET2-08NOV21 ***
+! *** OPTICS=FACET2-16FEB24 ***
 
 ! ==============================================================================
 ! Modification History
@@ -83,8 +83,8 @@ l0bf: lcavity, rf_frequency = sbandf * 1e6, type = "DUALFEED", l = ll0acc, volta
 cq10121: multipole, type = "2.90SO8.209", aperture = 0.0475/2, k1l = 0     !solenoid trim
 sq10122: multipole, type = "2.90SO8.209", aperture = 0.0475/2, k1l = 0,t1 !solenoid trim
 
-kqa10361 = -10.3565
-kqa10371 = 12.2142
+kqa10361 = -11.288886255557
+kqa10371 = 11.405472211446
 
 qa10361: quadrupole, type = "1.26Q3.5", l = lqx/2, aperture = rqx, k1 = kqa10361
 qa10371: quadrupole, type = "1.26Q3.5", l = lqx/2, aperture = rqx, k1 = kqa10371
@@ -295,13 +295,13 @@ L0BF_full: line = (L0BF)
 
 
 
-!Old split line: LINE=(QA10361,QA10361)
+!Old split line:  QA10361_full : LINE=(QA10361,QA10361)
 
 qa10361_full: line = (qa10361)
 qa10361[L] = 2*qa10361[L]
 
 
-!Old split line: LINE=(QA10371,BPM10371,QA10371)
+!Old split line:  QA10371_full : LINE=(QA10371,BPM10371,QA10371)
 
 qa10371_full: line = (qa10371)
 qa10371[L] = 2*qa10371[L]
@@ -310,7 +310,7 @@ bpm10371[ref] = qa10371
 
 
 
-!Old split line: LINE=(SOL10121,CQ10121,XC10121,YC10122,SQ10122,SOL10121)
+!Old split line:  SOL10121_full : LINE=(SOL10121,CQ10121,XC10121,YC10122,SQ10122,SOL10121)
 
 sol10121_full: line = (sol10121)
 sol10121[L] = 2*sol10121[L]

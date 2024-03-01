@@ -1,8 +1,11 @@
 
-! *** OPTICS=FACET2-08NOV21 ***
+! *** OPTICS=FACET2-16FEB24 ***
 
 ! ==============================================================================
 ! Modification History
+! ------------------------------------------------------------------------------
+! 20-NOV-2022, M. Woodley
+!  * increase fL1 (gradL1) value for 125 MeV out of L0 per G. White
 ! ------------------------------------------------------------------------------
 ! 23-AUG-2018, M. Woodley
 !  * gradL1 and phiL1 values from FACET2e_baseline.mat
@@ -21,7 +24,7 @@
 !                                  1 x 9.4' structure @ 50% power
 ! ------------------------------------------------------------------------------
 
-fl1 = 0.986532023493
+fl1 = 1.035858624668     !0.986532023493
 gradl1 = 10.628316745522*fl1 !MeV/m
 phil1 = -20.5/360            !rad/2pi
 klossl1 = 0                  !V/C/m
@@ -140,7 +143,7 @@ endl1f: marker
 
 
 
-!Old split line: LINE=(K11_1b1,XC11104,YC11105,K11_1b2)
+!Old split line:  K11_1b_full : LINE=(K11_1b1,XC11104,YC11105,K11_1b2)
 
 k11_1b_full: line = (k11_1b)
 xc11104[superimpose] = T
@@ -149,7 +152,7 @@ yc11105[superimpose] = T
 yc11105[ref] = k11_1b
 
 
-!Old split line: LINE=(K11_1c1,XC11140,YC11141,K11_1c2)
+!Old split line:  K11_1c_full : LINE=(K11_1c1,XC11140,YC11141,K11_1c2)
 
 k11_1c_full: line = (k11_1c)
 xc11140[superimpose] = T
@@ -173,7 +176,7 @@ K11_2A_full: line = (K11_2A)
   K11_2b_full : LINE=(K11_2b)
 
 
-!Old split line: LINE=(K11_2c1,XC11272,YC11273,K11_2c2)
+!Old split line:  K11_2c_full : LINE=(K11_2c1,XC11272,YC11273,K11_2c2)
 
 k11_2c_full: line = (k11_2c)
 xc11272[superimpose] = T
@@ -200,7 +203,7 @@ L1XF_full: line = (L1XF)
 
 
 
-!Old split line: LINE=(QA11132,BPM11132,QA11132)
+!Old split line:  QA11132_full : LINE=(QA11132,BPM11132,QA11132)
 
 qa11132_full: line = (qa11132)
 qa11132[L] = 2*qa11132[L]
@@ -208,7 +211,7 @@ bpm11132[superimpose] = T
 bpm11132[ref] = qa11132
 
 
-!Old split line: LINE=(Q11201,BPM11201,Q11201)
+!Old split line:  Q11201_full  : LINE=(Q11201,BPM11201,Q11201)
 
 q11201_full: line = (q11201)
 q11201[L] = 2*q11201[L]
@@ -216,7 +219,7 @@ bpm11201[superimpose] = T
 bpm11201[ref] = q11201
 
 
-!Old split line: LINE=(QA11265,BPM11265,QA11265)
+!Old split line:  QA11265_full : LINE=(QA11265,BPM11265,QA11265)
 
 qa11265_full: line = (qa11265)
 qa11265[L] = 2*qa11265[L]
@@ -224,7 +227,7 @@ bpm11265[superimpose] = T
 bpm11265[ref] = qa11265
 
 
-!Old split line: LINE=(Q11301,BPM11301,Q11301)
+!Old split line:  Q11301_full  : LINE=(Q11301,BPM11301,Q11301)
 
 q11301_full: line = (q11301)
 q11301[L] = 2*q11301[L]
