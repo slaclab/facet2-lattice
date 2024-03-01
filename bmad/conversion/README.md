@@ -32,4 +32,8 @@
   - Run all cells.
   - This generates the lcls-lattice/bmad/master/*_devicenames.bmad files
   - If tao fails to start, it may be necessary to comment out the call to FACET2e_devicenames from f2_elec.lat.bmad
-    
+8. Compare optics between Bmad and Lucretia or mad8s.
+  - Common sources of discrepancy
+    - extraneous quad settings in the top level bmad file (e.g. f2_elec.lat.bmad)
+    - lcavity tracking at low energy.
+    - Suggestion:  Obtain the beginning optics by matching at MRK0F or another location > 100 MeV.
