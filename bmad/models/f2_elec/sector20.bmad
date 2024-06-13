@@ -15,5 +15,10 @@ beginning[etap_y] = 0.0
 beginning[s] = 978.620876
 beginning[ref_time] = 3.264345E-06
 beginning[z_position] = 1977.71806
+beginning[x_position] = 0.0
+beginning[y_position] = 0.0
+beginning[theta_position] = 0
+beginning[phi_position] = 0
+beginning[psi_position] = 0
 
 
