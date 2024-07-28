@@ -1,5 +1,5 @@
 
-! *** OPTICS=FACET2-25FEB21 ***
+! *** OPTICS=FACET2-16FEB24 ***
 
 ! F2_SCAV path configuration
 
@@ -7,18 +7,18 @@
 
   F2_SCAVi : LINE=(FACET2s) !start at DL10
 
- !COMMENT
+  COMMENT
     USE, F2_SCAV !start at CATHODE
     ! initial energy: E0
     ! initial SURVEY: Xc, 0, Zc, THETAc, 0, 0
     ! initial Twiss : BX0, AX0, BY0, AY0
- !ENDCOMMENT
+  ENDCOMMENT
 
-  COMMENT
-    USE, F2_SCAVi
+ !COMMENT
+    USE, F2_SCAVi !start at DL10
     ! initial energy: Ei
     ! initial SURVEY: Xi, 0, Zi, THETAi, 0, 0
     ! initial Twiss : BXi, AXi, BYi, AYi
-  ENDCOMMENT
+ !ENDCOMMENT
 
   RETURN
