@@ -1,0 +1,115 @@
+  TITLE, "FACET2 (February 16, 2024)"
+
+! *** OPTICS=FACET2-16FEB24 ***
+
+  OPTION, -ECHO, INFO, WARN, VERIFY
+  ASSIGN, ECHO="test.echo"
+  ASSIGN, PRINT="test.print"
+
+  SETPLOT, XSIZE=25.4, YSIZE=20.32
+  SETPLOT, LWIDTH=5, LSCALE=1.5, SSCALE=1.5, RSCALE=1.5, ASCALE=1.5
+
+! Note: all SURVEY outputs in linac coordinates
+
+! ==============================================================================
+
+ !F2_ELEC  : e- CATHODEF to ENDSPECT
+ !F2_POSI  : e+ BEGBC11_2 (end of BC11 chicane)to ENDSPECT
+ !F2_SCAV  : e- CATHODEF to ENDSCAV (e+ production target)
+
+! ------------------------------------------------------------------------------
+
+ !COMMENT
+    CALL, FILENAME="F2_ELEC.xsif"
+    BEAM, ENERGY=E0
+    USE, F2_ELEC
+    PRINT, FULL
+    SURVEY, TAPE="test_survey.tape", &
+      X0=Xc, Y0=Yc, Z0=Zc, THETA0=THETAc, PHI0=PHIc, PSI0=PSIc
+    BEAM, ENERGY=Ei
+    USE, F2_ELECi
+    PRINT, FULL
+    TWISS, SAVE, BETX=BXi, ALFX=AXi, BETY=BYi, ALFY=AYi, &
+      TAPE="test_twiss.tape" !, RTAPE="test_rmat.tape"
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=ENERGY, &
+      STYLE=100, SPLINE, FILE="test", RANGE=#S/#E, &
+      TITLE="BEAMPATH=F2_ELECi"
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=BETX,BETY, &
+      STYLE=100, SPLINE, FILE="test", RANGE=#S/#E, &
+      TITLE="BEAMPATH=F2_ELECi"
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=DX,DY, &
+      STYLE=100, SPLINE, FILE="test", RANGE=#S/#E, &
+      TITLE="BEAMPATH=F2_ELECi"
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=BETX,BETY, &
+      STYLE=100, SPLINE, FILE="test", RANGE=BEGBC20/#E, &
+      TITLE="LI20"
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=DX,DY, &
+      STYLE=100, SPLINE, FILE="test", RANGE=BEGBC20/#E, &
+      TITLE="LI20"
+ !ENDCOMMENT
+
+! ------------------------------------------------------------------------------
+
+  COMMENT
+    CALL, FILENAME="F2_POSI.xsif"
+    BEAM, ENERGY=E11
+    USE, F2_POSI
+    PRINT, FULL
+    SURVEY, TAPE="test_survey.tape", &
+      X0=Xi, Y0=Yi, Z0=Zi, THETA0=THETAi, PHI0=PHIi, PSI0=PSIi
+    BEAM, ENERGY=E11
+    USE, F2_POSI
+    PRINT, FULL
+    TWISS, SAVE, BETX=BX11, ALFX=AX11, BETY=BY11, ALFY=AY11, &
+      TAPE="test_twiss.tape" !, RTAPE="test_rmat.tape"
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=ENERGY, &
+      STYLE=100, SPLINE, FILE="test", RANGE=#S/#E, &
+      TITLE="BEAMPATH=F2_POSI"
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=BETX,BETY, &
+      STYLE=100, SPLINE, FILE="test", RANGE=#S/#E, &
+      TITLE="BEAMPATH=F2_POSI"
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=DX,DY, &
+      STYLE=100, SPLINE, FILE="test", RANGE=#S/#E, &
+      TITLE="BEAMPATH=F2_POSI"
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=BETX,BETY, &
+      STYLE=100, SPLINE, FILE="test", RANGE=BEGBC20/#E, &
+      TITLE="LI20"
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=DX,DY, &
+      STYLE=100, SPLINE, FILE="test", RANGE=BEGBC20/#E, &
+      TITLE="LI20"
+  ENDCOMMENT
+
+! ------------------------------------------------------------------------------
+
+  COMMENT
+    CALL, FILENAME="F2_SCAV.xsif"
+    BEAM, ENERGY=E0
+    USE, F2_SCAV
+    PRINT, FULL
+    SURVEY, TAPE="test_survey.tape", &
+      X0=Xc, Y0=Yc, Z0=Zc, THETA0=THETAc, PHI0=PHIc, PSI0=PSIc
+    BEAM, ENERGY=Ei
+    USE, F2_SCAVi
+    PRINT, FULL
+    TWISS, SAVE, BETX=BXi, ALFX=AXi, BETY=BYi, ALFY=AYi, &
+      TAPE="test_twiss.tape" !, RTAPE="test_rmat.tape"
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=ENERGY, &
+      STYLE=100, SPLINE, FILE="test", RANGE=#S/#E, &
+      TITLE="BEAMPATH=F2_SCAVi"
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=BETX,BETY, &
+      STYLE=100, SPLINE, FILE="test", RANGE=#S/#E, &
+      TITLE="BEAMPATH=F2_SCAVi"
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=DX,DY, &
+      STYLE=100, SPLINE, FILE="test", RANGE=#S/#E, &
+      TITLE="BEAMPATH=F2_SCAVi"
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=BETX,BETY, &
+      STYLE=100, SPLINE, FILE="test", RANGE=MSCAVEXT/#E, &
+      TITLE="EP01"
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=DX,DY, &
+      STYLE=100, SPLINE, FILE="test", RANGE=MSCAVEXT/#E, &
+      TITLE="EP01"
+  ENDCOMMENT
+
+! ==============================================================================
+
+  STOP  

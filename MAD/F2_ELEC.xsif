@@ -1,5 +1,5 @@
 
-! *** OPTICS=FACET2-25FEB21 ***
+! *** OPTICS=FACET2-16FEB24 ***
 
 ! F2_ELEC path configurations
 
@@ -7,18 +7,18 @@
 
   F2_ELECi : LINE=(FACET2e) !start at DL10
 
- !COMMENT
+  COMMENT
     USE, F2_ELEC !start at CATHODE
     ! initial energy: E0
     ! initial SURVEY: Xc, 0, Zc, THETAc, 0, 0
     ! initial Twiss : BX0, AX0, BY0, AY0
- !ENDCOMMENT
+  ENDCOMMENT
 
-  COMMENT
+ !COMMENT !start at DL10
     USE, F2_ELECi
     ! initial energy: Ei
     ! initial SURVEY: Xi, 0, Zi, THETAi, 0, 0
     ! initial Twiss : BXi, AXi, BYi, AYi
-  ENDCOMMENT
+ !ENDCOMMENT
 
   RETURN

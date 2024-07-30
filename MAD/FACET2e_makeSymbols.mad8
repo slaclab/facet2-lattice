@@ -1,0 +1,79 @@
+
+! *** OPTICS=FACET2-16FEB24 ***
+
+! generate output files for RDB generation
+
+! ------------------------------------------------------------------------------
+! SURVEY tape files (linac coordinates)
+! ------------------------------------------------------------------------------
+
+  ASSIGN, PRINT="FACET2e.print"
+  BEAM, ENERGY=E0
+  USE, F2_ELEC
+  PRINT, FULL
+  SURVEY, TAPE="FACET2e_survey.tape", &
+    X0=Xc, Y0=Yc, Z0=Zc, THETA0=THETAc, PHI0=PHIc, PSI0=PSIc
+
+  ASSIGN, PRINT="FACET2s.print"
+  BEAM, ENERGY=E0
+  USE, F2_SCAV
+  PRINT, FULL
+  SURVEY, TAPE="FACET2s_survey.tape", &
+    X0=Xc, Y0=Yc, Z0=Zc, THETA0=THETAc, PHI0=PHIc, PSI0=PSIc
+
+! ------------------------------------------------------------------------------
+! output values that aren't included in tape-files
+! ------------------------------------------------------------------------------
+
+  ASSIGN, ECHO="FACET2e_value.echo"
+
+! SBEN FINT value
+
+  VALUE, BCX10451A[FINT]
+  VALUE, BCX10461A[FINT]
+  VALUE, BCX10475A[FINT]
+  VALUE, BCX10481A[FINT]
+  VALUE, BX10661A[FINT]
+  VALUE, BX10751A[FINT]
+  VALUE, BCX11314A[FINT]
+  VALUE, BCX11331A[FINT]
+  VALUE, BCX11338A[FINT]
+  VALUE, BCX11355A[FINT]
+  VALUE, BCX14720A[FINT]
+  VALUE, BCX14796A[FINT]
+  VALUE, BCX14808A[FINT]
+  VALUE, BCX14883A[FINT]
+  VALUE, B1LE1[FINT]
+  VALUE, B2LE1[FINT]
+  VALUE, B3LE1[FINT]
+  VALUE, B3RE1[FINT]
+  VALUE, B2RE1[FINT]
+  VALUE, WIGE11[FINT]
+  VALUE, WIGE21[FINT]
+  VALUE, WIGE31[FINT]
+  VALUE, B1RE1[FINT]
+  VALUE, B5D361[FINT]
+
+  VALUE, BKY170A[FINT]
+  VALUE, Q19501X[FINT] !off-axis quadrupole
+  VALUE, Q19601X[FINT] !off-axis quadrupole
+  VALUE, Q19701X[FINT] !off-axis quadrupole
+  VALUE, BLX57172A[FINT]
+  VALUE, BLY57174A[FINT]
+  VALUE, BY57202A[FINT]
+  VALUE, BX57205A[FINT]
+  VALUE, BX57215A[FINT]
+  VALUE, BX57225A[FINT]
+  VALUE, BX57235A[FINT]
+  VALUE, BX57245A[FINT]
+  VALUE, BX57255A[FINT]
+  VALUE, BX57265A[FINT]
+  VALUE, BX57275A[FINT]
+
+! laser heater undulator K-value and period
+
+  UM10466_K := K_und ; UM10466_L := lam ; VALUE, UM10466_K,UM10466_L
+
+! ------------------------------------------------------------------------------
+
+  RETURN

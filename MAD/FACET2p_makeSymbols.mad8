@@ -1,0 +1,32 @@
+
+! *** OPTICS=FACET2-16FEB24 ***
+
+! generate output files for RDB generation
+
+! ------------------------------------------------------------------------------
+! SURVEY tape files (linac coordinates)
+! ------------------------------------------------------------------------------
+
+  ASSIGN, PRINT="FACET2p.print"
+  BEAM, ENERGY=E11
+  USE, F2_POSI
+  PRINT, FULL
+  SURVEY, TAPE="FACET2p_survey.tape", &
+    X0=Xi, Y0=Yi, Z0=Zi, THETA0=THETAi, PHI0=PHIi, PSI0=PSIi
+
+! ------------------------------------------------------------------------------
+! output values that aren't included in tape-files
+! ------------------------------------------------------------------------------
+
+  ASSIGN, ECHO="FACET2p_value.echo"
+
+! SBEN FINT value
+
+  VALUE, BCX141720A[FINT]
+  VALUE, BCX141796A[FINT]
+  VALUE, BCX141808A[FINT]
+  VALUE, BCX141883A[FINT]
+
+! ------------------------------------------------------------------------------
+
+  RETURN
