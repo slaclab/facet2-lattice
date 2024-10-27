@@ -1,6 +1,6 @@
-  TITLE, "FACET2 (February 16, 2024)"
+  TITLE, "FACET2"
 
-! *** OPTICS=FACET2-16FEB24 ***
+! *** OPTICS=FACET2-preRelease ***
 
   OPTION, -ECHO, INFO, WARN, VERIFY
   ASSIGN, ECHO="test.echo"
