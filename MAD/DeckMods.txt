@@ -1,5 +1,5 @@
 
-! *** OPTICS=FACET2-17JAN24 ***
+! *** OPTICS=FACET2-preRelease ***
 
 ================================================================================
 MAD deck changes
@@ -39,7 +39,6 @@ L2.xsif
 BC14.xsif
 
 L3.xsif
-* restore 19-8a 10' structure (unpowered), along with XC19802 and YC19803
 
 LI20.xsif
 
