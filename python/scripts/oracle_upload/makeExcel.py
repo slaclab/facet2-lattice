@@ -101,8 +101,8 @@ idf, ids, idd = [], [], []  # idf: which MAD output file an element came from
 nf = 0
 
 for n in range(len(seq)):
-		if n in seqexcl:
-			continue
+    if n in seqexcl:
+      continue
     if seq[n]['froot'] != nf:
         nf = seq[n]['froot']
         fname = '{}_survey.tape'.format(froot[nf-1])
@@ -172,94 +172,8 @@ for a in area:
     else:
         a['parent']=a['name']
 
-FOO MPE HERE
-# special handling for rolled dump lines and A-line
-
-def fix_dump_coords(N, P, coor):
-    # Implementation of FixDumpCoords function
-
-    # set roll angle for SXR dump line components
-    id1=N.index('RODMP1S')
-    id2=N.index('RODMP2S')-1
-    ARODMP1S=P[id1][4]
-    for i in range(id1,id2+1):
-      coor[i][5]=ARODMP1S
-
-    id1=id2+1
-    id2=N.index('ENDDMPS_2')
-    for i in range(id1,id2+1):
-      coor[i][5]=0
-
-    # set roll angle for HXR dump line components
-    id1=N.index('RODMP1H')
-    id2=N.index('RODMP2H')-1
-    ARODMP1H=P[id1][4];
-    for i in range(id1,id2+1):
-      coor[i][5]=ARODMP1H
-
-    id1=id2+1;
-    id2=N.index('ENDDMPH_2')
-    for i in range(id1,id2+1):
-      coor[i][5]=0
-
-    return coor
-
-def fix_aline_coords(N, P, coor):
-    # Implementation of FixAlineCoords function
-    # set roll angle for A-line components
-    id1 = N.index('ROLL2')
-    id2 = N.index('ENDBSYA_2')
-    AROLL2 = P[id1][4]
-    for i in range(id1,id2+1):
-      coor[i][5] = AROLL2
-
-    # The following block is commented out in the original code
-    '''
-    id1 = N.index('BEGBSYA_1')
-    id2 = N.index('ROLL2') - 1
-    id_slice = slice(id1, id2 + 1)
-    coor[id_slice, 5] = 0  # remove residual "creeping" roll
-    '''
-    return coor
-
-def fix_sxtes_coords(N, coor):
-    # Implementation of FixSXTESCoords function
-    # fix BSY coordinates for selected SXTES system devices per P. Stephens
-    name = [
-        'MR1K3_VGC_1', 'ND1S', 'SP1K1_MONO_VGC_1',  # 2.2 line
-        'IM1K3_PPM', 'BT1K3_AIR',  # TXI line
-        'BT2K0_PLEG_TMO', 'LUSI'  # TMO line
-    ]
-    coor_id = [
-        1, 1, 1,
-        0, 0,
-        -1, 0
-    ]
-    coor_val = [
-        -0.8826040, -2.0921000, -0.7249275,
-        1.0694435, 1.0480923,
-        1.2500000, -1.2194000
-    ]
-
-    for n in range(len(name)):
-        if coor_id[n] == -1:
-            continue
-        id_matches = N.index(name[n])
-        coor[id_matches][coor_id[n]] = coor_val[n]
-    return coor
-
-coor = fix_dump_coords(N, P, coor)
-coor = fix_aline_coords(N, P, coor)
-
-# kicker/septum groups
-
-KSname = [
-    'BKRDG0', 'BLRDG0',
-    'BKYSP0H', 'BKYSP1H', 'BKYSP2H', 'BKYSP3H', 'BKYSP4H', 'BKYSP5H', 'BLXSPH',
-    'BKYSP0S', 'BKYSP1S', 'BKYSP2S', 'BKYSP3S', 'BKYSP4S', 'BKYSP5S', 'BLXSPS',
-    'BKRDAS1', 'BKRDAS2', 'BKRDAS3', 'BKRDAS4', 'BKRDAS5', 'BKRDAS6', 'BLRDAS',
-    'BKRCUS', 'BLRCUS'
-]
+# kicker/septum group
+KSname= ['BKY170']
 
 # read FINT values for SBENs and undulator parameters from a special echo-file
 # generated via MAD VALUE commands
@@ -279,16 +193,15 @@ for m in range(0, len(idb), 2):
     name = N[na].strip()
     name = name.split('.')[0]  # remove decoration, if any
     id_ = strmatch(name,C)[0]
-    #id_ = [i for i, x in enumerate(C) if name in x][0]
-    #if not id_:
-    #    raise ValueError(f'No FINT for {name}')
-    #elif len(id_) > 1:
-    #    print('oops')
+    if not id_:
+        raise ValueError(f'No FINT for {name}')
+    elif len(id_) > 1:
+        print('oops')
     fint = float(C[id_+6])
     P2[na][0] = fint
     P2[nb][0] = fint
 
-idm = [i for i,x in enumerate(K) if x == 'MATR']
+idm = strmatch('MATR',K)
 for m in range(0, len(idm), 2):
     n1 = idm[m]
     n2 = idm[m+1]
@@ -302,108 +215,125 @@ for m in range(0, len(idm), 2):
     P2[n1, :] = [undl, undk]
     P2[n2, :] = [undl, undk]
 
-# make unique names
+# devices between kicker(s) and septum ... shared
+anames= ['SCAV'    ,'SCAV'    ,'SCAV'    ]
+names = ['BPM19501','BPM19601','BPM19701']
+for aname,name in zip(anames,names):
+  for jd in strmatch(name,N,True)
+    if aname == area(ida(jd)).name:
+      N(jd)=name+'?'
 
-nfix = [['', 'MUQS', 'MPHS'],
-        ['', 'MUQH', 'MPHH'],
-        ['HOMCM', '', '']]
-ioff = [[-3, -1, -1], [-2, -1, -1], [-3, -1, -1]]
-
-for nr in range(len(nfix)):
-    for nc in range(len(nfix[0])):
-        if not nfix[nr][nc]:
-            continue
-        id = strmatch(nfix[nr][nc], N)
-        if len(id) == 0:
-            continue
-        if nr < 2 and nc == 0:
-            id = id[::2]
-        lc = len(nfix[nr][nc])
-        for m in range(len(id)):
-            if nr < 2:
-                cname = N[id[m] + ioff[nr][nc]].strip()
-                N[id[m]] = N[id[m]][:lc] + '.' + cname[-2:]
-            else:
-                N[id[m]] = N[id[m]][:lc] + '.' + N[id[m]-2][2:4]
-
-# Find indices of 'WOODDOOR' in N
-jd = [i for i,x in enumerate(N) if x == 'WOODDOOR']
-for j in jd:
-    cname = 'WOODDOOR.{}'.format(area[ida[j]]['name'])
-    N[j] = cname
-
-# Shared devices (devices which see both kicked and unkicked beams)
-aname_all = ['DIAG0', 'SPH', 'SPS', 'DASEL', 'CLTS']
-name_all = ['BPMDG000', 'BPMSPH', 'BPMSPS', 'BPMDAS', 'BPMCUS']
-
-for name, aname in zip(name_all,aname_all):
-    jd = strmatch(name,N,True)
-    for m in range(len(jd)):
-        if aname == area[ida[jd[m]]]['name']:
-            N[jd[m]] = name + '?'
-
-# Change keyword for XTES mirrors from MULT to INST
-name = ['MR1K1_BEND', 'SP1K1_MONO', 'MR3K1_GRATING',
-        'MR1K3_TXI', 'MR2K3_TXI', 'MR1K4_SOMS',
-        'MR1L0_HOMS_XTES', 'MR2L0_HOMS', 'MR1L0_HOMS_TXI', 'MR1L1_TXI']
-
-for n in name:
-    id_ = strmatch(n,N,True)
-    for i in id_:
-        K[i] = 'INST'
-
-# Change keyword for GUN/GUNB solenoid correction quads from MULT to QUAD;
+# change keyword for gun solenoid correction quads from MULT to QUAD;
 # copy T1 into TILT slot
-name = ['CQ01', 'SQ01', 'CQ01B', 'SQ01B', 'SQ02B']
+names= ['CQ10121', 'SQ10122']
+for name in names:
+  id_=strmatch(name, N, True)
+  K(id_)='QUAD'
+  P(id_,4)=P(id_,6) # T1 -> TILT
 
-for n in name:
-    id_ = strmatch(n,N,True)
-    for i in id_:
-        K[i] = 'QUAD'
-        P[i][3] = P[i][5]  # T1 -> TILT
-
-def assign_ucell(N, FDN, coor, idf):
-    # NOTE: coordinates are assumed to be in MAD (not SYMBOLS) order
-
-    debug = False
-    filename = f'{script_dir}/sectors.xlsx'
-
-    wb= pyxl.load_workbook(filename,data_only=True)
-
-    # Read SXR sheet
-    sxr_sht = wb.worksheets[2]
-    sxr_data = sxr_sht['A2':'E36']
-    ncell = len(sxr_data)
-    ucell = []
-    for row in sxr_data:
-        ucell.append({'name':row[0].value,'froot':row[1].value,'Zbeg':row[3].value,'Zend':row[4].value})
-
-    # Read HXR sheet
-    hxr_sht = wb.worksheets[3]
-    hxr_data = hxr_sht['A2':'E39']
-    ncell = len(hxr_data)
-    for row in hxr_data:
-        ucell.append({'name':row[0].value,'froot':row[1].value,'Zbeg':row[3].value,'Zend':row[4].value})
-    
-    wb.close()
-    # Combine data from both sheets
-    
-    coor3 = [c[2] for c in coor]
-    for cell in ucell:
-        id1 = [i for i,x in enumerate(idf) if x==cell['froot']]
-
-        id2 = [i for i,x in enumerate(coor3) if x > cell['Zbeg']]
-        inter1 = intersection(id1,id2)[0]
-
-        id2 = [i for i,x in enumerate(coor3) if x < cell['Zend']]
-        inter2 = [v for v in id1 if v in id2][-1]
-        for jd in range(inter1,inter2+1):
-            if not FDN[jd]:
-                FDN[jd] = cell['name']
-
-    return FDN
 
 # Assign sector names (use empty FDN and FDN1 arrays)
+
+def notnone(val):
+  if val is None:
+    return ''
+  else:
+    return val
+
+def read_sector():
+  filename = f'{script_dir}/sectors.xlsx'
+  wb= pyxl.load_workbook(filename,data_only=True)
+
+  # read worksheet 1 (scS)
+  sheet = wb.worksheets[0]
+  data = sheet['A4':'J15']
+  sect_F2 = []
+  for row in data:
+    sect_sc.append({
+      'name': row[0].value,
+      'froot': [row[1].value],
+      'BSY': row[2].value,
+      'Zbeg': row[4].value,
+      'Zend': row[5].value,
+      'Nbeg': notnone(row[8].value),
+      'Nend': notnone(row[9].value)
+    })
+
+	# nf= 1: FACET2e
+	# nf= 2: FACET2s
+	# nf= 3: FACET2p
+
+	# assign multiple lines to some sectors
+	sect_F2[4]['froot'].extend([3])  # S14
+
+  return sect_F2
+
+def set_sector(N, FDN, coor, idf, nf, sector):
+  if nf not in sector['froot']:
+    return FDN
+  Z = [x[2] for x in coor]
+
+  id_ = [i for i,x in enumerate(idf) if x == nf]
+
+  if sector['Nbeg'] == '':
+    jd2 = [i for i,x in enumerate(Z) if x > sector['Zbeg']]
+    inter1 = intersection(id_,jd2)
+    if inter1 == []:
+      return FDN
+    else:
+      inter1 = inter1[0]
+  else:
+    jd2 = strmatch(sector['Nbeg'],N,True)
+    inter1 = intersection(id_,jd2)
+    if inter1 != []:
+      inter1 = inter1[0]
+
+  if sector['Nend'] == '':
+    jd2 = [i for i,x in enumerate(Z) if x < sector['Zend']]
+    inter2 = intersection(id_,jd2)
+    if inter2 == []:
+      return FDN
+    else:
+      inter2 = inter2[-1]
+  else:
+    jd2 = strmatch(sector['Nend'],N,True)
+    inter2 = intersection(id_,jd2)
+    if inter2 != []:
+      inter2 = inter2[0]
+
+  if inter1 != [] and inter2 != []:
+    for n in range(inter1, inter2 + 1):
+      if FDN[n].strip() == '':
+        FDN[n] = sector['name']
+
+  return FDN
+
+def assign_sector(N, FDN, coor, idf):
+  # NOTE: coordinates are assumed to be in MAD (not SYMBOLS) order
+
+  sect_F2=read_sector()
+
+  # nf= 1: FACET2e
+  # nf= 2: FACET2s
+  # nf= 3: FACET2p
+
+  # FACET2 LINEs
+  for nf in range(1, 4):  # idf values
+    for ns, sector in enumerate(sect_F2, 1):
+      if nf==3 and ns==5:
+        sector['Nbeg'] = 'BEGBC14P'
+        sector['Nend'] = 'ENDBC14P'
+
+  FDN=set_sector(N,FDN,coor,idf,nf,sector);
+
+# assign sector names (use empty FDN array)
+FDN = assign_sector(N, FDN, coor, idf)
+
+names = ['YC57145','YC57146','BPM19501?','BPM19601?','BPM19701?']
+snames = ['EP01','EP01','S19', 'S19', 'S19']
+for name, sname in zip(names,snames):
+  id_ = strmatch(name, N, True)
+  FDN[id_]=sname
 
 # MAD SURVEY coordinates  [x,y,z,theta,phi   ,psi]
 # correspond to SolidEdge [z,x,y,roll ,-pitch,yaw]
@@ -432,6 +362,7 @@ XALK = [
     'XCOR', 'YCOR', 'BPM ', 'WIRE', 'PROF', 'TORO', 'BLMO', 'INST',
     'MARK'
 ]
+
 idmisc = list(range(9, 16))  # non-magnet elements that might have nonzero lengths
 keyw = []
 keyo = []
@@ -530,6 +461,7 @@ nWIRE = 0
 nPROF = 0
 nIMON = 0
 nBLMO = 0
+nINST = 0
 
 def slicer(N,ix):
     return [N[i] for i in ix]
@@ -543,47 +475,56 @@ P2 = np.array(P2)
 E = np.array(E)
 seq = np.array(seq)
 A = np.array(A)
+
 for kwn,kxn,kon in zip(keyw,keyx,keyo):
-    id = strmatch(kwn,K)
+    id_ = strmatch(kwn,K)
     if kwn == 'LCAV':
         # create list of unique names that will allow unsplitting
-        name = slicer(N,id)
-        for i in range(len(name)):
-            if name[i][0:4] in ['CAVL', 'CAVC']:  # unique in 7 characters
-                name[i] = name[i][0:7]
-            else:  # unique in 6 characters
-                name[i] = name[i][0:6]
-        name = list(dict.fromkeys(name))
+        name = slicer(N,id_)
+        name = list(dict.fromkeys(name))  # unique stable
         LCAV = []
         nLCAV = 0
 
         for mname in name:
-            if mname.startswith('TCX'):
-                id = strmatch(mname,N,True)
+            if mname == 'K19_5X' or mname == 'K19_6X':
+              continue
             else:
-                id = strmatch(mname,N)
-            id1 = id[0]  # first segment
-            ide = [id1-1, id[-1]]  # [entrance, exit]
+              nLCAV += 1
+
+            id_ = strmatch(mname,N)
+            id1 = id_[0]  # first segment
+            ide = [id1-1, id_[-1]]  # [entrance, exit]
             sdsp = np.mean(Sd[ide])  # m (beam center)
             suml = np.mean(S[ide])  # m (beam center)
             dist = suml - seq[ids[id1]]['suml']  # m (sequence start to beam center)
             energy = np.mean(E[ide])  # GeV (beam center)
-            leng = np.sum(L[id])  # m
+            leng = np.sum(L[id_])  # m
             freq = P[id1, 4]  # MHz
-            ampl = np.sum(P[id, 5])  # MeV
+            ampl = np.sum(P[id_, 5])  # MeV
             phase = P[id1, 6]  # rad/2pi
             grad = ampl / leng  # MeV/m
+
             if re.match(r'K\d\d_\d[ABCD]', mname[0:6]):  # i.e. K27_3D
-                id = strmatch(mname[0:5],N)
-                grad0 = np.min(P[id, 5] / L[id])
+                id_ = strmatch(mname[0:5],N)
+                grad0 = np.min(P[id_, 5] / L[id_])
                 if grad0 == 0:
-                    power = float("NaN")
+                    power = 0.25 # KLYS power fraction (1)
                 else:
                     power = 0.25 * round((grad / grad0) ** 2)  # KLYS power fraction (1)
             else:
                 power = 1
+
+						eloss = P[id1,8]  # V/C
             coorc = np.mean(coor[ide, :], axis=0)  # m,rad (beam center)
             nLCAV += 1
+
+						if mname[4:6] == '__':
+							mname_ = mname[0:4]
+						elif mname[0:2] == 'TC':
+							mname_ = N[id1].rstrip()
+						else:
+							mname_ = mname;
+
             LCAV.append({
                 'idf': idf[id1],
                 'id': idd[id1],
@@ -591,10 +532,9 @@ for kwn,kxn,kon in zip(keyw,keyx,keyo):
                 'area': area[ida[id1]]['name'],
                 'parent': area[ida[id1]]['parent'],
                 'sector': FDN[id1].strip(),
-                'ucell': [],
                 'xkey': kxn,
                 'prim': kon,
-                'name': mname,
+                'name': mname_,
                 'type': T[id1].strip(),
                 'dist': dist,
                 'energy': energy,
@@ -608,38 +548,32 @@ for kwn,kxn,kon in zip(keyw,keyx,keyo):
                 'suml': suml,
                 **{f'c{k+1}': coorc[k] for k in range(6)}
             })
-
-            # BSY coordinates
-
-            LCAV[-1]['suml1'] = []
-            for k in range(6):
-                LCAV[-1][f'c1{k+1}'] = []
-            # UND coordinates
-
-            LCAV[-1]['suml2'] = []
-            for k in range(6):
-                LCAV[-1][f'c2{k+1}'] = []
     elif kwn == 'SBEN':
-        name = [N[i] for i in id]
+        name = [N[i] for i in id_]
         SBEN = []
-        Nelm = len(id) // 2
+        Nelm = len(id_) // 2
         for m in range(Nelm):
             mname1 = name[2 * m].strip()
             mname2 = name[2 * m + 1].strip()
             mname = mname1[:-1]  # remove last character from name
-            id = [strmatch(mname1,N,True),strmatch(mname2,N,True)]
-            id1 = id[0][0]  # first piece (beam center)
+						if mname in ['Q19501' ,'Q19601' ,'Q19701' ,'BCX141720' ,'BCX141883']:
+							continue
+						else:
+							nSBEN=nSBEN+1
+
+            id_ = [strmatch(mname1,N,True),strmatch(mname2,N,True)]
+            id1 = id_[0][0]  # first piece (beam center)
             idi = id1 - 1  # beam in
-            ido = id[1][-1]  # beam out
+            ido = id_[1][-1]  # beam out
             sdsp = Sd[id1]  # m
             suml = S[id1]  # m
             dist = suml - seq[ids[id1]]['suml']  # m
             energy = E[id1]  # GeV
-            leng = np.sum(L[id])  # m
+            leng = np.sum(L[id_])  # m
             gap = 2 * A[id1]  # m
             fint = P2[id1, 0]  # m
             tilt = P[id1, 3]  # rad
-            ang = np.sum(P[id, 0])  # rad
+            ang = np.sum(P[id_, 0])  # rad
             if abs(ang) < amin:
                 ang = 0
                 e1 = 0
@@ -688,13 +622,6 @@ for kwn,kxn,kon in zip(keyw,keyx,keyo):
                     zleng = leng * np.sinc(ang / 2 / np.pi)  # m
                     coorm[:3] = (coori[:3] + cooro[:3] + 2 * coorc[:3]) / 4
                     coorm[3:6] = np.copy(coorc[3:6])
-            pname = area[ida[id1]]['parent']
-            if pname in ['DMPS', 'DMPH']:
-                coorm[3] = coorc[3]  # dump line magnet coords set in FixDumpCoords
-            elif pname == 'BSYA_2':
-                coorm[3] = coorc[3]  # dump line magnet coords set in FixAlineCoords
-            else:
-                coorm[3] = tilt  # remove "creeping" rolls from non-rolled SBENs
             SBEN.append({
                 'idf': idf[id1],
                 'id': idd[id1],
@@ -704,7 +631,7 @@ for kwn,kxn,kon in zip(keyw,keyx,keyo):
                 'sector': FDN[id1].strip(),
                 'ucell': [],
                 'xkey': f'X{kxn}' if tilt == 0 else f'Y{kxn}' if abs(np.cos(tilt)) < 1e-9 else f'R{kxn}',
-                'prim': 'KICK' if mname.startswith('BK') or 'KIK' in mname else 'SEPT' if mname.startswith('BL') else kon,
+                'prim': kon,
                 'name': mname,
                 'type': T[id1].strip(),
                 'dist': dist,
@@ -730,31 +657,17 @@ for kwn,kxn,kon in zip(keyw,keyx,keyo):
                 **{f'c{k+1}': coorc[k] for k in range(6)},
                 **{f'm{k+1}': coorm[k] for k in range(6)}
             })
-            # BSY coordinates
-
-            SBEN[-1]['suml1'] = []
-            for k in range(6):
-                SBEN[-1][f'c1{k+1}'] = []
-                SBEN[-1][f'm1{k+1}'] = []
-
-            # UND coordinates
-
-            SBEN[-1]['suml2'] = []
-            for k in range(6):
-                SBEN[-1][f'c2{k+1}'] = []
-                SBEN[-1][f'm2{k+1}'] = []
-
     elif kwn == 'QUAD':
-        name = list(dict.fromkeys([N[i] for i in id]))
+        name = list(dict.fromkeys([N[i] for i in id_]))
         QUAD = []
         for mname in name:
-            id = strmatch(mname,N,True)
-            id1 = id[0]  # first segment (beam center)
+            id_ = strmatch(mname,N,True)
+            id1 = id_[0]  # first segment (beam center)
             sdsp = Sd[id1]  # m
             suml = S[id1]  # m
             dist = suml - seq[ids[id1]]['suml']  # m
             energy = E[id1]  # GeV
-            leng = np.sum(L[id])  # m
+            leng = np.sum(L[id_])  # m
             bore = 2 * A[id1]  # m
             tilt = P[id1, 3]  # rad
             k1 = P[id1, 1]  # 1/m^2
@@ -762,14 +675,12 @@ for kwn,kxn,kon in zip(keyw,keyx,keyo):
                 k1 = 0
             EeV = 1e9 * energy  # eV
             brho = np.sqrt(EeV ** 2 - Er ** 2) / clight  # T-m
+            G = brho * k1  # T/m
+            GL = G * leng  # T
             if leng == 0:
-                G = 0  # T/m
-                GL = brho * k1  # T
                 sname = 'kG2T'
                 sval = 1 / T2kG
             else:
-                G = brho * k1  # T/m
-                GL = G * leng  # T
                 sname = 'kG2T_Gdl2G'
                 sval = 1 / (leng * T2kG)
             polarity = -np.sign(k1 + np.finfo(float).eps)  # add eps so that sign=1 when k1=0
@@ -781,7 +692,6 @@ for kwn,kxn,kon in zip(keyw,keyx,keyo):
                 'area': area[ida[id1]]['name'],
                 'parent': area[ida[id1]]['parent'],
                 'sector': FDN[id1].strip(),
-                'ucell': [],
                 'xkey': kxn,
                 'prim': kon,
                 'name': mname,
@@ -802,30 +712,18 @@ for kwn,kxn,kon in zip(keyw,keyx,keyo):
                 **{f'c{k+1}': coorc[k] for k in range(6)},
                 **{f'm{k+1}': [] for k in range(6)}
             })
-
-            # BSY coordinates
-
-            QUAD[-1]['suml1'] = []
-            for k in range(6):
-                QUAD[-1][f'c1{k+1}'] = []
-
-            # UND coordinates
-
-            QUAD[-1]['suml2'] = []
-            for k in range(6):
-                QUAD[-1][f'c2{k+1}'] = []
-
     elif kwn == 'SEXT':
-        name = list(dict.fromkeys([N[i] for i in id]))
+				id_ = id_[::2]
+        name = [N[i] for i in id_]
         SEXT = []
         for mname in name:
-            id = strmatch(mname,N,True)
-            id1 = id[0]  # first half (beam center)
+            id_ = strmatch(mname,N,True)
+            id1 = id_[0]  # first half (beam center)
             sdsp = Sd[id1]  # m
             suml = S[id1]  # m
             dist = suml - seq[ids[id1]]['suml']  # m
             energy = E[id1]  # GeV
-            leng = np.sum(L[id])  # m
+            leng = np.sum(L[id_])  # m
             bore = 2 * A[id1]  # m
             tilt = P[id1, 3]  # rad
             k2 = P[id1, 2]  # 1/m^3
@@ -850,7 +748,6 @@ for kwn,kxn,kon in zip(keyw,keyx,keyo):
                 'area': area[ida[id1]]['name'],
                 'parent': area[ida[id1]]['parent'],
                 'sector': FDN[id1].strip(),
-                'ucell': [],
                 'xkey': kxn,
                 'prim': kon,
                 'name': mname,
@@ -870,30 +767,18 @@ for kwn,kxn,kon in zip(keyw,keyx,keyo):
                 'suml': suml,
                 **{f'c{k+1}': coorc[k] for k in range(6)}
             })
-
-            # BSY coordinates
-
-            SEXT[-1]['suml1'] = []
-            for k in range(6):
-                SEXT[-1][f'c1{k+1}'] = []
-
-            # UND coordinates
-
-            SEXT[-1]['suml2'] = []
-            for k in range(6):
-                SEXT[-1][f'c2{k+1}'] = []
     elif kwn == 'SOLE':
-        name = list(dict.fromkeys([N[i] for i in id]))
+        name = list(dict.fromkeys([N[i] for i in id_]))
         SOLE = []
         for mname in name:
-            id = strmatch(mname,N,True)
-            id1 = id[0]
-            ide = [id1 - 1, id[-1]]  # [entrance, exit]
+            id_ = strmatch(mname,N,True)
+            id1 = id_[0]
+            ide = [id1 - 1, id_[-1]]  # [entrance, exit]
             sdsp = np.mean(Sd[ide])  # m
             suml = np.mean(S[ide])  # m
             dist = suml - seq[ids[id1]]['suml']  # m
             energy = np.mean(E[ide])  # GeV
-            leng = np.sum(L[id])  # m
+            leng = np.sum(L[id_])  # m
             bore = 2 * A[id1]  # m
             ks = P[id1, 4]  # 1/m
             if abs(ks) < kmin:
@@ -917,7 +802,6 @@ for kwn,kxn,kon in zip(keyw,keyx,keyo):
                 'area': area[ida[id1]]['name'],
                 'parent': area[ida[id1]]['parent'],
                 'sector': FDN[id1].strip(),
-                'ucell': [],
                 'xkey': kxn,
                 'prim': kon,
                 'name': mname,
@@ -936,30 +820,18 @@ for kwn,kxn,kon in zip(keyw,keyx,keyo):
                 'suml': suml,
                 **{f'c{k+1}': coorc[k] for k in range(6)}
             })
-
-            # BSY coordinates
-
-            SOLE[-1]['suml1'] = []
-            for k in range(6):
-                SOLE[-1][f'c1{k+1}'] = []
-
-            # UND coordinates
-
-            SOLE[-1]['suml2'] = []
-            for k in range(6):
-                SOLE[-1][f'c2{k+1}'] = []
-
     elif kwn == 'MATR':
-        name = list(dict.fromkeys([N[i] for i in id]))
+				id_ = id_[::2]
+        name = [N[i] for i in id_]
         MATR = []
         for mname in name:
-            id = strmatch(mname,N,True)
-            id1 = id[0]  # first half (beam center)
+            id_ = strmatch(mname,N,True)
+            id1 = id_[0]  # first half (beam center)
             sdsp = Sd[id1]  # m
             suml = S[id1]  # m
             dist = suml - seq[ids[id1]]['suml']  # m
             energy = E[id1]  # GeV
-            leng = np.sum(L[id])  # m
+            leng = np.sum(L[id_])  # m
             undl = P2[id1, 0]  # m
             undk = P2[id1, 1]  # 1
             coorc = np.copy(coor[id1])  # m, rad
@@ -970,7 +842,6 @@ for kwn,kxn,kon in zip(keyw,keyx,keyo):
                 'area': area[ida[id1]]['name'],
                 'parent': area[ida[id1]]['parent'],
                 'sector': FDN[id1].strip(),
-                'ucell': [],
                 'xkey': kxn,
                 'prim': kon,
                 'name': mname,
@@ -984,43 +855,31 @@ for kwn,kxn,kon in zip(keyw,keyx,keyo):
                 'suml': suml,
                 **{f'c{k+1}': coorc[k] for k in range(6)}
             })
-
-            # BSY coordinates
-
-            MATR[-1]['suml1'] = []
-            for k in range(6):
-                MATR[-1][f'c1{k+1}'] = []
-            # UND coordinates
-
-            MATR[-1]['suml2'] = []
-            for k in range(6):
-                MATR[-1][f'c2{k+1}'] = []
     elif kwn == 'RCOL':
-        name = [N[i] for i in id] # RCOLs are not split
+        name = [N[i] for i in id_] # RCOLs are not split
         RCOL = []
         for mname in name:
-            id = strmatch(mname,N,True)[0]
-            ide = [id - 1, id]  # [entrance, exit]
+            id_ = strmatch(mname,N,True)[0]
+            ide = [id_ - 1, id_]  # [entrance, exit]
             sdsp = np.mean(Sd[ide])  # m (beam center)
             suml = np.mean(S[ide])  # m (beam center)
-            dist = suml - seq[ids[id]]['suml']  # m (sequence start to beam center)
-            energy = E[id]  # GeV
-            leng = L[id]  # m
-            xgap = 2 * P[id, 3]  # m
-            ygap = 2 * P[id, 4]  # m
+            dist = suml - seq[ids[id_]]['suml']  # m (sequence start to beam center)
+            energy = E[id_]  # GeV
+            leng = L[id_]  # m
+            xgap = 2 * P[id_, 3]  # m
+            ygap = 2 * P[id_, 4]  # m
             coorc = np.mean(coor[ide], axis=0)  # m, rad (beam center)
             RCOL.append({
-                'idf': idf[id],
-                'id': idd[id],
-                'seq': seq[ids[id]]['name'],
-                'area': area[ida[id]]['name'],
-                'parent': area[ida[id]]['parent'],
-                'sector': FDN[id].strip(),
-                'ucell': [],
+                'idf': idf[id_],
+                'id': idd[id_],
+                'seq': seq[ids[id_]]['name'],
+                'area': area[ida[id_]]['name'],
+                'parent': area[ida[id_]]['parent'],
+                'sector': FDN[id_].strip(),
                 'xkey': kxn,
                 'prim': kon,
                 'name': mname,
-                'type': T[id].strip(),
+                'type': T[id_].strip(),
                 'dist': dist,
                 'energy': energy,
                 'leng': leng,
@@ -1030,17 +889,7 @@ for kwn,kxn,kon in zip(keyw,keyx,keyo):
                 'suml': suml,
                 **{f'c{k+1}': coorc[k] for k in range(6)}
             })
-
-            # BSY coordinates
-
-            RCOL[-1]['suml1'] = []
-            for k in range(6):
-                RCOL[-1][f'c1{k+1}'] = []
-            # UND coordinates
-
-            RCOL[-1]['suml2'] = []
-            for k in range(6):
-                RCOL[-1][f'c2{k+1}'] = []
+MPE FOO HERE
     elif kwn == 'ECOL':
         name = [N[i] for i in id]  # ECOLs are not split
         ECOL = []
