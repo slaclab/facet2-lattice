@@ -66,7 +66,7 @@
   OPTION, ECHO
 
  !CALL, FILENAME="FACET2p_match.mad8"
- !CALL, FILENAME="RDB/FACET2p_makeSymbols.mad8"
+ CALL, FILENAME="FACET2p_makeSymbols.mad8"
 
  !STOP
 

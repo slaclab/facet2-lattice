@@ -62,7 +62,7 @@
   OPTION, ECHO
 
  !CALL, FILENAME="FACET2e_match.mad8"
- !CALL, FILENAME="RDB/FACET2e_makeSymbols.mad8"
+ CALL, FILENAME="FACET2e_makeSymbols.mad8"
  !CALL, FILENAME="elegant/FACET2e_makeElegant.mad8"
 
  !STOP

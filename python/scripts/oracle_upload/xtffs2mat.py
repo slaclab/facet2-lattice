@@ -97,12 +97,12 @@ def xtffs2mat(fname):
         raise IOError(f"Failed to open {fname}")
 
     # Convert lists to numpy arrays where appropriate
-    L = np.array(L)
-    P = np.array(P)
-    A = np.array(A)
-    E = np.array(E)
-    coor = np.array(coor)
-    S = np.array(S)
+    #L = np.array(L)
+    #P = np.array(P)
+    #A = np.array(A)
+    #E = np.array(E)
+    #coor = np.array(coor)
+    #S = np.array(S)
 
     return tt, K, N, L, P, A, T, E, FDN, coor, S
 

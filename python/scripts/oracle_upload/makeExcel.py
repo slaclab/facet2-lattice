@@ -99,22 +99,22 @@ idf, ids, idd = [], [], []  # idf: which MAD output file an element came from
                             # ids: which XAL sequence an element belongs to
                             # idd: ordinal position in MAD output file
 nf = 0
-
-for n in range(len(seq)):
+for n,seqn in enumerate(seq):
     if n in seqexcl:
       continue
-    if seq[n]['froot'] != nf:
-        nf = seq[n]['froot']
-        fname = '{}_survey.tape'.format(froot[nf-1])
-        print('Opening file {}'.format(fname))
-        titl, tK, tN, tL, tP, tA, tT, tE, tFDN, tcoor, tS = xtffs2mat(fname)
 
-    id1 = tN.index(seq[n]['beg']) + seq[n]['offset'][0]
-    id2 = tN.index(seq[n]['end']) + seq[n]['offset'][1]
+    if seqn['froot'] != nf:
+      nf = seqn['froot']
+      fname = '{}_survey.tape'.format(froot[nf-1])
+      print('Opening file {}'.format(fname))
+      titl, tK, tN, tL, tP, tA, tT, tE, tFDN, tcoor, tS = xtffs2mat(fname)
+
+    id1 = tN.index(seqn['beg']) + seqn['offset'][0]
+    id2 = tN.index(seqn['end']) + seqn['offset'][1]
     id_range = slice(id1, id2 + 1)
+    len_id = id2-id1+1
     
     K.extend(tK[id_range])
-    len_id = len(tK[id_range])
     N.extend(tN[id_range])
     L.extend(tL[id_range])
     P.extend(tP[id_range])
@@ -124,14 +124,11 @@ for n in range(len(seq)):
     FDN.extend(tFDN[id_range])
     coor.extend(tcoor[id_range])
     S.extend(tS[id_range])
-    idf.extend([nf] * len_id)
-    ids.extend([n] * len_id)
-    idd.extend(list(range(id1,id2+1)))
+    idf.extend([nf] * len_id)  # file roots
+    ids.extend([n] * len_id)  # sequence numbers
+    idd.extend(list(range(id1,id2+1)))  # entry numbers in survey files
 
 Nelem, Nc = len(N), len(N[0])
-
-# set "display S" to linac Z-coordinate
-Sd = [x[2] for x in coor]
 
 def intersection(x,y):
     return [v for v in x if v in y]
@@ -142,6 +139,77 @@ def strmatch(n_str,N_lst,exact=False):
     else:
         return [ix for ix,n_ in enumerate(N_lst) if n_.startswith(n_str)]
 
+def Sdisplay(N,S,L,coor,idf):
+  #
+  # Construct FACET2 "display S" from MAD SURVEY data
+  # per Paul Emma's LCLS PRD 1.1-103
+  
+  # process by beamline
+  # idf: 1=e-, 2=scav, 3=e+ (from BC11 exit)
+  
+  outSd = [-1 for x in S]
+  
+  # ------------------------------------------------------------------------------
+  
+  # FACET2e beamline
+  
+  idl = [i for i,v in enumerate(idf) if v==1]
+  N1 = [N[x] for x in idl]
+  S1 = [S[x] for x in idl]
+  coor1 = [coor[x] for x in idl]
+  
+  # injector
+  id0=strmatch('BX0FEND',N1,True)[0]
+  Sd=S1[:id0+1];
+  
+  # offset to map onto linac Z
+  z0=coor1[id0][2]
+  s0=Sd[id0]
+  Sd=[x+z0-s0 for x in Sd]
+  
+  # linac
+  id1=id0+1
+  id2=strmatch('ENDL3F_2',N1,True)[0]
+  id_range = range(id1,id2+1)
+  extracted = [coor1[i][2] for i in id_range]
+  Sd.extend(extracted)
+  S0=Sd[-1];
+  
+  # LI20 to dump
+  if id2 < len(S1)-1:
+    s0 = S1[id2]
+    id1 = id2+1
+    id2 = len(S1)-1
+    id_ = range(id1,id2+1)
+    Sd.extend([S1[x]+S0-s0 for x in id_])
+  
+  for i1,i2 in enumerate(idl):
+    outSd[i2]=Sd[i1]
+  
+  # ------------------------------------------------------------------------------
+  # FACET2s
+  id0 = strmatch('MSCAVEXT',N1,True)[0]
+  Sx = outSd[id0]
+  idl = [i for i,v in enumerate(idf) if v==2]
+  Soff = S[idl[0]];
+  for i2 in idl:
+    outSd[i2]=S[i2]+Sx-Soff
+  
+  # ------------------------------------------------------------------------------
+  # FACET2p (BC14)
+  id0=strmatch('BEGBC11_2',N1,True)[0]
+  Soff=S[id0]
+  id1=strmatch('BEGBC14P',N,True)[0]
+  id2=strmatch('ENDBC14P',N,True)[0]
+  idl=range(id1,id2+1)
+  for i2 in idl:
+    outSd[i2]=S[i2]+Soff
+  
+  # ------------------------------------------------------------------------------
+  return outSd
+
+# set "display S" to linac Z-coordinate
+Sd = Sdisplay(N,S,L,coor,idf)
 P2 = []
 
 # initialize some sequence data
@@ -154,11 +222,11 @@ for s in seq:
 
 # assign machine areas
 
-ida=[]
+ida=np.zeros_like(ids)
 for ix,a in enumerate(area):
     id1 = N.index(a['beg']) + a['offset'][0]
     id2 = N.index(a['end']) + a['offset'][1]
-    ida.extend([ix]*(id2-id1+1))
+    ida[id1:id2+1] = [ix]*(id2-id1+1)
 
 # assign area "parent" names
 
@@ -186,19 +254,19 @@ for n in range(len(vfile)):
 
 P2 = np.zeros((Nelem, 2))
 
-idb = [i for i,x in enumerate(K) if x == 'SBEN']
+idb = strmatch('SBEN',K)
 for m in range(0, len(idb), 2):
     na = idb[m]
     nb = idb[m+1]
     name = N[na].strip()
     name = name.split('.')[0]  # remove decoration, if any
-    id_ = strmatch(name,C)
+    id_ = strmatch('"'+name,C)
     if not id_:
         raise ValueError(f'No FINT for {name}')
     elif len(id_) > 1:
         print('oops')
     id_ = id_[0]
-    fint = float(C[id_+6])
+    fint = float(C[id_+2])
     P2[na][0] = fint
     P2[nb][0] = fint
 
@@ -220,18 +288,17 @@ for m in range(0, len(idm), 2):
 anames= ['SCAV'    ,'SCAV'    ,'SCAV'    ]
 names = ['BPM19501','BPM19601','BPM19701']
 for aname,name in zip(anames,names):
-  for jd in strmatch(name,N,True):
-    if aname == area(ida(jd)).name:
-      N[jd]=name+'?'
+  for jdm in strmatch(name,N,True):
+    if aname == area[ida[jdm]]['name']:
+      N[jdm]=name+'?'
 
 # change keyword for gun solenoid correction quads from MULT to QUAD;
 # copy T1 into TILT slot
 names= ['CQ10121', 'SQ10122']
 for name in names:
-  id_=strmatch(name, N, True)
+  id_=strmatch(name, N, True)[0]
   K[id_]='QUAD'
-  P[id_,4]=P[id_,6] # T1 -> TILT
-
+  P[id_][3]=P[id_][5] # T1 -> TILT
 
 # Assign sector names (use empty FDN and FDN1 arrays)
 
@@ -250,7 +317,7 @@ def read_sector():
   data = sheet['A4':'J15']
   sect_F2 = []
   for row in data:
-    sect_sc.append({
+    sect_F2.append({
       'name': row[0].value,
       'froot': [row[1].value],
       'BSY': row[2].value,
@@ -327,6 +394,8 @@ def assign_sector(N, FDN, coor, idf):
 
   FDN=set_sector(N,FDN,coor,idf,nf,sector);
 
+  return FDN
+
 # assign sector names (use empty FDN array)
 FDN = assign_sector(N, FDN, coor, idf)
 
@@ -334,7 +403,7 @@ names = ['YC57145','YC57146','BPM19501?','BPM19601?','BPM19701?']
 snames = ['EP01','EP01','S19', 'S19', 'S19']
 for name, sname in zip(names,snames):
   id_ = strmatch(name, N, True)
-  FDN[id_]=sname
+  FDN[id_[0]]=sname
 
 # MAD SURVEY coordinates  [x,y,z,theta,phi   ,psi]
 # correspond to SolidEdge [z,x,y,roll ,-pitch,yaw]
@@ -364,7 +433,7 @@ XALK = [
     'MARK'
 ]
 
-idmisc = list(range(9, 16))  # non-magnet elements that might have nonzero lengths
+idmisc = list(range(9, 17))  # non-magnet elements that might have nonzero lengths
 keyw = []
 keyo = []
 keyx = []
@@ -482,15 +551,13 @@ for kwn,kxn,kon in zip(keyw,keyx,keyo):
     if kwn == 'LCAV':
         # create list of unique names that will allow unsplitting
         name = slicer(N,id_)
+        name = [x[:6] for x in name]
         name = list(dict.fromkeys(name))  # unique stable
         LCAV = []
-        nLCAV = 0
 
         for mname in name:
             if mname == 'K19_5X' or mname == 'K19_6X':
               continue
-            else:
-              nLCAV += 1
 
             id_ = strmatch(mname,N)
             id1 = id_[0]  # first segment
@@ -515,9 +582,8 @@ for kwn,kxn,kon in zip(keyw,keyx,keyo):
             else:
                 power = 1
 
-            eloss = P[id1,8]  # V/C
+            eloss = P[id1,7]  # V/C
             coorc = np.mean(coor[ide, :], axis=0)  # m,rad (beam center)
-            nLCAV += 1
 
             if mname[4:6] == '__':
               mname_ = mname[0:4]
@@ -559,8 +625,6 @@ for kwn,kxn,kon in zip(keyw,keyx,keyo):
             mname = mname1[:-1]  # remove last character from name
             if mname in ['Q19501' ,'Q19601' ,'Q19701' ,'BCX141720' ,'BCX141883']:
               continue
-            else:
-              nSBEN=nSBEN+1
 
             id_ = [strmatch(mname1,N,True),strmatch(mname2,N,True)]
             id1 = id_[0][0]  # first piece (beam center)
@@ -628,7 +692,7 @@ for kwn,kxn,kon in zip(keyw,keyx,keyo):
                 'id': idd[id1],
                 'seq': seq[ids[id1]]['name'],
                 'area': area[ida[id1]]['name'],
-                'parent': pname,
+                'parent': area[ida[id1]]['parent'],
                 'sector': FDN[id1].strip(),
                 'xkey': f'X{kxn}' if tilt == 0 else f'Y{kxn}' if abs(np.cos(tilt)) < 1e-9 else f'R{kxn}',
                 'prim': kon,
@@ -1071,14 +1135,14 @@ def fix_magnet_coords(SBEN, QUAD, INST, K, N, L, P, coor):
   # center BC14 bends 1 and 4 on linac axis
   names=['BCX14720','BCX14883']
   for name in names:
-    id_=strmatch(name,bname,True);
-    SBEN[id_].m2=0
+    id_=strmatch(name,bname,True)[0]
+    SBEN[id_]['m2'] = 0
   
   # center first and last BC20 bends on linac axis
   names=['B1LE','B1RE']
   for name in names:
-    id_=strmatch(name,bname,'exact')
-    SBEN[id_].m2=0
+    id_=strmatch(name,bname,'exact')[0]
+    SBEN[id_]['m2'] = 0
 
   return SBEN, QUAD
 
@@ -1110,7 +1174,9 @@ prec = 1e-6
 
 wb = pyxl.Workbook()
 for keywn in keyw:
-    thead2, tfoot2 = head2.copy(), foot2.copy()
+    thead2 = head2.copy()
+    tfoot2 = foot2.copy()
+    tunit2 = unit2.copy()
     
     if keywn == 'LCAV':
       khead = ['Length', 'Frequency', 'Amplitude', 'Phase', 'Gradient', 'Power', 'Eloss']
@@ -1164,8 +1230,8 @@ for keywn in keyw:
       khead = ['Length']
       kunit = ['m']
     elif keywn == 'MARK':
-      khead = ''
-      kunit = ''
+      khead = ['']
+      kunit = ['']
     
     kfoot = khead.copy()
     
@@ -1308,7 +1374,7 @@ foot = ('MAD #,AREA,KeyW,ELEMENT,Eng_Name,L_EFF,'
         'Section,Distance_From_Section_Start,XAL_Keyword,S_Display')
 
 unit = (',,,,,m,m,'
-        'm,deg,1/m^2,1/m^3,deg,deg,deg,1/m,1/m,GeV,'
+        'deg,1/m^2,1/m^3,deg,deg,deg,1/m,1/m,GeV,'
         'm,m,m,m,rad,rad,rad,'
         'MHz,MeV,deg,MeV/m,1,'
         'm,1,kG-m,T,'
@@ -1437,7 +1503,7 @@ with open(outdir+'/'+fname, 'wt') as fid:
             elif keyw[idk] == 'SEXT':
                 s[5] = TEMP['leng']
                 s[6] = TEMP['bore']
-                s[9] = TEMP['k2']
+                s[8] = TEMP['k2']
                 s[10] = TEMP['tilt']
                 s[32] = TEMP['GpL']
                 s[33] = TEMP['Gp']
