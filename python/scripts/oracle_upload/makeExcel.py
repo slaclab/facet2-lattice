@@ -374,8 +374,6 @@ def set_sector(N, FDN, coor, idf, nf, sector):
       if FDN[n].strip() == '':
         FDN[n] = sector['name']
 
-  return FDN
-
 def assign_sector(N, FDN, coor, idf):
   # NOTE: coordinates are assumed to be in MAD (not SYMBOLS) order
 
@@ -391,13 +389,10 @@ def assign_sector(N, FDN, coor, idf):
       if nf==3 and ns==5:
         sector['Nbeg'] = 'BEGBC14P'
         sector['Nend'] = 'ENDBC14P'
-
-  FDN=set_sector(N,FDN,coor,idf,nf,sector);
-
-  return FDN
+      set_sector(N,FDN,coor,idf,nf,sector);
 
 # assign sector names (use empty FDN array)
-FDN = assign_sector(N, FDN, coor, idf)
+assign_sector(N, FDN, coor, idf)
 
 names = ['YC57145','YC57146','BPM19501?','BPM19601?','BPM19701?']
 snames = ['EP01','EP01','S19', 'S19', 'S19']
@@ -1563,8 +1558,8 @@ with open(outdir+'/'+fname, 'wt') as fid:
 fname = f'FACET2-extra-{optics}.txt'
 with open(outdir+'/'+fname, 'wt') as fid:
     fid.write('ELEMENT,Area2,,Sector\n')
-    for nf in range(1,len(froot)+1):
-        id_ = [i for i,x in enumerate(ip) if x[0]==nf]
+    for nf in range(len(froot)):
+        id_ = [i for i,x in enumerate(ip) if x[0]==nf+1]
         for n in id_:
             idk = ip[n][1]
             if keyw[idk] == 'MARK' or keyw[idk] == 'SROT':
