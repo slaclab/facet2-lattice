@@ -744,8 +744,7 @@ as1er[ref] = s1er
 
 lxtcav = 40.687*in2m
 
-xtcavf: crab_cavity, rf_frequency = 11424 * 1e6, type = "TRANS_DEFL", l = lxtcav/2,
-                     voltage=0, phi0=0
+xtcavf: crab_cavity, rf_frequency = 11424 * 1e6, type = "TRANS_DEFL", l = lxtcav/2
 
 ! ==============================================================================
 ! BENDs

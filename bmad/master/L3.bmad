@@ -472,8 +472,12 @@ k19_8a: lcavity, rf_frequency = sbandf * 1e6, type = "10ft", l = dlwl10
 
 ! transverse deflecting cavity (TCAV)
 
-tcy15280: lcavity, rf_frequency = sbandf * 1e6, type = "LOLA", l = 2.438/2
- !TCY15280 : DRIF, L=2.438/2
+!NMM 2025-02-10, changing to crab_cavity. Roll 90 deg to deflect vertically 
+!tcy15280: lcavity, rf_frequency = sbandf * 1e6, type = "LOLA", l = 2.438/2
+tcy15280: crab_cavity, rf_frequency = sbandf * 1e6, type = "TRANS_DEFL", l = 2.438/2, tilt = 1.57079632
+
+
+!TCY15280 : DRIF, L=2.438/2
 
 ! ==============================================================================
 ! QUADs
