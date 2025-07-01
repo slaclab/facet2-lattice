@@ -323,27 +323,4 @@ beam_init%center(6) = 0.0
 /
 
 
-&tao_var
-    v1_var%name = 'linac_fudge'
-	default_step = 1e-4
-	default_attribute = 'f'
-	var(1:)%ele_name =  'O_L1_fudge', 'O_L2_fudge', 'O_L3_fudge'
-/
-
-
-&tao_var
-    v1_var%name = 'linac'
-  default_step = 0.1
-  default_attribute = 'phase_deg'
-  var(1:)%ele_name = 'O_L1', 'O_K21_2', 'O_L2', 'O_L3'
-/
-
-
-&tao_var
-    v1_var%name = 'qm_LTUH'
-        default_step = 1e-4
-        default_attribute = 'K1'
-        var(1:)%ele_name =  'Q50Q3','Q4','Q5', 'Q6', 'QA0', 'QEM1', 'QEM2', 'QEM3', 'QEM4'
-
-
 
