@@ -207,6 +207,43 @@ s3er_2: sextupole, type = "1.625S9.06", l = ls3/2, aperture = as, k2 = ks3e
 s2er: sextupole, type = "1.625S29.2", l = ls2/2, aperture = as, k2 = ks2e
 s1er: sextupole, type = "1.625S9.06", l = ls1/2, aperture = as, k2 = ks1e
 
+!-------------------------------------------------------
+!- FACET IP area chicane
+
+! ipc denotes ip_chicane
+ipc_brho = 10*3.3356211  !broh in [T.m] at 10 GeV
+ipc_B = 1.14  !Tesla
+ipc_rho = ipc_brho / ipc_B 
+ipc_g = 1 / ipc_rho 
+ipc_z = 0.332
+ipc_l = 2/ipc_g*asin(ipc_z * ipc_g / 2)
+ipc_th = ipc_l / ipc_rho
+ipc_gap = 5.35e-3
+ipc_fint = 0.3997
+
+ipc_bend_a: sbend, type = "tbd", alias = "bend:tbd:tbd", l = ipc_l,
+   g = -ipc_g, fringe_type = full, e2 = -ipc_th,
+   fint =  ipc_fint, hgap =  ipc_gap/2
+
+ipc_bend_b: sbend, type = "tbd", alias = "bend:tbd:tbd", l = ipc_l,
+   g = ipc_g, fringe_type = full, e1 = ipc_th,
+   fint =  ipc_fint, hgap =  ipc_gap/2
+
+ipc_bend_c: sbend, type = "tbd", alias = "bend:tbd:tbd", l = ipc_l,
+   g = ipc_g, fringe_type = full, e2 = ipc_th,
+   fint =  ipc_fint, hgap =  ipc_gap/2
+
+ipc_bend_d: sbend, type = "tbd", alias = "bend:tbd:tbd", l = ipc_l,
+   g = -ipc_g, fringe_type = full, e2 = -ipc_th,
+   fint =  ipc_fint, hgap =  ipc_gap/2
+
+ipc_drift_b: drift, l=18.9e-2
+ipc_drift_c: drift, l=18.9e-2
+ipc_drift_d: drift, l=18.9e-2
+ipc_drift_e: drift, l=100.2e-2
+
+ipc_line: line = ( ipc_bend_a, ipc_drift_b, ipc_bend_b, ipc_drift_c, ipc_bend_c, ipc_drift_d, ipc_bend_d, ipc_drift_e )
+
 ! ==============================================================================
 ! MULTs
 ! ------------------------------------------------------------------------------
@@ -848,6 +885,7 @@ dex20_16: drift, l = 0.13
 
 dmq0d: drift, l = 0.202439
 dm1qex: drift, l = 0.286595
+dm1qex_b: drift, l = 0.716405
 d1d: drift, l = 0.580966
 dmq1d: drift, l = 0.356564
 d2d: drift, l = 0.754657
@@ -1037,18 +1075,24 @@ q2d[L] = 2*q2d[L]
   EXPT : LINE=(BEGEXPT20,DEX20_1,EXTHOLE1,DEX20_2,USOTR,DEX20_3,IQMON20,DEX20_4,BEWIN1,DEX20_5,LCUBE,DEX20_6,PIC_CENT,
          DEX20_7,FILG,DEX20_8,FILS,DEX20_9,IPOTR1P,DEX20_10,IPOTR1,DEX20_10a,PENT,MIP,DEX20_11,IPWS1,DEX20_12,PEXT,DEX20_12a,
          IPOTR2,DEX20_13,IM3255,DEX20_14,BEWIN2,DEX20_15,IPWS3,DEX20_16,DSOTR,ENDEXPT20)
-
   ! z= 1998.708952
-  SPECT : LINE=(BEGSPECT20,DMQ0D,Q0D_full,DM1QEX,M0EX,D1D,WDSOTR,DMQ1D,Q1D_full,DM1QEX,M1EX,D2D,DMQ2D,Q2D_full,DM1QEX,
-         M2EX,D3D,XC1EX,D4D,B5D36_full,DM3BEX,M3EX,D5D,BEGPDC,D6D,ENDPDC,D7D,BEGEDC,D8D,ENDEDC,D9D,DTOTR,D10D,BFLYMID,D11D,
+  SPECT_a : LINE=(BEGSPECT20,DMQ0D,Q0D_full,DM1QEX,M0EX,D1D,WDSOTR,DMQ1D,Q1D_full,DM1QEX,M1EX,D2D,DMQ2D,Q2D_full,DM1QEX,M2EX,DM1QEX_b)
+
+  SPECT_b : LINE=(DM3BEX,M3EX,D5D,BEGPDC,D6D,ENDPDC,D7D,BEGEDC,D8D,ENDEDC,D9D,DTOTR,D10D,BFLYMID,D11D,
          EXTWIN,D12D,PGAM1,D13D,CNEAR,D14D,PDUMP,LAIRG,MAINDUMP,DBMARK30,ENDSPECT20)
 
+  ipc_bypass_d : drift, l=2.897
+  !SPECT : LINE=(BEGSPECT20,DMQ0D,Q0D_full,DM1QEX,M0EX,D1D,WDSOTR,DMQ1D,Q1D_full,DM1QEX,M1EX,D2D,DMQ2D,Q2D_full,DM1QEX,
+  !       M2EX,D3D,XC1EX,D4D,B5D36_full,DM3BEX,M3EX,D5D,BEGPDC,D6D,ENDPDC,D7D,BEGEDC,D8D,ENDEDC,D9D,DTOTR,D10D,BFLYMID,D11D,
+  !       EXTWIN,D12D,PGAM1,D13D,CNEAR,D14D,PDUMP,LAIRG,MAINDUMP,DBMARK30,ENDSPECT20)
 
-  FF20H : LINE=(FF,EXPT,SPECT)
+  FF20H_straight : LINE=(FF,EXPT,SPECT_a,ipc_bypass_d,SPECT_b)
+  FF20H_chicane : LINE=(FF,EXPT,SPECT_a,ipc_line,SPECT_b)
 
 ! ==============================================================================
 
-  SECTOR20 : LINE=(BC20W,FF20H)
+  SECTOR20 : LINE=(BC20W,FF20H_straight)
+  !SECTOR20 : LINE=(BC20W,FF20H_chicane)
 
 ! ------------------------------------------------------------------------------
 
