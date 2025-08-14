@@ -211,7 +211,7 @@ s1er: sextupole, type = "1.625S9.06", l = ls1/2, aperture = as, k2 = ks1e
 !- PAX chicane, near end of accelerator
 
 ! ipc denotes ip_chicane
-pax_brho = 10*3.3356211  !broh in [T.m] at 10 GeV
+pax_brho = 10*3.335641  !broh in [T.m] at 10 GeV
 pax_B = 1.14  !Tesla
 pax_rho = pax_brho / pax_B 
 pax_g = 1 / pax_rho 
