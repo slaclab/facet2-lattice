@@ -208,41 +208,41 @@ s2er: sextupole, type = "1.625S29.2", l = ls2/2, aperture = as, k2 = ks2e
 s1er: sextupole, type = "1.625S9.06", l = ls1/2, aperture = as, k2 = ks1e
 
 !-------------------------------------------------------
-!- FACET IP area chicane
+!- PAX chicane, near end of accelerator
 
 ! ipc denotes ip_chicane
-ipc_brho = 10*3.3356211  !broh in [T.m] at 10 GeV
-ipc_B = 1.14  !Tesla
-ipc_rho = ipc_brho / ipc_B 
-ipc_g = 1 / ipc_rho 
-ipc_z = 0.332
-ipc_l = 2/ipc_g*asin(ipc_z * ipc_g / 2)
-ipc_th = ipc_l / ipc_rho
-ipc_gap = 0.008
-ipc_fint = 0.5 !placeholder until fint measurements ready
+pax_brho = 10*3.3356211  !broh in [T.m] at 10 GeV
+pax_B = 1.14  !Tesla
+pax_rho = pax_brho / pax_B 
+pax_g = 1 / pax_rho 
+pax_z = 0.332
+pax_l = 2/pax_g*asin(pax_z * pax_g / 2)
+pax_th = pax_l / pax_rho
+pax_gap = 0.008
+pax_fint = 0.5 !placeholder until fint measurements ready
 
-ipc_bend_a: sbend, type = "tbd", alias = "bend:tbd:tbd", l = ipc_l,
-   g = -ipc_g, fringe_type = full, e2 = -ipc_th,
-   fint =  ipc_fint, hgap =  ipc_gap/2
+bcxpax1: sbend, type = "tbd", alias = "bend:tbd:tbd", l = pax_l,
+   g = -pax_g, fringe_type = full, e2 = -pax_th,
+   fint =  pax_fint, hgap =  pax_gap/2
 
-ipc_bend_b: sbend, type = "tbd", alias = "bend:tbd:tbd", l = ipc_l,
-   g = ipc_g, fringe_type = full, e1 = ipc_th,
-   fint =  ipc_fint, hgap =  ipc_gap/2
+bcxpax2: sbend, type = "tbd", alias = "bend:tbd:tbd", l = pax_l,
+   g = pax_g, fringe_type = full, e1 = pax_th,
+   fint =  pax_fint, hgap =  pax_gap/2
 
-ipc_bend_c: sbend, type = "tbd", alias = "bend:tbd:tbd", l = ipc_l,
-   g = ipc_g, fringe_type = full, e2 = ipc_th,
-   fint =  ipc_fint, hgap =  ipc_gap/2
+bcxpax3: sbend, type = "tbd", alias = "bend:tbd:tbd", l = pax_l,
+   g = pax_g, fringe_type = full, e2 = pax_th,
+   fint =  pax_fint, hgap =  pax_gap/2
 
-ipc_bend_d: sbend, type = "tbd", alias = "bend:tbd:tbd", l = ipc_l,
-   g = -ipc_g, fringe_type = full, e2 = -ipc_th,
-   fint =  ipc_fint, hgap =  ipc_gap/2
+bcxpax4: sbend, type = "tbd", alias = "bend:tbd:tbd", l = pax_l,
+   g = -pax_g, fringe_type = full, e2 = -pax_th,
+   fint =  pax_fint, hgap =  pax_gap/2
 
-ipc_drift_b: drift, l=18.9e-2
-ipc_drift_c: drift, l=18.9e-2
-ipc_drift_d: drift, l=18.9e-2
-ipc_drift_e: drift, l=100.2e-2
+dpaxb: drift, l=18.9e-2
+dpaxc: drift, l=18.9e-2
+dpaxd: drift, l=18.9e-2
+dpaxe: drift, l=100.2e-2
 
-ipc_line: line = ( ipc_bend_a, ipc_drift_b, ipc_bend_b, ipc_drift_c, ipc_bend_c, ipc_drift_d, ipc_bend_d, ipc_drift_e )
+pax_line: line = ( bcxpax1, dpaxb, bcxpax2, dpaxc, bcxpax3, dpaxd, bcxpax4, dpaxe )
 
 ! ==============================================================================
 ! MULTs
@@ -1081,13 +1081,13 @@ q2d[L] = 2*q2d[L]
   SPECT_b : LINE=(DM3BEX,M3EX,D5D,BEGPDC,D6D,ENDPDC,D7D,BEGEDC,D8D,ENDEDC,D9D,DTOTR,D10D,BFLYMID,D11D,
          EXTWIN,D12D,PGAM1,D13D,CNEAR,D14D,PDUMP,LAIRG,MAINDUMP,DBMARK30,ENDSPECT20)
 
-  ipc_bypass_d : drift, l=2.897
+  pax_bypass_d : drift, l=2.897
   !SPECT : LINE=(BEGSPECT20,DMQ0D,Q0D_full,DM1QEX,M0EX,D1D,WDSOTR,DMQ1D,Q1D_full,DM1QEX,M1EX,D2D,DMQ2D,Q2D_full,DM1QEX,
   !       M2EX,D3D,XC1EX,D4D,B5D36_full,DM3BEX,M3EX,D5D,BEGPDC,D6D,ENDPDC,D7D,BEGEDC,D8D,ENDEDC,D9D,DTOTR,D10D,BFLYMID,D11D,
   !       EXTWIN,D12D,PGAM1,D13D,CNEAR,D14D,PDUMP,LAIRG,MAINDUMP,DBMARK30,ENDSPECT20)
 
-  FF20H_straight : LINE=(FF,EXPT,SPECT_a,ipc_bypass_d,SPECT_b)
-  FF20H_chicane : LINE=(FF,EXPT,SPECT_a,ipc_line,SPECT_b)
+  FF20H_straight : LINE=(FF,EXPT,SPECT_a,pax_bypass_d,SPECT_b)
+  FF20H_chicane : LINE=(FF,EXPT,SPECT_a,pax_line,SPECT_b)
 
 ! ==============================================================================
 
