@@ -12,7 +12,8 @@ call, file = FACET2e_master.bmad !calls other xsif files
   F2_ELECi : LINE=(FACET2e) !start at DL10
 
  !COMMENT
-use, f2_elec !start at CATHODE
+!use, F2_ELEC_ipstr !start at CATHODE
+use, F2_ELEC_ipchi !start at CATHODE
     ! initial energy: E0
     ! initial SURVEY: Xc, 0, Zc, THETAc, 0, 0
     ! initial Twiss : BX0, AX0, BY0, AY0

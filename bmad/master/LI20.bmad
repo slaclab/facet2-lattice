@@ -218,8 +218,8 @@ ipc_g = 1 / ipc_rho
 ipc_z = 0.332
 ipc_l = 2/ipc_g*asin(ipc_z * ipc_g / 2)
 ipc_th = ipc_l / ipc_rho
-ipc_gap = 5.35e-3
-ipc_fint = 0.3997
+ipc_gap = 0.008
+ipc_fint = 0.5 !placeholder until fint measurements ready
 
 ipc_bend_a: sbend, type = "tbd", alias = "bend:tbd:tbd", l = ipc_l,
    g = -ipc_g, fringe_type = full, e2 = -ipc_th,
@@ -1091,8 +1091,8 @@ q2d[L] = 2*q2d[L]
 
 ! ==============================================================================
 
-  SECTOR20 : LINE=(BC20W,FF20H_straight)
-  !SECTOR20 : LINE=(BC20W,FF20H_chicane)
+  SECTOR20_str : LINE=(BC20W,FF20H_straight)
+  SECTOR20_chi : LINE=(BC20W,FF20H_chicane)
 
 ! ------------------------------------------------------------------------------
 

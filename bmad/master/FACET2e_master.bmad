@@ -160,7 +160,8 @@ call, file = LI20.bmad   !mix-n-match BC20/FF20 (BC20W+FF20H)
 call, file = SCAV.bmad
 
   BC14     : LINE=(BC14_1,BC14E,BC14_2) !electron side
-  FACET2e  : LINE=(DL10,L1F,BC11,L2F,BC14,L3F,SECTOR20)
+  FACET2e_ipstr  : LINE=(DL10,L1F,BC11,L2F,BC14,L3F,SECTOR20_str)
+  FACET2e_ipchi  : LINE=(DL10,L1F,BC11,L2F,BC14,L3F,SECTOR20_chi)
   FACET2s  : LINE=(DL10,L1F,BC11,L2F,BC14,L3F_1,SCAV)
 
 ! beam path definitions
@@ -172,7 +173,8 @@ call, file = SCAV.bmad
  !F2_POSI   : e+ PDR extraction to LI20 dump
  !F2_S10AIP : e- gun line for AIP injector tests/comissioning
 
-  F2_ELEC   : LINE=(INJ,FACET2e)
+  F2_ELEC_ipstr   : LINE=(INJ,FACET2e_ipstr)
+  F2_ELEC_ipchi   : LINE=(INJ,FACET2e_ipchi)
   F2_SCAV   : LINE=(INJ,FACET2s)
   F2_S10AIP : LINE=(INJS10AIP)
 
