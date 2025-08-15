@@ -221,28 +221,29 @@ pax_th = pax_l / pax_rho
 pax_gap = 0.008
 pax_fint = 0.5 !placeholder until fint measurements ready
 
-bc20001: sbend, type = "tbd", alias = "bend:tbd:tbd", l = pax_l,
+bcx20001: sbend, type = "tbd", alias = "bend:tbd:tbd", l = pax_l,
    g = -pax_g, fringe_type = full, e2 = -pax_th,
    fint =  pax_fint, hgap =  pax_gap/2
 
-bc20002: sbend, type = "tbd", alias = "bend:tbd:tbd", l = pax_l,
+bcx20002: sbend, type = "tbd", alias = "bend:tbd:tbd", l = pax_l,
    g = pax_g, fringe_type = full, e1 = pax_th,
    fint =  pax_fint, hgap =  pax_gap/2
 
-bc20003: sbend, type = "tbd", alias = "bend:tbd:tbd", l = pax_l,
+bcx20003: sbend, type = "tbd", alias = "bend:tbd:tbd", l = pax_l,
    g = pax_g, fringe_type = full, e2 = pax_th,
    fint =  pax_fint, hgap =  pax_gap/2
 
-bc20004: sbend, type = "tbd", alias = "bend:tbd:tbd", l = pax_l,
+bcx20004: sbend, type = "tbd", alias = "bend:tbd:tbd", l = pax_l,
    g = -pax_g, fringe_type = full, e2 = -pax_th,
    fint =  pax_fint, hgap =  pax_gap/2
 
-dpaxb: drift, l=18.9e-2
-dpaxc: drift, l=18.9e-2
-dpaxd: drift, l=18.9e-2
-dpaxe: drift, l=100.2e-2
+dbcxb: drift, l=18.9e-2
+dbcxc: drift, l=18.9e-2
+dbcxd: drift, l=18.9e-2
+dbcxe: drift, l=100.2e-2
 
-pax_line: line = ( bc20001, dpaxb, bc20002, dpaxc, bc20003, dpaxd, bc20004, dpaxe )
+bcx_bypass: drift, l=2.897
+bcx_line: line = ( bcx20001, dbcxb, bcx20002, dbcxc, bcx20003, dbcxd, bcx20004, dbcxe )
 
 ! ==============================================================================
 ! MULTs
@@ -1081,13 +1082,12 @@ q2d[L] = 2*q2d[L]
   SPECT_b : LINE=(DM3BEX,M3EX,D5D,BEGPDC,D6D,ENDPDC,D7D,BEGEDC,D8D,ENDEDC,D9D,DTOTR,D10D,BFLYMID,D11D,
          EXTWIN,D12D,PGAM1,D13D,CNEAR,D14D,PDUMP,LAIRG,MAINDUMP,DBMARK30,ENDSPECT20)
 
-  pax_bypass_d : drift, l=2.897
   !SPECT : LINE=(BEGSPECT20,DMQ0D,Q0D_full,DM1QEX,M0EX,D1D,WDSOTR,DMQ1D,Q1D_full,DM1QEX,M1EX,D2D,DMQ2D,Q2D_full,DM1QEX,
   !       M2EX,D3D,XC1EX,D4D,B5D36_full,DM3BEX,M3EX,D5D,BEGPDC,D6D,ENDPDC,D7D,BEGEDC,D8D,ENDEDC,D9D,DTOTR,D10D,BFLYMID,D11D,
   !       EXTWIN,D12D,PGAM1,D13D,CNEAR,D14D,PDUMP,LAIRG,MAINDUMP,DBMARK30,ENDSPECT20)
 
-  FF20H_straight : LINE=(FF,EXPT,SPECT_a,pax_bypass_d,SPECT_b)
-  FF20H_chicane : LINE=(FF,EXPT,SPECT_a,pax_line,SPECT_b)
+  FF20H_straight : LINE=(FF,EXPT,SPECT_a,bcx_bypass,SPECT_b)
+  FF20H_chicane : LINE=(FF,EXPT,SPECT_a,bcx_line,SPECT_b)
 
 ! ==============================================================================
 
