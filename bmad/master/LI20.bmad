@@ -221,19 +221,19 @@ pax_th = pax_l / pax_rho
 pax_gap = 0.008
 pax_fint = 0.5 !placeholder until fint measurements ready
 
-bcxpax1: sbend, type = "tbd", alias = "bend:tbd:tbd", l = pax_l,
+bc20001: sbend, type = "tbd", alias = "bend:tbd:tbd", l = pax_l,
    g = -pax_g, fringe_type = full, e2 = -pax_th,
    fint =  pax_fint, hgap =  pax_gap/2
 
-bcxpax2: sbend, type = "tbd", alias = "bend:tbd:tbd", l = pax_l,
+bc20002: sbend, type = "tbd", alias = "bend:tbd:tbd", l = pax_l,
    g = pax_g, fringe_type = full, e1 = pax_th,
    fint =  pax_fint, hgap =  pax_gap/2
 
-bcxpax3: sbend, type = "tbd", alias = "bend:tbd:tbd", l = pax_l,
+bc20003: sbend, type = "tbd", alias = "bend:tbd:tbd", l = pax_l,
    g = pax_g, fringe_type = full, e2 = pax_th,
    fint =  pax_fint, hgap =  pax_gap/2
 
-bcxpax4: sbend, type = "tbd", alias = "bend:tbd:tbd", l = pax_l,
+bc20004: sbend, type = "tbd", alias = "bend:tbd:tbd", l = pax_l,
    g = -pax_g, fringe_type = full, e2 = -pax_th,
    fint =  pax_fint, hgap =  pax_gap/2
 
@@ -242,7 +242,7 @@ dpaxc: drift, l=18.9e-2
 dpaxd: drift, l=18.9e-2
 dpaxe: drift, l=100.2e-2
 
-pax_line: line = ( bcxpax1, dpaxb, bcxpax2, dpaxc, bcxpax3, dpaxd, bcxpax4, dpaxe )
+pax_line: line = ( bc20001, dpaxb, bc20002, dpaxc, bc20003, dpaxd, bc20004, dpaxe )
 
 ! ==============================================================================
 ! MULTs
