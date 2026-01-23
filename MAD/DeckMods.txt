@@ -9,6 +9,7 @@ general
 * laser heater undulator is now installed and operational
 * defer L1 X-band (do not defer wraparound correctors)
 * BXip=0.5, AXip=0, BYip=0.5, AYip=0 (MIP)
+* define separate PAX chicane and PAX bypass beam paths
 
 FACET2e.mad8
 
@@ -42,6 +43,8 @@ L3.xsif
 
 LI20.xsif
 * add PAX chicane (and its bypass line) per C. Emma
+* add XC4FF and YC4FF per D. Storey
+* remove USOTR per D. Storey
 
 SCAV.xsif
 
