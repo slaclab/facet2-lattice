@@ -1,5 +1,5 @@
 
-! *** OPTICS=FACET2-17JAN24 ***
+! *** OPTICS=FACET2-preRelease ***
 
 ================================================================================
 MAD deck changes
@@ -14,7 +14,7 @@ FACET2e.mad8
 
 FACET2e_match.mad8
 
-FACET2e_master.mad8 !D:\FACET2\2023next\git\Lucretia\models\FACET2e\FACET2e.mat
+FACET2e_master.xsif !D:\FACET2\2023next\git\Lucretia\models\FACET2e\FACET2e.mat
 
 FACET2p.mad8
 
@@ -39,9 +39,9 @@ L2.xsif
 BC14.xsif
 
 L3.xsif
-* restore 19-8a 10' structure (unpowered), along with XC19802 and YC19803
 
 LI20.xsif
+* add PAX chicane (and its bypass line) per C. Emma
 
 SCAV.xsif
 
