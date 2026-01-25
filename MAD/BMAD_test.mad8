@@ -1,6 +1,6 @@
   TITLE, "FACET2"
 
-! *** OPTICS=FACET2-preRelease ***
+! *** OPTICS=FACET2-28JAN2026 ***
 
   OPTION, -ECHO, INFO, WARN, VERIFY
   ASSIGN, ECHO="test.echo"
@@ -25,7 +25,7 @@
 
 ! ------------------------------------------------------------------------------
 
-  COMMENT
+ !COMMENT
     BEAM, ENERGY=E0
     USE, F2_ELEC
     PRINT, FULL
@@ -51,7 +51,7 @@
     PLOT, TABLE=TWISS, HAXIS=S, VAXIS=DX,DY, &
       STYLE=100, SPLINE, FILE="test", RANGE=ENDBC20/MAINDUMP, &
       TITLE="LI20"
-  ENDCOMMENT
+ !ENDCOMMENT
 
 ! ------------------------------------------------------------------------------
 
@@ -76,7 +76,7 @@
 
 ! ------------------------------------------------------------------------------
 
- !COMMENT
+  COMMENT
     BEAM, ENERGY=E0
     USE, F2_SCAV
     OPTION, -WARN
@@ -105,7 +105,7 @@
     PLOT, TABLE=TWISS, HAXIS=S, VAXIS=DX,DY, &
       STYLE=100, SPLINE, FILE="test", RANGE=MSCAVEXT/#E, &
       TITLE="EP01"
- !ENDCOMMENT
+  ENDCOMMENT
 
 ! ==============================================================================
 

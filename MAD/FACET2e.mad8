@@ -1,6 +1,6 @@
   TITLE, "FACET2 e-"
 
-! *** OPTICS=FACET2-preRelease ***
+! *** OPTICS=FACET2-28JAN2026 ***
 
   ASSIGN, PRINT="FACET2e.print"
   ASSIGN, ECHO="FACET2e.echo"

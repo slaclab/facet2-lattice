@@ -1,6 +1,6 @@
   TITLE, "FACET2: scavenger e- (preRelease)"
 
-! *** OPTICS=FACET2-preRelease ***
+! *** OPTICS=FACET2-28JAN2026 ***
 
   ASSIGN, PRINT="FACET2s.print"
   ASSIGN, ECHO="FACET2s.echo"
