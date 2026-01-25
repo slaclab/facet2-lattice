@@ -91,7 +91,7 @@
     BEAM, ENERGY=Ei
     USE, FACET2e_PAX
     PRINT, FULL
-    TWISS, BETA0=TWi, TAPE="FACET2e_PAXi_twiss.tape"
+    TWISS, BETA0=TWi, TAPE="FACET2ei_PAX_twiss.tape"
     BEAM, ENERGY=Ei
     USE, FACET2s
     PRINT, FULL
