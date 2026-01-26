@@ -1,8 +1,11 @@
 
-! *** OPTICS=FACET2-16FEB24 ***
+! *** OPTICS=FACET2-preRelease ***
 
 ! ==============================================================================
 ! FACET e- optics
+! ------------------------------------------------------------------------------
+! 07-JAN-2026, M. Woodley
+!  * add PAX chicane per C. Emma
 ! ------------------------------------------------------------------------------
 ! 17-DEC-2021, M. Woodley
 !  * change WIGE "_full" definitions for Bmad translation per C. Mayes
@@ -26,12 +29,12 @@ wscl = 1 !wiggler field scale (=1 for wiggler ON, =0 for wiggler OFF)
 
 ! Initial parameters at BEGBC20
 
-!beginning[beta_a] = 12.2509
-!beginning[beta_b] = 22.3869
-!beginning[alpha_a] = 0.6685
-!beginning[alpha_b] = 1.1657
-!parameter[E_tot] = e20 * 1e9
-!parameter[n_part] = 1.2483019e+10
+beginning[beta_a] = 12.2509
+beginning[beta_b] = 22.3869
+beginning[alpha_a] = 0.6685
+beginning[alpha_b] = 1.1657
+parameter[E_tot] = e20 * 1e9
+parameter[n_part] = 1.2483019e+10
 
 ! ==============================================================================
 ! BENDs
@@ -206,12 +209,6 @@ s3er_1: sextupole, type = "1.625S9.06", l = ls3/2, aperture = as, k2 = ks3e
 s3er_2: sextupole, type = "1.625S9.06", l = ls3/2, aperture = as, k2 = ks3e
 s2er: sextupole, type = "1.625S29.2", l = ls2/2, aperture = as, k2 = ks2e
 s1er: sextupole, type = "1.625S9.06", l = ls1/2, aperture = as, k2 = ks1e
-
-! ==============================================================================
-! MULTs
-! ------------------------------------------------------------------------------
-
-! see FACET_LI20_MULT.xsif
 
 ! ==============================================================================
 ! DRIFTs
@@ -461,6 +458,7 @@ endbc20: marker
 !Old split line:  B1LE_full  : LINE=(B1LE1,B1LE2)
 
 b1le_full: line = (b1le)
+b1le_svy: null_ele, superimpose, ref=b1le, ref_origin=beginning, offset=b1le1[l] !bend survey marker
 
 
 !Old split line:  B2LE_full  : LINE=(B2LE1,XCB2LE,B2LE2)
@@ -494,11 +492,13 @@ xcb2re[ref] = b2re
 !Old split line:  B1RE_full  : LINE=(B1RE1,B1RE2)
 
 b1re_full: line = (b1re)
+b1re_svy: null_ele, superimpose, ref=b1re, ref_origin=beginning, offset=b1re1[l] !bend survey marker
 
 
 !Old split line:  WIGE1_full : LINE=(WIGE11,WIGE12)
 
 wige1_full: line = (wige1)
+wige1_svy: null_ele, superimpose, ref=wige1, ref_origin=beginning, offset=wige11[l] !bend survey marker
 
 
 !Old split line:  WIGE2_full : LINE=(WIGE21,YCWIGE,WIGE22)
@@ -511,6 +511,7 @@ ycwige[ref] = wige2
 !Old split line:  WIGE3_full : LINE=(WIGE31,WIGE32)
 
 wige3_full: line = (wige3)
+wige3_svy: null_ele, superimpose, ref=wige3, ref_origin=beginning, offset=wige31[l] !bend survey marker
   WIGE_line  : LINE=(WIGE1_full,DWE,WIGE2_full,DWE,WIGE3_full)
 
 
@@ -519,54 +520,63 @@ wige3_full: line = (wige3)
 
 q1el_full: line = (q1el)
 q1el[L] = 2*q1el[L]
+q1el_svy: null_ele, superimpose, ref=q1el
 
 
 !Old split line:  SQ1_full    : LINE=(SQ1,SQ1)
 
 sq1_full: line = (sq1)
 sq1[L] = 2*sq1[L]
+sq1_svy: null_ele, superimpose, ref=sq1
 
 
 !Old split line:  Q2EL_full   : LINE=(Q2EL,Q2EL)
 
 q2el_full: line = (q2el)
 q2el[L] = 2*q2el[L]
+q2el_svy: null_ele, superimpose, ref=q2el
 
 
 !Old split line:  Q3EL_1_full : LINE=(Q3EL_1,Q3EL_1)
 
 q3el_1_full: line = (q3el_1)
 q3el_1[L] = 2*q3el_1[L]
+q3el_1_svy: null_ele, superimpose, ref=q3el_1
 
 
 !Old split line:  Q3EL_2_full : LINE=(Q3EL_2,Q3EL_2)
 
 q3el_2_full: line = (q3el_2)
 q3el_2[L] = 2*q3el_2[L]
+q3el_2_svy: null_ele, superimpose, ref=q3el_2
 
 
 !Old split line:  Q4EL_1_full : LINE=(Q4EL_1,Q4EL_1)
 
 q4el_1_full: line = (q4el_1)
 q4el_1[L] = 2*q4el_1[L]
+q4el_1_svy: null_ele, superimpose, ref=q4el_1
 
 
 !Old split line:  Q4EL_2_full : LINE=(Q4EL_2,Q4EL_2)
 
 q4el_2_full: line = (q4el_2)
 q4el_2[L] = 2*q4el_2[L]
+q4el_2_svy: null_ele, superimpose, ref=q4el_2
 
 
 !Old split line:  Q4EL_3_full : LINE=(Q4EL_3,Q4EL_3)
 
 q4el_3_full: line = (q4el_3)
 q4el_3[L] = 2*q4el_3[L]
+q4el_3_svy: null_ele, superimpose, ref=q4el_3
 
 
 !Old split line:  Q5EL_full   : LINE=(Q5EL,Q5EL)
 
 q5el_full: line = (q5el)
 q5el[L] = 2*q5el[L]
+q5el_svy: null_ele, superimpose, ref=q5el
 
 
 !Old split line:  Q6E_full    : LINE=(Q6E,MCE,Q6E)
@@ -581,48 +591,56 @@ mce[ref] = q6e
 
 q5er_full: line = (q5er)
 q5er[L] = 2*q5er[L]
+q5er_svy: null_ele, superimpose, ref=q5er
 
 
 !Old split line:  Q4ER_1_full : LINE=(Q4ER_1,Q4ER_1)
 
 q4er_1_full: line = (q4er_1)
 q4er_1[L] = 2*q4er_1[L]
+q4er_1_svy: null_ele, superimpose, ref=q4er_1
 
 
 !Old split line:  Q4ER_2_full : LINE=(Q4ER_2,Q4ER_2)
 
 q4er_2_full: line = (q4er_2)
 q4er_2[L] = 2*q4er_2[L]
+q4er_2_svy: null_ele, superimpose, ref=q4er_2
 
 
 !Old split line:  Q4ER_3_full : LINE=(Q4ER_3,Q4ER_3)
 
 q4er_3_full: line = (q4er_3)
 q4er_3[L] = 2*q4er_3[L]
+q4er_3_svy: null_ele, superimpose, ref=q4er_3
 
 
 !Old split line:  Q3ER_1_full : LINE=(Q3ER_1,Q3ER_1)
 
 q3er_1_full: line = (q3er_1)
 q3er_1[L] = 2*q3er_1[L]
+q3er_1_svy: null_ele, superimpose, ref=q3er_1
 
 
 !Old split line:  Q3ER_2_full : LINE=(Q3ER_2,Q3ER_2)
 
 q3er_2_full: line = (q3er_2)
 q3er_2[L] = 2*q3er_2[L]
+q3er_2_svy: null_ele, superimpose, ref=q3er_2
 
 
 !Old split line:  Q2ER_full   : LINE=(Q2ER,Q2ER)
 
 q2er_full: line = (q2er)
 q2er[L] = 2*q2er[L]
+q2er_svy: null_ele, superimpose, ref=q2er
 
 
 !Old split line:  Q1ER_full   : LINE=(Q1ER,Q1ER)
 
 q1er_full: line = (q1er)
 q1er[L] = 2*q1er[L]
+q1er_svy: null_ele, superimpose, ref=q1er
 
 
 
@@ -646,24 +664,28 @@ as2el[ref] = s2el
 
 s3el_1_full: line = (s3el_1)
 s3el_1[L] = 2*s3el_1[L]
+s3el_1_svy: null_ele, superimpose, ref=s3el_1
 
 
 !Old split line:  S3EL_2_full : LINE=(S3EL_2,S3EL_2)
 
 s3el_2_full: line = (s3el_2)
 s3el_2[L] = 2*s3el_2[L]
+s3el_2_svy: null_ele, superimpose, ref=s3el_2
 
 
 !Old split line:  S3ER_1_full : LINE=(S3ER_1,S3ER_1)
 
 s3er_1_full: line = (s3er_1)
 s3er_1[L] = 2*s3er_1[L]
+s3er_1_svy: null_ele, superimpose, ref=s3er_1
 
 
 !Old split line:  S3ER_2_full : LINE=(S3ER_2,S3ER_2)
 
 s3er_2_full: line = (s3er_2)
 s3er_2[L] = 2*s3er_2[L]
+s3er_2_svy: null_ele, superimpose, ref=s3er_2
 
 
 !Old split line:  S2ER_full   : LINE=(S2ER,AS2ER,S2ER)
@@ -744,11 +766,66 @@ as1er[ref] = s1er
 
 lxtcav = 40.687*in2m
 
-xtcavf: crab_cavity, rf_frequency = 11424 * 1e6, type = "TRANS_DEFL", l = lxtcav/2
+xtcavf: lcavity, rf_frequency = 11424 * 1e6, type = "TRANS_DEFL", l = lxtcav/2, cavity_type = traveling_wave
 
 ! ==============================================================================
 ! BENDs
 ! ------------------------------------------------------------------------------
+
+! PAX chicane
+! - coils/yoke to the left (wall side)
+! - offsets beam toward +X (to the left)
+! - use series approximation for sinc(x)=sin(x)/x to allow ABP=0
+
+! GBP  : chicane bend gap height (m)
+! ZBP  : chicane bend "Z" length (m)
+! FBP  : chicane bend field integral (measured)
+! BBP  : nominal bend field (kG)
+! RBP  : nominal bend radius (m) ... brho/B
+! LBP  : chicane bend path length (m)
+! ABP  : chicane bend angle (rad)
+! ABPs : "short" half chicane bend angle (rad)
+! LBPs : "short" half chicane bend path length (m)
+! ABPl : "long" half chicane bend angle (rad)
+! LBPl : "long" half chicane bend path length (m)
+
+gbp = 0.008
+zbp = 13.08*in2m !0.332
+fbp = 1.1112
+bbp = 11.4
+rbp = (cb*e20)/bbp
+lbp = rbp*asin(zbp/rbp)
+abp = lbp/rbp
+abp_2 = abp*abp
+abp_4 = abp_2*abp_2
+abp_6 = abp_4*abp_2
+sincabp = 1-abp_2/6+abp_4/120-abp_6/5040 !~sinc(ABP)=sin(ABP)/ABP
+abps = asin(sin(abp)/2)
+abps_2 = abps*abps
+abps_4 = abps_2*abps_2
+abps_6 = abps_4*abps_2
+sincabps = 1-abps_2/6+abps_4/120-abps_6/5040 !~sinc(ABPs)=sin(ABPs)/ABPs
+lbps = zbp/2/sincabps
+abpl = abp-abps
+lbpl = lbp-lbps
+
+ !VALUE, Cb*E20*ABP !BL (kG-m)
+
+bcx203280a: sbend, type = "0.315D13.08-C", l = lbps, angle = -abps, hgap = gbp/2, e1 = 0, fint = fbp, fintx = 0
+bcx203280b: sbend, type = "0.315D13.08-C", l = lbpl, angle = -abpl, hgap = gbp/2, fint = 0, e2 = -abp, fintx = fbp
+bcx203282a: sbend, type = "0.315D13.08-C", l = lbpl, angle = +abpl, hgap = gbp/2, e1 = +abp, fint = fbp, fintx = 0
+bcx203282b: sbend, type = "0.315D13.08-C", l = lbps, angle = +abps, hgap = gbp/2, fint = 0, e2 = 0, fintx = fbp
+bcx203284a: sbend, type = "0.315D13.08-C", l = lbps, angle = +abps, hgap = gbp/2, e1 = 0, fint = fbp, fintx = 0
+bcx203284b: sbend, type = "0.315D13.08-C", l = lbpl, angle = +abpl, hgap = gbp/2, fint = 0, e2 = +abp, fintx = fbp
+bcx203286a: sbend, type = "0.315D13.08-C", l = lbpl, angle = -abpl, hgap = gbp/2, e1 = -abp, fint = fbp, fintx = 0
+bcx203286b: sbend, type = "0.315D13.08-C", l = lbps, angle = -abps, hgap = gbp/2, fint = 0, e2 = 0, fintx = fbp
+
+! define unsplit SBENs for BMAD ... not used by MAD
+
+bcx203280: sbend, type = "0.315D13.08-C", hgap = gbp/2, l = lbp, angle = -abp, e1 = 0, fint = fbp, e2 = -abp, fintx = fbp
+bcx203282: sbend, type = "0.315D13.08-C", hgap = gbp/2, l = lbp, angle = +abp, e1 = +abp, fint = fbp, e2 = 0, fintx = fbp
+bcx203284: sbend, type = "0.315D13.08-C", hgap = gbp/2, l = lbp, angle = +abp, e1 = 0, fint = fbp, e2 = +abp, fintx = fbp
+bcx203286: sbend, type = "0.315D13.08-C", hgap = gbp/2, l = lbp, angle = -abp, e1 = -abp, fint = fbp, e2 = 0, fintx = fbp
 
 ! spectrometer / dump bend
 
@@ -823,12 +900,17 @@ d1ff: drift, l = 0.837967
 d0ff: drift, l = 0.027833
 dmq0ff: drift, l = 0.17701988 !0.177019
 
+d2ffa: drift, l = 0.591951477022 !0.829867
+d2ffb: drift, l = d2ff[l]-d2ffa[l]
+d1ffa: drift, l = 0.601951477023 !0.837967
+d1ffb: drift, l = d1ff[l]-d1ffa[l]
+
 ! experiment table
 
 dex20_1: drift, l = 0.072982138228781
-dex20_2: drift, l = 0.26
-dex20_3: drift, l = 0.1
-dex20_4: drift, l = 0.06
+dex20_2: drift, l = 0.229949458794    !0.26
+dex20_3: drift, l = 0.06              !0.1
+dex20_4: drift, l = 0.130050541206    !0.06
 dex20_5: drift, l = 0.12
 dex20_6: drift, l = 0.72
 dex20_7: drift, l = 0.4017
@@ -867,20 +949,35 @@ d13d: drift, l = 0.590168
 d14d: drift, l = 1.31
 lairg: drift, l = 1.675292943463
 
+! PAX chicane, and chicane bypass
+
+zb2bo = 0.188468 !0.189 !outer bend-to-bend drift
+zb2bi = zb2bo/2         !half inner bend-to-bend drift (to chicane center)
+lpax = 4*zbp+3*zb2bo   !total PAX chicane Z-length
+
+dbpo: drift, l = zb2bo/cos(abp)
+dbpi: drift, l = zb2bi
+d3dp: drift, l = 0.369872158794
+d4dp: drift, l = d3d[l]+d4d[l]-lpax-d3dp[l]
+dpbyp1: drift, l = zbp+zb2bo+zbp+zb2bo+zbp/2 !same Z as 3rd PAX dipole
+dpbyp2: drift, l = lpax-dpbyp1[l]
+
 ! ==============================================================================
 ! XCORs
 ! ------------------------------------------------------------------------------
 
-xc1ff: hkicker                  !X203026
-xc3ff: hkicker, type = "3D8.8MK2" !0.815" gap
-xc1ex: hkicker, type = "3D4"      !1.181" gap
+xc1ff: hkicker, type = "3D8.8"     !X203026
+xc3ff: hkicker, type = "3D8.8"     !X203086
+xc4ff: hkicker, type = "3D4"       !X203116
+xc1ex: hkicker, type = "2.54D10.5" !X203276
 
 ! ==============================================================================
 ! YCORs
 ! ------------------------------------------------------------------------------
 
-yc1ff: vkicker                  !Y203017
-yc2ff: vkicker, type = "3D8.8MK2" !0.815" gap
+yc1ff: vkicker, type = "3D8.8" !Y203017
+yc2ff: vkicker, type = "3D8.8" !Y203057
+yc4ff: vkicker, type = "3D4"   !Y203147
 
 ! ==============================================================================
 ! BPMs
@@ -904,7 +1001,6 @@ m3ex: monitor, type = "SA23650301"
 
 usthz: monitor, type = "OTR foil/YAG"    !OTRS:LI20:3070 CAMR:LI20:106
 dsthz: monitor, type = "OTR foil/YAG"    !PD203075
-usotr: monitor, type = "OTR foil/YAG"    !OTRS:LI20:3158 CAMR:LI20:101
 ipotr1p: monitor, type = "OTR foil/YAG"    !OTRS:LI20:3175 (in plasma oven)
 ipotr1: monitor, type = "OTR foil/YAG"    !OTRS:LI20:3180 (in bypass line) CAMR:LI20:102
 ipws1: monitor, type = "MARKER"            !MARKER:LI20:3179 (in bypass line)
@@ -947,16 +1043,24 @@ pext: marker !Plasma oven exit (Gate valve B)
 bewin2: marker !2nd Beryllium window
 endexpt20: marker
 
-begspect20: marker
-begpdc: marker !Upstream end of PDC chamber
-endpdc: marker !Downstream end of PDC chamber
-begedc: marker !Upstream end of EDC chamber
-endedc: marker !Downstream end of EDC chamber
+begspect20_1: marker
+endspect20_1: marker
+begpaxbyp: marker
+endpaxbyp: marker
+begspect20_2: marker
+pdcbeg: marker !Upstream end of PDC chamber
+pdcend: marker !Downstream end of PDC chamber
+edcbeg: marker !Upstream end of EDC chamber
+edcend: marker !Downstream end of EDC chamber
 bflymid: marker !Middle of Butterfly chamber
 extwin: marker !Exit window (5mm thick Al)
 maindump: instrument !dump face
 dbmark30: marker
-endspect20: marker
+endspect20_2: marker
+
+begpax: marker
+paxmid: marker
+endpax: marker
 
 ! ==============================================================================
 ! BEAMLINEs
@@ -968,12 +1072,38 @@ endspect20: marker
 
 xtcavf_full: line = (xtcavf)
 xtcavf[L] = 2*xtcavf[L]
+xtcavf_svy: null_ele, superimpose, ref=xtcavf
 
 
 
-!Old split line:  B5D36_full : LINE=(B5D361,B5D362)
+!Old split line:  BCX203280_full : LINE=(BCX203280a,BCX203280b)
+
+bcx203280_full: line = (bcx203280)
+bcx203280_svy: null_ele, superimpose, ref=bcx203280, ref_origin=beginning, offset=bcx203280a[l] !bend survey marker
+
+
+!Old split line:  BCX203282_full : LINE=(BCX203282a,BCX203282b)
+
+bcx203282_full: line = (bcx203282)
+bcx203282_svy: null_ele, superimpose, ref=bcx203282, ref_origin=beginning, offset=bcx203282a[l] !bend survey marker
+
+
+!Old split line:  BCX203284_full : LINE=(BCX203284a,BCX203284b)
+
+bcx203284_full: line = (bcx203284)
+bcx203284_svy: null_ele, superimpose, ref=bcx203284, ref_origin=beginning, offset=bcx203284a[l] !bend survey marker
+
+
+!Old split line:  BCX203286_full : LINE=(BCX203286a,BCX203286b)
+
+bcx203286_full: line = (bcx203286)
+bcx203286_svy: null_ele, superimpose, ref=bcx203286, ref_origin=beginning, offset=bcx203286a[l] !bend survey marker
+
+
+!Old split line:  B5D36_full     : LINE=(B5D361,B5D362)
 
 b5d36_full: line = (b5d36)
+b5d36_svy: null_ele, superimpose, ref=b5d36, ref_origin=beginning, offset=b5d361[l] !bend survey marker
 
 
 
@@ -981,74 +1111,89 @@ b5d36_full: line = (b5d36)
 
 q5ff_full: line = (q5ff)
 q5ff[L] = 2*q5ff[L]
+q5ff_svy: null_ele, superimpose, ref=q5ff
 
 
 !Old split line:  Q4FF_full : LINE=(Q4FF,Q4FF)
 
 q4ff_full: line = (q4ff)
 q4ff[L] = 2*q4ff[L]
+q4ff_svy: null_ele, superimpose, ref=q4ff
 
 
 !Old split line:  Q3FF_full : LINE=(Q3FF,Q3FF)
 
 q3ff_full: line = (q3ff)
 q3ff[L] = 2*q3ff[L]
+q3ff_svy: null_ele, superimpose, ref=q3ff
 
 
 !Old split line:  Q2FF_full : LINE=(Q2FF,Q2FF)
 
 q2ff_full: line = (q2ff)
 q2ff[L] = 2*q2ff[L]
+q2ff_svy: null_ele, superimpose, ref=q2ff
 
 
 !Old split line:  Q1FF_full : LINE=(Q1FF,Q1FF)
 
 q1ff_full: line = (q1ff)
 q1ff[L] = 2*q1ff[L]
+q1ff_svy: null_ele, superimpose, ref=q1ff
 
 
 !Old split line:  Q0FF_full : LINE=(Q0FF,Q0FF)
 
 q0ff_full: line = (q0ff)
 q0ff[L] = 2*q0ff[L]
+q0ff_svy: null_ele, superimpose, ref=q0ff
 
 
 !Old split line:  Q0D_full  : LINE=(Q0D,Q0D)
 
 q0d_full: line = (q0d)
 q0d[L] = 2*q0d[L]
+q0d_svy: null_ele, superimpose, ref=q0d
 
 
 !Old split line:  Q1D_full  : LINE=(Q1D,Q1D)
 
 q1d_full: line = (q1d)
 q1d[L] = 2*q1d[L]
+q1d_svy: null_ele, superimpose, ref=q1d
 
 
 !Old split line:  Q2D_full  : LINE=(Q2D,Q2D)
 
 q2d_full: line = (q2d)
 q2d[L] = 2*q2d[L]
+q2d_svy: null_ele, superimpose, ref=q2d
 
   FF : LINE=(BEGFF20,D11FF,MFFF,Q5FF_full,D10FF,M1FF,D9FF,BL20_4,D8FF,XC1FF,D8AFF,YC1FF,D8BFF,M2FF,D7FF,Q4FF_full,D6FF,
          Q3FF_full,DKRK1,KRK,DKRK2,YC2FF,D4FF,USTHz,DBMARK67,D3AFF,DSTHz,D3FF,XC3FF,DXTC1,XTCAVF_full,DXTC2,Q2FF_full,D2AFF,M3FF,
-         D2FF,Q1FF_full,D1AFF,M4FF,D1FF,Q0FF_full,D0FF,M5FF,DMQ0FF,ENDFF20)
+         D2FFa,YC4FF,D2FFb,Q1FF_full,D1AFF,M4FF,D1FFa,XC4FF,D1FFb,Q0FF_full,D0FF,M5FF,DMQ0FF,ENDFF20)
 
-  EXPT : LINE=(BEGEXPT20,DEX20_1,EXTHOLE1,DEX20_2,USOTR,DEX20_3,IQMON20,DEX20_4,BEWIN1,DEX20_5,LCUBE,DEX20_6,PIC_CENT,
-         DEX20_7,FILG,DEX20_8,FILS,DEX20_9,IPOTR1P,DEX20_10,IPOTR1,DEX20_10a,PENT,MIP,DEX20_11,IPWS1,DEX20_12,PEXT,DEX20_12a,
-         IPOTR2,DEX20_13,IM3255,DEX20_14,BEWIN2,DEX20_15,IPWS3,DEX20_16,DSOTR,ENDEXPT20)
+  EXPT : LINE=(BEGEXPT20,DEX20_1,EXTHOLE1,DEX20_2,BEWIN1,DEX20_3,IQMON20,DEX20_4,DEX20_5,LCUBE,DEX20_6,PIC_CENT,DEX20_7,
+         FILG,DEX20_8,FILS,DEX20_9,IPOTR1P,DEX20_10,IPOTR1,DEX20_10a,PENT,MIP,DEX20_11,IPWS1,DEX20_12,PEXT,DEX20_12a,IPOTR2,
+         DEX20_13,IM3255,DEX20_14,BEWIN2,DEX20_15,IPWS3,DEX20_16,DSOTR,ENDEXPT20)
 
-  ! z= 1998.708952
-  SPECT : LINE=(BEGSPECT20,DMQ0D,Q0D_full,DM1QEX,M0EX,D1D,WDSOTR,DMQ1D,Q1D_full,DM1QEX,M1EX,D2D,DMQ2D,Q2D_full,DM1QEX,
-         M2EX,D3D,XC1EX,D4D,B5D36_full,DM3BEX,M3EX,D5D,BEGPDC,D6D,ENDPDC,D7D,BEGEDC,D8D,ENDEDC,D9D,DTOTR,D10D,BFLYMID,D11D,
-         EXTWIN,D12D,PGAM1,D13D,CNEAR,D14D,PDUMP,LAIRG,MAINDUMP,DBMARK30,ENDSPECT20)
+  SPECT_1 : LINE=(BEGSPECT20_1,DMQ0D,Q0D_full,DM1QEX,M0EX,D1D,WDSOTR,DMQ1D,Q1D_full,DM1QEX,M1EX,D2D,DMQ2D,Q2D_full,
+         DM1QEX,M2EX,D3Dp,ENDSPECT20_1)
 
+  PAXBYPASS : LINE=(BEGPAXBYP,DPBYP1,XC1EX,DPBYP2,ENDPAXBYP)
 
-  FF20H : LINE=(FF,EXPT,SPECT)
+  SPECT_2 : LINE=(BEGSPECT20_2,D4Dp,B5D36_full,DM3BEX,M3EX,D5D,PDCBEG,D6D,PDCEND,D7D,EDCBEG,D8D,EDCEND,D9D,DTOTR,D10D,
+         BFLYMID,D11D,EXTWIN,D12D,PGAM1,D13D,CNEAR,D14D,PDUMP,LAIRG,MAINDUMP,DBMARK30,ENDSPECT20_2)
+
+  FF20H : LINE=(FF,EXPT,SPECT_1,PAXBYPASS,SPECT_2)
+
+  PAXCHICANE : LINE=(BEGPAX,BCX203280_full,DBPo,BCX203282_full,DBPi,PAXMID,DBPi,BCX203284_full,DBPo,BCX203286_full,
+         ENDPAX)
 
 ! ==============================================================================
 
-  SECTOR20 : LINE=(BC20W,FF20H)
+  SECTOR20     : LINE=(BC20W,FF20H)
+  SECTOR20_PAX : LINE=(BC20W,FF,EXPT,SPECT_1,PAXCHICANE,SPECT_2)
 
 ! ------------------------------------------------------------------------------
 

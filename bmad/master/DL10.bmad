@@ -1,5 +1,5 @@
 
-! *** OPTICS=FACET2-16FEB24 ***
+! *** OPTICS=FACET2-preRelease ***
 
 ! ==============================================================================
 ! Modification History
@@ -41,9 +41,7 @@
 
 ! vertically deflecting transverse cavity
 
-!tcy10490: lcavity, rf_frequency = sbandf * 1e6, type = "short TCAV", l = 0.6680236/2
-!2024-10-17 NMM edit
-tcy10490: crab_cavity, rf_frequency = sbandf * 1e6, type = "short TCAV", l = 0.6680236/2, TILT = 1.571
+tcy10490: lcavity, rf_frequency = sbandf * 1e6, type = "short TCAV", l = 0.6680236/2, cavity_type = traveling_wave
 
 ! ==============================================================================
 ! SBEN
@@ -149,18 +147,21 @@ r34u = lhun*sincargu
 
 !------- Laser Heater Undulator for Copper Linac -------
 my_lh_und_k = 0
-um10466: wiggler, 
-        type = "laser_heater_undulator",
-        L_period = 0.054, 
-        n_period = 10, 
-        b_max = my_lh_und_k * 2*pi*m_electron / (c_light * 0.054), 
-        L = 10*0.054 ! Was: 0.506263, 
-        ds_step = 0.054
-        
-um10466[L] = um10466[L]/2 ! Will be doubled in desplitting process. 
+
+!------- Laser Heater Undulator for Copper Linac -------
+!um10466: wiggler, 
+!        type = "laser_heater_undulator",
+!        L_period = 0.054, 
+!        n_period = 10, 
+!        b_max = my_lh_und_k * 2*pi*m_electron / (c_light * 0.054), 
+!        L = 10*0.054 ! Was: 0.506263, 
+!        ds_step = 0.054
+!
+!um10466[L] = um10466[L]/2 ! Will be doubled in desplitting process. 
+
 !--------------------------------- !,                            &
-!old: um10466: taylor, type = "LHund", l = lhun, tt11 = 1.0, tt12 = lhun, tt21 = 0, tt22 = 1.0, tt33 = cos(lhun*sqrt(kqlh)),
-!old           tt34 = r34u, tt43 = -sin(lhun*sqrt(kqlh))*sqrt(kqlh), tt44 = cos(lhun*sqrt(kqlh)), tt55 = 1.0, tt66 = 1.0
+um10466: taylor, type = "LHund", l = lhun, tt11 = 1.0, tt12 = lhun, tt21 = 0, tt22 = 1.0, tt33 = cos(lhun*sqrt(kqlh)),
+         tt34 = r34u, tt43 = -sin(lhun*sqrt(kqlh))*sqrt(kqlh), tt44 = cos(lhun*sqrt(kqlh)), tt55 = 1.0, tt66 = 1.0
    !R56=Lhun/(gami^2)*(1+(K_und^2)/2)
  !endcomment
 
@@ -227,11 +228,17 @@ de01c: drift, l = 0.094781
 dh02a: drift, l = 0.0809678529
 
 ! Shorten so that lh_und has an integer number of poles
+
+! Shorten so that lh_und has an integer number of poles
 dh02b: drift, l = 0.0846296264 - ( 10*0.054 - 0.506263 ) /2
+!old: dh02b: drift, l = 0.0846296264 - ( 10*0.054 - 0.506263 ) /2
 !old: dh02b: drift, l = 0.0846296264
 
 ! Shorten so that lh_und has an integer number of poles
+
+! Shorten so that lh_und has an integer number of poles
 dh03a: drift, l = 0.0845477112 - ( 10*0.054 - 0.506263 ) /2
+!old: dh03a: drift, l = 0.0845477112 - ( 10*0.054 - 0.506263 ) /2
 !old: dh03a: drift, l = 0.0845477112
 dh03b: drift, l = 0.0745817596
 dh05a: drift, l = 0.1229007
@@ -338,29 +345,33 @@ enddl10: marker
 !Old split line:  BCX10451_full : LINE=(BCX10451a,BCX10451b)
 
 bcx10451_full: line = (bcx10451)
+bcx10451_svy: null_ele, superimpose, ref=bcx10451, ref_origin=beginning, offset=bcx10451a[l] !bend survey marker
 
 
 !Old split line:  BCX10461_full : LINE=(BCX10461a,BCX10461b)
 
 bcx10461_full: line = (bcx10461)
+bcx10461_svy: null_ele, superimpose, ref=bcx10461, ref_origin=beginning, offset=bcx10461a[l] !bend survey marker
 
 
-!Old split line:  UM10466_full  : LINE=(UM10466,HTRUNDF,UM10466)
+UM10466_full  : LINE=(UM10466,HTRUNDF,UM10466)
 
-um10466_full: line = (um10466)
-um10466[L] = 2*um10466[L]
-htrundf[superimpose] = T
-htrundf[ref] = um10466
+!um10466_full: line = (um10466)
+!um10466[L] = 2*um10466[L]
+!htrundf[superimpose] = T
+!htrundf[ref] = um10466
 
 
 !Old split line:  BCX10475_full : LINE=(BCX10475a,BCX10475b)
 
 bcx10475_full: line = (bcx10475)
+bcx10475_svy: null_ele, superimpose, ref=bcx10475, ref_origin=beginning, offset=bcx10475a[l] !bend survey marker
 
 
 !Old split line:  BCX10481_full : LINE=(BCX10481a,BCX10481b)
 
 bcx10481_full: line = (bcx10481)
+bcx10481_svy: null_ele, superimpose, ref=bcx10481, ref_origin=beginning, offset=bcx10481a[l] !bend survey marker
 
   LH10 : LINE=(LH10BEG,BCX10451_full,DH01,BCX10461_full,DH02a,PR10465,DH02b,UM10466_full,DH03a,PR10471,DH03b,
          BCX10475_full,DH04,BCX10481_full,LH10END)
@@ -370,6 +381,7 @@ bcx10481_full: line = (bcx10481)
 !Old split line:  BX10661_full : LINE=(BX10661a,BX10661b)
 
 bx10661_full: line = (bx10661)
+bx10661_svy: null_ele, superimpose, ref=bx10661, ref_origin=beginning, offset=bx10661a[l] !bend survey marker
 
 
 !Old split line:  QB10731_full : LINE=(QB10731,BPM10731,QB10731)
@@ -383,6 +395,7 @@ bpm10731[ref] = qb10731
 !Old split line:  BX10751_full : LINE=(BX10751a,BX10751b)
 
 bx10751_full: line = (bx10751)
+bx10751_svy: null_ele, superimpose, ref=bx10751, ref_origin=beginning, offset=bx10751a[l] !bend survey marker
 
   BX0F : LINE=(BX0FBEG,BX10661_full,DB00a,PR10711,DB00b,XC10721,YC10722,DB00c,QB10731_full,DB01,BX10751_full,CNT0F,
          BX0FEND)
@@ -412,6 +425,7 @@ bpm10425[ref] = qe10425
 
 qe10441_full: line = (qe10441)
 qe10441[L] = 2*qe10441[L]
+qe10441_svy: null_ele, superimpose, ref=qe10441
 
 
 !Old split line:  QE10511_full : LINE=(QE10511,BPM10511,QE10511)
