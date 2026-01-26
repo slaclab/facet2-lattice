@@ -1,7 +1,7 @@
 function beamLine=model_beamLineFACET2e()
 %
 % -----------------------------------------------------------------------------
-% *** OPTICS=FACET2-28JAN2026 ***
+% *** OPTICS=28JAN2026 ***
 % -----------------------------------------------------------------------------
 %
 % Returns Matlab model beam lines that correspond to defined FACET-II
@@ -15,7 +15,7 @@ function beamLine=model_beamLineFACET2e()
 % element BEGDL10, at 135 MeV):
 %
 %  beamLine.F2_ELECI     = BEGDL10 to main electron beam dump (PAX chicane bypassed)
-%  beamLine.F2_ELEC_PAXI = BEGDL10 to main electron beam dump (PAX chicane included)
+%  beamLine.F2_ELECI_PAX = BEGDL10 to main electron beam dump (PAX chicane included)
 %  beamLine.F2_SCAVI     = BEGDL10 to positron production target
 %
 % -----------------------------------------------------------------------------
@@ -43,7 +43,7 @@ beamLine.F2_ELECI=[FACET2E]';
 
 
 [FACET2E,FACET2E_PAX,FACET2S,INJ]=bl();
-beamLine.F2_ELEC_PAXI=[FACET2E_PAX]';
+beamLine.F2_ELECI_PAX=[FACET2E_PAX]';
 
 
 [FACET2E,FACET2E_PAX,FACET2S,INJ]=bl();
@@ -63,7 +63,7 @@ EMASS  = 0.510998902e-3; % electron rest mass [GeV]
 PMASS  = 0.938271998;    % proton rest mass [GeV]
 CLIGHT = 2.99792458e8;   % speed of light [m/s]
 
-% *** OPTICS=FACET2-preRelease ***
+% *** OPTICS=FACET2-28JAN2026 ***
 
 
 
@@ -89,7 +89,7 @@ CLIGHT = 2.99792458e8;   % speed of light [m/s]
 % ------------------------------------------------------------------------------
 % element and line definitions
 % ------------------------------------------------------------------------------
-% *** OPTICS=FACET2-preRelease ***
+% *** OPTICS=FACET2-28JAN2026 ***
 % ------------------------------------------------------------------------------
 % constants and global parameters (from FACET2e_baseline.mat)
 % ------------------------------------------------------------------------------
@@ -196,7 +196,7 @@ BMAX19 =  70;
 % ------------------------------------------------------------------------------
 % load lattice definitions
 % ------------------------------------------------------------------------------
-% *** OPTICS=FACET2-preRelease ***
+% *** OPTICS=FACET2-28JAN2026 ***
 % FACET2 common parameters
 % ==============================================================================
 % Modification History
@@ -235,7 +235,7 @@ DAQ3={'dr' '' LDAQ3 []}';
 DAQ4={'dr' '' LDAQ4 []}';
 % ------------------------------------------------------------------------------
 
-% *** OPTICS=FACET2-preRelease ***
+% *** OPTICS=FACET2-28JAN2026 ***
 % ==============================================================================
 % Modification History
 % ------------------------------------------------------------------------------
@@ -405,7 +405,7 @@ LL0B =  L0BF__1{3}+L0BF__2{3}+XC10381{3}+YC10382{3}+L0BF__3{3}+L0BF__4{3}+ XC104
 
 % ------------------------------------------------------------------------------
 
-% *** OPTICS=FACET2-preRelease ***
+% *** OPTICS=FACET2-28JAN2026 ***
 % ==============================================================================
 % Modification History
 % ------------------------------------------------------------------------------
@@ -691,7 +691,7 @@ QM10781_FULL=[QM10781,BPM10781,QM10781];
 DL10=[BEGDL10,DE00,QE10425_FULL,DE01A,IM10431,DE01B,VV10435,DE01C,QE10441_FULL,DH00,LH10,DH05A,TCY10490_FULL,DH05B,QE10511_FULL,DE03A,XC10521,YC10522,DE03B,QE10525_FULL,DE04A,VV10545,DE04B,WALLBEG,IN10WALL,WALLEND,DE05A,RST10551,DE05B,WS10561,DE05C1,MRK0F,DE05C2,PR10571,DE05D,BPM10581,DE05E,IM10591,DE05F,BZ10596,DE05G,QM10631_FULL,DE06A,XC10641,YC10642,DE06B,QM10651_FULL,DE07,BX0F,DM00A,XC10761,YC10762,DM00B,QM10771_FULL,DM01,QM10781_FULL,DM02A,IM10791,DM02B,VV10795,DM02C,ENDDL10];
 % ==============================================================================
 
-% *** OPTICS=FACET2-preRelease ***
+% *** OPTICS=FACET2-28JAN2026 ***
 % ==============================================================================
 % Modification History
 % ------------------------------------------------------------------------------
@@ -815,7 +815,7 @@ Q11301_FULL=[Q11301,BPM11301,Q11301];
 L1F=[BEGL1F,K11_1B_FULL,DAQA1,QA11132_FULL,DAQA2,K11_1C_FULL,K11_1D_FULL,DAQ1,Q11201_FULL,DAQ2,K11_2A_FULL,K11_2B_FULL,DAQA3,QA11265_FULL,DAQA4,K11_2C_FULL,DAQA5,Q11301_FULL,DAQA6,VV11302,DL1X,L1XF_FULL,DM10A,VV11308,ENDL1F];
 % ==============================================================================
 
-% *** OPTICS=FACET2-preRelease ***
+% *** OPTICS=FACET2-28JAN2026 ***
 % ==============================================================================
 % Modification History
 % ------------------------------------------------------------------------------
@@ -1014,7 +1014,7 @@ BC11_2=[BEGBC11_2,DM13A,PR11357,DM13B,QM11358_FULL,DM14A,BL11356,IM11360,DM14B,Q
 BC11=[BC11_1,BC11_2];
 % ==============================================================================
 
-% *** OPTICS=FACET2-preRelease ***
+% *** OPTICS=FACET2-28JAN2026 ***
 % ==============================================================================
 % Modification History
 % ------------------------------------------------------------------------------
@@ -1615,7 +1615,7 @@ LI14=[LI14BEG,K14_1,DAQ1,Q14201_FULL,DAQ2,K14_2,DAQ1,Q14301_FULL,DAQ2,K14_3,DAQ1
 L2F=[BEGL2F,LI11,LI12,LI13,LI14,ENDL2F];
 % ==============================================================================
 
-% *** OPTICS=FACET2-preRelease ***
+% *** OPTICS=FACET2-28JAN2026 ***
 % ==============================================================================
 % Modification History
 % ------------------------------------------------------------------------------
@@ -1860,7 +1860,7 @@ Q14901_FULL=[Q14901,BPM14901,Q14901];
 BC14_2=[BEGBC14_2,CNT2B,DM23A,VV14887,DM23B,BL14888,DM23C,QM14891_FULL,DM24A,IM14890,DM24B,Q14901_FULL,DM25,PR14892,DM25A,VV14940,DM25B,ENDBC14_2];
 % ==============================================================================
 
-% *** OPTICS=FACET2-preRelease ***
+% *** OPTICS=FACET2-28JAN2026 ***
 % ==============================================================================
 % Modification History
 % ------------------------------------------------------------------------------
@@ -2783,7 +2783,7 @@ L3F=[L3F_1,L3F_2];
 %CALL, FILENAME="BC20E.xsif"  FACET2 Sector 20 upgrade
 %CALL, FILENAME="FF20E.xsif"  FACET2 Sector 20 upgrade
 %CALL, FILENAME="FF20H.xsif"  FACET2 "hybrid"
-% *** OPTICS=FACET2-preRelease ***
+% *** OPTICS=FACET2-28JAN2026 ***
 % ==============================================================================
 % FACET e- optics
 % ------------------------------------------------------------------------------
@@ -3516,7 +3516,7 @@ SECTOR20=[BC20W,FF20H];
 SECTOR20_PAX=[BC20W,FF,EXPT,SPECT_1,PAXCHICANE,SPECT_2];
 % ------------------------------------------------------------------------------
 
-% *** OPTICS=FACET2-preRelease ***
+% *** OPTICS=FACET2-28JAN2026 ***
 % ==============================================================================
 % Modification History
 % ------------------------------------------------------------------------------
@@ -3824,7 +3824,7 @@ KQ701={'mo' 'KQ701' 0 []}';% 0
 LI19X=[BEGSCAV,KKY170,DAA7M,DAQ1,Q19501,Q19501,DAQ2,K19_5,DAQ1,Q19601,Q19601,DAQ2,K19_6,DAQ1,Q19701,KQ701,Q19701,MSCAV];
 % ==============================================================================
 
-% *** OPTICS=FACET2-preRelease ***
+% *** OPTICS=FACET2-28JAN2026 ***
 % F2_ELEC     : BEGINJ /ENDSPECT20
 % F2_SCAV     : BEGSCAV/ENDSCAV
 % F2_ELEC_PAX : PAXBEG /PAXEND
@@ -5119,33 +5119,33 @@ TWI=struct('BETX',BXI,'ALFX',AXI,'BETY',BYI,'ALFY',AYI);
 % ------------------------------------------------------------------------------
 %STOP
 % ------------------------------------------------------------------------------
-%COMMENT for testing the Matlab model
+% %for testing the Matlab model
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-%ENDCOMMENT
 % ------------------------------------------------------------------------------
 %COMMENT standard output
 
@@ -5194,80 +5194,5 @@ TWI=struct('BETX',BXI,'ALFX',AXI,'BETY',BYI,'ALFY',AYI);
 
 
 %ENDCOMMENT
-% ------------------------------------------------------------------------------
-
-% ------------------------------------------------------------------------------
-% FACET2e working stuff
-% ------------------------------------------------------------------------------
-% %standard output
-% 
-% 
-% %VALUE, DM23A[L]
-% %VALUE, DM23B[L]
-% %VALUE, DM23C[L]
-% %VALUE, DM24A[L]
-% 
-% 
-% %VARY, DM23A[L], STEP=1.E-6
-% %VARY, DM23B[L], STEP=1.E-6
-% %VARY, DM23C[L], STEP=1.E-6
-% %VARY, DM24A[L], STEP=1.E-6
-% 
-% 
-% %CONSTR, VV14887,  ZS=1420.916000+0.0759
-% %CONSTR, BL14888,  ZS=1421.030235+0.1524
-% %CONSTR, BPM14891, ZS=1421.311100+0.0472
-% %CONSTR, IM14890,  ZS=1421.671000-0.1095
-% 
-% 
-% 
-% 
-% %VALUE, DM23A[L]
-% %VALUE, DM23B[L]
-% %VALUE, DM23C[L]
-% %VALUE, DM24A[L]
-% 
-% 
-% 
-
-% ------------------------------------------------------------------------------
-% 
-% 
-% %SET, ABP, 0
-% 
-% 
-% %, Z0=2002.886872
-
-% 
-% 
-% 
-% %VALUE, D2FFa[L],D2FFb[L],D2FF[L],D2FFa[L]+D2FFb[L]
-% %VALUE, D1FFa[L],D1FFb[L],D1FF[L],D1FFa[L]+D1FFb[L]
-% %VALUE, DEX20_2[L],DEX20_3[L],DEX20_2[L]+DEX20_3[L]
-% %VALUE, DEX20_3[L],DEX20_4[L],DEX20_3[L]+DEX20_4[L]
-% 
-% 
-% %VARY, D2FFa[L], STEP=1.E-6
-% %VARY, D1FFa[L], STEP=1.E-6
-% 
-% 
-% 
-% %CONSTR, YC4FF,      ZS=1988.752
-% %CONSTR, XC4FF,      ZS=1990.332
-% %CONSTR, BEWIN1,     ZS=1991.790
-% %CONSTR, IQMON20,    ZS=1991.850
-% 
-% 
-% 
-% 
-% 
-% %VALUE, D2FFa[L],D2FFb[L],D2FF[L],D2FFa[L]+D2FFb[L]
-% %VALUE, D1FFa[L],D1FFb[L],D1FF[L],D1FFa[L]+D1FFb[L]
-% %VALUE, DEX20_2[L],DEX20_3[L],DEX20_2[L]+DEX20_3[L]
-% %VALUE, DEX20_3[L],DEX20_4[L],DEX20_3[L]+DEX20_4[L]
-% 
-% 
-% 
-
 % ------------------------------------------------------------------------------
 
