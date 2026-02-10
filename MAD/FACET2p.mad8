@@ -1,6 +1,6 @@
-  TITLE, "FACET2 e+ (February 16, 2024)"
+  TITLE, "FACET2: e+ (preRelease)"
 
-! *** OPTICS=FACET2-16FEB24 ***
+! *** OPTICS=FACET2-28JAN2026 ***
 
   ASSIGN, PRINT="FACET2p.print"
   ASSIGN, ECHO="FACET2p.echo"
@@ -29,25 +29,6 @@
   TW11: BETA0, BETX=BX11, ALFX=AX11, BETY=BY11, ALFY=AY11
 
 ! ------------------------------------------------------------------------------
-! match
-! ------------------------------------------------------------------------------
-
-  MFACET2p : SUBROUTINE
-
-  ! LI19 bulk (201-801) I = 47.011 A, max boost < 14 A
-
-    SET, KQ19201,  0.830309665322
-    SET, KQ19301, -0.957992680017
-    SET, KQ19401,  0.911819057822
-    SET, KQ19501, -0.99324573669
-    SET, KQ19601,  0.763474646882
-    SET, KQ19701, -0.864211071507
-    SET, KQ19801,  0.963956419261
-    SET, KQ19851, -1.843805759451
-    SET, KQ19871,  1.164313396055
-  ENDSUBROUTINE
-
-! ------------------------------------------------------------------------------
 ! BEAM definition
 ! ------------------------------------------------------------------------------
 
@@ -66,7 +47,7 @@
   OPTION, ECHO
 
  !CALL, FILENAME="FACET2p_match.mad8"
- !CALL, FILENAME="RDB/FACET2p_makeSymbols.mad8"
+ !CALL, FILENAME="FACET2p_makeSymbols.mad8"
 
  !STOP
 
@@ -75,7 +56,9 @@
  !COMMENT
     BEAM, ENERGY=E11
     USE, F2_POSI
-    MFACET2p
+    OPTION, -WARN
+      CALL, FILENAME="MFACET2p.xsif"
+    OPTION, WARN
     PRINT, FULL
     SURVEY, TAPE="FACET2p_survey.tape", &
       X0=Xi, Y0=Yi, Z0=Zi, THETA0=THETAi, PHI0=PHIi, PSI0=PSIi
@@ -103,15 +86,12 @@
       STYLE=100, -SPLINE, RANGE=#S/BEGBC20, FILE="FACET2p", &
       TITLE="Linac"
     PLOT, TABLE=TWISS, HAXIS=S, VAXIS=BETX,BETY, &
-      STYLE=100, SPLINE, RANGE=LI18beg/MAINDUMP, FILE="FACET2p", &
-      TITLE="LI18/19/20"
-    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=BETX,BETY, &
       STYLE=100, SPLINE, RANGE=BEGBC20/ENDBC20, FILE="FACET2p", &
       TITLE="BC20"
     PLOT, TABLE=TWISS, HAXIS=S, VAXIS=DX,DY, &
       STYLE=100, -SPLINE, RANGE=BEGBC20/ENDBC20, FILE="FACET2p", &
       TITLE="BC20"
-    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=RBETX,RBETY, &
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=BETX,BETY, &
       STYLE=100, SPLINE, RANGE=ENDBC20/MAINDUMP, FILE="FACET2p", &
       TITLE="Final Focus + Spectrometer"
     PLOT, TABLE=TWISS, HAXIS=S, VAXIS=DX,DY, &

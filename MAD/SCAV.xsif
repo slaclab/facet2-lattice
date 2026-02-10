@@ -1,8 +1,11 @@
 
-! *** OPTICS=FACET2-16FEB24 ***
+! *** OPTICS=FACET2-28JAN2026 ***
 
 ! ==============================================================================
 ! Modification History
+! ------------------------------------------------------------------------------
+! 28-JAN-2026, M. Woodley
+!  * add "x" to names of BPMs in off-axis quadrupoles to avoid Bmad problems
 ! ------------------------------------------------------------------------------
 ! 31-DEC-2018, M. Woodley
 !  * use original SCAVX19 kicker strength
@@ -304,6 +307,12 @@
 ! diagnostics
 ! ------------------------------------------------------------------------------
 
+! add "x" to names of BPMs in off-axis quadrupoles to avoid Bmad problems
+
+  BPM19501x : MONI
+  BPM19601x : MONI
+  BPM19701x : MONI
+
 ! BPMs (LCLS-II type designations)
 
   BPM57170 : MONI
@@ -357,9 +366,9 @@
 ! ------------------------------------------------------------------------------
 
   BKY170_full  : LINE=(BKY170a,BKY170b)
-  Q19501x_full : LINE=(Q19501x,BPM19501,Q19501x)
-  Q19601x_full : LINE=(Q19601x,BPM19601,Q19601x)
-  Q19701x_full : LINE=(Q19701x,BPM19701,Q19701x)
+  Q19501x_full : LINE=(Q19501x,BPM19501x,Q19501x)
+  Q19601x_full : LINE=(Q19601x,BPM19601x,Q19601x)
+  Q19701x_full : LINE=(Q19701x,BPM19701x,Q19701x)
 
   SCAV19X : LINE=(BEGSCAV,&
     BKY170_full,DAA7m,DAQ1,&

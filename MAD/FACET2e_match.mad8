@@ -1,5 +1,5 @@
 
-! *** OPTICS=FACET2-16FEB24 ***
+! *** OPTICS=FACET2-28JAN2026 ***
 
 ! ==============================================================================
 ! Modification History
@@ -324,7 +324,7 @@
     SET, BmaxL2, TWf[BETX]
     SHOW, TWf
     PLOT, TABLE=TWISS, HAXIS=S, VAXIS=BETX,BETY, &
-      STYLE=100, SPLINE, FILE="FACET2e"
+      STYLE=100, SPLINE, FILE="match"
   ENDSUBROUTINE
 
 ! ------------------------------------------------------------------------------
@@ -426,7 +426,7 @@
     BEAM, ENERGY=Ei
     USE, FACET2e
     PRINT, FULL
-    TWISS, BETA0=TWi, SAVE, TAPE="FACET2e_twiss.tape"
+    TWISS, BETA0=TWi, SAVE, TAPE="twiss.tape"
     PLOT, TABLE=TWISS, HAXIS=S, VAXIS=BETX,BETY, &
       STYLE=100, SPLINE, RANGE=BEGL2F/ENDBC14E, FILE="match"
     PLOT, TABLE=TWISS, HAXIS=S, VAXIS=BETX,BETY, &
@@ -571,7 +571,7 @@
     USE, FACET2e
    !PRINT, FULL
     SAVEBETA, TWm, MSCAVEXT
-    TWISS, BETA0=TWi, SAVE, TAPE="FACET2e_twiss.tape"
+    TWISS, BETA0=TWi, SAVE, TAPE="twiss.tape"
     SHOW, TWm
     PLOT, TABLE=TWISS, HAXIS=S, VAXIS=BETX,BETY, &
       STYLE=100, SPLINE, RANGE=BEGL3F_1/LI16BEG, FILE="match"
@@ -698,7 +698,7 @@
     ENDMATCH
     VALUE, dzB5D,dzDUMP
     BEAM, ENERGY=E0
-    USE, F2_ELEC
+    USE, F2_ELEC_BYP
     PRINT, FULL
     SURVEY, X0=Xc, Y0=Yc, Z0=Zc, THETA0=THETAc, PHI0=PHIc, PSI0=PSIc
   ENDSUBROUTINE

@@ -1,8 +1,11 @@
 
-! *** OPTICS=FACET2-16FEB24 ***
+! *** OPTICS=FACET2-28JAN2026 ***
 
 ! ==============================================================================
 ! FACET e- optics
+! ------------------------------------------------------------------------------
+! 07-JAN-2026, M. Woodley
+!  * add PAX chicane per C. Emma
 ! ------------------------------------------------------------------------------
 ! 17-DEC-2021, M. Woodley
 !  * change WIGE "_full" definitions for Bmad translation per C. Mayes
@@ -221,12 +224,6 @@
   S3ER_2 : SEXT, TYPE="1.625S9.06", L=LS3/2, APER=AS, K2=KS3E
   S2ER   : SEXT, TYPE="1.625S29.2", L=LS2/2, APER=AS, K2=KS2E
   S1ER   : SEXT, TYPE="1.625S9.06", L=LS1/2, APER=AS, K2=KS1E
-
-! ==============================================================================
-! MULTs
-! ------------------------------------------------------------------------------
-
-! see FACET_LI20_MULT.xsif
 
 ! ==============================================================================
 ! DRIFTs
@@ -635,6 +632,73 @@
 ! BENDs
 ! ------------------------------------------------------------------------------
 
+! PAX chicane
+! - coils/yoke to the left (wall side)
+! - offsets beam toward +X (to the left)
+! - use series approximation for sinc(x)=sin(x)/x to allow ABP=0
+
+! GBP  : chicane bend gap height (m)
+! ZBP  : chicane bend "Z" length (m)
+! FBP  : chicane bend field integral (measured)
+! BBP  : nominal bend field (kG)
+! RBP  : nominal bend radius (m) ... brho/B
+! LBP  : chicane bend path length (m)
+! ABP  : chicane bend angle (rad)
+! ABPs : "short" half chicane bend angle (rad)
+! LBPs : "short" half chicane bend path length (m)
+! ABPl : "long" half chicane bend angle (rad)
+! LBPl : "long" half chicane bend path length (m)
+
+  GBP      := 0.008
+  ZBP      := 13.08*in2m !0.332
+  FBP      := 1.1112
+  BBP      := 11.4
+  RBP      := (Cb*E20)/BBP
+  LBP      := RBP*ASIN(ZBP/RBP)
+  ABP      := LBP/RBP
+  ABP_2    := ABP*ABP
+  ABP_4    := ABP_2*ABP_2
+  ABP_6    := ABP_4*ABP_2
+  SINCABP  := 1-ABP_2/6+ABP_4/120-ABP_6/5040 !~sinc(ABP)=sin(ABP)/ABP
+  ABPs     := ASIN(SIN(ABP)/2)
+  ABPs_2   := ABPs*ABPs
+  ABPs_4   := ABPs_2*ABPs_2
+  ABPs_6   := ABPs_4*ABPs_2
+  SINCABPs := 1-ABPs_2/6+ABPs_4/120-ABPs_6/5040 !~sinc(ABPs)=sin(ABPs)/ABPs
+  LBPs     := ZBP/2/SINCABPs
+  ABPl     := ABP-ABPs
+  LBPl     := LBP-LBPs
+
+ !VALUE, Cb*E20*ABP !BL (kG-m)
+
+  BCX203280a : SBEN, TYPE="0.315D13.08-C", L=LBPs, ANGLE=-ABPs, HGAP=GBP/2, &
+                     E1=0, FINT=FBP, FINTX=0
+  BCX203280b : SBEN, TYPE="0.315D13.08-C", L=LBPl, ANGLE=-ABPl, HGAP=GBP/2, &
+                     FINT=0, E2=-ABP, FINTX=FBP
+  BCX203282a : SBEN, TYPE="0.315D13.08-C", L=LBPl, ANGLE=+ABPl, HGAP=GBP/2, &
+                     E1=+ABP, FINT=FBP, FINTX=0
+  BCX203282b : SBEN, TYPE="0.315D13.08-C", L=LBPs, ANGLE=+ABPs, HGAP=GBP/2, &
+                     FINT=0, E2=0, FINTX=FBP
+  BCX203284a : SBEN, TYPE="0.315D13.08-C", L=LBPs, ANGLE=+ABPs, HGAP=GBP/2, &
+                     E1=0, FINT=FBP, FINTX=0
+  BCX203284b : SBEN, TYPE="0.315D13.08-C", L=LBPl, ANGLE=+ABPl, HGAP=GBP/2, &
+                     FINT=0, E2=+ABP, FINTX=FBP
+  BCX203286a : SBEN, TYPE="0.315D13.08-C", L=LBPl, ANGLE=-ABPl, HGAP=GBP/2, &
+                     E1=-ABP, FINT=FBP, FINTX=0
+  BCX203286b : SBEN, TYPE="0.315D13.08-C", L=LBPs, ANGLE=-ABPs, HGAP=GBP/2, &
+                     FINT=0, E2=0, FINTX=FBP
+
+! define unsplit SBENs for BMAD ... not used by MAD
+
+  BCX203280 : SBEN, TYPE="0.315D13.08-C", HGAP=GBP/2, L=LBP, ANGLE=-ABP, &
+                    E1=0, FINT=FBP, E2=-ABP, FINTX=FBP
+  BCX203282 : SBEN, TYPE="0.315D13.08-C", HGAP=GBP/2, L=LBP, ANGLE=+ABP, &
+                    E1=+ABP, FINT=FBP, E2=0, FINTX=FBP
+  BCX203284 : SBEN, TYPE="0.315D13.08-C", HGAP=GBP/2, L=LBP, ANGLE=+ABP, &
+                    E1=0, FINT=FBP, E2=+ABP, FINTX=FBP
+  BCX203286 : SBEN, TYPE="0.315D13.08-C", HGAP=GBP/2, L=LBP, ANGLE=-ABP, &
+                    E1=-ABP, FINT=FBP, E2=0, FINTX=FBP
+
 ! spectrometer / dump bend
 
   ABD := 0.006
@@ -710,12 +774,17 @@
   D0FF   : DRIF, L=0.027833
   DMQ0FF : DRIF, L=0.17701988 !0.177019
 
+  D2FFa  : DRIF, L=0.591951477022 !0.829867
+  D2FFb  : DRIF, L=D2FF[L]-D2FFa[L]
+  D1FFa  : DRIF, L=0.601951477023 !0.837967
+  D1FFb  : DRIF, L=D1FF[L]-D1FFa[L]
+
 ! experiment table
 
   DEX20_1   : DRIF, L=0.072982138228781
-  DEX20_2   : DRIF, L=0.26
-  DEX20_3   : DRIF, L=0.1
-  DEX20_4   : DRIF, L=0.06
+  DEX20_2   : DRIF, L=0.229949458794    !0.26
+  DEX20_3   : DRIF, L=0.06              !0.1
+  DEX20_4   : DRIF, L=0.130050541206    !0.06
   DEX20_5   : DRIF, L=0.12
   DEX20_6   : DRIF, L=0.72
   DEX20_7   : DRIF, L=0.4017
@@ -754,20 +823,35 @@
   D14D   : DRIF, L=1.31
   LAIRG  : DRIF, L=1.675292943463
 
+! PAX chicane, and chicane bypass
+
+  ZB2Bo := 0.188468 !0.189 !outer bend-to-bend drift
+  ZB2Bi := ZB2Bo/2         !half inner bend-to-bend drift (to chicane center)
+  LPAX  := 4*ZBP+3*ZB2Bo   !total PAX chicane Z-length
+
+  DBPo   : DRIF, L=ZB2Bo/COS(ABP)
+  DBPi   : DRIF, L=ZB2Bi
+  D3Dp   : DRIF, L=0.369872158794
+  D4Dp   : DRIF, L=D3D[L]+D4D[L]-LPAX-D3Dp[L]
+  DPBYP1 : DRIF, L=ZBP+ZB2Bo+ZBP+ZB2Bo+ZBP/2 !same Z as 3rd PAX dipole
+  DPBYP2 : DRIF, L=LPAX-DPBYP1[L]
+
 ! ==============================================================================
 ! XCORs
 ! ------------------------------------------------------------------------------
 
-  XC1FF : HKIC                  !X203026
-  XC3FF : HKIC, TYPE="3D8.8MK2" !0.815" gap
-  XC1EX : HKIC, TYPE="3D4"      !1.181" gap
+  XC1FF : HKIC, TYPE="3D8.8"     !X203026
+  XC3FF : HKIC, TYPE="3D8.8"     !X203086
+  XC4FF : HKIC, TYPE="3D4"       !X203116
+  XC1EX : HKIC, TYPE="2.54D10.5" !X203276
 
 ! ==============================================================================
 ! YCORs
 ! ------------------------------------------------------------------------------
 
-  YC1FF  : VKIC                  !Y203017
-  YC2FF  : VKIC, TYPE="3D8.8MK2" !0.815" gap
+  YC1FF  : VKIC, TYPE="3D8.8" !Y203017
+  YC2FF  : VKIC, TYPE="3D8.8" !Y203057
+  YC4FF  : VKIC, TYPE="3D4"   !Y203147
 
 ! ==============================================================================
 ! BPMs
@@ -791,7 +875,6 @@
 
   USTHz   : PROF, TYPE="OTR foil/YAG"    !OTRS:LI20:3070 CAMR:LI20:106
   DSTHz   : PROF, TYPE="OTR foil/YAG"    !PD203075
-  USOTR   : PROF, TYPE="OTR foil/YAG"    !OTRS:LI20:3158 CAMR:LI20:101
   IPOTR1P : PROF, TYPE="OTR foil/YAG"    !OTRS:LI20:3175 (in plasma oven)
   IPOTR1  : PROF, TYPE="OTR foil/YAG"    !OTRS:LI20:3180 (in bypass line) CAMR:LI20:102
   IPWS1   : PROF, TYPE="WIRE"            !WIRE:LI20:3179 (in bypass line)
@@ -834,16 +917,24 @@
   BEWIN2     : MARK !2nd Beryllium window
   ENDEXPT20  : MARK
 
-  BEGSPECT20 : MARK
-  BEGPDC     : MARK !Upstream end of PDC chamber
-  ENDPDC     : MARK !Downstream end of PDC chamber
-  BEGEDC     : MARK !Upstream end of EDC chamber
-  ENDEDC     : MARK !Downstream end of EDC chamber
-  BFLYMID    : MARK !Middle of Butterfly chamber
-  EXTWIN     : MARK !Exit window (5mm thick Al)
-  MAINDUMP   : INST !dump face
-  DBMARK30   : MARK
-  ENDSPECT20 : MARK
+  BEGSPECT20_1 : MARK
+  ENDSPECT20_1 : MARK
+  BEGPAXBYP    : MARK
+  ENDPAXBYP    : MARK
+  BEGSPECT20_2 : MARK
+  PDCBEG       : MARK !Upstream end of PDC chamber
+  PDCEND       : MARK !Downstream end of PDC chamber
+  EDCBEG       : MARK !Upstream end of EDC chamber
+  EDCEND       : MARK !Downstream end of EDC chamber
+  BFLYMID      : MARK !Middle of Butterfly chamber
+  EXTWIN       : MARK !Exit window (5mm thick Al)
+  MAINDUMP     : INST !dump face
+  DBMARK30     : MARK
+  ENDSPECT20_2 : MARK
+
+  BEGPAX : MARK
+  PAXMID : MARK
+  ENDPAX : MARK
 
 ! ==============================================================================
 ! BEAMLINEs
@@ -851,7 +942,11 @@
 
   XTCAVF_full : LINE=(XTCAVF,XTCAVF)
 
-  B5D36_full : LINE=(B5D361,B5D362)
+  BCX203280_full : LINE=(BCX203280a,BCX203280b)
+  BCX203282_full : LINE=(BCX203282a,BCX203282b)
+  BCX203284_full : LINE=(BCX203284a,BCX203284b)
+  BCX203286_full : LINE=(BCX203286a,BCX203286b)
+  B5D36_full     : LINE=(B5D361,B5D362)
 
   Q5FF_full : LINE=(Q5FF,Q5FF)
   Q4FF_full : LINE=(Q4FF,Q4FF)
@@ -868,35 +963,45 @@
     Q4FF_full,D6FF,&
     Q3FF_full,DKRK1,KRK,DKRK2,YC2FF,D4FF,USTHz,DBMARK67,&
       D3AFF,DSTHz,D3FF,XC3FF,DXTC1,XTCAVF_full,DXTC2,&
-    Q2FF_full,D2AFF,M3FF,D2FF,&
-    Q1FF_full,D1AFF,M4FF,D1FF,&
+    Q2FF_full,D2AFF,M3FF,D2FFa,YC4FF,D2FFb,&
+    Q1FF_full,D1AFF,M4FF,D1FFa,XC4FF,D1FFb,&
     Q0FF_full,D0FF,M5FF,DMQ0FF,&
     ENDFF20)
 
   EXPT : LINE=(BEGEXPT20,&
-    DEX20_1,EXTHOLE1,DEX20_2,USOTR,DEX20_3,IQMON20,DEX20_4,BEWIN1,DEX20_5,&
+    DEX20_1,EXTHOLE1,DEX20_2,BEWIN1,DEX20_3,IQMON20,DEX20_4,DEX20_5,&
     LCUBE,DEX20_6,PIC_CENT,DEX20_7,FILG,DEX20_8,FILS,DEX20_9,IPOTR1P,&
     DEX20_10,IPOTR1,DEX20_10a,PENT,MIP,DEX20_11,IPWS1,DEX20_12,PEXT,&
     DEX20_12a,IPOTR2,DEX20_13,IM3255,DEX20_14,BEWIN2,DEX20_15,IPWS3,DEX20_16,&
     DSOTR,&
     ENDEXPT20)
- 
-  ! z= 1998.708952
-  SPECT : LINE=(BEGSPECT20,DMQ0D,&
+
+  SPECT_1 : LINE=(BEGSPECT20_1,DMQ0D,&
     Q0D_full,DM1QEX,M0EX,D1D,WDSOTR,DMQ1D,&
     Q1D_full,DM1QEX,M1EX,D2D,DMQ2D,&
-    Q2D_full,DM1QEX,M2EX,D3D,XC1EX,D4D,&
-    B5D36_full,DM3BEX,M3EX,D5D,BEGPDC,D6D,ENDPDC,D7D,BEGEDC,D8D,ENDEDC,D9D,&
+    Q2D_full,DM1QEX,M2EX,D3Dp,&
+    ENDSPECT20_1)
+ 
+  PAXBYPASS : LINE=(BEGPAXBYP,DPBYP1,XC1EX,DPBYP2,ENDPAXBYP)
+
+  SPECT_2 : LINE=(BEGSPECT20_2,D4Dp,&
+    B5D36_full,DM3BEX,M3EX,D5D,PDCBEG,D6D,PDCEND,D7D,EDCBEG,D8D,EDCEND,D9D,&
       DTOTR,D10D,BFLYMID,D11D,EXTWIN,D12D,PGAM1,D13D,CNEAR,D14D,PDUMP,LAIRG,&
       MAINDUMP,DBMARK30,&
-    ENDSPECT20)
+    ENDSPECT20_2)
 
+  FF20H : LINE=(FF,EXPT,SPECT_1,PAXBYPASS,SPECT_2)
 
-  FF20H : LINE=(FF,EXPT,SPECT)
+  PAXCHICANE : LINE=(BEGPAX,&
+    BCX203280_full,DBPo,&
+    BCX203282_full,DBPi,PAXMID,DBPi,&
+    BCX203284_full,DBPo,&
+    BCX203286_full,ENDPAX)
 
 ! ==============================================================================
 
-  SECTOR20 : LINE=(BC20W,FF20H)
+  SECTOR20     : LINE=(BC20W,FF20H)
+  SECTOR20_PAX : LINE=(BC20W,FF,EXPT,SPECT_1,PAXCHICANE,SPECT_2)
 
 ! ------------------------------------------------------------------------------
 

@@ -1,6 +1,6 @@
-  TITLE, "FACET2 scavenger e- (February 16, 2024)"
+  TITLE, "FACET2: scavenger e- (preRelease)"
 
-! *** OPTICS=FACET2-16FEB24 ***
+! *** OPTICS=FACET2-28JAN2026 ***
 
   ASSIGN, PRINT="FACET2s.print"
   ASSIGN, ECHO="FACET2s.echo"
@@ -133,19 +133,6 @@
                BETY=BYs, ALFY=AYs, DY=DYs, DPY=DPYs
 
 ! ------------------------------------------------------------------------------
-! match
-! ------------------------------------------------------------------------------
-
-  MFACET2s : SUBROUTINE
-    SET, KQ57186,  0.431191037388
-    SET, KQ57190, -0.561628364401
-    SET, KQ57204,  0.452841754368
-    SET, KQ57210, -0.505438561347
-    SET, KQ57220,  0.740983668946
-    SET, KQ57280,  0.687619499711
-  ENDSUBROUTINE
-
-! ------------------------------------------------------------------------------
 ! commands
 ! ------------------------------------------------------------------------------
 
@@ -226,7 +213,9 @@
  !COMMENT
     BEAM, ENERGY=E0
     USE, F2_SCAV
-    MFACET2s
+    OPTION, -WARN
+      CALL, FILENAME="MFACET2s.xsif"
+    OPTION, WARN
     PRINT, FULL
     SURVEY, TAPE="FACET2s_survey.tape", &
       X0=Xc, Y0=Yc, Z0=Zc, THETA0=THETAc, PHI0=PHIc, PSI0=PSIc

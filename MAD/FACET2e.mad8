@@ -1,6 +1,6 @@
-  TITLE, "FACET2 e- (February 16, 2024)"
+  TITLE, "FACET2 e-"
 
-! *** OPTICS=FACET2-16FEB24 ***
+! *** OPTICS=FACET2-28JAN2026 ***
 
   ASSIGN, PRINT="FACET2e.print"
   ASSIGN, ECHO="FACET2e.echo"
@@ -62,8 +62,10 @@
   OPTION, ECHO
 
  !CALL, FILENAME="FACET2e_match.mad8"
- !CALL, FILENAME="RDB/FACET2e_makeSymbols.mad8"
- !CALL, FILENAME="elegant/FACET2e_makeElegant.mad8"
+ !CALL, FILENAME="FACET2e_makeSymbols.mad8"
+ !CALL, FILENAME="FACET2e_makeElegant.mad8"
+
+! ------------------------------------------------------------------------------
 
  !STOP
 
@@ -75,6 +77,10 @@
     PRINT, FULL
     TWISS, BETA0=TW0, TAPE="FACET2e_twiss.tape"
     BEAM, ENERGY=E0
+    USE, F2_ELEC_PAX
+    PRINT, FULL
+    TWISS, BETA0=TW0, TAPE="FACET2e_PAX_twiss.tape"
+    BEAM, ENERGY=E0
     USE, F2_SCAV
     PRINT, FULL
     TWISS, BETA0=TW0, TAPE="FACET2s_twiss.tape"
@@ -82,6 +88,10 @@
     USE, FACET2e
     PRINT, FULL
     TWISS, BETA0=TWi, TAPE="FACET2ei_twiss.tape"
+    BEAM, ENERGY=Ei
+    USE, FACET2e_PAX
+    PRINT, FULL
+    TWISS, BETA0=TWi, TAPE="FACET2ei_PAX_twiss.tape"
     BEAM, ENERGY=Ei
     USE, FACET2s
     PRINT, FULL
@@ -134,7 +144,7 @@
     PLOT, TABLE=TWISS, HAXIS=S, VAXIS=DX,DY, &
       STYLE=100, -SPLINE, RANGE=BEGBC20/ENDBC20, FILE="FACET2e", &
       TITLE="BC20"
-    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=RBETX,RBETY, &
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=BETX,BETY, &
       STYLE=100, SPLINE, RANGE=ENDBC20/MAINDUMP, FILE="FACET2e", &
       TITLE="Final Focus + Spectrometer"
     PLOT, TABLE=TWISS, HAXIS=S, VAXIS=DX,DY, &
@@ -142,6 +152,24 @@
       TITLE="Final Focus + Spectrometer"
     PLOT, TABLE=TWISS, HAXIS=S, VAXIS=BETX,BETY, &
       STYLE=100, SPLINE, RANGE=#S/#E, FILE="FACET2e"
+
+    BEAM, ENERGY=E0
+    USE, F2_ELEC_PAX
+    PRINT, FULL
+    SURVEY, TAPE="FACET2e_PAX_survey.tape", &
+      X0=Xc, Y0=Yc, Z0=Zc, THETA0=THETAc, PHI0=PHIc, PSI0=PSIc
+    BEAM, ENERGY=Ei
+    USE, FACET2e_PAX
+    PRINT, FULL
+    TWISS, BETA0=TWi, SAVE, TAPE="FACET2e_PAX_twiss.tape"
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=BETX,BETY, &
+      STYLE=100, SPLINE, RANGE=ENDBC20/MAINDUMP, FILE="FACET2e_PAX", &
+      TITLE="Final Focus + Spectrometer"
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=DX,DY, &
+      STYLE=100, -SPLINE, RANGE=ENDBC20/MAINDUMP, FILE="FACET2e_PAX", &
+      TITLE="Final Focus + Spectrometer"
+    PLOT, TABLE=TWISS, HAXIS=S, VAXIS=BETX,BETY, &
+      STYLE=100, SPLINE, RANGE=#S/#E, FILE="FACET2e_PAX"
  !ENDCOMMENT
 
 ! ------------------------------------------------------------------------------
@@ -184,6 +212,50 @@
     SURVEY, TAPE="FACET2e_survey.tape", &
       X0=Xc, Y0=Yc, Z0=Zc, THETA0=THETAc, PHI0=PHIc, PSI0=PSIc
   ENDCOMMENT
+
+! ------------------------------------------------------------------------------
+
+  comment
+    BEAM, ENERGY=E20
+   !SET, ABP, 0
+    USE, PAXCHICANE
+    PRINT, FULL
+    SURVEY, TAPE="PAX_survey.tape" !, Z0=2002.886872
+  endcomment
+
+  comment
+    BEAM, ENERGY=E0
+    USE, F2_ELEC
+   !VALUE, D2FFa[L],D2FFb[L],D2FF[L],D2FFa[L]+D2FFb[L]
+   !VALUE, D1FFa[L],D1FFb[L],D1FF[L],D1FFa[L]+D1FFb[L]
+   !VALUE, DEX20_2[L],DEX20_3[L],DEX20_2[L]+DEX20_3[L]
+   !VALUE, DEX20_3[L],DEX20_4[L],DEX20_3[L]+DEX20_4[L]
+    VALUE, D3Dp[L],D4Dp[L],D3Dp[L]+D4Dp[L],ZB2Bo
+    MATCH, SURVEY, &
+      XS=Xc, YS=Yc, ZS=Zc, THETAS=THETAc, PHIS=PHIc, PSIS=PSIc
+     !VARY, D2FFa[L], STEP=1.E-6
+     !VARY, D1FFa[L], STEP=1.E-6
+      VARY, D3Dp[L],  STEP=1.E-9
+      VARY, ZB2Bo,    STEP=1.E-9
+      WEIGHT, ZS=1
+     !CONSTR, YC4FF,      ZS=1988.752
+     !CONSTR, XC4FF,      ZS=1990.332
+     !CONSTR, BEWIN1,     ZS=1991.790
+     !CONSTR, IQMON20,    ZS=1991.850
+      CONSTR, BCX203291a, ZS=2002.7536317
+      CONSTR, BCX203298a, ZS=2003.2743317
+      LMDIF, TOL=1.E-20
+      MIGRAD, TOL=1.E-20
+    ENDMATCH
+   !VALUE, D2FFa[L],D2FFb[L],D2FF[L],D2FFa[L]+D2FFb[L]
+   !VALUE, D1FFa[L],D1FFb[L],D1FF[L],D1FFa[L]+D1FFb[L]
+   !VALUE, DEX20_2[L],DEX20_3[L],DEX20_2[L]+DEX20_3[L]
+   !VALUE, DEX20_3[L],DEX20_4[L],DEX20_3[L]+DEX20_4[L]
+    VALUE, D3Dp[L],D4Dp[L],D3Dp[L]+D4Dp[L],ZB2Bo
+    PRINT, FULL
+    SURVEY, TAPE="survey.tape", &
+      X0=Xc, Y0=Yc, Z0=Zc, THETA0=THETAc, PHI0=PHIc, PSI0=PSIc
+  endcomment
 
 ! ------------------------------------------------------------------------------
 

@@ -1,5 +1,5 @@
 
-! *** OPTICS=FACET2-16FEB24 ***
+! *** OPTICS=FACET2-28JAN2026 ***
 
 ! generate input files for ELEGANT
 
@@ -13,10 +13,6 @@
 !    CSR) ... there should be one line per bend (name, bunch length, FINT)
 ! 4) run mad2lte with survey.tape as input
 ! 5) if your beamline contains MATRIX elements, create Elegant MATRIX files
-! ------------------------------------------------------------------------------
-! Edit .lte file:
-! - C: CHARGE,TOTAL= 2.0E-09
-! - UM10466 : DRIF,L= 2.531320000E-01
 ! ------------------------------------------------------------------------------
 
 ! ------------------------------------------------------------------------------
@@ -463,20 +459,20 @@
 ! output SBEN FINT values (to use in CSR SBEN values file)
 ! ------------------------------------------------------------------------------
 
-  VALUE, BCX10451A[FINT]
-  VALUE, BCX10461A[FINT]
-  VALUE, BCX10475A[FINT]
-  VALUE, BCX10481A[FINT]
-  VALUE, BX10661A[FINT]
-  VALUE, BX10751A[FINT]
-  VALUE, BCX11314A[FINT]
-  VALUE, BCX11331A[FINT]
-  VALUE, BCX11338A[FINT]
-  VALUE, BCX11355A[FINT]
-  VALUE, BCX14720A[FINT]
-  VALUE, BCX14796A[FINT]
-  VALUE, BCX14808A[FINT]
-  VALUE, BCX14883A[FINT]
+  VALUE, BCX10451a[FINT]
+  VALUE, BCX10461a[FINT]
+  VALUE, BCX10475a[FINT]
+  VALUE, BCX10481a[FINT]
+  VALUE, BX10661a[FINT]
+  VALUE, BX10751a[FINT]
+  VALUE, BCX11314a[FINT]
+  VALUE, BCX11331a[FINT]
+  VALUE, BCX11338a[FINT]
+  VALUE, BCX11355a[FINT]
+  VALUE, BCX14720a[FINT]
+  VALUE, BCX14796a[FINT]
+  VALUE, BCX14808a[FINT]
+  VALUE, BCX14883a[FINT]
   VALUE, B1LE1[FINT]
   VALUE, B2LE1[FINT]
   VALUE, B3LE1[FINT]
@@ -486,6 +482,10 @@
   VALUE, WIGE21[FINT]
   VALUE, WIGE31[FINT]
   VALUE, B1RE1[FINT]
+  VALUE, BCX203280a[FINT]
+  VALUE, BCX203282a[FINT]
+  VALUE, BCX203284a[FINT]
+  VALUE, BCX203286a[FINT]
   VALUE, B5D361[FINT]
 
 ! ------------------------------------------------------------------------------
@@ -506,11 +506,21 @@
 ! generate TWISS and SURVEY tape-files
 ! ------------------------------------------------------------------------------
 
+  VALUE, BXi,AXi,BYi,AYi
+  VALUE, Xi,Yi,Zi,THETAi,PHIi,PSIi
+
   BEAM, ENERGY=Ei
   USE, FACET2e
   PRINT, FULL
-  TWISS, BETA0=TWi, TAPE="twiss.tape"
-  SURVEY, TAPE="survey.tape", &
+  TWISS, BETA0=TWi, TAPE="FACET2e_twiss.tape"
+  SURVEY, TAPE="FACET2e_survey.tape", &
+    X0=Xi, Y0=Yi, Z0=Zi, THETA0=THETAi, PHI0=PHIi, PSI0=PSIi
+
+  BEAM, ENERGY=Ei
+  USE, FACET2e_PAX
+  PRINT, FULL
+  TWISS, BETA0=TWi, TAPE="FACET2e_PAX_twiss.tape"
+  SURVEY, TAPE="FACET2e_PAX_survey.tape", &
     X0=Xi, Y0=Yi, Z0=Zi, THETA0=THETAi, PHI0=PHIi, PSI0=PSIi
 
 ! ------------------------------------------------------------------------------

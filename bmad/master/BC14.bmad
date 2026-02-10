@@ -1,5 +1,5 @@
 
-! *** OPTICS=FACET2-16FEB24 ***
+! *** OPTICS=FACET2-preRelease ***
 
 ! ==============================================================================
 ! Modification History
@@ -313,33 +313,39 @@ bpm14715[ref] = qm14715
 !Old split line:  BCX14720_full : LINE=(BCX14720a,BCX14720b)
 
 bcx14720_full: line = (bcx14720)
+bcx14720_svy: null_ele, superimpose, ref=bcx14720, ref_origin=beginning, offset=bcx14720a[l] !bend survey marker
 
 
 !Old split line:  CQ14738_full  : LINE=(CQ14738,CQ14738)
 
 cq14738_full: line = (cq14738)
 cq14738[L] = 2*cq14738[L]
+cq14738_svy: null_ele, superimpose, ref=cq14738
 
 
 !Old split line:  BCX14796_full : LINE=(BCX14796a,BCX14796b)
 
 bcx14796_full: line = (bcx14796)
+bcx14796_svy: null_ele, superimpose, ref=bcx14796, ref_origin=beginning, offset=bcx14796a[l] !bend survey marker
 
 
 !Old split line:  BCX14808_full : LINE=(BCX14808a,BCX14808b)
 
 bcx14808_full: line = (bcx14808)
+bcx14808_svy: null_ele, superimpose, ref=bcx14808, ref_origin=beginning, offset=bcx14808a[l] !bend survey marker
 
 
 !Old split line:  CQ14866_full  : LINE=(CQ14866,CQ14866)
 
 cq14866_full: line = (cq14866)
 cq14866[L] = 2*cq14866[L]
+cq14866_svy: null_ele, superimpose, ref=cq14866
 
 
 !Old split line:  BCX14883_full : LINE=(BCX14883a,BCX14883b)
 
 bcx14883_full: line = (bcx14883)
+bcx14883_svy: null_ele, superimpose, ref=bcx14883, ref_origin=beginning, offset=bcx14883a[l] !bend survey marker
 
   BC14E : LINE=(BEGBC14E,BCX14720_full,DBQ2A,CQ14738_full,D210A1,YC14780,D210A2,BCX14796_full,DDG21,BPM14801,DDG22,
          PR14803,DDG23,BCX14808_full,D210B1,CE14815,D210B2,CQ14866_full,DBQ2B,BCX14883_full,ENDBC14E)
@@ -349,33 +355,39 @@ bcx14883_full: line = (bcx14883)
 !Old split line:  BCX141720_full : LINE=(BCX141720a,BCX141720b)
 
 bcx141720_full: line = (bcx141720)
+bcx141720_svy: null_ele, superimpose, ref=bcx141720, ref_origin=beginning, offset=bcx141720a[l] !bend survey marker
 
 
 !Old split line:  CQ141738_full  : LINE=(CQ141738,CQ141738)
 
 cq141738_full: line = (cq141738)
 cq141738[L] = 2*cq141738[L]
+cq141738_svy: null_ele, superimpose, ref=cq141738
 
 
 !Old split line:  BCX141796_full : LINE=(BCX141796a,BCX141796b)
 
 bcx141796_full: line = (bcx141796)
+bcx141796_svy: null_ele, superimpose, ref=bcx141796, ref_origin=beginning, offset=bcx141796a[l] !bend survey marker
 
 
 !Old split line:  BCX141808_full : LINE=(BCX141808a,BCX141808b)
 
 bcx141808_full: line = (bcx141808)
+bcx141808_svy: null_ele, superimpose, ref=bcx141808, ref_origin=beginning, offset=bcx141808a[l] !bend survey marker
 
 
 !Old split line:  CQ141866_full  : LINE=(CQ141866,CQ141866)
 
 cq141866_full: line = (cq141866)
 cq141866[L] = 2*cq141866[L]
+cq141866_svy: null_ele, superimpose, ref=cq141866
 
 
 !Old split line:  BCX141883_full : LINE=(BCX141883a,BCX141883b)
 
 bcx141883_full: line = (bcx141883)
+bcx141883_svy: null_ele, superimpose, ref=bcx141883, ref_origin=beginning, offset=bcx141883a[l] !bend survey marker
 
   BC14P : LINE=(BEGBC14P,BCX141720_full,DBQ2A,CQ141738_full,D210A1,YC141780,D210A2,BCX141796_full,DDG21,BPM141801,DDG22,
          PR141803,DDG23,BCX141808_full,D210B1,CE141815,D210B2,CQ141866_full,DBQ2B,BCX141883_full,ENDBC14P)

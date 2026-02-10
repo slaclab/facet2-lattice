@@ -1,5 +1,5 @@
 
-! *** OPTICS=FACET2-16FEB24 ***
+! *** OPTICS=FACET2-28JAN2026 ***
 
 ! generate output files for RDB generation
 
@@ -7,11 +7,28 @@
 ! SURVEY tape files (linac coordinates)
 ! ------------------------------------------------------------------------------
 
+! e+: PAX chicane bypassed
+
   ASSIGN, PRINT="FACET2p.print"
   BEAM, ENERGY=E11
   USE, F2_POSI
+  OPTION, -WARN
+    CALL, FILENAME="MFACET2p.xsif"
+  OPTION, WARN
   PRINT, FULL
   SURVEY, TAPE="FACET2p_survey.tape", &
+    X0=Xi, Y0=Yi, Z0=Zi, THETA0=THETAi, PHI0=PHIi, PSI0=PSIi
+
+! e+: with PAX chicane
+
+  ASSIGN, PRINT="FACET2p_PAX.print"
+  BEAM, ENERGY=E11
+  USE, F2_POSI_PAX
+  OPTION, -WARN
+    CALL, FILENAME="MFACET2p.xsif"
+  OPTION, WARN
+  PRINT, FULL
+  SURVEY, TAPE="FACET2p_PAX_survey.tape", &
     X0=Xi, Y0=Yi, Z0=Zi, THETA0=THETAi, PHI0=PHIi, PSI0=PSIi
 
 ! ------------------------------------------------------------------------------

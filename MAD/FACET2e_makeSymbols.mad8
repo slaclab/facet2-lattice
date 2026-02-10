@@ -1,5 +1,5 @@
 
-! *** OPTICS=FACET2-16FEB24 ***
+! *** OPTICS=FACET2-28JAN2026 ***
 
 ! generate output files for RDB generation
 
@@ -7,12 +7,25 @@
 ! SURVEY tape files (linac coordinates)
 ! ------------------------------------------------------------------------------
 
+! e-: PAX chicane bypassed
+
   ASSIGN, PRINT="FACET2e.print"
   BEAM, ENERGY=E0
   USE, F2_ELEC
   PRINT, FULL
   SURVEY, TAPE="FACET2e_survey.tape", &
     X0=Xc, Y0=Yc, Z0=Zc, THETA0=THETAc, PHI0=PHIc, PSI0=PSIc
+
+! e-: with PAX chicane
+
+  ASSIGN, PRINT="FACET2e_PAX.print"
+  BEAM, ENERGY=E0
+  USE, F2_ELEC_PAX
+  PRINT, FULL
+  SURVEY, TAPE="FACET2e_PAX_survey.tape", &
+    X0=Xc, Y0=Yc, Z0=Zc, THETA0=THETAc, PHI0=PHIc, PSI0=PSIc
+
+! scavenger e-
 
   ASSIGN, PRINT="FACET2s.print"
   BEAM, ENERGY=E0
@@ -52,6 +65,10 @@
   VALUE, WIGE21[FINT]
   VALUE, WIGE31[FINT]
   VALUE, B1RE1[FINT]
+  VALUE, BCX203280A[FINT]
+  VALUE, BCX203282A[FINT]
+  VALUE, BCX203284A[FINT]
+  VALUE, BCX203286A[FINT]
   VALUE, B5D361[FINT]
 
   VALUE, BKY170A[FINT]

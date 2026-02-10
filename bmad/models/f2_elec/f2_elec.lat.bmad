@@ -1,14 +1,20 @@
+! BXi
+!  BEGINNING[BETA_A]  =  0.137761791898
+!  BEGINNING[ALPHA_A] =  0.620280308601
+!  BEGINNING[BETA_B]  =  7.063979455311
+!  BEGINNING[ALPHA_B] = -5.750562653636
 
- ! Matches at MRK0F
- BEGINNING[BETA_A] =  1.39449126865854395E-001
- BEGINNING[ALPHA_A] =  9.51137732365840982E-001
- BEGINNING[BETA_B] =  3.65359641740668428E-001
- BEGINNING[ALPHA_B] =  1.99621756285904550E+000
- !from mad8s
- !BEGINNING[BETA_A] =  0.132923615689
- !BEGINNING[ALPHA_A] = 0.896770130014
- !BEGINNING[BETA_B] =  0.365931285843
- !BEGINNING[ALPHA_B] = 1.863967282833
+! BX0 (cathode)
+!  BEGINNING[BETA_A] =  1.39449126865854395E-001
+!  BEGINNING[ALPHA_A] =  9.51137732365840982E-001
+!  BEGINNING[BETA_B] =  3.65359641740668428E-001
+!  BEGINNING[ALPHA_B] =  1.99621756285904550E+000
+!  !BEGINNING[BETA_A]  =  0.132923615689
+!  !BEGINNING[ALPHA_A] =  0.896770130014
+!  !BEGINNING[BETA_B]  =  0.365931285843
+!  !BEGINNING[ALPHA_B] =  1.863967282833
+
+! Starting twiss are set using fixer element defined later in file.
 
 parameter[geometry] = open
 parameter[particle] = electron
@@ -34,7 +40,6 @@ patch_bc20: patch, superimpose, ref=begbc20
 ! QE10511[K1] =  9.75666674536063816E+000
 ! QE10525[K1] = -1.30898989258770122E+001
 ! 
-! 
 ! ! BC11C
 ! QM10631[K1] =  1.42358555120514101E+001
 ! QM10651[K1] = -1.14085107672723147E+001
@@ -59,19 +64,33 @@ patch_bc20: patch, superimpose, ref=begbc20
 !expand_lattice
 !quad::*[field_master] = T
 
-
-
 ! Cavity wakefields, traveling wave, full sbend
 lcavity::L0*[sr_wake]   = call::$FACET2_LATTICE/bmad/wakefields/longitudinal_wakes_sband.bmad
 lcavity::K*[sr_wake]    = call::$FACET2_LATTICE/bmad/wakefields/longitudinal_wakes_sband.bmad
 lcavity::L1X*[sr_wake]  = call::$FACET2_LATTICE/bmad/wakefields/longitudinal_wakes_xband.bmad
 lcavity::*[cavity_type] = traveling_wave
 sbend::*[fringe_type] = full
+lcavity::*[n_rf_steps]=1000
+l0af[n_rf_steps]=5000
+l0bf[n_rf_steps]=5000
+lcavity::k11_*[n_rf_steps]=5000
 
-! 
-beginning[e_tot] = 6e6
+fixer_mrk0f: fixer, superimpose, ref=mrk0f, ref_origin=beginning,
+  beta_a_stored=5.286, alpha_a_stored=-2.039,
+  beta_b_stored=2.582, alpha_b_stored=0.052,
+  phi_a_stored=2.80064764, phi_b_stored=2.02441779,
+  is_on=T
 
 ! test to compare with LCLS
 !beginning[s] = 0.426796 + .015 - (4.908185 - 4.908934)
 
-lcavity::*[num_steps] = 50
+!  use, f2_eleci
+!  use, f2_eleci_pax
+!  BEGINNING[e_tot] = 125e6
+
+!  !Starting at BEGDL10  (BX0 ...)
+!  use, f2_elec
+  use, f2_elec_pax
+  BEGINNING[e_tot] = 6e6
+
+
