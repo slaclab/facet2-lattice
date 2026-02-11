@@ -74,6 +74,7 @@ lcavity::*[n_rf_steps]=1000
 l0af[n_rf_steps]=5000
 l0bf[n_rf_steps]=5000
 lcavity::k11_*[n_rf_steps]=5000
+!lcavity::*[n_cell] = 0
 
 fixer_mrk0f: fixer, superimpose, ref=mrk0f, ref_origin=beginning,
   beta_a_stored=5.286, alpha_a_stored=-2.039,

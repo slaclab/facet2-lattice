@@ -1,5 +1,5 @@
 
-! *** OPTICS=FACET2-preRelease ***
+! *** OPTICS=FACET2-28JAN2026 ***
 
 ! ==============================================================================
 ! Modification History
@@ -381,7 +381,6 @@ L0BF_full: line = (L0BF)
 
 qa10361_full: line = (qa10361)
 qa10361[L] = 2*qa10361[L]
-qa10361_svy: null_ele, superimpose, ref=qa10361
 
 
 !Old split line:  QA10371_full : LINE=(QA10371,BPM10371,QA10371)

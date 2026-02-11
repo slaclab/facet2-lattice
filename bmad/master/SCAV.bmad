@@ -1,8 +1,11 @@
 
-! *** OPTICS=FACET2-preRelease ***
+! *** OPTICS=FACET2-28JAN2026 ***
 
 ! ==============================================================================
 ! Modification History
+! ------------------------------------------------------------------------------
+! 28-JAN-2026, M. Woodley
+!  * add "x" to names of BPMs in off-axis quadrupoles to avoid Bmad problems
 ! ------------------------------------------------------------------------------
 ! 31-DEC-2018, M. Woodley
 !  * use original SCAVX19 kicker strength
@@ -274,6 +277,8 @@ yc57282: vkicker
 ! diagnostics
 ! ------------------------------------------------------------------------------
 
+! add "x" to names of BPMs in off-axis quadrupoles to avoid Bmad problems
+
 bpm19501x: monitor
 bpm19601x: monitor
 bpm19701x: monitor
@@ -335,7 +340,6 @@ endscav: marker
 !Old split line:  BKY170_full  : LINE=(BKY170a,BKY170b)
 
 bky170_full: line = (bky170)
-bky170_svy: null_ele, superimpose, ref=bky170, ref_origin=beginning, offset=bky170a[l] !bend survey marker
 
 
 !Old split line:  Q19501x_full : LINE=(Q19501x,BPM19501x,Q19501x)
@@ -369,19 +373,16 @@ bpm19701x[ref] = q19701x
 !Old split line:  BLX57172_full : LINE=(BLX57172a,BLX57172b)
 
 blx57172_full: line = (blx57172)
-blx57172_svy: null_ele, superimpose, ref=blx57172, ref_origin=beginning, offset=blx57172a[l] !bend survey marker
 
 
 !Old split line:  BLY57174_full : LINE=(BLY57174a,BLY57174b)
 
 bly57174_full: line = (bly57174)
-bly57174_svy: null_ele, superimpose, ref=bly57174, ref_origin=beginning, offset=bly57174a[l] !bend survey marker
 
 
 !Old split line:  BY57202_full  : LINE=(BY57202a,BY57202b)
 
 by57202_full: line = (by57202)
-by57202_svy: null_ele, superimpose, ref=by57202, ref_origin=beginning, offset=by57202a[l] !bend survey marker
 
 
 !Old split line:  BX57205_full  : LINE=(BX57205a,XC57205,BX57205b)
@@ -445,21 +446,18 @@ xc57275[ref] = bx57275
 
 q57186_full: line = (q57186)
 q57186[L] = 2*q57186[L]
-q57186_svy: null_ele, superimpose, ref=q57186
 
 
 !Old split line:  Q57190_full  : LINE=(Q57190,Q57190)
 
 q57190_full: line = (q57190)
 q57190[L] = 2*q57190[L]
-q57190_svy: null_ele, superimpose, ref=q57190
 
 
 !Old split line:  Q57204_full  : LINE=(Q57204,Q57204)
 
 q57204_full: line = (q57204)
 q57204[L] = 2*q57204[L]
-q57204_svy: null_ele, superimpose, ref=q57204
 
 
 !Old split line:  Q57210_full  : LINE=(Q57210,YC57210,Q57210)

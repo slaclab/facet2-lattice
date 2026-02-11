@@ -1,5 +1,5 @@
 
-! *** OPTICS=FACET2-preRelease ***
+! *** OPTICS=FACET2-28JAN2026 ***
 
 ! ==============================================================================
 ! Modification History
@@ -1209,7 +1209,6 @@ K15_8D_full: line = (K15_8D)
 
 tcy15280_full: line = (tcy15280)
 tcy15280[L] = 2*tcy15280[L]
-tcy15280_svy: null_ele, superimpose, ref=tcy15280
 
   K15_1 : LINE=(K15_1a_full,K15_1b_full,K15_1c_full,K15_1d_full)
   K15_2 : LINE=(K15_2a_full,K15_2b_full,K15_2c_full            )

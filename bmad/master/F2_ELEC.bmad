@@ -10,7 +10,6 @@
 call, file = FACET2e_master.bmad !calls other xsif files
 
   F2_ELECi : LINE=(FACET2e) !start at DL10
-  F2_ELECi_PAX : LINE=(FACET2e_PAX) !start at DL10
 
 !=!  COMMENT
 !=!  COMMENT

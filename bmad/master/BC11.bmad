@@ -1,5 +1,5 @@
 
-! *** OPTICS=FACET2-preRelease ***
+! *** OPTICS=FACET2-28JAN2026 ***
 
 ! ==============================================================================
 ! Modification History
@@ -221,46 +221,39 @@ endbc11_2: marker
 !Old split line:  BCX11314_full : LINE=(BCX11314a,BCX11314b)
 
 bcx11314_full: line = (bcx11314)
-bcx11314_svy: null_ele, superimpose, ref=bcx11314, ref_origin=beginning, offset=bcx11314a[l] !bend survey marker
 
 
 !Old split line:  CQ11317_full  : LINE=(CQ11317,CQ11317)
 
 cq11317_full: line = (cq11317)
 cq11317[L] = 2*cq11317[L]
-cq11317_svy: null_ele, superimpose, ref=cq11317
 
 
 !Old split line:  BCX11331_full : LINE=(BCX11331a,BCX11331b)
 
 bcx11331_full: line = (bcx11331)
-bcx11331_svy: null_ele, superimpose, ref=bcx11331, ref_origin=beginning, offset=bcx11331a[l] !bend survey marker
 
 
 !Old split line:  BCX11338_full : LINE=(BCX11338a,BCX11338b)
 
 bcx11338_full: line = (bcx11338)
-bcx11338_svy: null_ele, superimpose, ref=bcx11338, ref_origin=beginning, offset=bcx11338a[l] !bend survey marker
 
 
 !Old split line:  SQ11340_full  : LINE=(SQ11340,SQ11340)
 
 sq11340_full: line = (sq11340)
 sq11340[L] = 2*sq11340[L]
-sq11340_svy: null_ele, superimpose, ref=sq11340
 
 
 !Old split line:  CQ11352_full  : LINE=(CQ11352,CQ11352)
 
 cq11352_full: line = (cq11352)
 cq11352[L] = 2*cq11352[L]
-cq11352_svy: null_ele, superimpose, ref=cq11352
 
 
 !Old split line:  BCX11355_full : LINE=(BCX11355a,BCX11355b)
 
 bcx11355_full: line = (bcx11355)
-bcx11355_svy: null_ele, superimpose, ref=bcx11355, ref_origin=beginning, offset=bcx11355a[l] !bend survey marker
 
   BC11C : LINE=(BC11CBEG,BCX11314_full,D11oa1,PR11316,D11oa2,CQ11317_full,D11ob,YC11321,D11oc,BCX11331_full,DDG11,
          BPM11333,DDG12,PR11334,DDG13,PR11335,DDG14,BCX11338_full,D11od1a,PR11342,D11od1b,CE11334,D11od2,SQ11340_full,D11oe,

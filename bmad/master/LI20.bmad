@@ -1,5 +1,5 @@
 
-! *** OPTICS=FACET2-preRelease ***
+! *** OPTICS=FACET2-28JAN2026 ***
 
 ! ==============================================================================
 ! FACET e- optics
@@ -458,7 +458,6 @@ endbc20: marker
 !Old split line:  B1LE_full  : LINE=(B1LE1,B1LE2)
 
 b1le_full: line = (b1le)
-b1le_svy: null_ele, superimpose, ref=b1le, ref_origin=beginning, offset=b1le1[l] !bend survey marker
 
 
 !Old split line:  B2LE_full  : LINE=(B2LE1,XCB2LE,B2LE2)
@@ -492,13 +491,11 @@ xcb2re[ref] = b2re
 !Old split line:  B1RE_full  : LINE=(B1RE1,B1RE2)
 
 b1re_full: line = (b1re)
-b1re_svy: null_ele, superimpose, ref=b1re, ref_origin=beginning, offset=b1re1[l] !bend survey marker
 
 
 !Old split line:  WIGE1_full : LINE=(WIGE11,WIGE12)
 
 wige1_full: line = (wige1)
-wige1_svy: null_ele, superimpose, ref=wige1, ref_origin=beginning, offset=wige11[l] !bend survey marker
 
 
 !Old split line:  WIGE2_full : LINE=(WIGE21,YCWIGE,WIGE22)
@@ -511,7 +508,6 @@ ycwige[ref] = wige2
 !Old split line:  WIGE3_full : LINE=(WIGE31,WIGE32)
 
 wige3_full: line = (wige3)
-wige3_svy: null_ele, superimpose, ref=wige3, ref_origin=beginning, offset=wige31[l] !bend survey marker
   WIGE_line  : LINE=(WIGE1_full,DWE,WIGE2_full,DWE,WIGE3_full)
 
 
@@ -520,63 +516,54 @@ wige3_svy: null_ele, superimpose, ref=wige3, ref_origin=beginning, offset=wige31
 
 q1el_full: line = (q1el)
 q1el[L] = 2*q1el[L]
-q1el_svy: null_ele, superimpose, ref=q1el
 
 
 !Old split line:  SQ1_full    : LINE=(SQ1,SQ1)
 
 sq1_full: line = (sq1)
 sq1[L] = 2*sq1[L]
-sq1_svy: null_ele, superimpose, ref=sq1
 
 
 !Old split line:  Q2EL_full   : LINE=(Q2EL,Q2EL)
 
 q2el_full: line = (q2el)
 q2el[L] = 2*q2el[L]
-q2el_svy: null_ele, superimpose, ref=q2el
 
 
 !Old split line:  Q3EL_1_full : LINE=(Q3EL_1,Q3EL_1)
 
 q3el_1_full: line = (q3el_1)
 q3el_1[L] = 2*q3el_1[L]
-q3el_1_svy: null_ele, superimpose, ref=q3el_1
 
 
 !Old split line:  Q3EL_2_full : LINE=(Q3EL_2,Q3EL_2)
 
 q3el_2_full: line = (q3el_2)
 q3el_2[L] = 2*q3el_2[L]
-q3el_2_svy: null_ele, superimpose, ref=q3el_2
 
 
 !Old split line:  Q4EL_1_full : LINE=(Q4EL_1,Q4EL_1)
 
 q4el_1_full: line = (q4el_1)
 q4el_1[L] = 2*q4el_1[L]
-q4el_1_svy: null_ele, superimpose, ref=q4el_1
 
 
 !Old split line:  Q4EL_2_full : LINE=(Q4EL_2,Q4EL_2)
 
 q4el_2_full: line = (q4el_2)
 q4el_2[L] = 2*q4el_2[L]
-q4el_2_svy: null_ele, superimpose, ref=q4el_2
 
 
 !Old split line:  Q4EL_3_full : LINE=(Q4EL_3,Q4EL_3)
 
 q4el_3_full: line = (q4el_3)
 q4el_3[L] = 2*q4el_3[L]
-q4el_3_svy: null_ele, superimpose, ref=q4el_3
 
 
 !Old split line:  Q5EL_full   : LINE=(Q5EL,Q5EL)
 
 q5el_full: line = (q5el)
 q5el[L] = 2*q5el[L]
-q5el_svy: null_ele, superimpose, ref=q5el
 
 
 !Old split line:  Q6E_full    : LINE=(Q6E,MCE,Q6E)
@@ -591,56 +578,48 @@ mce[ref] = q6e
 
 q5er_full: line = (q5er)
 q5er[L] = 2*q5er[L]
-q5er_svy: null_ele, superimpose, ref=q5er
 
 
 !Old split line:  Q4ER_1_full : LINE=(Q4ER_1,Q4ER_1)
 
 q4er_1_full: line = (q4er_1)
 q4er_1[L] = 2*q4er_1[L]
-q4er_1_svy: null_ele, superimpose, ref=q4er_1
 
 
 !Old split line:  Q4ER_2_full : LINE=(Q4ER_2,Q4ER_2)
 
 q4er_2_full: line = (q4er_2)
 q4er_2[L] = 2*q4er_2[L]
-q4er_2_svy: null_ele, superimpose, ref=q4er_2
 
 
 !Old split line:  Q4ER_3_full : LINE=(Q4ER_3,Q4ER_3)
 
 q4er_3_full: line = (q4er_3)
 q4er_3[L] = 2*q4er_3[L]
-q4er_3_svy: null_ele, superimpose, ref=q4er_3
 
 
 !Old split line:  Q3ER_1_full : LINE=(Q3ER_1,Q3ER_1)
 
 q3er_1_full: line = (q3er_1)
 q3er_1[L] = 2*q3er_1[L]
-q3er_1_svy: null_ele, superimpose, ref=q3er_1
 
 
 !Old split line:  Q3ER_2_full : LINE=(Q3ER_2,Q3ER_2)
 
 q3er_2_full: line = (q3er_2)
 q3er_2[L] = 2*q3er_2[L]
-q3er_2_svy: null_ele, superimpose, ref=q3er_2
 
 
 !Old split line:  Q2ER_full   : LINE=(Q2ER,Q2ER)
 
 q2er_full: line = (q2er)
 q2er[L] = 2*q2er[L]
-q2er_svy: null_ele, superimpose, ref=q2er
 
 
 !Old split line:  Q1ER_full   : LINE=(Q1ER,Q1ER)
 
 q1er_full: line = (q1er)
 q1er[L] = 2*q1er[L]
-q1er_svy: null_ele, superimpose, ref=q1er
 
 
 
@@ -664,28 +643,24 @@ as2el[ref] = s2el
 
 s3el_1_full: line = (s3el_1)
 s3el_1[L] = 2*s3el_1[L]
-s3el_1_svy: null_ele, superimpose, ref=s3el_1
 
 
 !Old split line:  S3EL_2_full : LINE=(S3EL_2,S3EL_2)
 
 s3el_2_full: line = (s3el_2)
 s3el_2[L] = 2*s3el_2[L]
-s3el_2_svy: null_ele, superimpose, ref=s3el_2
 
 
 !Old split line:  S3ER_1_full : LINE=(S3ER_1,S3ER_1)
 
 s3er_1_full: line = (s3er_1)
 s3er_1[L] = 2*s3er_1[L]
-s3er_1_svy: null_ele, superimpose, ref=s3er_1
 
 
 !Old split line:  S3ER_2_full : LINE=(S3ER_2,S3ER_2)
 
 s3er_2_full: line = (s3er_2)
 s3er_2[L] = 2*s3er_2[L]
-s3er_2_svy: null_ele, superimpose, ref=s3er_2
 
 
 !Old split line:  S2ER_full   : LINE=(S2ER,AS2ER,S2ER)
@@ -1072,38 +1047,32 @@ endpax: marker
 
 xtcavf_full: line = (xtcavf)
 xtcavf[L] = 2*xtcavf[L]
-xtcavf_svy: null_ele, superimpose, ref=xtcavf
 
 
 
 !Old split line:  BCX203280_full : LINE=(BCX203280a,BCX203280b)
 
 bcx203280_full: line = (bcx203280)
-bcx203280_svy: null_ele, superimpose, ref=bcx203280, ref_origin=beginning, offset=bcx203280a[l] !bend survey marker
 
 
 !Old split line:  BCX203282_full : LINE=(BCX203282a,BCX203282b)
 
 bcx203282_full: line = (bcx203282)
-bcx203282_svy: null_ele, superimpose, ref=bcx203282, ref_origin=beginning, offset=bcx203282a[l] !bend survey marker
 
 
 !Old split line:  BCX203284_full : LINE=(BCX203284a,BCX203284b)
 
 bcx203284_full: line = (bcx203284)
-bcx203284_svy: null_ele, superimpose, ref=bcx203284, ref_origin=beginning, offset=bcx203284a[l] !bend survey marker
 
 
 !Old split line:  BCX203286_full : LINE=(BCX203286a,BCX203286b)
 
 bcx203286_full: line = (bcx203286)
-bcx203286_svy: null_ele, superimpose, ref=bcx203286, ref_origin=beginning, offset=bcx203286a[l] !bend survey marker
 
 
 !Old split line:  B5D36_full     : LINE=(B5D361,B5D362)
 
 b5d36_full: line = (b5d36)
-b5d36_svy: null_ele, superimpose, ref=b5d36, ref_origin=beginning, offset=b5d361[l] !bend survey marker
 
 
 
@@ -1111,63 +1080,54 @@ b5d36_svy: null_ele, superimpose, ref=b5d36, ref_origin=beginning, offset=b5d361
 
 q5ff_full: line = (q5ff)
 q5ff[L] = 2*q5ff[L]
-q5ff_svy: null_ele, superimpose, ref=q5ff
 
 
 !Old split line:  Q4FF_full : LINE=(Q4FF,Q4FF)
 
 q4ff_full: line = (q4ff)
 q4ff[L] = 2*q4ff[L]
-q4ff_svy: null_ele, superimpose, ref=q4ff
 
 
 !Old split line:  Q3FF_full : LINE=(Q3FF,Q3FF)
 
 q3ff_full: line = (q3ff)
 q3ff[L] = 2*q3ff[L]
-q3ff_svy: null_ele, superimpose, ref=q3ff
 
 
 !Old split line:  Q2FF_full : LINE=(Q2FF,Q2FF)
 
 q2ff_full: line = (q2ff)
 q2ff[L] = 2*q2ff[L]
-q2ff_svy: null_ele, superimpose, ref=q2ff
 
 
 !Old split line:  Q1FF_full : LINE=(Q1FF,Q1FF)
 
 q1ff_full: line = (q1ff)
 q1ff[L] = 2*q1ff[L]
-q1ff_svy: null_ele, superimpose, ref=q1ff
 
 
 !Old split line:  Q0FF_full : LINE=(Q0FF,Q0FF)
 
 q0ff_full: line = (q0ff)
 q0ff[L] = 2*q0ff[L]
-q0ff_svy: null_ele, superimpose, ref=q0ff
 
 
 !Old split line:  Q0D_full  : LINE=(Q0D,Q0D)
 
 q0d_full: line = (q0d)
 q0d[L] = 2*q0d[L]
-q0d_svy: null_ele, superimpose, ref=q0d
 
 
 !Old split line:  Q1D_full  : LINE=(Q1D,Q1D)
 
 q1d_full: line = (q1d)
 q1d[L] = 2*q1d[L]
-q1d_svy: null_ele, superimpose, ref=q1d
 
 
 !Old split line:  Q2D_full  : LINE=(Q2D,Q2D)
 
 q2d_full: line = (q2d)
 q2d[L] = 2*q2d[L]
-q2d_svy: null_ele, superimpose, ref=q2d
 
   FF : LINE=(BEGFF20,D11FF,MFFF,Q5FF_full,D10FF,M1FF,D9FF,BL20_4,D8FF,XC1FF,D8AFF,YC1FF,D8BFF,M2FF,D7FF,Q4FF_full,D6FF,
          Q3FF_full,DKRK1,KRK,DKRK2,YC2FF,D4FF,USTHz,DBMARK67,D3AFF,DSTHz,D3FF,XC3FF,DXTC1,XTCAVF_full,DXTC2,Q2FF_full,D2AFF,M3FF,

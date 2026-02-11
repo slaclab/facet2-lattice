@@ -1,5 +1,5 @@
 ! ---------
-! Device mapping derived from $FACET2_LATTICE/bmad/conversion/from_oracle/lcls_elements.csv
+! Device mapping derived from /home/mpe/DATA/repos7/lcls-lattice/bmad/conversion/from_oracle/lcls_elements.csv
 ! No device listed for: AS1EL
 ! No device listed for: AS1ER
 ! No device listed for: AS2EL
