@@ -149,16 +149,16 @@ r34u = lhun*sincargu
 my_lh_und_k = 0
 
 !------- Laser Heater Undulator for Copper Linac -------
-my_lh_und_k = 0
-um10466: wiggler, 
-        type = "laser_heater_undulator",
-        L_period = 0.054, 
-        n_period = 10, 
-        b_max = my_lh_und_k * 2*pi*m_electron / (c_light * 0.054), 
-        L = 10*0.054 ! Was: 0.506263, 
-        ds_step = 0.054
-
-um10466[L] = um10466[L]/2 ! Will be doubled in desplitting process. 
+!my_lh_und_k = 0
+!um10466: wiggler, 
+!        type = "laser_heater_undulator",
+!        L_period = 0.054, 
+!        n_period = 10, 
+!        b_max = my_lh_und_k * 2*pi*m_electron / (c_light * 0.054), 
+!        L = 10*0.054 ! Was: 0.506263, 
+!        ds_step = 0.054
+!
+!um10466[L] = um10466[L]/2 ! Will be doubled in desplitting process. 
 !---------------------------------
 !old: um10466: wiggler,
 !old         type = "laser_heater_undulator",
@@ -168,10 +168,10 @@ um10466[L] = um10466[L]/2 ! Will be doubled in desplitting process.
 !old         L = 10*0.054 ! Was: 0.506263,
 !old         ds_step = 0.054
 
-um10466[L] = um10466[L]/2 ! Will be doubled in desplitting process.
+!um10466[L] = um10466[L]/2 ! Will be doubled in desplitting process.
 !--------------------------------- !,                            &
-!old: um10466: taylor, type = "LHund", l = lhun, tt11 = 1.0, tt12 = lhun, tt21 = 0, tt22 = 1.0, tt33 = cos(lhun*sqrt(kqlh)),
-!old           tt34 = r34u, tt43 = -sin(lhun*sqrt(kqlh))*sqrt(kqlh), tt44 = cos(lhun*sqrt(kqlh)), tt55 = 1.0, tt66 = 1.0
+um10466: taylor, type = "LHund", l = lhun, tt11 = 1.0, tt12 = lhun, tt21 = 0, tt22 = 1.0, tt33 = cos(lhun*sqrt(kqlh)),
+         tt34 = r34u, tt43 = -sin(lhun*sqrt(kqlh))*sqrt(kqlh), tt44 = cos(lhun*sqrt(kqlh)), tt55 = 1.0, tt66 = 1.0
    !R56=Lhun/(gami^2)*(1+(K_und^2)/2)
  !endcomment
 
@@ -362,12 +362,12 @@ bcx10451_full: line = (bcx10451)
 bcx10461_full: line = (bcx10461)
 
 
-!Old split line:  UM10466_full  : LINE=(UM10466,HTRUNDF,UM10466)
+UM10466_full  : LINE=(UM10466,HTRUNDF,UM10466)
 
-um10466_full: line = (um10466)
-um10466[L] = 2*um10466[L]
-htrundf[superimpose] = T
-htrundf[ref] = um10466
+!um10466_full: line = (um10466)
+!um10466[L] = 2*um10466[L]
+!htrundf[superimpose] = T
+!htrundf[ref] = um10466
 
 
 !Old split line:  BCX10475_full : LINE=(BCX10475a,BCX10475b)
