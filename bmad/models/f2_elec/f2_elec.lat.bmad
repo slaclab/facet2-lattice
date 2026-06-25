@@ -85,7 +85,7 @@ fixer_mrk0f: fixer, superimpose, ref=mrk0f, ref_origin=beginning,
   beta_a_stored=5.286, alpha_a_stored=-2.039,
   beta_b_stored=2.582, alpha_b_stored=0.052,
   phi_a_stored=2.80064764, phi_b_stored=2.02441779,
-  is_on=T
+  is_on=F
 
 fixer_pr10571: fixer, superimpose, ref=pr10571, ref_origin=beginning,
   beta_a_stored=5.737, alpha_a_stored=-2.144,
