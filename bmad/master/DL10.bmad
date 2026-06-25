@@ -41,7 +41,7 @@
 
 ! vertically deflecting transverse cavity
 
-tcy10490: lcavity, rf_frequency = sbandf * 1e6, type = "short TCAV", l = 0.6680236/2, cavity_type = traveling_wave
+tcy10490: crab_cavity, rf_frequency = sbandf * 1e6, type = "short TCAV", l = 0.6680236/2, tilt = pi/2
 
 ! ==============================================================================
 ! SBEN

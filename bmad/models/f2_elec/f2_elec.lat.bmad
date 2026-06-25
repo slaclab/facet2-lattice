@@ -112,10 +112,20 @@ fixer_ws19144: fixer, superimpose, ref=ws19144, ref_origin=beginning,
   beta_b_stored=8.26, alpha_b_stored=0.33,
   is_on=F
 
-BEGINNING[BETA_A]  =  0.24027894
-BEGINNING[BETA_B] =  0.54109591
-BEGINNING[ALPHA_A]  =  1.53886730
-BEGINNING[ALPHA_B] =  2.40403003
+fixer_begff20: fixer, superimpose, ref=begff20, ref_origin=beginning,
+  beta_a_stored=11.081, alpha_a_stored=-0.594,
+  beta_b_stored=24.017, alpha_b_stored=-1.516,
+  is_on=F
+
+fixer_ipotr1: fixer, superimpose, ref=ipotr1, ref_origin=beginning,
+  beta_a_stored=0.502769, alpha_a_stored=0.0795287,
+  beta_b_stored=0.502781, alpha_b_stored=0.0793426,
+  is_on=F
+
+fixer_ipws1: fixer, superimpose, ref=ipws1, ref_origin=beginning,
+  beta_a_stored=0.50, alpha_a_stored=0.0,
+  beta_b_stored=0.50, alpha_b_stored=0.0,
+  is_on=F
 
 ! test to compare with LCLS
 !beginning[s] = 0.426796 + .015 - (4.908185 - 4.908934)
@@ -128,5 +138,4 @@ BEGINNING[ALPHA_B] =  2.40403003
 !  use, f2_elec
   use, f2_elec_pax
   BEGINNING[e_tot] = 6e6
-
 
