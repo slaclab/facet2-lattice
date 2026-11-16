@@ -1,0 +1,100 @@
+! =============================================================================
+! linac phase and amplitude overlays for S10 INJ -> LI19
+! ampl_MEV assumes all klystrons are on & power is uniformly distributed -- for
+! more granularity use PyTao to set individual klystrons on/off and calculate
+! needed amplitude based on number of active klystrons ...
+! =============================================================================
+
+! number of klystrons in each linac, so amplitude is distributed correctly
+! L2 separated between LI11 and LI12-14
+nk1f = 2
+nk11 = 5
+nk1214 = 8 + 8 + 6
+nk3f = 7 + 8 + 8 + 8 + 6
+
+
+! L1: K11-1 and K11-2
+O_L1: overlay = {
+    O_K11_1[phase_deg]:phase_deg,  O_K11_1[ENLD_MEV]:ampl_MEV/nk1f, 
+    O_K11_2[phase_deg]:phase_deg,  O_K11_2[ENLD_MEV]:ampl_MEV/nk1f,
+    },
+    var = {phase_deg, ampl_MEV}
+
+! LI11 part of L2
+O_L2_A: overlay = {
+    O_K11_4[phase_deg]:phase_deg,  O_K11_4[ENLD_MEV]:ampl_MEV/nk11, 
+    O_K11_5[phase_deg]:phase_deg,  O_K11_5[ENLD_MEV]:ampl_MEV/nk11, 
+    O_K11_6[phase_deg]:phase_deg,  O_K11_6[ENLD_MEV]:ampl_MEV/nk11, 
+    O_K11_7[phase_deg]:phase_deg,  O_K11_7[ENLD_MEV]:ampl_MEV/nk11, 
+    O_K11_8[phase_deg]:phase_deg,  O_K11_8[ENLD_MEV]:ampl_MEV/nk11,
+    }, 
+    var = {phase_deg, ampl_MEV}
+
+! chirped part of L2 (LI12-14)
+O_L2_B: overlay = {
+    O_K12_1[phase_deg]:phase_deg,  O_K12_1[ENLD_MEV]:ampl_MEV/nk1214, 
+    O_K12_2[phase_deg]:phase_deg,  O_K12_2[ENLD_MEV]:ampl_MEV/nk1214, 
+    O_K12_3[phase_deg]:phase_deg,  O_K12_3[ENLD_MEV]:ampl_MEV/nk1214, 
+    O_K12_4[phase_deg]:phase_deg,  O_K12_4[ENLD_MEV]:ampl_MEV/nk1214, 
+    O_K12_5[phase_deg]:phase_deg,  O_K12_5[ENLD_MEV]:ampl_MEV/nk1214, 
+    O_K12_6[phase_deg]:phase_deg,  O_K12_6[ENLD_MEV]:ampl_MEV/nk1214, 
+    O_K12_7[phase_deg]:phase_deg,  O_K12_7[ENLD_MEV]:ampl_MEV/nk1214, 
+    O_K12_8[phase_deg]:phase_deg,  O_K12_8[ENLD_MEV]:ampl_MEV/nk1214, 
+    O_K13_1[phase_deg]:phase_deg,  O_K13_1[ENLD_MEV]:ampl_MEV/nk1214, 
+    O_K13_2[phase_deg]:phase_deg,  O_K13_2[ENLD_MEV]:ampl_MEV/nk1214, 
+    O_K13_3[phase_deg]:phase_deg,  O_K13_3[ENLD_MEV]:ampl_MEV/nk1214, 
+    O_K13_4[phase_deg]:phase_deg,  O_K13_4[ENLD_MEV]:ampl_MEV/nk1214, 
+    O_K13_5[phase_deg]:phase_deg,  O_K13_5[ENLD_MEV]:ampl_MEV/nk1214, 
+    O_K13_6[phase_deg]:phase_deg,  O_K13_6[ENLD_MEV]:ampl_MEV/nk1214, 
+    O_K13_7[phase_deg]:phase_deg,  O_K13_7[ENLD_MEV]:ampl_MEV/nk1214, 
+    O_K13_8[phase_deg]:phase_deg,  O_K13_8[ENLD_MEV]:ampl_MEV/nk1214, 
+    O_K14_1[phase_deg]:phase_deg,  O_K14_1[ENLD_MEV]:ampl_MEV/nk1214, 
+    O_K14_2[phase_deg]:phase_deg,  O_K14_2[ENLD_MEV]:ampl_MEV/nk1214, 
+    O_K14_3[phase_deg]:phase_deg,  O_K14_3[ENLD_MEV]:ampl_MEV/nk1214, 
+    O_K14_4[phase_deg]:phase_deg,  O_K14_4[ENLD_MEV]:ampl_MEV/nk1214, 
+    O_K14_5[phase_deg]:phase_deg,  O_K14_5[ENLD_MEV]:ampl_MEV/nk1214, 
+    O_K14_6[phase_deg]:phase_deg,  O_K14_6[ENLD_MEV]:ampl_MEV/nk1214, 
+    }, 
+    var = {phase_deg, ampl_MEV}
+
+! L3: K15-1 to K 19-6
+O_L3: overlay = {
+    O_K15_1[phase_deg]:phase_deg,  O_K15_1[ENLD_MEV]:ampl_MEV/nk3f,
+    O_K15_3[phase_deg]:phase_deg,  O_K15_3[ENLD_MEV]:ampl_MEV/nk3f,
+    O_K15_4[phase_deg]:phase_deg,  O_K15_4[ENLD_MEV]:ampl_MEV/nk3f,
+    O_K15_5[phase_deg]:phase_deg,  O_K15_5[ENLD_MEV]:ampl_MEV/nk3f,
+    O_K15_6[phase_deg]:phase_deg,  O_K15_6[ENLD_MEV]:ampl_MEV/nk3f,
+    O_K15_7[phase_deg]:phase_deg,  O_K15_7[ENLD_MEV]:ampl_MEV/nk3f,
+    O_K15_8[phase_deg]:phase_deg,  O_K15_8[ENLD_MEV]:ampl_MEV/nk3f,
+    O_K16_1[phase_deg]:phase_deg,  O_K16_1[ENLD_MEV]:ampl_MEV/nk3f,
+    O_K16_2[phase_deg]:phase_deg,  O_K16_2[ENLD_MEV]:ampl_MEV/nk3f,
+    O_K16_3[phase_deg]:phase_deg,  O_K16_3[ENLD_MEV]:ampl_MEV/nk3f,
+    O_K16_4[phase_deg]:phase_deg,  O_K16_4[ENLD_MEV]:ampl_MEV/nk3f,
+    O_K16_5[phase_deg]:phase_deg,  O_K16_5[ENLD_MEV]:ampl_MEV/nk3f,
+    O_K16_6[phase_deg]:phase_deg,  O_K16_6[ENLD_MEV]:ampl_MEV/nk3f,
+    O_K16_7[phase_deg]:phase_deg,  O_K16_7[ENLD_MEV]:ampl_MEV/nk3f,
+    O_K16_8[phase_deg]:phase_deg,  O_K16_8[ENLD_MEV]:ampl_MEV/nk3f,
+    O_K17_1[phase_deg]:phase_deg,  O_K17_1[ENLD_MEV]:ampl_MEV/nk3f,
+    O_K17_2[phase_deg]:phase_deg,  O_K17_2[ENLD_MEV]:ampl_MEV/nk3f,
+    O_K17_3[phase_deg]:phase_deg,  O_K17_3[ENLD_MEV]:ampl_MEV/nk3f,
+    O_K17_4[phase_deg]:phase_deg,  O_K17_4[ENLD_MEV]:ampl_MEV/nk3f,
+    O_K17_5[phase_deg]:phase_deg,  O_K17_5[ENLD_MEV]:ampl_MEV/nk3f,
+    O_K17_6[phase_deg]:phase_deg,  O_K17_6[ENLD_MEV]:ampl_MEV/nk3f,
+    O_K17_7[phase_deg]:phase_deg,  O_K17_7[ENLD_MEV]:ampl_MEV/nk3f,
+    O_K17_8[phase_deg]:phase_deg,  O_K17_8[ENLD_MEV]:ampl_MEV/nk3f,
+    O_K18_1[phase_deg]:phase_deg,  O_K18_1[ENLD_MEV]:ampl_MEV/nk3f,
+    O_K18_2[phase_deg]:phase_deg,  O_K18_2[ENLD_MEV]:ampl_MEV/nk3f,
+    O_K18_3[phase_deg]:phase_deg,  O_K18_3[ENLD_MEV]:ampl_MEV/nk3f,
+    O_K18_4[phase_deg]:phase_deg,  O_K18_4[ENLD_MEV]:ampl_MEV/nk3f,
+    O_K18_5[phase_deg]:phase_deg,  O_K18_5[ENLD_MEV]:ampl_MEV/nk3f,
+    O_K18_6[phase_deg]:phase_deg,  O_K18_6[ENLD_MEV]:ampl_MEV/nk3f,
+    O_K18_7[phase_deg]:phase_deg,  O_K18_7[ENLD_MEV]:ampl_MEV/nk3f,
+    O_K18_8[phase_deg]:phase_deg,  O_K18_8[ENLD_MEV]:ampl_MEV/nk3f,
+    O_K19_1[phase_deg]:phase_deg,  O_K19_1[ENLD_MEV]:ampl_MEV/nk3f,
+    O_K19_2[phase_deg]:phase_deg,  O_K19_2[ENLD_MEV]:ampl_MEV/nk3f,
+    O_K19_3[phase_deg]:phase_deg,  O_K19_3[ENLD_MEV]:ampl_MEV/nk3f,
+    O_K19_4[phase_deg]:phase_deg,  O_K19_4[ENLD_MEV]:ampl_MEV/nk3f,
+    O_K19_5[phase_deg]:phase_deg,  O_K19_5[ENLD_MEV]:ampl_MEV/nk3f,
+    O_K19_6[phase_deg]:phase_deg,  O_K19_6[ENLD_MEV]:ampl_MEV/nk3f,
+    }, 
+    var = {phase_deg, ampl_MEV}

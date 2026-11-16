@@ -1,0 +1,553 @@
+! =============================================================================
+! linac middle klystron overlays
+! a bit less fancy than the LCLS equivalents, but good enough for now... (?)
+! =============================================================================
+
+! constants for klystron power split
+! kps4 = 1/4 is the nominal 25% for a 4-structure klystron
+! kps3a/b are for when there are only 3 structures
+! one gets kps3a, theee other two receive kps3b
+kps4  = 0.25
+kps3a = 0.4142135623730951
+kps3b = 0.2928932188134525
+
+
+! =============================================================================
+! L1F
+! =============================================================================
+
+O_K11_1: overlay = {
+    K11_1B[phi0]:phase_deg/360, K11_1B[voltage]:ENLD_MEV*1e6*kps3a,
+    K11_1C[phi0]:phase_deg/360, K11_1C[voltage]:ENLD_MEV*1e6*kps3b,
+    K11_1D[phi0]:phase_deg/360, K11_1D[voltage]:ENLD_MEV*1e6*kps3b,
+    }, var = {phase_deg, ENLD_MEV}
+
+O_K11_2: overlay = {
+    K11_2A[phi0]:phase_deg/360, K11_2A[voltage]:ENLD_MEV*1e6*kps3a,
+    K11_2B[phi0]:phase_deg/360, K11_2B[voltage]:ENLD_MEV*1e6*kps3b,
+    K11_2C[phi0]:phase_deg/360, K11_2C[voltage]:ENLD_MEV*1e6*kps3b,
+    }, 
+    var = {phase_deg, ENLD_MEV}
+
+! =============================================================================
+! L2F
+! note no 14-7 or 8
+! =============================================================================
+
+O_K11_4: overlay = {
+    K11_4A[phi0]:phase_deg/360, K11_4A[voltage]:ENLD_MEV*1e6*kps4,
+    K11_4B[phi0]:phase_deg/360, K11_4B[voltage]:ENLD_MEV*1e6*kps4,
+    K11_4C[phi0]:phase_deg/360, K11_4C[voltage]:ENLD_MEV*1e6*kps4,
+    K11_4D[phi0]:phase_deg/360, K11_4D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K11_5: overlay = {
+    K11_5A[phi0]:phase_deg/360, K11_5A[voltage]:ENLD_MEV*1e6*kps4,
+    K11_5B[phi0]:phase_deg/360, K11_5B[voltage]:ENLD_MEV*1e6*kps4,
+    K11_5C[phi0]:phase_deg/360, K11_5C[voltage]:ENLD_MEV*1e6*kps4,
+    K11_5D[phi0]:phase_deg/360, K11_5D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K11_6: overlay = {
+    K11_6A[phi0]:phase_deg/360, K11_6A[voltage]:ENLD_MEV*1e6*kps4,
+    K11_6B[phi0]:phase_deg/360, K11_6B[voltage]:ENLD_MEV*1e6*kps4,
+    K11_6C[phi0]:phase_deg/360, K11_6C[voltage]:ENLD_MEV*1e6*kps4,
+    K11_6D[phi0]:phase_deg/360, K11_6D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K11_7: overlay = {
+    K11_7A[phi0]:phase_deg/360, K11_7A[voltage]:ENLD_MEV*1e6*kps4,
+    K11_7B[phi0]:phase_deg/360, K11_7B[voltage]:ENLD_MEV*1e6*kps4,
+    K11_7C[phi0]:phase_deg/360, K11_7C[voltage]:ENLD_MEV*1e6*kps4,
+    K11_7D[phi0]:phase_deg/360, K11_7D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K11_8: overlay = {
+    K11_8A[phi0]:phase_deg/360, K11_8A[voltage]:ENLD_MEV*1e6*kps4,
+    K11_8B[phi0]:phase_deg/360, K11_8B[voltage]:ENLD_MEV*1e6*kps4,
+    K11_8C[phi0]:phase_deg/360, K11_8C[voltage]:ENLD_MEV*1e6*kps4,
+    K11_8D[phi0]:phase_deg/360, K11_8D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K12_1: overlay = {
+    K12_1A[phi0]:phase_deg/360, K12_1A[voltage]:ENLD_MEV*1e6*kps4,
+    K12_1B[phi0]:phase_deg/360, K12_1B[voltage]:ENLD_MEV*1e6*kps4,
+    K12_1C[phi0]:phase_deg/360, K12_1C[voltage]:ENLD_MEV*1e6*kps4,
+    K12_1D[phi0]:phase_deg/360, K12_1D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K12_2: overlay = {
+    K12_2A[phi0]:phase_deg/360, K12_2A[voltage]:ENLD_MEV*1e6*kps4,
+    K12_2B[phi0]:phase_deg/360, K12_2B[voltage]:ENLD_MEV*1e6*kps4,
+    K12_2C[phi0]:phase_deg/360, K12_2C[voltage]:ENLD_MEV*1e6*kps4,
+    K12_2D[phi0]:phase_deg/360, K12_2D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K12_3: overlay = {
+    K12_3A[phi0]:phase_deg/360, K12_3A[voltage]:ENLD_MEV*1e6*kps4,
+    K12_3B[phi0]:phase_deg/360, K12_3B[voltage]:ENLD_MEV*1e6*kps4,
+    K12_3C[phi0]:phase_deg/360, K12_3C[voltage]:ENLD_MEV*1e6*kps4,
+    K12_3D[phi0]:phase_deg/360, K12_3D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K12_4: overlay = {
+    K12_4A[phi0]:phase_deg/360, K12_4A[voltage]:ENLD_MEV*1e6*kps4,
+    K12_4B[phi0]:phase_deg/360, K12_4B[voltage]:ENLD_MEV*1e6*kps4,
+    K12_4C[phi0]:phase_deg/360, K12_4C[voltage]:ENLD_MEV*1e6*kps4,
+    K12_4D[phi0]:phase_deg/360, K12_4D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K12_5: overlay = {
+    K12_5A[phi0]:phase_deg/360, K12_5A[voltage]:ENLD_MEV*1e6*kps4,
+    K12_5B[phi0]:phase_deg/360, K12_5B[voltage]:ENLD_MEV*1e6*kps4,
+    K12_5C[phi0]:phase_deg/360, K12_5C[voltage]:ENLD_MEV*1e6*kps4,
+    K12_5D[phi0]:phase_deg/360, K12_5D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K12_6: overlay = {
+    K12_6A[phi0]:phase_deg/360, K12_6A[voltage]:ENLD_MEV*1e6*kps4,
+    K12_6B[phi0]:phase_deg/360, K12_6B[voltage]:ENLD_MEV*1e6*kps4,
+    K12_6C[phi0]:phase_deg/360, K12_6C[voltage]:ENLD_MEV*1e6*kps4,
+    K12_6D[phi0]:phase_deg/360, K12_6D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K12_7: overlay = {
+    K12_7A[phi0]:phase_deg/360, K12_7A[voltage]:ENLD_MEV*1e6*kps4,
+    K12_7B[phi0]:phase_deg/360, K12_7B[voltage]:ENLD_MEV*1e6*kps4,
+    K12_7C[phi0]:phase_deg/360, K12_7C[voltage]:ENLD_MEV*1e6*kps4,
+    K12_7D[phi0]:phase_deg/360, K12_7D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K12_8: overlay = {
+    K12_8A[phi0]:phase_deg/360, K12_8A[voltage]:ENLD_MEV*1e6*kps4,
+    K12_8B[phi0]:phase_deg/360, K12_8B[voltage]:ENLD_MEV*1e6*kps4,
+    K12_8C[phi0]:phase_deg/360, K12_8C[voltage]:ENLD_MEV*1e6*kps4,
+    K12_8D[phi0]:phase_deg/360, K12_8D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K13_1: overlay = {
+    K13_1A[phi0]:phase_deg/360, K13_1A[voltage]:ENLD_MEV*1e6*kps4,
+    K13_1B[phi0]:phase_deg/360, K13_1B[voltage]:ENLD_MEV*1e6*kps4,
+    K13_1C[phi0]:phase_deg/360, K13_1C[voltage]:ENLD_MEV*1e6*kps4,
+    K13_1D[phi0]:phase_deg/360, K13_1D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K13_2: overlay = {
+    K13_2A[phi0]:phase_deg/360, K13_2A[voltage]:ENLD_MEV*1e6*kps4,
+    K13_2B[phi0]:phase_deg/360, K13_2B[voltage]:ENLD_MEV*1e6*kps4,
+    K13_2C[phi0]:phase_deg/360, K13_2C[voltage]:ENLD_MEV*1e6*kps4,
+    K13_2D[phi0]:phase_deg/360, K13_2D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K13_3: overlay = {
+    K13_3A[phi0]:phase_deg/360, K13_3A[voltage]:ENLD_MEV*1e6*kps4,
+    K13_3B[phi0]:phase_deg/360, K13_3B[voltage]:ENLD_MEV*1e6*kps4,
+    K13_3C[phi0]:phase_deg/360, K13_3C[voltage]:ENLD_MEV*1e6*kps4,
+    K13_3D[phi0]:phase_deg/360, K13_3D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K13_4: overlay = {
+    K13_4A[phi0]:phase_deg/360, K13_4A[voltage]:ENLD_MEV*1e6*kps4,
+    K13_4B[phi0]:phase_deg/360, K13_4B[voltage]:ENLD_MEV*1e6*kps4,
+    K13_4C[phi0]:phase_deg/360, K13_4C[voltage]:ENLD_MEV*1e6*kps4,
+    K13_4D[phi0]:phase_deg/360, K13_4D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K13_5: overlay = {
+    K13_5A[phi0]:phase_deg/360, K13_5A[voltage]:ENLD_MEV*1e6*kps4,
+    K13_5B[phi0]:phase_deg/360, K13_5B[voltage]:ENLD_MEV*1e6*kps4,
+    K13_5C[phi0]:phase_deg/360, K13_5C[voltage]:ENLD_MEV*1e6*kps4,
+    K13_5D[phi0]:phase_deg/360, K13_5D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K13_6: overlay = {
+    K13_6A[phi0]:phase_deg/360, K13_6A[voltage]:ENLD_MEV*1e6*kps4,
+    K13_6B[phi0]:phase_deg/360, K13_6B[voltage]:ENLD_MEV*1e6*kps4,
+    K13_6C[phi0]:phase_deg/360, K13_6C[voltage]:ENLD_MEV*1e6*kps4,
+    K13_6D[phi0]:phase_deg/360, K13_6D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K13_7: overlay = {
+    K13_7A[phi0]:phase_deg/360, K13_7A[voltage]:ENLD_MEV*1e6*kps4,
+    K13_7B[phi0]:phase_deg/360, K13_7B[voltage]:ENLD_MEV*1e6*kps4,
+    K13_7C[phi0]:phase_deg/360, K13_7C[voltage]:ENLD_MEV*1e6*kps4,
+    K13_7D[phi0]:phase_deg/360, K13_7D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K13_8: overlay = {
+    K13_8A[phi0]:phase_deg/360, K13_8A[voltage]:ENLD_MEV*1e6*kps4,
+    K13_8B[phi0]:phase_deg/360, K13_8B[voltage]:ENLD_MEV*1e6*kps4,
+    K13_8C[phi0]:phase_deg/360, K13_8C[voltage]:ENLD_MEV*1e6*kps4,
+    K13_8D[phi0]:phase_deg/360, K13_8D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K14_1: overlay = {
+    K14_1A[phi0]:phase_deg/360, K14_1A[voltage]:ENLD_MEV*1e6*kps4,
+    K14_1B[phi0]:phase_deg/360, K14_1B[voltage]:ENLD_MEV*1e6*kps4,
+    K14_1C[phi0]:phase_deg/360, K14_1C[voltage]:ENLD_MEV*1e6*kps4,
+    K14_1D[phi0]:phase_deg/360, K14_1D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K14_2: overlay = {
+    K14_2A[phi0]:phase_deg/360, K14_2A[voltage]:ENLD_MEV*1e6*kps4,
+    K14_2B[phi0]:phase_deg/360, K14_2B[voltage]:ENLD_MEV*1e6*kps4,
+    K14_2C[phi0]:phase_deg/360, K14_2C[voltage]:ENLD_MEV*1e6*kps4,
+    K14_2D[phi0]:phase_deg/360, K14_2D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K14_3: overlay = {
+    K14_3A[phi0]:phase_deg/360, K14_3A[voltage]:ENLD_MEV*1e6*kps4,
+    K14_3B[phi0]:phase_deg/360, K14_3B[voltage]:ENLD_MEV*1e6*kps4,
+    K14_3C[phi0]:phase_deg/360, K14_3C[voltage]:ENLD_MEV*1e6*kps4,
+    K14_3D[phi0]:phase_deg/360, K14_3D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K14_4: overlay = {
+    K14_4A[phi0]:phase_deg/360, K14_4A[voltage]:ENLD_MEV*1e6*kps4,
+    K14_4B[phi0]:phase_deg/360, K14_4B[voltage]:ENLD_MEV*1e6*kps4,
+    K14_4C[phi0]:phase_deg/360, K14_4C[voltage]:ENLD_MEV*1e6*kps4,
+    K14_4D[phi0]:phase_deg/360, K14_4D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K14_5: overlay = {
+    K14_5A[phi0]:phase_deg/360, K14_5A[voltage]:ENLD_MEV*1e6*kps4,
+    K14_5B[phi0]:phase_deg/360, K14_5B[voltage]:ENLD_MEV*1e6*kps4,
+    K14_5C[phi0]:phase_deg/360, K14_5C[voltage]:ENLD_MEV*1e6*kps4,
+    K14_5D[phi0]:phase_deg/360, K14_5D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K14_6: overlay = {
+    K14_6A[phi0]:phase_deg/360, K14_6A[voltage]:ENLD_MEV*1e6*kps4,
+    K14_6B[phi0]:phase_deg/360, K14_6B[voltage]:ENLD_MEV*1e6*kps4,
+    K14_6C[phi0]:phase_deg/360, K14_6C[voltage]:ENLD_MEV*1e6*kps4,
+    K14_6D[phi0]:phase_deg/360, K14_6D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+
+! =============================================================================
+! L3F
+! note: no 15-2, 19-7 or -8
+! =============================================================================
+
+O_K15_1: overlay = {
+    K15_1A[phi0]:phase_deg/360, K15_1A[voltage]:ENLD_MEV*1e6*kps4,
+    K15_1B[phi0]:phase_deg/360, K15_1B[voltage]:ENLD_MEV*1e6*kps4,
+    K15_1C[phi0]:phase_deg/360, K15_1C[voltage]:ENLD_MEV*1e6*kps4,
+    K15_1D[phi0]:phase_deg/360, K15_1D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K15_3: overlay = {
+    K15_3A[phi0]:phase_deg/360, K15_3A[voltage]:ENLD_MEV*1e6*kps4,
+    K15_3B[phi0]:phase_deg/360, K15_3B[voltage]:ENLD_MEV*1e6*kps4,
+    K15_3C[phi0]:phase_deg/360, K15_3C[voltage]:ENLD_MEV*1e6*kps4,
+    K15_3D[phi0]:phase_deg/360, K15_3D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K15_4: overlay = {
+    K15_4A[phi0]:phase_deg/360, K15_4A[voltage]:ENLD_MEV*1e6*kps4,
+    K15_4B[phi0]:phase_deg/360, K15_4B[voltage]:ENLD_MEV*1e6*kps4,
+    K15_4C[phi0]:phase_deg/360, K15_4C[voltage]:ENLD_MEV*1e6*kps4,
+    K15_4D[phi0]:phase_deg/360, K15_4D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K15_5: overlay = {
+    K15_5A[phi0]:phase_deg/360, K15_5A[voltage]:ENLD_MEV*1e6*kps4,
+    K15_5B[phi0]:phase_deg/360, K15_5B[voltage]:ENLD_MEV*1e6*kps4,
+    K15_5C[phi0]:phase_deg/360, K15_5C[voltage]:ENLD_MEV*1e6*kps4,
+    K15_5D[phi0]:phase_deg/360, K15_5D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K15_6: overlay = {
+    K15_6A[phi0]:phase_deg/360, K15_6A[voltage]:ENLD_MEV*1e6*kps4,
+    K15_6B[phi0]:phase_deg/360, K15_6B[voltage]:ENLD_MEV*1e6*kps4,
+    K15_6C[phi0]:phase_deg/360, K15_6C[voltage]:ENLD_MEV*1e6*kps4,
+    K15_6D[phi0]:phase_deg/360, K15_6D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K15_7: overlay = {
+    K15_7A[phi0]:phase_deg/360, K15_7A[voltage]:ENLD_MEV*1e6*kps4,
+    K15_7B[phi0]:phase_deg/360, K15_7B[voltage]:ENLD_MEV*1e6*kps4,
+    K15_7C[phi0]:phase_deg/360, K15_7C[voltage]:ENLD_MEV*1e6*kps4,
+    K15_7D[phi0]:phase_deg/360, K15_7D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K15_8: overlay = {
+    K15_8A[phi0]:phase_deg/360, K15_8A[voltage]:ENLD_MEV*1e6*kps4,
+    K15_8B[phi0]:phase_deg/360, K15_8B[voltage]:ENLD_MEV*1e6*kps4,
+    K15_8C[phi0]:phase_deg/360, K15_8C[voltage]:ENLD_MEV*1e6*kps4,
+    K15_8D[phi0]:phase_deg/360, K15_8D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K16_1: overlay = {
+    K16_1A[phi0]:phase_deg/360, K16_1A[voltage]:ENLD_MEV*1e6*kps4,
+    K16_1B[phi0]:phase_deg/360, K16_1B[voltage]:ENLD_MEV*1e6*kps4,
+    K16_1C[phi0]:phase_deg/360, K16_1C[voltage]:ENLD_MEV*1e6*kps4,
+    K16_1D[phi0]:phase_deg/360, K16_1D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K16_2: overlay = {
+    K16_2A[phi0]:phase_deg/360, K16_2A[voltage]:ENLD_MEV*1e6*kps4,
+    K16_2B[phi0]:phase_deg/360, K16_2B[voltage]:ENLD_MEV*1e6*kps4,
+    K16_2C[phi0]:phase_deg/360, K16_2C[voltage]:ENLD_MEV*1e6*kps4,
+    K16_2D[phi0]:phase_deg/360, K16_2D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K16_3: overlay = {
+    K16_3A[phi0]:phase_deg/360, K16_3A[voltage]:ENLD_MEV*1e6*kps4,
+    K16_3B[phi0]:phase_deg/360, K16_3B[voltage]:ENLD_MEV*1e6*kps4,
+    K16_3C[phi0]:phase_deg/360, K16_3C[voltage]:ENLD_MEV*1e6*kps4,
+    K16_3D[phi0]:phase_deg/360, K16_3D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K16_4: overlay = {
+    K16_4A[phi0]:phase_deg/360, K16_4A[voltage]:ENLD_MEV*1e6*kps4,
+    K16_4B[phi0]:phase_deg/360, K16_4B[voltage]:ENLD_MEV*1e6*kps4,
+    K16_4C[phi0]:phase_deg/360, K16_4C[voltage]:ENLD_MEV*1e6*kps4,
+    K16_4D[phi0]:phase_deg/360, K16_4D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K16_5: overlay = {
+    K16_5A[phi0]:phase_deg/360, K16_5A[voltage]:ENLD_MEV*1e6*kps4,
+    K16_5B[phi0]:phase_deg/360, K16_5B[voltage]:ENLD_MEV*1e6*kps4,
+    K16_5C[phi0]:phase_deg/360, K16_5C[voltage]:ENLD_MEV*1e6*kps4,
+    K16_5D[phi0]:phase_deg/360, K16_5D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K16_6: overlay = {
+    K16_6A[phi0]:phase_deg/360, K16_6A[voltage]:ENLD_MEV*1e6*kps4,
+    K16_6B[phi0]:phase_deg/360, K16_6B[voltage]:ENLD_MEV*1e6*kps4,
+    K16_6C[phi0]:phase_deg/360, K16_6C[voltage]:ENLD_MEV*1e6*kps4,
+    K16_6D[phi0]:phase_deg/360, K16_6D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K16_7: overlay = {
+    K16_7A[phi0]:phase_deg/360, K16_7A[voltage]:ENLD_MEV*1e6*kps4,
+    K16_7B[phi0]:phase_deg/360, K16_7B[voltage]:ENLD_MEV*1e6*kps4,
+    K16_7C[phi0]:phase_deg/360, K16_7C[voltage]:ENLD_MEV*1e6*kps4,
+    K16_7D[phi0]:phase_deg/360, K16_7D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K16_8: overlay = {
+    K16_8A[phi0]:phase_deg/360, K16_8A[voltage]:ENLD_MEV*1e6*kps4,
+    K16_8B[phi0]:phase_deg/360, K16_8B[voltage]:ENLD_MEV*1e6*kps4,
+    K16_8C[phi0]:phase_deg/360, K16_8C[voltage]:ENLD_MEV*1e6*kps4,
+    K16_8D[phi0]:phase_deg/360, K16_8D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K17_1: overlay = {
+    K17_1A[phi0]:phase_deg/360, K17_1A[voltage]:ENLD_MEV*1e6*kps4,
+    K17_1B[phi0]:phase_deg/360, K17_1B[voltage]:ENLD_MEV*1e6*kps4,
+    K17_1C[phi0]:phase_deg/360, K17_1C[voltage]:ENLD_MEV*1e6*kps4,
+    K17_1D[phi0]:phase_deg/360, K17_1D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K17_2: overlay = {
+    K17_2A[phi0]:phase_deg/360, K17_2A[voltage]:ENLD_MEV*1e6*kps4,
+    K17_2B[phi0]:phase_deg/360, K17_2B[voltage]:ENLD_MEV*1e6*kps4,
+    K17_2C[phi0]:phase_deg/360, K17_2C[voltage]:ENLD_MEV*1e6*kps4,
+    K17_2D[phi0]:phase_deg/360, K17_2D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K17_3: overlay = {
+    K17_3A[phi0]:phase_deg/360, K17_3A[voltage]:ENLD_MEV*1e6*kps4,
+    K17_3B[phi0]:phase_deg/360, K17_3B[voltage]:ENLD_MEV*1e6*kps4,
+    K17_3C[phi0]:phase_deg/360, K17_3C[voltage]:ENLD_MEV*1e6*kps4,
+    K17_3D[phi0]:phase_deg/360, K17_3D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K17_4: overlay = {
+    K17_4A[phi0]:phase_deg/360, K17_4A[voltage]:ENLD_MEV*1e6*kps4,
+    K17_4B[phi0]:phase_deg/360, K17_4B[voltage]:ENLD_MEV*1e6*kps4,
+    K17_4C[phi0]:phase_deg/360, K17_4C[voltage]:ENLD_MEV*1e6*kps4,
+    K17_4D[phi0]:phase_deg/360, K17_4D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K17_5: overlay = {
+    K17_5A[phi0]:phase_deg/360, K17_5A[voltage]:ENLD_MEV*1e6*kps4,
+    K17_5B[phi0]:phase_deg/360, K17_5B[voltage]:ENLD_MEV*1e6*kps4,
+    K17_5C[phi0]:phase_deg/360, K17_5C[voltage]:ENLD_MEV*1e6*kps4,
+    K17_5D[phi0]:phase_deg/360, K17_5D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K17_6: overlay = {
+    K17_6A[phi0]:phase_deg/360, K17_6A[voltage]:ENLD_MEV*1e6*kps4,
+    K17_6B[phi0]:phase_deg/360, K17_6B[voltage]:ENLD_MEV*1e6*kps4,
+    K17_6C[phi0]:phase_deg/360, K17_6C[voltage]:ENLD_MEV*1e6*kps4,
+    K17_6D[phi0]:phase_deg/360, K17_6D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K17_7: overlay = {
+    K17_7A[phi0]:phase_deg/360, K17_7A[voltage]:ENLD_MEV*1e6*kps4,
+    K17_7B[phi0]:phase_deg/360, K17_7B[voltage]:ENLD_MEV*1e6*kps4,
+    K17_7C[phi0]:phase_deg/360, K17_7C[voltage]:ENLD_MEV*1e6*kps4,
+    K17_7D[phi0]:phase_deg/360, K17_7D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K17_8: overlay = {
+    K17_8A[phi0]:phase_deg/360, K17_8A[voltage]:ENLD_MEV*1e6*kps4,
+    K17_8B[phi0]:phase_deg/360, K17_8B[voltage]:ENLD_MEV*1e6*kps4,
+    K17_8C[phi0]:phase_deg/360, K17_8C[voltage]:ENLD_MEV*1e6*kps4,
+    K17_8D[phi0]:phase_deg/360, K17_8D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K18_1: overlay = {
+    K18_1A[phi0]:phase_deg/360, K18_1A[voltage]:ENLD_MEV*1e6*kps4,
+    K18_1B[phi0]:phase_deg/360, K18_1B[voltage]:ENLD_MEV*1e6*kps4,
+    K18_1C[phi0]:phase_deg/360, K18_1C[voltage]:ENLD_MEV*1e6*kps4,
+    K18_1D[phi0]:phase_deg/360, K18_1D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K18_2: overlay = {
+    K18_2A[phi0]:phase_deg/360, K18_2A[voltage]:ENLD_MEV*1e6*kps4,
+    K18_2B[phi0]:phase_deg/360, K18_2B[voltage]:ENLD_MEV*1e6*kps4,
+    K18_2C[phi0]:phase_deg/360, K18_2C[voltage]:ENLD_MEV*1e6*kps4,
+    K18_2D[phi0]:phase_deg/360, K18_2D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K18_3: overlay = {
+    K18_3A[phi0]:phase_deg/360, K18_3A[voltage]:ENLD_MEV*1e6*kps4,
+    K18_3B[phi0]:phase_deg/360, K18_3B[voltage]:ENLD_MEV*1e6*kps4,
+    K18_3C[phi0]:phase_deg/360, K18_3C[voltage]:ENLD_MEV*1e6*kps4,
+    K18_3D[phi0]:phase_deg/360, K18_3D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K18_4: overlay = {
+    K18_4A[phi0]:phase_deg/360, K18_4A[voltage]:ENLD_MEV*1e6*kps4,
+    K18_4B[phi0]:phase_deg/360, K18_4B[voltage]:ENLD_MEV*1e6*kps4,
+    K18_4C[phi0]:phase_deg/360, K18_4C[voltage]:ENLD_MEV*1e6*kps4,
+    K18_4D[phi0]:phase_deg/360, K18_4D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K18_5: overlay = {
+    K18_5A[phi0]:phase_deg/360, K18_5A[voltage]:ENLD_MEV*1e6*kps4,
+    K18_5B[phi0]:phase_deg/360, K18_5B[voltage]:ENLD_MEV*1e6*kps4,
+    K18_5C[phi0]:phase_deg/360, K18_5C[voltage]:ENLD_MEV*1e6*kps4,
+    K18_5D[phi0]:phase_deg/360, K18_5D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K18_6: overlay = {
+    K18_6A[phi0]:phase_deg/360, K18_6A[voltage]:ENLD_MEV*1e6*kps4,
+    K18_6B[phi0]:phase_deg/360, K18_6B[voltage]:ENLD_MEV*1e6*kps4,
+    K18_6C[phi0]:phase_deg/360, K18_6C[voltage]:ENLD_MEV*1e6*kps4,
+    K18_6D[phi0]:phase_deg/360, K18_6D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K18_7: overlay = {
+    K18_7A[phi0]:phase_deg/360, K18_7A[voltage]:ENLD_MEV*1e6*kps4,
+    K18_7B[phi0]:phase_deg/360, K18_7B[voltage]:ENLD_MEV*1e6*kps4,
+    K18_7C[phi0]:phase_deg/360, K18_7C[voltage]:ENLD_MEV*1e6*kps4,
+    K18_7D[phi0]:phase_deg/360, K18_7D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K18_8: overlay = {
+    K18_8A[phi0]:phase_deg/360, K18_8A[voltage]:ENLD_MEV*1e6*kps4,
+    K18_8B[phi0]:phase_deg/360, K18_8B[voltage]:ENLD_MEV*1e6*kps4,
+    K18_8C[phi0]:phase_deg/360, K18_8C[voltage]:ENLD_MEV*1e6*kps4,
+    K18_8D[phi0]:phase_deg/360, K18_8D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K19_1: overlay = {
+    K19_1A[phi0]:phase_deg/360, K19_1A[voltage]:ENLD_MEV*1e6*kps4,
+    K19_1B[phi0]:phase_deg/360, K19_1B[voltage]:ENLD_MEV*1e6*kps4,
+    K19_1C[phi0]:phase_deg/360, K19_1C[voltage]:ENLD_MEV*1e6*kps4,
+    K19_1D[phi0]:phase_deg/360, K19_1D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K19_2: overlay = {
+    K19_2A[phi0]:phase_deg/360, K19_2A[voltage]:ENLD_MEV*1e6*kps4,
+    K19_2B[phi0]:phase_deg/360, K19_2B[voltage]:ENLD_MEV*1e6*kps4,
+    K19_2C[phi0]:phase_deg/360, K19_2C[voltage]:ENLD_MEV*1e6*kps4,
+    K19_2D[phi0]:phase_deg/360, K19_2D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K19_3: overlay = {
+    K19_3A[phi0]:phase_deg/360, K19_3A[voltage]:ENLD_MEV*1e6*kps4,
+    K19_3B[phi0]:phase_deg/360, K19_3B[voltage]:ENLD_MEV*1e6*kps4,
+    K19_3C[phi0]:phase_deg/360, K19_3C[voltage]:ENLD_MEV*1e6*kps4,
+    K19_3D[phi0]:phase_deg/360, K19_3D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K19_4: overlay = {
+    K19_4A[phi0]:phase_deg/360, K19_4A[voltage]:ENLD_MEV*1e6*kps4,
+    K19_4B[phi0]:phase_deg/360, K19_4B[voltage]:ENLD_MEV*1e6*kps4,
+    K19_4C[phi0]:phase_deg/360, K19_4C[voltage]:ENLD_MEV*1e6*kps4,
+    K19_4D[phi0]:phase_deg/360, K19_4D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K19_5: overlay = {
+    K19_5A[phi0]:phase_deg/360, K19_5A[voltage]:ENLD_MEV*1e6*kps4,
+    K19_5B[phi0]:phase_deg/360, K19_5B[voltage]:ENLD_MEV*1e6*kps4,
+    K19_5C[phi0]:phase_deg/360, K19_5C[voltage]:ENLD_MEV*1e6*kps4,
+    K19_5D[phi0]:phase_deg/360, K19_5D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}
+
+O_K19_6: overlay = {
+    K19_6A[phi0]:phase_deg/360, K19_6A[voltage]:ENLD_MEV*1e6*kps4,
+    K19_6B[phi0]:phase_deg/360, K19_6B[voltage]:ENLD_MEV*1e6*kps4,
+    K19_6C[phi0]:phase_deg/360, K19_6C[voltage]:ENLD_MEV*1e6*kps4,
+    K19_6D[phi0]:phase_deg/360, K19_6D[voltage]:ENLD_MEV*1e6*kps4,
+    },
+    var = {phase_deg, ENLD_MEV}

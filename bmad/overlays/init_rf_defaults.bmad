@@ -1,0 +1,38 @@
+! load default amplitude/phases into RF abstraction overlays
+! uses MeV and S-band degrees
+! amplitude is distributed evenly
+
+ades_l1 = (335.0   - 125.0)
+ades_l2 = (4500.0  - 335.0)
+ades_l3 = (10000.0 - 4500.0)
+
+enld0     = 196.420311385564 !MeV
+ades_l2_a = enld0*nk11
+ades_l2_b = ades_l2 - ades_l2_a
+
+pdes_l1   = -20.50
+pdes_l2   = -38.25 ! LI11-LI14 phase for nominal chirp
+pdes_l2_b = -42.56 ! LI12-LI14 phase for staggered chirp
+pdes_l3   =  0.0
+
+! staggered chirp (LI11 on-crest)
+p11 = 0.0
+p1214 = pdes_l2_b
+
+!! all L2 off-crest
+!p11 = pdes_l2
+!p1214 = pdes_l2
+
+O_L1[ampl_MEV]    = ades_l1  / cos(deg2rad*pdes_l1)
+O_L2_A[ampl_MEV]  = ades_l2_a / cos(deg2rad*p11)
+O_L2_B[ampl_MEV]  = ades_l2_b / cos(deg2rad*p1214)
+O_L3[ampl_MEV]    = ades_l3  / cos(deg2rad*pdes_l3)
+O_L1[phase_deg]   = pdes_l1
+O_L2_A[phase_deg] = p11
+O_L2_B[phase_deg] = p1214
+O_L3[phase_deg]   = pdes_l3
+
+!K15_2 on in the design L3, but there's not actually an RFS
+k15_2*[voltage] = 0
+
+

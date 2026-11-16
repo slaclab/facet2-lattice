@@ -76,6 +76,11 @@ l0bf[n_rf_steps]=5000
 lcavity::k11_*[n_rf_steps]=5000
 !lcavity::*[n_cell] = 0
 
+! set amplitudes/phases using overlays for staggered chirp
+call, file = $FACET2_LATTICE/bmad/overlays/klystrons.bmad
+call, file = $FACET2_LATTICE/bmad/overlays/linac_abstractions.bmad
+call, file = $FACET2_LATTICE/bmad/overlays/init_rf_defaults.bmad
+
 fixer_inj: fixer, superimpose, ref=beginning, ref_origin=beginning,
   beta_a_stored=1.3945E-01, alpha_a_stored=9.5114E-01,
   beta_b_stored=3.6536E-01, alpha_b_stored=1.9962E+00,
